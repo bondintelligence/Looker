@@ -2,6 +2,12 @@ view: df_v1 {
   sql_table_name: `bqtest.df_v1`
     ;;
 
+  dimension: agu_qsr_id_index {
+    type: number
+    value_format_name: id
+    sql: ${TABLE}.agu_qsr_idIndex ;;
+  }
+
   dimension: ats_indicator_index {
     type: number
     sql: ${TABLE}.ats_indicatorIndex ;;
