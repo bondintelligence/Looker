@@ -1,5 +1,5 @@
-view: final_data {
-  sql_table_name: `bqtest.Final_Data`
+view: muni {
+  sql_table_name: `bi-model-development.looker_FINAL.muni`
     ;;
 
   dimension: _0_5_mage2 {
