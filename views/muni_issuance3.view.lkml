@@ -4,6 +4,7 @@ view: muni_issuance3 {
 
   dimension: _10_year_treasury_constant_maturity_rate__percent__daily__not_seasonally_adjusted {
     type: number
+    label: "10_year_treasury_rate"
     sql: ${TABLE}._10_Year_Treasury_Constant_Maturity_Rate__Percent__Daily__Not_Seasonally_Adjusted ;;
   }
 
@@ -102,15 +103,7 @@ view: muni_issuance3 {
     sql: ${TABLE}.CUSIP ;;
   }
 
-  dimension: cusip_84 {
-    type: string
-    sql: ${TABLE}.CUSIP_84 ;;
-  }
 
-  dimension: cusiprefunded_bond2 {
-    type: string
-    sql: ${TABLE}.CUSIPRefundedBond2 ;;
-  }
 
   dimension_group: dated {
     type: time
@@ -362,65 +355,13 @@ view: muni_issuance3 {
     sql: ${TABLE}.Registrar ;;
   }
 
-  dimension: reporter_address {
-    type: string
-    sql: ${TABLE}.Reporter_Address ;;
-  }
 
-  dimension: reporter_affiliation {
-    type: string
-    sql: ${TABLE}.Reporter_Affiliation ;;
-  }
-
-  dimension: reporter_city__state__zip {
-    type: string
-    sql: ${TABLE}.Reporter_City__State__Zip ;;
-  }
-
-  dimension: reporter_e_mail {
-    type: string
-    sql: ${TABLE}.Reporter_E_mail ;;
-  }
-
-  dimension: reporter_name {
-    type: string
-    sql: ${TABLE}.Reporter_Name ;;
-  }
-
-  dimension: reporter_phone {
-    type: string
-    sql: ${TABLE}.Reporter_Phone ;;
-  }
-
-  dimension: reporter_title {
-    type: string
-    sql: ${TABLE}.Reporter_Title ;;
-  }
-
-  dimension: rtrs_control_number {
-    type: string
-    sql: ${TABLE}.RTRS_Control_Number ;;
-  }
-
-  dimension_group: rtrs_publish {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.RTRS_Publish_Date ;;
-  }
 
 
 
   dimension_group: sale {
     type: time
+    label: "sale_date"
     timeframes: [
       raw,
       date,
@@ -578,10 +519,6 @@ view: muni_issuance3 {
     sql: ${TABLE}.UW_Spread_per__1_000 ;;
   }
 
-  dimension: various_counties_statewide {
-    type: string
-    sql: ${TABLE}.Various_Counties_Statewide ;;
-  }
 
   dimension: voter_approved {
     type: yesno
@@ -610,6 +547,6 @@ view: muni_issuance3 {
 
   measure: count {
     type: count
-    drill_fields: [reporter_name, issuer_name]
+    drill_fields: [issuer_name]
   }
 }
