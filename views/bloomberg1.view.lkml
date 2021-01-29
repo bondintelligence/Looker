@@ -7,10 +7,7 @@ view: bloomberg1 {
     sql: ${TABLE}.AmountOutstanding ;;
   }
 
-  dimension: ask2 {
-    type: number
-    sql: ${TABLE}.Ask2 ;;
-  }
+
 
   dimension: ask_current_yield {
     type: number
@@ -22,15 +19,8 @@ view: bloomberg1 {
     sql: ${TABLE}.AskPrice ;;
   }
 
-  dimension: bb_sale_date {
-    type: string
-    sql: ${TABLE}.BB_Sale_Date ;;
-  }
 
-  dimension: bid2 {
-    type: number
-    sql: ${TABLE}.Bid2 ;;
-  }
+
 
   dimension: bid_current_yield {
     type: number
@@ -42,10 +32,6 @@ view: bloomberg1 {
     sql: ${TABLE}.BidPrice ;;
   }
 
-  dimension: bloomberg_security {
-    type: string
-    sql: ${TABLE}.Bloomberg_Security ;;
-  }
 
   dimension: borrower {
     type: string
@@ -187,10 +173,6 @@ view: bloomberg1 {
     sql: ${TABLE}.MaturityType ;;
   }
 
-  dimension: mid2 {
-    type: number
-    sql: ${TABLE}.Mid2 ;;
-  }
 
   dimension: mid_annual_yield {
     type: number
@@ -239,15 +221,7 @@ view: bloomberg1 {
     sql: ${TABLE}.PreviousclosingValue ;;
   }
 
-  dimension: price1 {
-    type: number
-    sql: ${TABLE}.Price1 ;;
-  }
 
-  dimension: price2 {
-    type: number
-    sql: ${TABLE}.Price2 ;;
-  }
 
   dimension: price_changeon_day {
     type: number
@@ -259,10 +233,7 @@ view: bloomberg1 {
     sql: ${TABLE}.Purpose ;;
   }
 
-  dimension: risk1 {
-    type: number
-    sql: ${TABLE}.Risk1 ;;
-  }
+
 
   dimension: series {
     type: string

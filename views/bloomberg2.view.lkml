@@ -32,10 +32,7 @@ view: bloomberg2 {
     sql: ${TABLE}.Date ;;
   }
 
-  dimension: date2 {
-    type: string
-    sql: ${TABLE}.Date2 ;;
-  }
+
 
   dimension: last_price {
     type: number
