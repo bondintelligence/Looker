@@ -35,11 +35,21 @@ view: muni {
     sql: ${TABLE}.__Rural ;;
   }
 
+  measure: _rural {
+    type: number
+  sql:  ${TABLE}.__Rural;;
+  }
+
   dimension: _non_rural {
     type: number
     label: "dem_percent_non_rural"
     sql: ${TABLE}._Non_Rural ;;
   }
+
+  measure: non_rural {
+    type: number
+    sql: ${TABLE}._Non_Rural;;
+    }
 
   dimension: _not_hispanic {
     type: number
@@ -131,7 +141,7 @@ view: muni {
 
   dimension: black_or_african_american_mr2 {
     type: number
-    label: "origin_black_or_african_american"
+    label: "race_black_or_african_american"
     sql: ${TABLE}.Black_or_African_American_MR2 ;;
   }
 
@@ -334,7 +344,7 @@ view: muni {
 
   dimension: native_hawaiian_and_other_pacific_islander_mr2 {
     type: number
-    label: "origin_native_hawaiian_and_other_pacific_islander"
+    label: "race_native_hawaiian_and_other_pacific_islander"
     sql: ${TABLE}.Native_Hawaiian_and_Other_Pacific_Islander_MR2 ;;
   }
 
