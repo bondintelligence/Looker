@@ -30,3 +30,5 @@ explore: million_unique_test_updated {}
 explore: testmodel_results {}
 
 explore: trunc_corp {}
+
+explore: corp {}
