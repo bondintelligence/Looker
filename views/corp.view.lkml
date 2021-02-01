@@ -7,19 +7,14 @@ view: corp {
     sql: ${TABLE}.AMOUNT_OUTSTANDING ;;
   }
 
-  dimension: bond_sym_id {
-    type: string
-    sql: ${TABLE}.bond_sym_id ;;
-  }
-
   dimension: bond_type {
     type: string
     sql: ${TABLE}.BOND_TYPE ;;
   }
 
-  dimension: bsym {
+  dimension: bond_sym_id {
     type: string
-    sql: ${TABLE}.bsym ;;
+    sql: ${TABLE}.bond_sym_id ;;
   }
 
   dimension: company_symbol {
@@ -29,21 +24,25 @@ view: corp {
 
   dimension: conv {
     type: string
+    label: "convertible"
     sql: ${TABLE}.CONV ;;
   }
 
   dimension: coupacc {
     type: string
+    label: "coupon_accrued"
     sql: ${TABLE}.COUPACC ;;
   }
 
   dimension: coupamt {
     type: string
+    label: "coupon_amount"
     sql: ${TABLE}.COUPAMT ;;
   }
 
   dimension: coupmonth {
     type: string
+    label: "num_of_months_since_first_coupon_payment"
     sql: ${TABLE}.COUPMONTH ;;
   }
 
@@ -112,6 +111,7 @@ view: corp {
     sql: ${TABLE}.ISSUE_ID ;;
   }
 
+
   dimension: last_interest_date {
     type: string
     sql: ${TABLE}.LAST_INTEREST_DATE ;;
@@ -124,26 +124,31 @@ view: corp {
 
   dimension: multicoups {
     type: string
+    label: "multiple_coupon_payments"
     sql: ${TABLE}.MULTICOUPS ;;
   }
 
   dimension: n_fr {
     type: string
+    label: "n_fitch"
     sql: ${TABLE}.N_FR ;;
   }
 
   dimension: n_mr {
     type: string
+    label: "n_moody"
     sql: ${TABLE}.N_MR ;;
   }
 
   dimension: n_sp {
     type: string
+    label: "n_standard_poor"
     sql: ${TABLE}.N_SP ;;
   }
 
   dimension: ncoups {
     type: string
+    label: "number_of_coupons_per_year  "
     sql: ${TABLE}.NCOUPS ;;
   }
 
@@ -154,6 +159,7 @@ view: corp {
 
   dimension: offering_amt {
     type: string
+    label: "offering_amount"
     sql: ${TABLE}.OFFERING_AMT ;;
   }
 
@@ -169,6 +175,7 @@ view: corp {
 
   dimension: price_eom {
     type: string
+    label: "price_end_of_month"
     sql: ${TABLE}.PRICE_EOM ;;
   }
 
@@ -179,31 +186,37 @@ view: corp {
 
   dimension: price_ldm {
     type: string
+    label: "price_last_trading_day_of_month "
     sql: ${TABLE}.PRICE_LDM ;;
   }
 
   dimension: principal_amt {
     type: string
+    label: "principal_amount"
     sql: ${TABLE}.PRINCIPAL_AMT ;;
   }
 
   dimension: r_fr {
     type: string
+    label: "fitch_rating"
     sql: ${TABLE}.R_FR ;;
   }
 
   dimension: r_mr {
     type: string
+    label: "moody_rating"
     sql: ${TABLE}.R_MR ;;
   }
 
   dimension: r_sp {
     type: string
+    label: "standard_poor_rating"
     sql: ${TABLE}.R_SP ;;
   }
 
   dimension: rating_cat {
     type: string
+    label: "rating_category"
     sql: ${TABLE}.RATING_CAT ;;
   }
 
@@ -214,6 +227,7 @@ view: corp {
 
   dimension: rating_num {
     type: string
+    label: "numerical_rating"
     sql: ${TABLE}.RATING_NUM ;;
   }
 
@@ -229,11 +243,13 @@ view: corp {
 
   dimension: remcoups {
     type: string
+    label: "remaining_coupons"
     sql: ${TABLE}.REMCOUPS ;;
   }
 
   dimension: ret_eom {
     type: string
+    label: "return_end_of_month"
     sql: ${TABLE}.RET_EOM ;;
   }
 
@@ -244,6 +260,7 @@ view: corp {
 
   dimension: ret_ldm {
     type: string
+    label: "return_last_trading_day_of_month"
     sql: ${TABLE}.RET_LDM ;;
   }
 
@@ -254,11 +271,13 @@ view: corp {
 
   dimension: t_date {
     type: string
+    label: "execution_date"
     sql: ${TABLE}.T_DATE ;;
   }
 
   dimension: t_dvolume {
     type: string
+    label: "total_dollar_volume"
     sql: ${TABLE}.T_DVolume ;;
   }
 
@@ -269,16 +288,19 @@ view: corp {
 
   dimension: t_volume {
     type: string
+    label: "total_par_value_volume  "
     sql: ${TABLE}.T_Volume ;;
   }
 
   dimension: t_yld_pt {
     type: string
+    label: "trade_weighted_yield_point"
     sql: ${TABLE}.T_Yld_Pt ;;
   }
 
   dimension: tmt {
     type: string
+    label: "time_to_maturity_years"
     sql: ${TABLE}.TMT ;;
   }
 
@@ -291,6 +313,7 @@ view: corp {
     type: string
     sql: ${TABLE}.YIELD ;;
   }
+
 
   measure: count {
     type: count
@@ -586,6 +609,5 @@ view: corp {
     type: number
     sql: ${yield} ;;
   }
-
 
 }

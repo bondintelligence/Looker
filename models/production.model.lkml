@@ -11,24 +11,19 @@ datagroup: production_default_datagroup {
 persist_with: production_default_datagroup
 
 
-explore: bond_data1_mili {}
+explore: bloomberg1 {}
 
-explore: bond_data1_mili_processed {}
-
-explore: df_v1 {}
-
-explore: final_data {}
-
-explore: imported_model2_results {}
-
-explore: imported_model2_testresults {}
-
-explore: imported_model2_values {}
-
-explore: million_unique_test_updated {}
-
-explore: testmodel_results {}
-
-explore: trunc_corp {}
+explore: bloomberg2 {}
 
 explore: corp {}
+
+explore: muni {}
+
+explore: muni_issuance3 {}
+          label: "muni_issuance"
+
+explore: price_muni_prediction {}
+          label: "muni_price_prediction"
+
+explore: price_corp_prediction {}
+        label: "corp_price_prediction"
