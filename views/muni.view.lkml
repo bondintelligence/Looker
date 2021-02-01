@@ -8,6 +8,7 @@ view: muni {
 
   dimension: _10_year_treasury_constant_maturity_rate_percent_daily_not_seasonally_adjusted {
     type: number
+    value_format: "0.00\%"
     label: "econ_10_year_treasury_rate"
     sql: ${TABLE}._10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted ;;
   }
@@ -17,6 +18,7 @@ view: muni {
 
   dimension: __hispanic {
     type: number
+    value_format: "0.00\%"
     label: "race_percent_hispanic"
     sql: ${TABLE}.__Hispanic ;;
   }
@@ -25,40 +27,38 @@ view: muni {
 
   dimension: __not_proficient_in_english {
     type: number
+    value_format: "0.00\%"
     label: "dem_percent_not_proficient_english"
     sql: ${TABLE}.__Not_Proficient_in_English ;;
   }
 
   dimension: __rural {
     type: number
+    value_format: "0.00\%"
     label: "dem_percent_rural"
     sql: ${TABLE}.__Rural ;;
   }
 
-  measure: _rural {
-    type: number
-  sql:  ${TABLE}.__Rural;;
-  }
 
   dimension: _non_rural {
     type: number
+    value_format: "0.00\%"
     label: "dem_percent_non_rural"
     sql: ${TABLE}._Non_Rural ;;
   }
 
-  measure: non_rural {
-    type: number
-    sql: ${TABLE}._Non_Rural;;
-    }
+
 
   dimension: _not_hispanic {
     type: number
+    value_format: "0.00\%"
     label: "race_percent_not_hispanic"
     sql: ${TABLE}._not_Hispanic ;;
   }
 
   dimension: _proficient {
     type: number
+    value_format: "0.00\%"
     label: "dem_percent_proficient_english"
     sql: ${TABLE}._Proficient ;;
   }
@@ -195,6 +195,7 @@ view: muni {
 
   dimension: dollar_price_of_the_trade {
     type: number
+    value_format: "$#,##0.00"
     label: "_dollar_price_of_the_trade"
     sql: ${TABLE}.Dollar_Price_of_the_trade ;;
   }
@@ -216,6 +217,7 @@ view: muni {
     label: "dem_female"
     sql: ${TABLE}.Female_MAge2 ;;
   }
+
 
 
   dimension: geography {
@@ -244,6 +246,7 @@ view: muni {
 
   dimension: income_ratio {
     type: number
+    value_format: "0.00\%"
     label: "dem_income_ratio"
     sql: ${TABLE}.Income_Ratio ;;
   }
@@ -252,6 +255,7 @@ view: muni {
 
   dimension: interest_rate_of_the_issue_traded {
     type: number
+    value_format: "0.00\%"
     label: "_interest_rate_of_the_issue_traded"
     sql: ${TABLE}.Interest_rate_of_the_issue_traded ;;
   }
@@ -263,6 +267,8 @@ view: muni {
     label: "_issue_size"
     sql: ${TABLE}.Issue_Size ;;
   }
+
+
 
   dimension: issuer_industry {
     type: string
@@ -326,12 +332,14 @@ view: muni {
 
   dimension: median_gross_rent_dollars_mh {
     type: number
+    value_format: "$#,##0.00"
     label: "housing_median_gross_rent"
     sql: ${TABLE}.Median_Gross_Rent_dollars_MH ;;
   }
 
   dimension: median_property_value_dollars_mh {
     type: number
+    value_format: "$#,##0.00"
     label: "housing_median_property_value"
     sql: ${TABLE}.Median_Property_Value_dollars_MH ;;
   }
@@ -380,30 +388,35 @@ view: muni {
 
   dimension: percent_bachelor_s_degree_or_higher_dem {
     type: number
+    value_format: "0.00\%"
     label: "education_percent_bachelors_degree_or_higher"
     sql: ${TABLE}.Percent_bachelor_s_degree_or_higher_dem ;;
   }
 
   dimension: percent_high_school_graduate_or_higher_dem{
     type: number
+    value_format: "0.00\%"
     label: "education_percent_high_school_graduate_or_higher"
     sql: ${TABLE}.Percent_high_school_graduate_or_higher_dem ;;
   }
 
   dimension: percent_language_other_than_english_dem {
     type: number
+    value_format: "0.00\%"
     label: "dem_percent_language_other_than_english"
     sql: ${TABLE}.Percent_Language_other_than_English_dem ;;
   }
 
   dimension: percent_occupied_housing_units_mh {
     type: number
+    value_format: "0.00\%"
     label: "housing_percent_occupied_housing_units"
     sql: ${TABLE}.Percent_Occupied_housing_units_MH ;;
   }
 
   dimension: percent_vacant_housing_units_mh {
     type: number
+    value_format: "0.00\%"
     label: "housing_percent_vacant_housing_units"
     sql: ${TABLE}.Percent_Vacant_housing_units_MH ;;
   }
@@ -417,6 +430,7 @@ view: muni {
 
   dimension: poverty_rate_eco {
     type: number
+    value_format: "0.00\%"
     label: "econ_povery_rate"
     sql: ${TABLE}.Poverty_Rate_eco ;;
   }
@@ -430,6 +444,7 @@ view: muni {
 
   dimension: price_at_issue {
     type: number
+    value_format: "$#,##0.00"
     label: "_price_at_issue"
     sql: ${TABLE}.Price_At_Issue ;;
   }
@@ -468,12 +483,14 @@ view: muni {
 
   dimension: segregation_index____black_white {
     type: number
+    value_format: "0.00"
     label: "dem_segregation_index____black_white"
     sql: ${TABLE}.Segregation_index____black_white ;;
   }
 
   dimension: segregation_index___non_white_white {
     type: number
+    value_format: "0.00"
     label: "dem_segregation_index___non_white_white"
     sql: ${TABLE}.Segregation_Index___non_white_white ;;
   }
@@ -529,12 +546,14 @@ view: muni {
 
   dimension: the_par_value_of_the_trade {
     type: number
+    value_format: "$#,##0.00"
     label: "_par_value_of_the_trade"
     sql: ${TABLE}.The_par_value_of_the_trade ;;
   }
 
   dimension: the_yield_of_the_trade {
     type: number
+    value_format: "0.00\%"
     label: "_yield_of_the_trade"
     sql: ${TABLE}.The_yield_of_the_trade ;;
   }
@@ -596,6 +615,7 @@ view: muni {
 
   dimension: unemployment_rate_eco {
     type: number
+    value_format: "0.00\%"
     label: "econ_unemployment_rate"
     sql: ${TABLE}.Unemployment_Rate_eco ;;
   }
@@ -628,6 +648,7 @@ view: muni {
 
   dimension: yield_at_issue {
     type: number
+    value_format: "0.00\%"
     label: "_yield_at_issue"
     sql: ${TABLE}.Yield_at_Issue ;;
   }
