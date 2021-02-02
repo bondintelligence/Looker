@@ -5,6 +5,7 @@ view: muni_issuance3 {
   dimension: _10_year_treasury_constant_maturity_rate__percent__daily__not_seasonally_adjusted {
     type: number
     label: "10_year_treasury_rate"
+    value_format: "0.00\%"
     sql: ${TABLE}._10_Year_Treasury_Constant_Maturity_Rate__Percent__Daily__Not_Seasonally_Adjusted ;;
   }
 

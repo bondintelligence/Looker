@@ -11,8 +11,10 @@ datagroup: production_default_datagroup {
 persist_with: production_default_datagroup
 
 
-explore: bloomberg1 {
+explore: bloomberg1 {always_filter: {
 
+    filters: [cusip: "005596DZ1"]
+  }
   }
 
 
@@ -21,7 +23,13 @@ explore: bloomberg2 {}
 
 explore: corp {}
 
-explore: muni {}
+explore: muni {always_filter: {
+
+    filters: [cusip: "00037CRB8", muni.trade_date: ""]
+  }
+  }
+
+
 
 explore: muni_issuance3 {}
           label: "muni_issuance"
