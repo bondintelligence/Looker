@@ -3,14 +3,12 @@ view: muni {
     ;;
 
 
-
-
-
   dimension: _10_year_treasury_constant_maturity_rate_percent_daily_not_seasonally_adjusted {
     type: number
     value_format: "0.00\%"
-    label: "econ_10_year_treasury_rate"
+    label: "10_year_treasury_rate"
     sql: ${TABLE}._10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted ;;
+    group_label: "economics"
   }
 
 
@@ -21,6 +19,7 @@ view: muni {
     value_format: "0.00\%"
     label: "race_percent_hispanic"
     sql: ${TABLE}.__Hispanic ;;
+    group_label: "demographics"
   }
 
 
@@ -28,23 +27,26 @@ view: muni {
   dimension: __not_proficient_in_english {
     type: number
     value_format: "0.00\%"
-    label: "dem_percent_not_proficient_english"
+    label: "percent_not_proficient_english"
     sql: ${TABLE}.__Not_Proficient_in_English ;;
+    group_label: "demographics"
   }
 
   dimension: __rural {
     type: number
     value_format: "0.00\%"
-    label: "dem_percent_rural"
+    label: "percent_rural"
     sql: ${TABLE}.__Rural ;;
+    group_label: "demographics"
   }
 
 
   dimension: _non_rural {
     type: number
     value_format: "0.00\%"
-    label: "dem_percent_non_rural"
+    label: "percent_non_rural"
     sql: ${TABLE}._Non_Rural ;;
+    group_label: "demographics"
   }
 
 
@@ -54,13 +56,15 @@ view: muni {
     value_format: "0.00\%"
     label: "race_percent_not_hispanic"
     sql: ${TABLE}._not_Hispanic ;;
+    group_label: "demographics"
   }
 
   dimension: _proficient {
     type: number
     value_format: "0.00\%"
-    label: "dem_percent_proficient_english"
+    label: "percent_proficient_english"
     sql: ${TABLE}._Proficient ;;
+    group_label: "demographics"
   }
 
 
@@ -69,6 +73,7 @@ view: muni {
     type: number
     label: "origin_africa"
     sql: ${TABLE}.Africa_dem ;;
+    group_label: "demographics"
   }
 
   dimension: alternative_trading_system_ats_indicator {
@@ -81,6 +86,7 @@ view: muni {
     type: number
     label: "race_american_indian_and_alaska_native"
     sql: ${TABLE}.American_Indian_and_Alaska_Native_MR2 ;;
+    group_label: "demographics"
   }
 
 
@@ -89,24 +95,29 @@ view: muni {
     type: number
     label: "origin_asia"
     sql: ${TABLE}.Asia_dem ;;
+    group_label: "demographics"
   }
 
   dimension: asian_mr2 {
     type: number
     label: "race_asian"
     sql: ${TABLE}.Asian_MR2 ;;
+    group_label: "demographics"
   }
 
   dimension: associate_s_degree_edu {
     type: number
-    label: "education_associates_degree"
+    label: "associates_degree"
     sql: ${TABLE}.Associate_s_degree_edu ;;
+    group_label: "education"
   }
 
   dimension: association_rate {
     type: number
-    label: "dem_social_association_rate"
+    label: "social_association_rate"
     sql: ${TABLE}.Association_Rate ;;
+    group_label: "demographics"
+    value_format: "0.00\%"
   }
 
   dimension: assumed_settlement_date {
@@ -117,32 +128,37 @@ view: muni {
 
   dimension: average_daily_pm2_5 {
     type: number
-    label: "env_air_quality_average_daily_pm2_5"
+    label: "air_quality_average_daily_pm2_5"
     sql: ${TABLE}.Average_Daily_PM2_5 ;;
+    group_label: "community"
   }
 
   dimension: average_family_size_dem {
     type: number
-    label: "dem_average_family_size"
+    label: "average_family_size"
     sql: ${TABLE}.Average_family_size_dem ;;
+    group_label: "demographics"
   }
 
   dimension: average_household_size_dem {
     type: number
-    label: "housing_average_household_size"
+    label: "average_household_size"
     sql: ${TABLE}.Average_household_size_dem ;;
+    group_label: "housing"
   }
 
   dimension: bachelor_s_degree_edu {
     type: number
-    label: "education_bachelors_degree"
+    label: "bachelors_degree"
     sql: ${TABLE}.Bachelor_s_degree_edu ;;
+    group_label: "education"
   }
 
   dimension: black_or_african_american_mr2 {
     type: number
     label: "race_black_or_african_american"
     sql: ${TABLE}.Black_or_African_American_MR2 ;;
+    group_label: "demographics"
   }
 
   dimension: broker_s_broker_indicator {
@@ -153,14 +169,16 @@ view: muni {
 
   dimension: college_or_graduate_school_dem {
     type: number
-    label: "education_college_or_graduate_school"
+    label: "college_or_graduate_school"
     sql: ${TABLE}.College_or_graduate_school_dem ;;
+    group_label: "education"
   }
 
   dimension: county {
     type: string
-    label: "geo_county"
+    label: "county"
     sql: ${TABLE}.County ;;
+    group_label: "geography"
   }
 
   dimension: coupon_frequency {
@@ -202,53 +220,61 @@ view: muni {
 
   dimension: elementary_school_enrollment_grades_1_8_dem {
     type: number
-    label: "education_elementary_school_enrollment_grades_1_8"
+    label: "elementary_school_enrollment_grades_1_8"
     sql: ${TABLE}.Elementary_school_Enrollment_grades_1_8_dem ;;
+    group_label: "education"
   }
 
   dimension: europe_dem {
     type: number
     label: "origin_european"
     sql: ${TABLE}.Europe_dem ;;
+    group_label: "demographics"
   }
 
   dimension: female_mage2 {
     type: number
-    label: "dem_female"
+    label: "female"
     sql: ${TABLE}.Female_MAge2 ;;
+    group_label: "demographics"
   }
 
 
 
   dimension: geography {
     type: string
-    label: "geo_geography"
+    label: "location"
     sql: ${TABLE}.Geography ;;
+    group_label: "geography"
   }
 
   dimension: graduate_or_professional_degree_edu {
     type: number
-    label: "education_graduate_or_professional_degree"
+    label: "graduate_or_professional_degree"
     sql: ${TABLE}.Graduate_or_professional_degree_edu ;;
+    group_label: "education"
   }
 
   dimension: high_school_dem {
     type: number
-    label: "education_high_school"
+    label: "high_school"
     sql: ${TABLE}.High_school_dem ;;
+    group_label: "education"
   }
 
   dimension: high_school_graduate_edu {
     type: number
-    label: "education_high_school_graduate"
+    label: "high_school_graduate"
     sql: ${TABLE}.High_school_graduate_edu ;;
+    group_label: "education"
   }
 
   dimension: income_ratio {
     type: number
     value_format: "0.00\%"
-    label: "dem_income_ratio"
+    label: "income_ratio"
     sql: ${TABLE}.Income_Ratio ;;
+    group_label: "economics"
   }
 
 
@@ -266,6 +292,7 @@ view: muni {
     type: number
     label: "_issue_size"
     sql: ${TABLE}.Issue_Size ;;
+    value_format: "$#,##0.00"
   }
 
 
@@ -284,8 +311,9 @@ view: muni {
 
   dimension: language_other_than_english_dem {
     type: number
-    label: "dem_language_other_than_english"
+    label: "language_other_than_english"
     sql: ${TABLE}.Language_other_than_English_dem ;;
+    group_label: "demographics"
   }
 
 
@@ -298,8 +326,9 @@ view: muni {
 
   dimension: male_mage2 {
     type: number
-    label: "dem_male"
+    label: "male"
     sql: ${TABLE}.Male_MAge2 ;;
+    group_label: "demographics"
   }
 
   dimension_group: maturity_date_of_the_issue_traded {
@@ -322,26 +351,30 @@ view: muni {
     type: number
     label: "_maturity_size"
     sql: ${TABLE}.MaturitySize ;;
+    value_format: "$#,##0.00"
   }
 
   dimension: median_age_mage2 {
     type: number
-    label: "dem_median_age"
+    label: "median_age"
     sql: ${TABLE}.Median_age_MAge2 ;;
+    group_label: "demographics"
   }
 
   dimension: median_gross_rent_dollars_mh {
     type: number
     value_format: "$#,##0.00"
-    label: "housing_median_gross_rent"
+    label: "median_gross_rent"
     sql: ${TABLE}.Median_Gross_Rent_dollars_MH ;;
+    group_label: "housing"
   }
 
   dimension: median_property_value_dollars_mh {
     type: number
     value_format: "$#,##0.00"
-    label: "housing_median_property_value"
+    label: "median_property_value"
     sql: ${TABLE}.Median_Property_Value_dollars_MH ;;
+    group_label: "housing"
   }
 
   dimension: name {
@@ -354,6 +387,7 @@ view: muni {
     type: number
     label: "race_native_hawaiian_and_other_pacific_islander"
     sql: ${TABLE}.Native_Hawaiian_and_Other_Pacific_Islander_MR2 ;;
+    group_label: "demographics"
   }
 
   dimension: non_transaction_based_compensation_arrangement_ntbc_indicator {
@@ -364,82 +398,94 @@ view: muni {
 
   dimension: not_proficient_in_english {
     type: number
-    label: "dem_not_proficient_english"
+    label: "not_proficient_english"
     sql: ${TABLE}.Not_Proficient_in_English ;;
+    group_label: "demographics"
   }
 
   dimension: number_of_social_associations {
     type: number
-    label: "dem_number_of_social_associations"
+    label: "number_of_social_associations"
     sql: ${TABLE}.Number_of_Social_Associations ;;
+    group_label: "demographics"
   }
 
   dimension: oceania_dem {
     type: number
     label: "origin_oceania"
     sql: ${TABLE}.Oceania_dem ;;
+    group_label: "demographics"
   }
 
   dimension: owner_occupied_mh {
     type: number
-    label: "housing_owner_occupied"
+    label: "owner_occupied"
     sql: ${TABLE}.Owner_occupied_MH ;;
+    group_label: "housing"
   }
 
   dimension: percent_bachelor_s_degree_or_higher_dem {
     type: number
     value_format: "0.00\%"
-    label: "education_percent_bachelors_degree_or_higher"
+    label: "percent_bachelors_degree_or_higher"
     sql: ${TABLE}.Percent_bachelor_s_degree_or_higher_dem ;;
+    group_label: "education"
   }
 
   dimension: percent_high_school_graduate_or_higher_dem{
     type: number
     value_format: "0.00\%"
-    label: "education_percent_high_school_graduate_or_higher"
+    label: "percent_high_school_graduate_or_higher"
     sql: ${TABLE}.Percent_high_school_graduate_or_higher_dem ;;
+    group_label: "education"
   }
 
   dimension: percent_language_other_than_english_dem {
     type: number
     value_format: "0.00\%"
-    label: "dem_percent_language_other_than_english"
+    label: "percent_language_other_than_english"
     sql: ${TABLE}.Percent_Language_other_than_English_dem ;;
+    group_label: "demographics"
   }
 
   dimension: percent_occupied_housing_units_mh {
     type: number
     value_format: "0.00\%"
-    label: "housing_percent_occupied_housing_units"
+    label: "percent_occupied_housing_units"
     sql: ${TABLE}.Percent_Occupied_housing_units_MH ;;
+    group_label: "housing"
   }
 
   dimension: percent_vacant_housing_units_mh {
     type: number
     value_format: "0.00\%"
-    label: "housing_percent_vacant_housing_units"
+    label: "percent_vacant_housing_units"
     sql: ${TABLE}.Percent_Vacant_housing_units_MH ;;
+    group_label: "housing"
   }
 
   dimension: population {
     type: number
-    label: "dem_population"
+    label: "population"
     sql: ${TABLE}.Population ;;
+    group_label: "demographics"
   }
 
 
   dimension: poverty_rate_eco {
     type: number
     value_format: "0.00\%"
-    label: "econ_povery_rate"
+    label: "povery_rate"
     sql: ${TABLE}.Poverty_Rate_eco ;;
+    group_label: "economics"
   }
 
 
   dimension: presence_of_violation_poll {
     type: yesno
-    label: "env_presence_of_drinking_water_violation"
+    label: "presence_of_drinking_water_violation"
     sql: ${TABLE}.Presence_of_violation_poll ;;
+    group_label: "community"
   }
 
   dimension: price_at_issue {
@@ -469,8 +515,9 @@ view: muni {
 
   dimension: renter_occupied_mh {
     type: number
-    label: "housing_renter_occupied"
+    label: "renter_occupied"
     sql: ${TABLE}.Renter_occupied_MH ;;
+    group_label: "housing"
   }
 
 
@@ -484,15 +531,17 @@ view: muni {
   dimension: segregation_index____black_white {
     type: number
     value_format: "0.00"
-    label: "dem_segregation_index____black_white"
+    label: "segregation_index____black_white"
     sql: ${TABLE}.Segregation_index____black_white ;;
+    group_label: "demographics"
   }
 
   dimension: segregation_index___non_white_white {
     type: number
     value_format: "0.00"
-    label: "dem_segregation_index___non_white_white"
+    label: "segregation_index___non_white_white"
     sql: ${TABLE}.Segregation_Index___non_white_white ;;
+    group_label: "demographics"
   }
 
 
@@ -516,26 +565,30 @@ view: muni {
 
   dimension: some_college_no_degree_edu {
     type: number
-    label: "education_some_college_no_degree"
+    label: "some_college_no_degree"
     sql: ${TABLE}.Some_college_no_degree_edu ;;
+    group_label: "education"
   }
 
   dimension: some_other_race_mr2 {
     type: number
     label: "race_some_other_race"
     sql: ${TABLE}.Some_other_race_MR2 ;;
+    group_label: "demographics"
   }
 
   dimension: south_america_dem {
     type: number
     label: "origin_south_america"
     sql: ${TABLE}.South_America_dem ;;
+    group_label: "demographics"
   }
 
   dimension: state {
     type: string
-    label: "geo_state"
+    label: "state"
     sql: ${TABLE}.State ;;
+    group_label: "geography"
   }
 
   dimension: tax_provision {
@@ -577,8 +630,9 @@ view: muni {
 
   dimension: total_households_dem {
     type: number
-    label: "housing_total_households"
+    label: "total_households"
     sql: ${TABLE}.Total_households_dem ;;
+    group_label: "housing"
   }
 
 
@@ -608,6 +662,7 @@ view: muni {
     type: number
     label: "race_two_or_more_races"
     sql: ${TABLE}.Two_or_more_races_MR2 ;;
+    group_label: "demographics"
   }
 
 
@@ -616,8 +671,9 @@ view: muni {
   dimension: unemployment_rate_eco {
     type: number
     value_format: "0.00\%"
-    label: "econ_unemployment_rate"
+    label: "unemployment_rate"
     sql: ${TABLE}.Unemployment_Rate_eco ;;
+    group_label: "economics"
   }
 
 
@@ -638,6 +694,7 @@ view: muni {
     type: number
     label: "race_white"
     sql: ${TABLE}.White_MR2 ;;
+    group_label: "demographics"
   }
 
   dimension: year {
@@ -657,4 +714,8 @@ view: muni {
     type: count
     drill_fields: [name]
   }
+
+  measure: sum {
+    type: sum
+    drill_fields: [name]}
 }

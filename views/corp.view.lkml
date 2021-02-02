@@ -3,7 +3,8 @@ view: corp {
     ;;
 
   dimension: amount_outstanding {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.AMOUNT_OUTSTANDING ;;
   }
 
@@ -16,31 +17,33 @@ view: corp {
 
 
   dimension: conv {
-    type: string
+    type: number
     label: "convertible"
     sql: ${TABLE}.CONV ;;
   }
 
   dimension: coupacc {
-    type: string
+    type: number
     label: "coupon_accrued"
+    value_format: "0.00\%"
     sql: ${TABLE}.COUPACC ;;
   }
 
   dimension: coupamt {
-    type: string
+    type: number
     label: "coupon_amount"
     sql: ${TABLE}.COUPAMT ;;
   }
 
   dimension: coupmonth {
-    type: string
+    type: number
     label: "num_of_months_since_first_coupon_payment"
     sql: ${TABLE}.COUPMONTH ;;
   }
 
   dimension: coupon {
-    type: string
+    type: number
+    value_format: "0.00\%"
     sql: ${TABLE}.COUPON ;;
   }
 
@@ -80,7 +83,7 @@ view: corp {
   }
 
   dimension: duration {
-    type: string
+    type: number
     sql: ${TABLE}.DURATION ;;
   }
 
@@ -90,7 +93,7 @@ view: corp {
   }
 
   dimension: gap {
-    type: string
+    type: number
     sql: ${TABLE}.GAP ;;
   }
 
@@ -107,26 +110,29 @@ view: corp {
   }
 
   dimension: multicoups {
-    type: string
+    type: number
     label: "multiple_coupon_payments"
     sql: ${TABLE}.MULTICOUPS ;;
   }
 
   dimension: n_fr {
-    type: string
+    type: number
     label: "n_fitch"
+    group_label: "ratings"
     sql: ${TABLE}.N_FR ;;
   }
 
   dimension: n_mr {
-    type: string
+    type: number
     label: "n_moody"
+    group_label: "ratings"
     sql: ${TABLE}.N_MR ;;
   }
 
   dimension: n_sp {
-    type: string
+    type: number
     label: "n_standard_poor"
+    group_label: "ratings"
     sql: ${TABLE}.N_SP ;;
   }
 
@@ -142,8 +148,9 @@ view: corp {
   }
 
   dimension: offering_amt {
-    type: string
+    type: number
     label: "offering_amount"
+    value_format: "$#,##0.00"
     sql: ${TABLE}.OFFERING_AMT ;;
   }
 
@@ -153,12 +160,14 @@ view: corp {
   }
 
   dimension: offering_price {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.OFFERING_PRICE ;;
   }
 
   dimension: price_eom {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     label: "price_end_of_month"
     sql: ${TABLE}.PRICE_EOM ;;
   }
@@ -166,13 +175,15 @@ view: corp {
 
 
   dimension: price_ldm {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     label: "price_last_trading_day_of_month "
     sql: ${TABLE}.PRICE_LDM ;;
   }
 
   dimension: principal_amt {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     label: "principal_amount"
     sql: ${TABLE}.PRINCIPAL_AMT ;;
   }
@@ -180,35 +191,41 @@ view: corp {
   dimension: r_fr {
     type: string
     label: "fitch_rating"
+    group_label: "ratings"
     sql: ${TABLE}.R_FR ;;
   }
 
   dimension: r_mr {
     type: string
     label: "moody_rating"
+    group_label: "ratings"
     sql: ${TABLE}.R_MR ;;
   }
 
   dimension: r_sp {
     type: string
     label: "standard_poor_rating"
+    group_label: "ratings"
     sql: ${TABLE}.R_SP ;;
   }
 
   dimension: rating_cat {
     type: string
     label: "rating_category"
+    group_label: "ratings"
     sql: ${TABLE}.RATING_CAT ;;
   }
 
   dimension: rating_class {
     type: string
+    group_label: "ratings"
     sql: ${TABLE}.RATING_CLASS ;;
   }
 
   dimension: rating_num {
-    type: string
+    type: number
     label: "numerical_rating"
+    group_label: "ratings"
     sql: ${TABLE}.RATING_NUM ;;
   }
 
@@ -223,22 +240,24 @@ view: corp {
   }
 
   dimension: remcoups {
-    type: string
+    type: number
     label: "remaining_coupons"
     sql: ${TABLE}.REMCOUPS ;;
   }
 
   dimension: ret_eom {
-    type: string
+    type: number
     label: "return_end_of_month"
+    value_format: "0.00\%"
     sql: ${TABLE}.RET_EOM ;;
   }
 
 
 
   dimension: ret_ldm {
-    type: string
+    type: number
     label: "return_last_trading_day_of_month"
+    value_format: "0.00\%"
     sql: ${TABLE}.RET_LDM ;;
   }
 
@@ -254,30 +273,34 @@ view: corp {
   }
 
   dimension: t_dvolume {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     label: "total_dollar_volume"
     sql: ${TABLE}.T_DVolume ;;
   }
 
   dimension: t_spread {
-    type: string
+    type: number
+    value_format: "0.00\%"
     sql: ${TABLE}.T_Spread ;;
   }
 
   dimension: t_volume {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     label: "total_par_value_volume  "
     sql: ${TABLE}.T_Volume ;;
   }
 
   dimension: t_yld_pt {
-    type: string
+    type: number
     label: "trade_weighted_yield_point"
+    value_format: "0.00\%"
     sql: ${TABLE}.T_Yld_Pt ;;
   }
 
   dimension: tmt {
-    type: string
+    type: number
     label: "time_to_maturity_years"
     sql: ${TABLE}.TMT ;;
   }
@@ -288,7 +311,8 @@ view: corp {
   }
 
   dimension: yield {
-    type: string
+    type: number
+    value_format: "0.00\%"
     sql: ${TABLE}.YIELD ;;
   }
 
