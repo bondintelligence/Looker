@@ -9,7 +9,6 @@ view: bloomberg1 {
   }
 
 
-
   dimension: ask_current_yield {
     type: number
     sql: ${TABLE}.AskCurrentYield ;;
@@ -23,7 +22,6 @@ view: bloomberg1 {
     group_label: "price"
     value_format: "$#,##0.00"
   }
-
 
 
 
@@ -352,8 +350,295 @@ view: bloomberg1 {
     drill_fields: []
   }
 
+
   measure: sum {
     type: sum
     drill_fields: []
-  }
+
 }
+
+  measure: measure_amount_outstanding {
+    type: number
+    sql: ${amount_outstanding} ;;
+  }
+
+
+
+  measure: measure_ask_current_yield {
+    type: number
+    sql: ${ask_current_yield} ;;
+  }
+
+  measure: measure_ask_price {
+    type: number
+    sql: ${ask_price} ;;
+  }
+
+
+
+
+  measure: measure_bid_current_yield {
+    type: number
+    sql: ${bid_current_yield} ;;
+  }
+
+  measure: measure_bid_price {
+    type: number
+    sql: ${bid_price} ;;
+  }
+
+
+  measure: measure_borrower {
+    type: string
+    sql: ${borrower} ;;
+  }
+
+  measure: measure_callable {
+    type: yesno
+    sql: ${callable} ;;
+  }
+
+  measure: measure_closing_ask_price {
+    type: number
+    sql: ${closing_ask_price} ;;
+  }
+
+  measure: measure_closing_bid_price {
+    type: number
+    sql: ${closing_bid_price} ;;
+  }
+
+  measure: measure_county {
+    type: string
+    sql: ${county} ;;
+  }
+
+  measure: measure_coupon {
+    type: number
+    sql: ${coupon} ;;
+  }
+
+  measure: measure_coupon_frequency {
+    type: number
+    sql: ${coupon_frequency} ;;
+  }
+
+  measure: measure_cusip {
+    type: string
+    sql: ${cusip} ;;
+  }
+
+  measure: measure_dateof_last_close {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${dateof_last_close_date} ;;
+  }
+
+  measure: measure_day_count {
+    type: number
+    sql: ${day_count} ;;
+  }
+
+  measure: measure_default {
+    type: yesno
+    sql: ${default} ;;
+  }
+
+  measure: measure_fitch {
+    type: string
+    sql: ${fitch} ;;
+  }
+
+  measure: measure_issue {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${issue_date} ;;
+  }
+
+  measure: measure_issue_price {
+    type: number
+    sql: ${issue_price} ;;
+  }
+
+  measure: measure_issue_size {
+    type: number
+    sql: ${issue_size} ;;
+  }
+
+  measure: measure_issue_type {
+    type: string
+    sql: ${issue_type} ;;
+  }
+
+  measure: measure_issuer {
+    type: string
+    sql: ${issuer} ;;
+  }
+
+  measure: measure_issuer_industry {
+    type: string
+    sql: ${issuer_industry} ;;
+  }
+
+  measure: measure_last_trade_price {
+    type: number
+    sql: ${last_trade_price} ;;
+  }
+
+  measure: measure_maturity {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${maturity_date} ;;
+  }
+
+  measure: measure_maturity_size {
+    type: number
+    sql: ${maturity_size} ;;
+  }
+
+  measure: measure_maturity_type {
+    type: string
+    sql: ${maturity_type} ;;
+  }
+
+
+  measure: measure_mid_annual_yield {
+    type: number
+    sql: ${mid_annual_yield} ;;
+  }
+
+  measure: measure_mid_current_yield {
+    type: number
+    sql: ${mid_current_yield} ;;
+  }
+
+  measure: measure_mid_price {
+    type: number
+    sql: ${mid_price} ;;
+  }
+
+
+
+  measure: measure_mid_ytm {
+    type: number
+    sql: ${mid_ytm};;
+  }
+
+  measure: measure_moodys {
+    type: string
+    sql: ${moodys} ;;
+  }
+
+  measure: measure_net_yieldtoworst {
+    type: number
+    sql: ${net_yieldtoworst} ;;
+  }
+
+  measure: measure_offering_type {
+    type: string
+    sql: ${offering_type} ;;
+  }
+
+  measure: measure_original_issue_discount {
+    type: yesno
+    sql: ${original_issue_discount} ;;
+  }
+
+  measure: measure_previousclosing_value {
+    type: number
+    sql: ${previousclosing_value} ;;
+  }
+
+
+
+  measure: measure_price_changeon_day {
+    type: number
+    sql: ${price_changeon_day} ;;
+  }
+
+  measure: measure_purpose {
+    type: string
+    sql: ${purpose} ;;
+  }
+
+
+
+  measure: measure_series {
+    type: string
+    sql: ${series} ;;
+  }
+
+  measure: measure_sinkable {
+    type: yesno
+    sql: ${sinkable} ;;
+  }
+
+  measure: measure_source {
+    type: string
+    sql: ${source} ;;
+  }
+
+  measure: measure_sp {
+    type: string
+    sql: ${sp} ;;
+  }
+
+  measure: measure_state {
+    type: string
+    sql: ${state} ;;
+  }
+
+  measure: measure_tax_provision {
+    type: string
+    sql: ${tax_provision} ;;
+  }
+
+  measure: measure_title {
+    type: string
+    sql: ${title} ;;
+  }
+
+  measure: measure_total_volume {
+    type: number
+    sql: ${total_volume} ;;
+  }
+
+  measure: measure_underwriter {
+    type: string
+    sql: ${underwriter} ;;
+  }
+
+  measure: measure_yieldat_issue {
+    type: number
+    sql: ${yieldat_issue} ;;
+    }
+
+
+      }
