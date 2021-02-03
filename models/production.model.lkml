@@ -21,7 +21,12 @@ explore: bloomberg1 {always_filter: {
 explore: bloomberg2 {}
 
 
-explore: corp {}
+explore: corp {always_filter: {
+
+    filters: [cusip: "000325AA8"]
+  }}
+
+
 
 explore: muni {always_filter: {
 
@@ -31,8 +36,11 @@ explore: muni {always_filter: {
 
 
 
-explore: muni_issuance3 {}
-          label: "muni_issuance"
+explore: muni_issuance {always_filter: {
+
+    filters: [cusip: "09845N"]
+  }}
+
 
 explore: price_muni_prediction {}
           label: "muni_price_prediction"
