@@ -4,9 +4,19 @@ view: corp_trace {
       ;;
   }
 
+  measure: average {
+    type: average
+    drill_fields: [number*]
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: sum {
+    type: sum
+    drill_fields: [number*]
   }
 
   dimension: cusip_id {
@@ -126,6 +136,13 @@ view: corp_trace {
       cusip_id,
       bond_sym_id,
       company_symbol,
+      entrd_vol_qt,
+      rptd_pr
+    ]
+  }
+
+  set: number {
+    fields: [
       entrd_vol_qt,
       rptd_pr
     ]
