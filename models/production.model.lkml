@@ -28,6 +28,10 @@ explore: corp {always_filter: {
 
 
 
+explore: corp_trace {}
+
+
+
 explore: muni {always_filter: {
 
     filters: [cusip: "00037CRB8", muni.trade_date: ""]
