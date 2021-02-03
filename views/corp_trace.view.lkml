@@ -24,14 +24,34 @@ view: corp_trace {
     sql: ${TABLE}.company_symbol ;;
   }
 
-  dimension: trd_exctn_dt {
-    type: date
+  dimension_group: trd_exctn_dt {
+    type: time
+    label: "_trd_exctn_dt"
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
     datatype: date
     sql: ${TABLE}.trd_exctn_dt ;;
   }
 
   dimension_group: trd_exctn_tm {
     type: time
+    label: "_trd_exctn_tm"
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.trd_exctn_tm ;;
   }
 
@@ -61,13 +81,33 @@ view: corp_trace {
   }
 
   measure: measure_trd_exctn_dt {
-    type: date
+    type: time
+    label: "_trd_exctn_dt"
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
     datatype: date
     sql: ${TABLE}.trd_exctn_dt ;;
   }
 
   measure: measure_trd_exctn_tm {
     type: time
+    label: "_trd_exctn_tm"
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.trd_exctn_tm ;;
   }
 
@@ -86,10 +126,9 @@ view: corp_trace {
       cusip_id,
       bond_sym_id,
       company_symbol,
-      trd_exctn_dt,
-      trd_exctn_tm_time,
       entrd_vol_qt,
       rptd_pr
     ]
   }
+
 }
