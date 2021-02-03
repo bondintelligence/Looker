@@ -4,19 +4,9 @@ view: corp_trace {
       ;;
   }
 
-  measure: average {
-    type: average
-    drill_fields: [number*]
-  }
-
   measure: count {
     type: count
     drill_fields: [detail*]
-  }
-
-  measure: sum {
-    type: sum
-    drill_fields: [number*]
   }
 
   dimension: cusip_id {
@@ -126,9 +116,33 @@ view: corp_trace {
     sql: ${TABLE}.entrd_vol_qt ;;
   }
 
+  measure: sum_entrd_vol_qt {
+    type: sum
+    sql_distinct_key: ${cusip_id} ;;
+    sql: ${entrd_vol_qt};;
+  }
+
+  measure: avg_entrd_vol_qt {
+    type: average
+    sql_distinct_key: ${cusip_id} ;;
+    sql: ${entrd_vol_qt};;
+  }
+
   measure: measure_rptd_pr {
     type: number
     sql: ${TABLE}.rptd_pr ;;
+  }
+
+  measure: sum_rptd_pr {
+    type: sum
+    sql_distinct_key: ${cusip_id} ;;
+    sql: ${rptd_pr};;
+  }
+
+  measure: avg_rptd_pr {
+    type: average
+    sql_distinct_key: ${cusip_id} ;;
+    sql: ${rptd_pr};;
   }
 
   set: detail {
@@ -136,13 +150,6 @@ view: corp_trace {
       cusip_id,
       bond_sym_id,
       company_symbol,
-      entrd_vol_qt,
-      rptd_pr
-    ]
-  }
-
-  set: number {
-    fields: [
       entrd_vol_qt,
       rptd_pr
     ]
