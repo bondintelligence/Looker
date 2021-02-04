@@ -116,33 +116,9 @@ view: corp_trace {
     sql: ${TABLE}.entrd_vol_qt ;;
   }
 
-  measure: sum_entrd_vol_qt {
-    type: sum
-    sql_distinct_key: ${cusip_id} ;;
-    sql: ${entrd_vol_qt};;
-  }
-
-  measure: avg_entrd_vol_qt {
-    type: average
-    sql_distinct_key: ${cusip_id} ;;
-    sql: ${entrd_vol_qt};;
-  }
-
   measure: measure_rptd_pr {
     type: number
     sql: ${TABLE}.rptd_pr ;;
-  }
-
-  measure: sum_rptd_pr {
-    type: sum
-    sql_distinct_key: ${cusip_id} ;;
-    sql: ${rptd_pr};;
-  }
-
-  measure: avg_rptd_pr {
-    type: average
-    sql_distinct_key: ${cusip_id} ;;
-    sql: ${rptd_pr};;
   }
 
   set: detail {

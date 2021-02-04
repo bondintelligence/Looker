@@ -28,7 +28,10 @@ explore: corp {always_filter: {
 
 
 
-explore: corp_trace {}
+explore: corp_trace {always_filter: {
+
+  filters: [cusip_id: "00037BAB8"]
+}}
 
 
 
