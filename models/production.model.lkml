@@ -27,3 +27,9 @@ explore: price_muni_prediction {}
 
 explore: price_corp_prediction {}
         label: "corp_price_prediction"
+
+
+explore: bloomberg2_pivot{
+  join: bloomberg2_pivot__yield_data_ {}
+  join: bloomberg2_pivot__price_data {}
+}

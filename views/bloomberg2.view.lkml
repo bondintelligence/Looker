@@ -53,4 +53,50 @@ view: bloomberg2 {
     type: count
     drill_fields: []
   }
+
+  measure: ask_ytm_ {
+    type:  number
+    sql: ${ask_ytm} ;;
+  }
+
+  measure: bid_ytm_ {
+    type: number
+    sql: ${bid_ytm} ;;
+  }
+
+  measure: cusip_ {
+    type: string
+    sql: ${cusip} ;;
+  }
+
+  measure: date_ {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${date_date} ;;
+  }
+
+  measure: last_price_ {
+    type: number
+    sql: ${last_price} ;;
+  }
+
+  measure: mid_price_ {
+    type: number
+    sql: ${mid_price} ;;
+  }
+
+  measure: mid_ytm_ {
+    type: number
+    sql: ${mid_ytm} ;;
+  }
+
 }
