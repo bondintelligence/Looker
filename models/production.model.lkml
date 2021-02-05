@@ -33,3 +33,5 @@ explore: bloomberg2_pivot{
   join: bloomberg2_pivot__yield_data_ {}
   join: bloomberg2_pivot__price_data {}
 }
+
+explore: predictedPrice {}
