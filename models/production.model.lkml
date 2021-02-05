@@ -10,6 +10,9 @@ datagroup: production_default_datagroup {
 
 persist_with: production_default_datagroup
 
+explore: bloomberg1 {}
+
+explore: predictedprice {}
 
 explore: bond_data1_mili {}
 
