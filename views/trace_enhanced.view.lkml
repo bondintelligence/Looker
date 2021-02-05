@@ -1,6 +1,6 @@
 view: trace_enhanced {
   derived_table: {
-    sql: SELECT * FROM looker_FINAL.TRACE_Enhanced;
+    sql: SELECT * FROM looker_FINAL.TRACE_Enhanced
       ;;
   }
 
@@ -40,6 +40,7 @@ view: trace_enhanced {
     ]
     label: "Execution Datetime"
     sql: CONCAT(${TABLE}.trd_exctn_dt, " ", ${TABLE}.trd_exctn_tm) ;;
+    datatype: datetime
     convert_tz: no
   }
 
@@ -62,6 +63,7 @@ view: trace_enhanced {
     ]
     label: "Report Date"
     sql: CONCAT(${TABLE}.trd_rpt_dt, " ", ${TABLE}.trd_rpt_tm) ;;
+    datatype: datetime
     convert_tz: no
   }
 
