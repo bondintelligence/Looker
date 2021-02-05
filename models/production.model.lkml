@@ -34,4 +34,4 @@ explore: bloomberg2_pivot{
   join: bloomberg2_pivot__price_data {}
 }
 
-explore: predictedPrice {}
+explore: predictedprice {}
