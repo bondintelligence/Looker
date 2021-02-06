@@ -718,4 +718,12 @@ view: muni {
   measure: sum {
     type: sum
     drill_fields: [name]}
+
+  measure: number_white {
+    type: number
+    sql: ${TABLE}.White_MR2 ;;
+    drill_fields: [name]}
+
+
+
 }

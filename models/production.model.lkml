@@ -47,3 +47,7 @@ explore: price_muni_prediction {}
 
 explore: price_corp_prediction {}
         label: "corp_price_prediction"
+
+explore: compustat_financial_fundamental {}
+
+explore:compustat_financial_ratios {}

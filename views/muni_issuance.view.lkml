@@ -12,12 +12,16 @@ view: muni_issuance {
   dimension: admin_fee {
     type: number
     value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Admin_Fee ;;
   }
 
+
+
   dimension: assumed_settlement_date {
-    type: string
-    sql: ${TABLE}.Assumed_Settlement_Date ;;
+  type: string
+  sql:${TABLE}.Assumed_Settlement_Date;;
+
   }
 
   dimension: bond_cap_amount {
@@ -49,12 +53,14 @@ view: muni_issuance {
   dimension: bond_counsel_fee {
     type: number
     value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Bond_Counsel_Fee ;;
   }
 
   dimension: bond_insurance_costs {
     type: number
     value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Bond_Insurance_Costs ;;
   }
 
@@ -70,6 +76,7 @@ view: muni_issuance {
 
   dimension: city_identifier {
     type: string
+    group_label: "geography"
     sql: ${TABLE}.CityIdentifier ;;
   }
 
@@ -80,11 +87,13 @@ view: muni_issuance {
 
   dimension: county {
     type: string
+    group_label: "geography"
     sql: ${TABLE}.County ;;
   }
 
   dimension: county_identifier {
     type: string
+    group_label: "geography"
     sql: ${TABLE}.CountyIdentifier ;;
   }
 
@@ -136,12 +145,14 @@ view: muni_issuance {
   dimension: escrow_costs {
     type: number
     value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Escrow_Costs ;;
   }
 
   dimension: feasibility_study_fee {
     type: number
     value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Feasibility_Study_Fee ;;
   }
 
@@ -153,6 +164,7 @@ view: muni_issuance {
   dimension: financial_advisor_fee {
     type: number
     value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Financial_Advisor_Fee ;;
   }
 
@@ -255,6 +267,7 @@ view: muni_issuance {
   dimension: printing_costs {
     type: number
     value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Printing_Costs ;;
   }
 
@@ -271,6 +284,7 @@ view: muni_issuance {
   dimension: rating_agency_fee {
     type: number
     value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Rating_Agency_Fee ;;
   }
 
@@ -361,6 +375,7 @@ view: muni_issuance {
 
   dimension: state_identifier {
     type: string
+    group_label: "geography"
     sql: ${TABLE}.StateIdentifier ;;
   }
 
@@ -444,12 +459,14 @@ view: muni_issuance {
   dimension: trustee_fee {
     type: number
     value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Trustee_Fee ;;
   }
 
   dimension: uw_counsel_fee {
     type: number
     value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.UW_Counsel_Fee ;;
   }
 
