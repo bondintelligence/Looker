@@ -27,7 +27,6 @@ explore: corp {always_filter: {
   }}
 
 
-
 explore: muni {always_filter: {
 
     filters: [cusip: "00037CRB8", muni.trade_date: ""]
@@ -48,6 +47,9 @@ explore: price_muni_prediction {}
 explore: price_corp_prediction {}
         label: "corp_price_prediction"
 
+
 explore: compustat_financial_fundamental {}
 
 explore:compustat_financial_ratios {}
+
+explore: trace_enhanced {}
