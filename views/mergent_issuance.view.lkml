@@ -3,12 +3,12 @@ view: mergent_issuance {
     ;;
 
   dimension: action_amount {
-    type: string
+    type: number
     sql: ${TABLE}.ACTION_AMOUNT ;;
   }
 
   dimension: action_price {
-    type: string
+    type: number
     sql: ${TABLE}.ACTION_PRICE ;;
   }
 
@@ -28,32 +28,33 @@ view: mergent_issuance {
   }
 
   dimension: agent_id {
-    type: string
+    type: number
     sql: ${TABLE}.AGENT_ID ;;
   }
 
   dimension: allocated_offering_price_other {
-    type: string
+    type: number
     sql: ${TABLE}.ALLOCATED_OFFERING_PRICE_OTHER ;;
   }
 
   dimension: allocated_offering_price_unit {
-    type: string
+    type: number
     sql: ${TABLE}.ALLOCATED_OFFERING_PRICE_UNIT ;;
   }
 
   dimension: amount {
-    type: string
+    type: number
     sql: ${TABLE}.AMOUNT ;;
   }
 
   dimension: amount_outstanding {
-    type: string
+    type: number
     sql: ${TABLE}.AMOUNT_OUTSTANDING ;;
   }
 
   dimension: amt_offered {
-    type: string
+    type: number
+    label: "Amount Offered"
     sql: ${TABLE}.AMT_OFFERED ;;
   }
 
@@ -62,9 +63,19 @@ view: mergent_issuance {
     sql: ${TABLE}.ANNOUNCED_CALL ;;
   }
 
-  dimension: as_of_date {
-    type: string
-    sql: ${TABLE}.AS_OF_DATE ;;
+  dimension_group: as_of_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.AS_OF_DATE, 1, 4),"-",SUBSTRING(${TABLE}.AS_OF_DATE, 5, 2),"-",SUBSTRING(${TABLE}.AS_OF_DATE, 7, 2));;
   }
 
   dimension: asset_backed {
@@ -89,6 +100,7 @@ view: mergent_issuance {
 
   dimension: canadian {
     type: string
+    label: "Canadian Issuer"
     sql: ${TABLE}.CANADIAN ;;
   }
 
@@ -97,73 +109,116 @@ view: mergent_issuance {
     sql: ${TABLE}.CHANGE_CONTROL_PUT_PROVISIONS ;;
   }
 
-  dimension: change_date {
-    type: string
-    sql: ${TABLE}.CHANGE_DATE ;;
+  dimension_group: change_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.CHANGE_DATE, 1, 4),"-",SUBSTRING(${TABLE}.CHANGE_DATE, 5, 2),"-",SUBSTRING(${TABLE}.CHANGE_DATE, 7, 2));;
   }
 
   dimension: coco_change_frequency {
     type: string
+    label: "COCO Change Freq"
     sql: ${TABLE}.COCO_CHANGE_FREQUENCY ;;
   }
 
   dimension: coco_change_rate {
-    type: string
+    type: number
+    label: "COCO Change Rate"
     sql: ${TABLE}.COCO_CHANGE_RATE ;;
   }
 
-  dimension: coco_end_date {
-    type: string
-    sql: ${TABLE}.COCO_END_DATE ;;
+  dimension_group: coco_end_date {
+    type: time
+    label: "COCO End Date"
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.COCO_END_DATE, 1, 4),"-",SUBSTRING(${TABLE}.COCO_END_DATE, 5, 2),"-",SUBSTRING(${TABLE}.COCO_END_DATE, 7, 2));;
   }
 
   dimension: coco_initial_trigger_percent {
-    type: string
+    type: number
+    label: "COCO Init Trigger Pct"
     sql: ${TABLE}.COCO_INITIAL_TRIGGER_PERCENT ;;
   }
 
   dimension: coco_min_trigger_level {
-    type: string
+    type: number
+    label: "COCO Min Trigger Level"
     sql: ${TABLE}.COCO_MIN_TRIGGER_LEVEL ;;
   }
 
-  dimension: coco_start_date {
-    type: string
-    sql: ${TABLE}.COCO_START_DATE ;;
+  dimension_group: coco_start_date {
+    type: time
+    label: "COCO Start Date"
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.COCO_START_DATE, 1, 4),"-",SUBSTRING(${TABLE}.COCO_START_DATE, 5, 2),"-",SUBSTRING(${TABLE}.COCO_START_DATE, 7, 2));;
   }
 
   dimension: coco_trade_days {
     type: string
+    label: "COCO Trade Days"
     sql: ${TABLE}.COCO_TRADE_DAYS ;;
   }
 
   dimension: coco_trade_days_in_previous {
     type: string
+    label: "COCO Trade Period"
     sql: ${TABLE}.COCO_TRADE_DAYS_IN_PREVIOUS ;;
   }
 
   dimension: coco_trigger_expressed_as {
     type: string
+    label: "COCO Trigger Code"
     sql: ${TABLE}.COCO_TRIGGER_EXPRESSED_AS ;;
   }
 
   dimension: commod_price {
-    type: string
+    type: number
+    label: "Commodity Price"
     sql: ${TABLE}.COMMOD_PRICE ;;
   }
 
   dimension: comp_neg_exch_deal {
     type: string
+    label: "Type of Sale"
     sql: ${TABLE}.COMP_NEG_EXCH_DEAL ;;
   }
 
   dimension: complete_cusip {
     type: string
+    label: "Complete CUSIP"
     sql: ${TABLE}.COMPLETE_CUSIP ;;
   }
 
   dimension: conditional_conv_terms {
     type: string
+    label: "Conditional Conv. Terms"
     sql: ${TABLE}.CONDITIONAL_CONV_TERMS ;;
   }
 
@@ -173,42 +228,65 @@ view: mergent_issuance {
   }
 
   dimension: conv_cash {
-    type: string
+    type: number
     sql: ${TABLE}.CONV_CASH ;;
   }
 
   dimension: conv_commod_cusip {
     type: string
+    label: "Conv Commodity CUSIP"
     sql: ${TABLE}.CONV_COMMOD_CUSIP ;;
   }
 
   dimension: conv_commod_issuer {
     type: string
+    label: "Conv Commodity Issuer"
     sql: ${TABLE}.CONV_COMMOD_ISSUER ;;
   }
 
   dimension: conv_commod_type {
     type: string
+    label: "Conv Commodity Type"
     sql: ${TABLE}.CONV_COMMOD_TYPE ;;
   }
 
-  dimension: conv_eff_date {
-    type: string
-    sql: ${TABLE}.CONV_EFF_DATE ;;
+  dimension_group: conv_eff_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.CONV_EFF_DATE, 1, 4),"-",SUBSTRING(${TABLE}.CONV_EFF_DATE, 5, 2),"-",SUBSTRING(${TABLE}.CONV_EFF_DATE, 7, 2));;
   }
 
-  dimension: conv_exp_date {
-    type: string
-    sql: ${TABLE}.CONV_EXP_DATE ;;
+  dimension_group: conv_exp_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.CONV_EXP_DATE, 1, 4),"-",SUBSTRING(${TABLE}.CONV_EXP_DATE, 5, 2),"-",SUBSTRING(${TABLE}.CONV_EXP_DATE, 7, 2));;
   }
 
   dimension: conv_part_trade_days {
-    type: string
+    type: number
     sql: ${TABLE}.CONV_PART_TRADE_DAYS ;;
   }
 
   dimension: conv_period_days {
-    type: string
+    type: number
     sql: ${TABLE}.CONV_PERIOD_DAYS ;;
   }
 
@@ -218,28 +296,49 @@ view: mergent_issuance {
   }
 
   dimension: conv_premium {
-    type: string
+    type: number
     sql: ${TABLE}.CONV_PREMIUM ;;
   }
 
   dimension: conv_price {
-    type: string
+    type: number
     sql: ${TABLE}.CONV_PRICE ;;
   }
 
   dimension: conv_price_percent {
-    type: string
+    type: number
     sql: ${TABLE}.CONV_PRICE_PERCENT ;;
   }
 
-  dimension: conv_prohibited_from {
-    type: string
-    sql: ${TABLE}.CONV_PROHIBITED_FROM ;;
+  dimension_group: conv_prohibited_from {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.CONV_PROHIBITED_FROM, 1, 4),"-",SUBSTRING(${TABLE}.CONV_PROHIBITED_FROM, 5, 2),"-",SUBSTRING(${TABLE}.CONV_PROHIBITED_FROM, 7, 2));;
+
   }
 
-  dimension: conv_redemp_date {
-    type: string
-    sql: ${TABLE}.CONV_REDEMP_DATE ;;
+  dimension_group: conv_redemp_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.CONV_REDEMP_DATE, 1, 4),"-",SUBSTRING(${TABLE}.CONV_REDEMP_DATE, 5, 2),"-",SUBSTRING(${TABLE}.CONV_REDEMP_DATE, 7, 2));;
   }
 
   dimension: conv_redemp_exception {
@@ -248,12 +347,12 @@ view: mergent_issuance {
   }
 
   dimension: conv_total_trade_days {
-    type: string
+    type: number
     sql: ${TABLE}.CONV_TOTAL_TRADE_DAYS ;;
   }
 
   dimension: conversion_rate {
-    type: string
+    type: number
     sql: ${TABLE}.CONVERSION_RATE ;;
   }
 
@@ -273,7 +372,7 @@ view: mergent_issuance {
   }
 
   dimension: coupon {
-    type: string
+    type: number
     sql: ${TABLE}.COUPON ;;
   }
 
@@ -289,6 +388,7 @@ view: mergent_issuance {
 
   dimension: covenant_defeas_wo_tax_conseq {
     type: string
+    label: "Covenant Defeas w.o. Tax"
     sql: ${TABLE}.COVENANT_DEFEAS_WO_TAX_CONSEQ ;;
   }
 
@@ -314,6 +414,7 @@ view: mergent_issuance {
 
   dimension: cusip_name {
     type: string
+    label: "CUSIP Name"
     sql: ${TABLE}.CUSIP_NAME ;;
   }
 
@@ -322,14 +423,34 @@ view: mergent_issuance {
     sql: ${TABLE}.DATE_SUBJ_ADJUSTMENT ;;
   }
 
-  dimension: date_transferable {
-    type: string
-    sql: ${TABLE}.DATE_TRANSFERABLE ;;
+  dimension_group: date_transferable {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.DATE_TRANSFERABLE, 1, 4),"-",SUBSTRING(${TABLE}.DATE_TRANSFERABLE, 5, 2),"-",SUBSTRING(${TABLE}.DATE_TRANSFERABLE, 7, 2));;
   }
 
-  dimension: dated_date {
-    type: string
-    sql: ${TABLE}.DATED_DATE ;;
+  dimension_group: dated_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.DATED_DATE, 1, 4),"-",SUBSTRING(${TABLE}.DATED_DATE, 5, 2),"-",SUBSTRING(${TABLE}.DATED_DATE, 7, 2));;
   }
 
   dimension: day_count_basis {
@@ -343,7 +464,7 @@ view: mergent_issuance {
   }
 
   dimension: declining_net_worth_percentage {
-    type: string
+    type: number
     sql: ${TABLE}.DECLINING_NET_WORTH_PERCENTAGE ;;
   }
 
@@ -353,7 +474,7 @@ view: mergent_issuance {
   }
 
   dimension: declining_net_worth_trigger {
-    type: string
+    type: number
     sql: ${TABLE}.DECLINING_NET_WORTH_TRIGGER ;;
   }
 
@@ -369,6 +490,7 @@ view: mergent_issuance {
 
   dimension: defeasance_wo_tax_conseq {
     type: string
+    label: "Defeasance w.o. Tax Conseq"
     sql: ${TABLE}.DEFEASANCE_WO_TAX_CONSEQ ;;
   }
 
@@ -377,14 +499,34 @@ view: mergent_issuance {
     sql: ${TABLE}.DEFEASED ;;
   }
 
-  dimension: defeased_date {
-    type: string
-    sql: ${TABLE}.DEFEASED_DATE ;;
+  dimension_group: defeased_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: REPLACE(${TABLE}.DEFEASED_DATE, "/", "-");;
   }
 
-  dimension: delivery_date {
-    type: string
-    sql: ${TABLE}.DELIVERY_DATE ;;
+  dimension_group: delivery_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: REPLACE(${TABLE}.DELIVERY_DATE, "/", "-");;
   }
 
   dimension: denomination {
@@ -394,17 +536,38 @@ view: mergent_issuance {
 
   dimension: dep_eligibility {
     type: string
+    label: "Eligible Depositories"
     sql: ${TABLE}.DEP_ELIGIBILITY ;;
   }
 
-  dimension: determination_date {
-    type: string
-    sql: ${TABLE}.DETERMINATION_DATE ;;
+  dimension_group: determination_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.DETERMINATION_DATE, 1, 4),"-",SUBSTRING(${TABLE}.DETERMINATION_DATE, 5, 2),"-",SUBSTRING(${TABLE}.DETERMINATION_DATE, 7, 2));;
   }
 
-  dimension: determination_date_orig {
-    type: string
-    sql: ${TABLE}.DETERMINATION_DATE_ORIG ;;
+  dimension_group: determination_date_orig {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.DETERMINATION_DATE_ORIG, 1, 4),"-",SUBSTRING(${TABLE}.DETERMINATION_DATE_ORIG, 5, 2),"-",SUBSTRING(${TABLE}.DETERMINATION_DATE_ORIG, 7, 2));;
   }
 
   dimension: dilution_protection {
@@ -428,9 +591,19 @@ view: mergent_issuance {
   }
 
 
-dimension: effective_date {
-  type: string
-  sql: ${TABLE}.EFFECTIVE_DATE;;
+dimension_group: effective_date {
+  type: time
+  timeframes: [
+    raw,
+    date,
+    week,
+    month,
+    quarter,
+    year
+  ]
+  convert_tz: yes
+  datatype: date
+  sql: REPLACE(${TABLE}.EFFECTIVE_DATE, "/", "-");;
 }
 
 
@@ -441,6 +614,7 @@ dimension: effective_date {
 
   dimension: esop {
     type: string
+    label: "ESOP"
     sql: ${TABLE}.ESOP ;;
   }
 
@@ -459,19 +633,49 @@ dimension: effective_date {
     sql: ${TABLE}.EXERCISED ;;
   }
 
-  dimension: exercised_date {
-    type: string
-    sql: ${TABLE}.EXERCISED_DATE ;;
+  dimension_group: exercised_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.EXERCISED_DATE, 1, 4),"-",SUBSTRING(${TABLE}.EXERCISED_DATE, 5, 2),"-",SUBSTRING(${TABLE}.EXERCISED_DATE, 7, 2));;
   }
 
-  dimension: filing_date {
-    type: string
-    sql: ${TABLE}.FILING_DATE ;;
+  dimension_group: filing_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.FILING_DATE, 1, 4),"-",SUBSTRING(${TABLE}.FILING_DATE, 5, 2),"-",SUBSTRING(${TABLE}.FILING_DATE, 7, 2));;
   }
 
-  dimension: first_interest_date {
-    type: string
-    sql: ${TABLE}.FIRST_INTEREST_DATE ;;
+  dimension_group: first_interest_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.FIRST_INTEREST_DATE, 1, 4),"-",SUBSTRING(${TABLE}.FIRST_INTEREST_DATE, 5, 2),"-",SUBSTRING(${TABLE}.FIRST_INTEREST_DATE, 7, 2));;
   }
 
   dimension: fix_frequency {
@@ -496,6 +700,7 @@ dimension: effective_date {
 
   dimension: form_of_own {
     type: string
+    label: "Form of Ownership"
     sql: ${TABLE}.FORM_OF_OWN ;;
   }
 
@@ -520,7 +725,7 @@ dimension: effective_date {
   }
 
   dimension: gross_spread {
-    type: string
+    type: number
     sql: ${TABLE}.GROSS_SPREAD ;;
   }
 
@@ -566,16 +771,18 @@ dimension: effective_date {
 
   dimension: isin {
     type: string
+    label: "ISI Number"
     sql: ${TABLE}.ISIN ;;
   }
 
   dimension: issue_cusip {
     type: string
+    label: "Issue CUSIP"
     sql: ${TABLE}.ISSUE_CUSIP ;;
   }
 
   dimension: issue_id {
-    type: string
+    type: number
     sql: ${TABLE}.ISSUE_ID ;;
   }
 
@@ -586,27 +793,40 @@ dimension: effective_date {
 
   dimension: issue_offered_global {
     type: string
+    label: "Global Offer"
     sql: ${TABLE}.ISSUE_OFFERED_GLOBAL ;;
   }
 
   dimension: issuer_cusip {
     type: string
+    label: "Issuer CUSIP"
     sql: ${TABLE}.ISSUER_CUSIP ;;
   }
 
   dimension: issuer_id {
-    type: string
+    type: number
     sql: ${TABLE}.ISSUER_ID ;;
   }
 
   dimension: issuer_id_affected {
-    type: string
+    type: number
     sql: ${TABLE}.ISSUER_ID_AFFECTED ;;
   }
 
-  dimension: last_interest_date {
-    type: string
-    sql: ${TABLE}.LAST_INTEREST_DATE ;;
+  dimension_group: last_interest_date {
+    type: time
+    label: "Coupon Last Interest Date"
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.LAST_INTEREST_DATE, 1, 4),"-",SUBSTRING(${TABLE}.LAST_INTEREST_DATE, 5, 2),"-",SUBSTRING(${TABLE}.LAST_INTEREST_DATE, 7, 2));;
   }
 
   dimension: legal_defeasance {
@@ -645,7 +865,7 @@ dimension: effective_date {
   }
 
   dimension: market_price {
-    type: string
+    type: number
     sql: ${TABLE}.MARKET_PRICE ;;
   }
 
@@ -662,17 +882,19 @@ dimension: effective_date {
     ]
     convert_tz: yes
     datatype: date
-    sql: ${TABLE}.MATURITY;;
+    sql: REPLACE(${TABLE}.MATURITY, "/", "-");;
 
 }
 
   dimension: mtn {
     type: string
+    label: "Medium Term Note"
     sql: ${TABLE}.MTN ;;
   }
 
   dimension: naics_code {
     type: string
+    label: "NAICS Code"
     sql: ${TABLE}.NAICS_CODE ;;
   }
 
@@ -686,13 +908,23 @@ dimension: effective_date {
     sql: ${TABLE}.NET_EARNINGS_TEST_ISSUANCE ;;
   }
 
-  dimension: next_put_date {
-    type: string
-    sql: ${TABLE}.NEXT_PUT_DATE ;;
+  dimension_group: next_put_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.NEXT_PUT_DATE, 1, 4),"-",SUBSTRING(${TABLE}.NEXT_PUT_DATE, 5, 2),"-",SUBSTRING(${TABLE}.NEXT_PUT_DATE, 7, 2));;
   }
 
   dimension: next_put_price {
-    type: string
+    type: number
     sql: ${TABLE}.NEXT_PUT_PRICE ;;
   }
 
@@ -702,57 +934,72 @@ dimension: effective_date {
   }
 
   dimension: offering_amt {
-    type: string
+    type: number
+    label: "Offering Amount"
     sql: ${TABLE}.OFFERING_AMT ;;
   }
 
-  dimension: offering_date {
-    type: string
-    sql: ${TABLE}.OFFERING_DATE ;;
+  dimension_group: offering_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: REPLACE(${TABLE}.OFFERING_DATE, "/", "-");;
   }
 
   dimension: offering_price {
-    type: string
+    type: number
     sql: ${TABLE}.OFFERING_PRICE ;;
   }
 
   dimension: offering_yield {
-    type: string
+    type: number
     sql: ${TABLE}.OFFERING_YIELD ;;
   }
 
   dimension: oid {
     type: string
+    label: "Orig Issue Discount"
     sql: ${TABLE}.OID ;;
   }
 
   dimension: orig_commod_price {
-    type: string
+    type: number
+    label: "Orig Commodity Price"
     sql: ${TABLE}.ORIG_COMMOD_PRICE ;;
   }
 
   dimension: orig_conv_premium {
-    type: string
+    type: number
     sql: ${TABLE}.ORIG_CONV_PREMIUM ;;
   }
 
   dimension: orig_conv_price {
-    type: string
+    type: number
     sql: ${TABLE}.ORIG_CONV_PRICE ;;
   }
 
   dimension: orig_percent_outstanding_com {
-    type: string
+    type: number
+    label: "Orig Pct Outstanding Com."
     sql: ${TABLE}.ORIG_PERCENT_OUTSTANDING_COM ;;
   }
 
   dimension: orig_qty_of_commod {
-    type: string
+    type: number
+    label: "Orig Qty of Com."
     sql: ${TABLE}.ORIG_QTY_OF_COMMOD ;;
   }
 
   dimension: orig_shares_outstanding {
-    type: string
+    type: number
     sql: ${TABLE}.ORIG_SHARES_OUTSTANDING ;;
   }
 
@@ -766,18 +1013,29 @@ dimension: effective_date {
     sql: ${TABLE}.OTHER_SEC_TYPE ;;
   }
 
-  dimension: overallotment_expiration_date {
-    type: string
-    sql: ${TABLE}.OVERALLOTMENT_EXPIRATION_DATE ;;
+  dimension_group: overallotment_expiration_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.OVERALLOTMENT_EXPIRATION_DATE, 1, 4),"-",SUBSTRING(${TABLE}.OVERALLOTMENT_EXPIRATION_DATE, 5, 2),"-",SUBSTRING(${TABLE}.OVERALLOTMENT_EXPIRATION_DATE, 7, 2));;
   }
 
   dimension: overallotment_opt {
     type: string
+    label: "Overallotment Option"
     sql: ${TABLE}.OVERALLOTMENT_OPT ;;
   }
 
   dimension: parent_id {
-    type: string
+    type: number
     sql: ${TABLE}.PARENT_ID ;;
   }
 
@@ -786,53 +1044,71 @@ dimension: effective_date {
     sql: ${TABLE}.PAY_IN_KIND ;;
   }
 
-  dimension: pay_in_kind_exp_date {
-    type: string
-    sql: ${TABLE}.PAY_IN_KIND_EXP_DATE ;;
+  dimension_group: pay_in_kind_exp_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.PAY_IN_KIND_EXP_DATE, 1, 4),"-",SUBSTRING(${TABLE}.PAY_IN_KIND_EXP_DATE, 5, 2),"-",SUBSTRING(${TABLE}.PAY_IN_KIND_EXP_DATE, 7, 2));;
   }
 
   dimension: peps {
     type: string
+    label: "Conv Terms"
     sql: ${TABLE}.PEPS ;;
   }
 
   dimension: peps_higher_price {
-    type: string
+    type: number
+    label: "Conv Min Ratio Price"
     sql: ${TABLE}.PEPS_HIGHER_PRICE ;;
   }
 
   dimension: peps_issue_price {
-    type: string
+    type: number
+    label: "Issue Price"
     sql: ${TABLE}.PEPS_ISSUE_PRICE ;;
   }
 
   dimension: peps_lower_price {
-    type: string
+    type: number
+    label: "Conv Max Ratio Price"
     sql: ${TABLE}.PEPS_LOWER_PRICE ;;
   }
 
   dimension: peps_max_conversion_ratio {
-    type: string
+    type: number
+    label: "Max Conv Ratio"
     sql: ${TABLE}.PEPS_MAX_CONVERSION_RATIO ;;
   }
 
   dimension: peps_min_conversion_ratio {
-    type: string
+    type: number
+    label: "Min Conv Ratio"
     sql: ${TABLE}.PEPS_MIN_CONVERSION_RATIO ;;
   }
 
   dimension: percent_of_outstanding_commod {
-    type: string
+    type: number
+    label: "Percent of Outstanding Commodity"
     sql: ${TABLE}.PERCENT_OF_OUTSTANDING_COMMOD ;;
   }
 
   dimension: percs {
     type: string
+    label: "Max Payoff"
     sql: ${TABLE}.PERCS ;;
   }
 
   dimension: percs_max_payoff {
-    type: string
+    type: number
     sql: ${TABLE}.PERCS_MAX_PAYOFF ;;
   }
 
@@ -857,12 +1133,14 @@ dimension: effective_date {
   }
 
   dimension: principal_amt {
-    type: string
+    type: number
+    label: "Principal Amount"
     sql: ${TABLE}.PRINCIPAL_AMT ;;
   }
 
   dimension: principal_amt_per_unit {
-    type: string
+    type: number
+    label: "Principal Amount per Unit"
     sql: ${TABLE}.PRINCIPAL_AMT_PER_UNIT ;;
   }
 
@@ -882,12 +1160,13 @@ dimension: effective_date {
   }
 
   dimension: qty_of_commod {
-    type: string
+    type: number
+    label: "Qty of Commodity"
     sql: ${TABLE}.QTY_OF_COMMOD ;;
   }
 
   dimension: quantity {
-    type: string
+    type: number
     sql: ${TABLE}.QUANTITY ;;
   }
 
@@ -902,7 +1181,7 @@ dimension: effective_date {
   }
 
   dimension: reallowance {
-    type: string
+    type: number
     sql: ${TABLE}.REALLOWANCE ;;
   }
 
@@ -921,9 +1200,19 @@ dimension: effective_date {
     sql: ${TABLE}.REFUND_PROTECTION ;;
   }
 
-  dimension: refunding_date {
-    type: string
-    sql: ${TABLE}.REFUNDING_DATE ;;
+  dimension_group: refunding_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: REPLACE(${TABLE}.REFUNDING_DATE, "/", "-");;
   }
 
   dimension: registration_rights {
@@ -931,14 +1220,34 @@ dimension: effective_date {
     sql: ${TABLE}.REGISTRATION_RIGHTS ;;
   }
 
-  dimension: reset_date {
-    type: string
-    sql: ${TABLE}.RESET_DATE ;;
+  dimension_group: reset_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.RESET_DATE, 1, 4),"-",SUBSTRING(${TABLE}.RESET_DATE, 5, 2),"-",SUBSTRING(${TABLE}.RESET_DATE, 7, 2));;
   }
 
-  dimension: reset_date_orig {
-    type: string
-    sql: ${TABLE}.RESET_DATE_ORIG ;;
+  dimension_group: reset_date_orig {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.RESET_DATE_ORIG, 1, 4),"-",SUBSTRING(${TABLE}.RESET_DATE_ORIG, 5, 2),"-",SUBSTRING(${TABLE}.RESET_DATE_ORIG, 7, 2));;
   }
 
   dimension: restricted_payments {
@@ -948,11 +1257,13 @@ dimension: effective_date {
 
   dimension: rule_144_a {
     type: string
+    label: "Rule 144a"
     sql: ${TABLE}.RULE_144A ;;
   }
 
   dimension: rule_415_reg {
     type: string
+    label: "Rule 415 Registration"
     sql: ${TABLE}.RULE_415_REG ;;
   }
 
@@ -977,42 +1288,70 @@ dimension: effective_date {
   }
 
   dimension: sc_make_whole_change_percent {
-    type: string
+    type: number
+    label: "Soft Call Change Pct"
     sql: ${TABLE}.SC_MAKE_WHOLE_CHANGE_PERCENT ;;
   }
 
   dimension: sc_make_whole_decrement_type {
     type: string
+    label: "soft Call Change Code"
     sql: ${TABLE}.SC_MAKE_WHOLE_DECREMENT_TYPE ;;
   }
 
-  dimension: sc_make_whole_end_date {
-    type: string
-    sql: ${TABLE}.SC_MAKE_WHOLE_END_DATE ;;
+  dimension_group: sc_make_whole_end_date {
+    type: time
+    label: "Soft Call End Date"
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.SC_MAKE_WHOLE_END_DATE, 1, 4),"-",SUBSTRING(${TABLE}.SC_MAKE_WHOLE_END_DATE, 5, 2),"-",SUBSTRING(${TABLE}.SC_MAKE_WHOLE_END_DATE, 7, 2));;
   }
 
   dimension: sc_make_whole_initial_amount {
-    type: string
+    type: number
+    label: "Soft Call Initial Amount"
     sql: ${TABLE}.SC_MAKE_WHOLE_INITIAL_AMOUNT ;;
   }
 
-  dimension: sc_make_whole_start_date {
-    type: string
-    sql: ${TABLE}.SC_MAKE_WHOLE_START_DATE ;;
+  dimension_group: sc_make_whole_start_date {
+    type: time
+    label: "Soft Call Start Date"
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.SC_MAKE_WHOLE_START_DATE, 1, 4),"-",SUBSTRING(${TABLE}.SC_MAKE_WHOLE_START_DATE, 5, 2),"-",SUBSTRING(${TABLE}.SC_MAKE_WHOLE_START_DATE, 7, 2));;
   }
 
   dimension: sec_cusip {
     type: string
+    label: "SEC CUSIP"
     sql: ${TABLE}.SEC_CUSIP ;;
   }
 
   dimension: sec_reg_type1 {
     type: string
+    label: "SEC Registration Type"
     sql: ${TABLE}.SEC_REG_TYPE1 ;;
   }
 
   dimension: sec_reg_type2 {
     type: string
+    label: "Additional SEC Registration Type"
     sql: ${TABLE}.SEC_REG_TYPE2 ;;
   }
 
@@ -1028,16 +1367,18 @@ dimension: effective_date {
 
   dimension: sedol {
     type: string
+    label: "SEDOL"
     sql: ${TABLE}.SEDOL ;;
   }
 
   dimension: see_note {
     type: string
+    label: "Note Flag"
     sql: ${TABLE}.SEE_NOTE ;;
   }
 
   dimension: selling_concession {
-    type: string
+    type: number
     sql: ${TABLE}.SELLING_CONCESSION ;;
   }
 
@@ -1057,28 +1398,41 @@ dimension: effective_date {
   }
 
   dimension: shares_outstanding {
-    type: string
+    type: number
     sql: ${TABLE}.SHARES_OUTSTANDING ;;
   }
 
   dimension: sic_code {
     type: string
+    label: "SIC Code"
     sql: ${TABLE}.SIC_CODE ;;
   }
 
   dimension: slob {
     type: string
+    label: "SLOB"
     sql: ${TABLE}.SLOB ;;
   }
 
   dimension: soft_call_make_whole {
     type: string
+    label: "Make Whole"
     sql: ${TABLE}.SOFT_CALL_MAKE_WHOLE ;;
   }
 
-  dimension: split_date {
-    type: string
-    sql: ${TABLE}.SPLIT_DATE ;;
+  dimension_group: split_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.SPLIT_DATE, 1, 4),"-",SUBSTRING(${TABLE}.SPLIT_DATE, 5, 2),"-",SUBSTRING(${TABLE}.SPLIT_DATE, 7, 2));;
   }
 
   dimension: split_ratio {
@@ -1123,6 +1477,7 @@ dimension: effective_date {
 
   dimension: tender_exch_offer {
     type: string
+    label: "Tender/Exchange Offer"
     sql: ${TABLE}.TENDER_EXCH_OFFER ;;
   }
 
@@ -1132,7 +1487,7 @@ dimension: effective_date {
   }
 
   dimension: total_units_offered {
-    type: string
+    type: number
     sql: ${TABLE}.TOTAL_UNITS_OFFERED ;;
   }
 
@@ -1147,12 +1502,13 @@ dimension: effective_date {
   }
 
   dimension: treasury_spread {
-    type: string
+    type: number
     sql: ${TABLE}.TREASURY_SPREAD ;;
   }
 
   dimension: unit_cusip {
     type: string
+    label: "Unit CUSIP"
     sql: ${TABLE}.UNIT_CUSIP ;;
   }
 
@@ -1162,12 +1518,12 @@ dimension: effective_date {
   }
 
   dimension: voting_power_percentage {
-    type: string
+    type: number
     sql: ${TABLE}.VOTING_POWER_PERCENTAGE ;;
   }
 
   dimension: voting_power_percentage_erp {
-    type: string
+    type: number
     sql: ${TABLE}.VOTING_POWER_PERCENTAGE_ERP ;;
   }
 
