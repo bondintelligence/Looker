@@ -53,3 +53,7 @@ explore: compustat_financial_fundamental {}
 explore:compustat_financial_ratios {}
 
 explore: trace_enhanced {}
+
+explore:  mergent_issuance{}
+
+explore:  mergent_bond_redemption{}

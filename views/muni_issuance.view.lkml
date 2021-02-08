@@ -109,11 +109,12 @@ view: muni_issuance {
   }
 
 
-
   dimension: dated_date {
     type: string
     sql: ${TABLE}.Dated_Date ;;
   }
+
+
 
   dimension: dated_date_of_the_issue_traded {
     type: string
