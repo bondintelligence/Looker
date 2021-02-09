@@ -13,13 +13,23 @@ view: mergent_bond_redemption {
   }
 
   dimension: call_amount {
-    type: string
+    type: number
     sql: ${TABLE}.CALL_AMOUNT ;;
   }
 
-  dimension: call_date {
-    type: string
-    sql: ${TABLE}.CALL_DATE ;;
+  dimension_group: call_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: REPLACE(${TABLE}.CALL_DATE, "/", "-");;
   }
 
   dimension: call_frequency {
@@ -33,12 +43,12 @@ view: mergent_bond_redemption {
   }
 
   dimension: call_notice_days {
-    type: string
+    type: number
     sql: ${TABLE}.CALL_NOTICE_DAYS ;;
   }
 
   dimension: call_price {
-    type: string
+    type: number
     sql: ${TABLE}.CALL_PRICE ;;
   }
 
@@ -49,6 +59,7 @@ view: mergent_bond_redemption {
 
   dimension: complete_cusip {
     type: string
+    label: "Complete CUSIP"
     sql: ${TABLE}.COMPLETE_CUSIP ;;
   }
 
@@ -69,16 +80,18 @@ view: mergent_bond_redemption {
 
   dimension: ipo_clawback {
     type: string
+    label: "IPO Clawback"
     sql: ${TABLE}.IPO_CLAWBACK ;;
   }
 
   dimension: issue_cusip {
     type: string
+    label: "Issue CUSIP"
     sql: ${TABLE}.ISSUE_CUSIP ;;
   }
 
   dimension: issue_id {
-    type: string
+    type: number
     sql: ${TABLE}.ISSUE_ID ;;
   }
 
@@ -89,11 +102,12 @@ view: mergent_bond_redemption {
 
   dimension: issuer_cusip {
     type: string
+    label: "Issue CUSIP"
     sql: ${TABLE}.ISSUER_CUSIP ;;
   }
 
   dimension: issuer_id {
-    type: string
+    type: number
     sql: ${TABLE}.ISSUER_ID ;;
   }
 
@@ -107,9 +121,19 @@ view: mergent_bond_redemption {
     sql: ${TABLE}.MAKE_WHOLE ;;
   }
 
-  dimension: make_whole_end_date {
-    type: string
-    sql: ${TABLE}.MAKE_WHOLE_END_DATE ;;
+  dimension_group: make_whole_end_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: REPLACE(${TABLE}.MAKE_WHOLE_END_DATE, "/", "-");;
   }
 
   dimension: make_whole_spread {
@@ -117,53 +141,110 @@ view: mergent_bond_redemption {
     sql: ${TABLE}.MAKE_WHOLE_SPREAD ;;
   }
 
-  dimension: make_whole_start_date {
-    type: string
-    sql: ${TABLE}.MAKE_WHOLE_START_DATE ;;
+  dimension_group: make_whole_start_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: REPLACE(${TABLE}.MAKE_WHOLE_START_DATE, "/", "-");;
   }
 
-  dimension: maturity {
-    type: string
-    sql: ${TABLE}.MATURITY ;;
+  dimension_group: maturity {
+    type: time
+    label: "Maturity Date"
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: REPLACE(${TABLE}.MATURITY, "/", "-");;
   }
 
-  dimension: mr_date {
-    type: string
-    sql: ${TABLE}.MR_DATE ;;
+  dimension_group: mr_date {
+    type: time
+    label: "MR Date"
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: REPLACE(${TABLE}.MR_DATE, "/", "-");;
   }
 
   dimension: mr_price {
-    type: string
+    type: number
+    label: "MR Price"
     sql: ${TABLE}.MR_PRICE ;;
   }
 
-  dimension: next_call_date {
-    type: string
-    sql: ${TABLE}.NEXT_CALL_DATE ;;
+  dimension_group: next_call_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: REPLACE(${TABLE}.NEXT_CALL_DATE, "/", "-");;
   }
 
   dimension: next_call_price {
-    type: string
+    type: number
     sql: ${TABLE}.NEXT_CALL_PRICE ;;
   }
 
   dimension: next_sf_amount {
-    type: string
+    type: number
+    label: "Next SF Amount"
     sql: ${TABLE}.NEXT_SF_AMOUNT ;;
   }
 
-  dimension: next_sf_date {
-    type: string
-    sql: ${TABLE}.NEXT_SF_DATE ;;
+  dimension_group: next_sf_date {
+    type: time
+    label: "Next SF Date"
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: REPLACE(${TABLE}.NEXT_SF_DATE, "/", "-");;
   }
 
   dimension: next_sf_price {
-    type: string
+    type: number
+    label: "Next SF Price"
     sql: ${TABLE}.NEXT_SF_PRICE ;;
   }
 
   dimension: next_sf_skip {
     type: string
+    label: "Next SF Skip"
     sql: ${TABLE}.NEXT_SF_SKIP ;;
   }
 
@@ -187,11 +268,13 @@ view: mergent_bond_redemption {
 
   dimension: prospectus_issuer_name {
     type: string
+    label: "Issuer Name"
     sql: ${TABLE}.PROSPECTUS_ISSUER_NAME ;;
   }
 
   dimension: sf_accel_pct {
-    type: string
+    type: number
+    label: "SF Accel Pct"
     sql: ${TABLE}.SF_ACCEL_PCT ;;
   }
 
