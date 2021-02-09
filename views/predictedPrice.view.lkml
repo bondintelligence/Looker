@@ -20,11 +20,18 @@ view: predictedprice {
       CAST(Trade_Type_Indicator AS string) AS Trade_Type_Indicator,
       CAST(Issuer_Industry AS string) AS Issuer_Industry,
       CAST(Presence_of_violation_poll AS string) AS Presence_of_violation_poll
-      FROM `bqtest.Final_Data`
+      FROM `bi-model-development.looker_FINAL.muni`
+      WHERE CUSIP = "{% parameter CUSIP %}"
       LIMIT 1
       )
       )
       ;;
+  }
+
+
+  parameter: CUSIP {
+    type: unquoted
+
   }
 
   measure: count {
