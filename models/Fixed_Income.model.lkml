@@ -1,3 +1,5 @@
+label: "Fixed Income"
+
 connection: "bqwarehouse"
 
 # include all the views
@@ -21,31 +23,35 @@ explore: bloomberg1 {always_filter: {
 explore: bloomberg2 {}
 
 
-explore: corp {always_filter: {
+explore: corp {
+  label: "FINRA_CRSP"
+  always_filter: {
 
     filters: [cusip: "000325AA8"]
   }}
 
 
-explore: muni {always_filter: {
+explore: muni {
+
+  label: "MSRB_EMMA"
+  always_filter: {
 
     filters: [cusip: "00037CRB8", muni.trade_date: ""]
   }
+
   }
 
 
+explore: muni_issuance {}
 
-explore: muni_issuance {always_filter: {
 
-    filters: [cusip: "09845N"]
-  }}
 
 
 explore: price_muni_prediction {}
-          label: "muni_price_prediction"
+
 
 explore: price_corp_prediction {}
-        label: "corp_price_prediction"
+
 
 
 explore: compustat_financial_fundamental {}

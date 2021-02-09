@@ -36,7 +36,10 @@ view: trace_enhanced {
       week,
       month,
       quarter,
-      year
+      year,
+      hour,
+      minute,
+      second
     ]
     label: "Execution Datetime"
     sql: CONCAT(${TABLE}.trd_exctn_dt, " ", ${TABLE}.trd_exctn_tm) ;;

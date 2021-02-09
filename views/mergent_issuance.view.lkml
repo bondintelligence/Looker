@@ -327,10 +327,23 @@ view: mergent_issuance {
     sql: ${TABLE}.DATE_TRANSFERABLE ;;
   }
 
-  dimension: dated_date {
-    type: string
-    sql: ${TABLE}.DATED_DATE ;;
+  dimension_group: dated_date {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: CONCAT(SUBSTRING(${TABLE}.DATED_DATE, 1, 4),"-",SUBSTRING(${TABLE}.DATED_DATE, 5, 2),"-",SUBSTRING(${TABLE}.DATED_DATE, 7, 2));;
   }
+
+
+
 
   dimension: day_count_basis {
     type: string
@@ -427,12 +440,10 @@ view: mergent_issuance {
     sql: ${TABLE}.ECONOMIC_COV_DEF ;;
   }
 
-
-dimension: effective_date {
-  type: string
-  sql: ${TABLE}.EFFECTIVE_DATE;;
-}
-
+  dimension: effective_date {
+    type: string
+    sql: ${TABLE}.EFFECTIVE_DATE ;;
+  }
 
   dimension: enhancement {
     type: string
@@ -649,22 +660,10 @@ dimension: effective_date {
     sql: ${TABLE}.MARKET_PRICE ;;
   }
 
-
-  dimension_group: maturity {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: ${TABLE}.MATURITY;;
-
-}
+  dimension: maturity {
+    type: string
+    sql: ${TABLE}.MATURITY ;;
+  }
 
   dimension: mtn {
     type: string
