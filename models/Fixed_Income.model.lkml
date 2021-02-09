@@ -13,11 +13,7 @@ datagroup: production_default_datagroup {
 persist_with: production_default_datagroup
 
 
-explore: bloomberg1 {always_filter: {
-
-    filters: [cusip: "005596DZ1"]
-  }
-  }
+explore: bloomberg1 {}
 
 
 explore: bloomberg2 {}
@@ -45,8 +41,6 @@ explore: muni {
 explore: muni_issuance {}
 
 
-
-
 explore: price_muni_prediction {}
 
 
@@ -63,3 +57,5 @@ explore: trace_enhanced {}
 explore:  mergent_issuance{}
 
 explore:  mergent_bond_redemption{}
+
+explore: price_graphv1{}
