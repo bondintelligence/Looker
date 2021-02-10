@@ -60,6 +60,7 @@ view: mergent_bond_redemption {
   dimension: complete_cusip {
     type: string
     label: "Complete CUSIP"
+    primary_key: yes
     sql: ${TABLE}.COMPLETE_CUSIP ;;
   }
 

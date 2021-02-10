@@ -192,6 +192,7 @@ view: muni {
   dimension: cusip {
     type: string
     label: "_cusip"
+    primary_key: yes
     sql: ${TABLE}.CUSIP ;;
   }
 
