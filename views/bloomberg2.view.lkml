@@ -14,6 +14,7 @@ view: bloomberg2 {
 
   dimension: cusip {
     type: string
+    primary_key: yes
     sql: ${TABLE}.CUSIP ;;
   }
 
@@ -32,10 +33,7 @@ view: bloomberg2 {
     sql: ${TABLE}.Date ;;
   }
 
-  dimension: date2 {
-    type: string
-    sql: ${TABLE}.Date2 ;;
-  }
+
 
   dimension: last_price {
     type: number
@@ -57,5 +55,5 @@ view: bloomberg2 {
     drill_fields: []
   }
 
-  measure: type {}
+
 }

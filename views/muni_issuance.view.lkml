@@ -1,24 +1,20 @@
 view: muni_issuance {
-  sql_table_name: `bi-model-development.looker_FINAL.muni_issuance`
-    ;;
+  sql_table_name: `bi-model-development.looker_FINAL.Muni_Issuance`;;
 
-  dimension: _10_year_treasury_constant_maturity_rate_percent_daily_not_seasonally_adjusted {
-    type: string
-    sql: ${TABLE}._10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted ;;
-  }
+
 
   dimension: admin_fee {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Admin_Fee ;;
   }
 
-  dimension: assumed_settlement_date {
-    type: string
-    sql: ${TABLE}.Assumed_Settlement_Date ;;
-  }
+
 
   dimension: bond_cap_amount {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.Bond_Cap_Amount ;;
   }
 
@@ -43,12 +39,16 @@ view: muni_issuance {
   }
 
   dimension: bond_counsel_fee {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Bond_Counsel_Fee ;;
   }
 
   dimension: bond_insurance_costs {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Bond_Insurance_Costs ;;
   }
 
@@ -57,60 +57,89 @@ view: muni_issuance {
     sql: ${TABLE}.Bond_Insurer ;;
   }
 
-  dimension: brokers_broker_indicator {
-    type: string
-    sql: ${TABLE}.Brokers_Broker_Indicator ;;
-  }
+
 
   dimension: city_identifier {
     type: string
-    sql: ${TABLE}.CityIdentifier ;;
+    group_label: "geography"
+    sql: ${TABLE}.City_Identifier ;;
   }
 
-  dimension: closing_date {
-    type: string
+
+  dimension_group: closing {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.Closing_Date ;;
-  }
+    }
+
+
 
   dimension: county {
     type: string
+    group_label: "geography"
     sql: ${TABLE}.County ;;
   }
 
   dimension: county_identifier {
     type: string
-    sql: ${TABLE}.CountyIdentifier ;;
+    group_label: "geography"
+    sql: ${TABLE}.County_Identifier ;;
   }
 
   dimension: credit_enhancement_fee {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Credit_Enhancement_Fee ;;
   }
 
-  dimension: cusip {
+  dimension: cusip1 {
     type: string
-    sql: ${TABLE}.CUSIP ;;
+    primary_key: yes
+    sql: ${TABLE}.CUSIP1 ;;
   }
 
-  dimension: cusip2 {
-    type: string
-    sql: ${TABLE}.CUSIP2 ;;
-  }
+
 
   dimension: cusiprefunded_bond2 {
     type: string
     sql: ${TABLE}.CUSIPRefundedBond2 ;;
   }
 
-  dimension: dated_date {
-    type: string
+  dimension_group: dated {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.Dated_Date ;;
+
   }
 
-  dimension: dated_date_of_the_issue_traded {
-    type: string
-    sql: ${TABLE}.Dated_date_of_the_issue_traded ;;
-  }
+
+
+
 
   dimension: debt_category {
     type: string
@@ -123,22 +152,24 @@ view: muni_issuance {
   }
 
   dimension: discount {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.Discount ;;
   }
 
-  dimension: dollar_price_of_the_trade {
-    type: string
-    sql: ${TABLE}.Dollar_Price_of_the_trade ;;
-  }
+
 
   dimension: escrow_costs {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Escrow_Costs ;;
   }
 
   dimension: feasibility_study_fee {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Feasibility_Study_Fee ;;
   }
 
@@ -148,28 +179,28 @@ view: muni_issuance {
   }
 
   dimension: financial_advisor_fee {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Financial_Advisor_Fee ;;
   }
 
   dimension: gross_underwriting_spread {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.Gross_Underwriting_Spread ;;
   }
 
-  dimension: interest_rate_of_the_issue_traded {
-    type: string
-    sql: ${TABLE}.Interest_rate_of_the_issue_traded ;;
-  }
+
 
   dimension: is_advance_refund {
     type: string
-    sql: ${TABLE}.IsAdvanceRefund ;;
+    sql: ${TABLE}.Is_Advance_Refund ;;
   }
 
   dimension: issuance_identifier {
     type: string
-    sql: ${TABLE}.IssuanceIdentifier ;;
+    sql: ${TABLE}.Issuance_Identifier ;;
   }
 
   dimension: issue_title {
@@ -202,28 +233,39 @@ view: muni_issuance {
     sql: ${TABLE}.Lead_Underwriter ;;
   }
 
-  dimension: list_offering_price_takedown_indicator {
-    type: string
-    sql: ${TABLE}.List_Offering_Price_Takedown_Indicator ;;
-  }
 
-  dimension: maturity_date {
-    type: string
+
+  dimension_group: maturity {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.Maturity_Date ;;
-  }
+}
 
-  dimension: maturity_date_of_the_issue_traded {
-    type: string
-    sql: ${TABLE}.Maturity_date_of_the_issue_traded ;;
-  }
+
+
 
   dimension: miscellaneous_costs {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Miscellaneous_Costs ;;
   }
 
   dimension: net_tax_exempt_interest_rate {
-    type: string
+    type: number
+    value_format: "0.00\%"
     sql: ${TABLE}.Net_Tax_Exempt_Interest_Rate ;;
   }
 
@@ -232,10 +274,7 @@ view: muni_issuance {
     sql: ${TABLE}.New_Refund_Combo ;;
   }
 
-  dimension: non_transaction_based_compensation_arrangement_ntbc_indicator {
-    type: string
-    sql: ${TABLE}.Non_Transaction_Based_Compensation_Arrangement_NTBC_Indicator ;;
-  }
+
 
   dimension: number_of_bids {
     type: string
@@ -243,12 +282,15 @@ view: muni_issuance {
   }
 
   dimension: premium {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.Premium ;;
   }
 
   dimension: printing_costs {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Printing_Costs ;;
   }
 
@@ -263,48 +305,58 @@ view: muni_issuance {
   }
 
   dimension: rating_agency_fee {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Rating_Agency_Fee ;;
   }
 
   dimension: refund_discount {
-    type: string
-    sql: ${TABLE}.RefundDiscount ;;
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Refund_Discount ;;
   }
 
   dimension: refund_net_tax_exempt_interest_rate {
-    type: string
-    sql: ${TABLE}.RefundNetTaxExemptInterestRate ;;
+    type: number
+    value_format: "0.00\%"
+    sql: ${TABLE}.Refund_Net_Tax_Exempt_Interest_Rate ;;
   }
 
   dimension: refund_net_taxable_interest_rate {
-    type: string
-    sql: ${TABLE}.RefundNetTaxableInterestRate ;;
+    type: number
+    value_format: "0.00\%"
+    sql: ${TABLE}.Refund_Net_Taxable_Interest_Rate ;;
   }
 
   dimension: refund_premium {
-    type: string
-    sql: ${TABLE}.RefundPremium ;;
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Refund_Premium ;;
   }
 
   dimension: refund_tax_exempt_par_value {
-    type: string
-    sql: ${TABLE}.RefundTaxExemptParValue ;;
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Refund_Tax_Exempt_ParValue ;;
   }
 
   dimension: refund_taxable_par_value {
-    type: string
-    sql: ${TABLE}.RefundTaxableParValue ;;
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Refund_Taxable_ParValue ;;
   }
 
   dimension: refund_total_par_value {
-    type: string
-    sql: ${TABLE}.RefundTotalParValue ;;
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Refund_Total_ParValue ;;
   }
 
   dimension: refund_yield {
-    type: string
-    sql: ${TABLE}.RefundYield ;;
+    type: number
+    value_format: "0.00\%"
+    sql: ${TABLE}.Refund_Yield ;;
   }
 
   dimension: registrar {
@@ -312,60 +364,26 @@ view: muni_issuance {
     sql: ${TABLE}.Registrar ;;
   }
 
-  dimension: reporter_address {
-    type: string
-    sql: ${TABLE}.Reporter_Address ;;
-  }
-
-  dimension: reporter_affiliation {
-    type: string
-    sql: ${TABLE}.Reporter_Affiliation ;;
-  }
-
-  dimension: reporter_city_state_zip {
-    type: string
-    sql: ${TABLE}.Reporter_City_State_Zip ;;
-  }
-
-  dimension: reporter_email {
-    type: string
-    sql: ${TABLE}.Reporter_Email ;;
-  }
-
-  dimension: reporter_name {
-    type: string
-    sql: ${TABLE}.Reporter_Name ;;
-  }
-
-  dimension: reporter_phone {
-    type: string
-    sql: ${TABLE}.Reporter_Phone ;;
-  }
-
-  dimension: reporter_title {
-    type: string
-    sql: ${TABLE}.Reporter_Title ;;
-  }
-
-  dimension: rtrs_control_number {
-    type: string
-    sql: ${TABLE}.RTRS_Control_Number ;;
-  }
-
-  dimension: rtrs_publish_date {
-    type: string
-    sql: ${TABLE}.RTRS_Publish_Date ;;
-  }
-
-  dimension: rtrs_publish_time {
-    type: string
-    sql: ${TABLE}.RTRS_Publish_Time ;;
-  }
-
-  dimension: sale_date {
-    type: string
+  dimension_group: sale {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.Sale_Date ;;
-  }
+    }
+
+
+
 
   dimension: sale_method {
     type: string
@@ -377,80 +395,104 @@ view: muni_issuance {
     sql: ${TABLE}.Security ;;
   }
 
-  dimension: security_description {
-    type: string
-    sql: ${TABLE}.Security_Description ;;
-  }
 
   dimension: series {
     type: string
     sql: ${TABLE}.Series ;;
   }
 
-  dimension: settlement_date {
-    type: string
+  dimension_group: settlement {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.Settlement_Date ;;
-  }
+
+}
 
   dimension: state_identifier {
     type: string
-    sql: ${TABLE}.StateIdentifier ;;
+    group_label: "geography"
+    sql: ${TABLE}.State_Identifier ;;
   }
 
-  dimension: submitted_date {
-    type: string
-    sql: ${TABLE}.SubmittedDate ;;
-  }
 
-  dimension: tax_ex_interest_variable_ {
+
+  dimension: tax_ex_interest_variable {
     type: string
-    sql: ${TABLE}.Tax_Ex_Interest_Variable_ ;;
+    sql: ${TABLE}.Tax_Ex_Interest_Variable ;;
   }
 
   dimension: tax_exempt_par_value {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.Tax_Exempt_Par_Value ;;
   }
 
   dimension: taxable_interest_rate {
-    type: string
+    type: number
+    value_format: "0.00\%"
     sql: ${TABLE}.Taxable_Interest_Rate ;;
   }
 
-  dimension: taxable_interest_variable_ {
+  dimension: taxable_interest_variable {
     type: string
-    sql: ${TABLE}.Taxable_Interest_Variable_ ;;
+    sql: ${TABLE}.Taxable_Interest_Variable ;;
   }
 
   dimension: taxable_par_value {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.Taxable_Par_Value ;;
   }
 
-  dimension: the_par_value_of_the_trade {
-    type: string
-    sql: ${TABLE}.The_par_value_of_the_trade ;;
-  }
-
-  dimension: the_yield_of_the_trade {
-    type: string
-    sql: ${TABLE}.The_yield_of_the_trade ;;
-  }
-
-  dimension: time_of_trade {
-    type: string
+  dimension_group: time_of_trade{
+    type: time
+    timeframes: [
+      hour,
+      minute,
+      second
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.Time_of_Trade ;;
+
   }
 
   dimension: total_par_value {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
     sql: ${TABLE}.Total_Par_Value ;;
   }
 
-  dimension: trade_date {
-    type: string
+  dimension_group: trade {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
+      year
+    ]
+    convert_tz: no
+    datatype: date
     sql: ${TABLE}.Trade_Date ;;
-  }
+
+}
 
   dimension: trade_type_indicator {
     type: string
@@ -458,8 +500,15 @@ view: muni_issuance {
   }
 
   dimension: travel_costs {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Travel_Costs ;;
+  }
+
+  dimension: treasury_rate {
+    type: string
+    sql: ${TABLE}.Treasury_Rate ;;
   }
 
   dimension: trustee {
@@ -468,52 +517,49 @@ view: muni_issuance {
   }
 
   dimension: trustee_fee {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.Trustee_Fee ;;
   }
 
   dimension: uw_counsel_fee {
-    type: string
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
     sql: ${TABLE}.UW_Counsel_Fee ;;
   }
 
-  dimension: uw_spread_per_1_000 {
-    type: string
-    sql: ${TABLE}.UW_Spread_per_1_000 ;;
+  dimension: uw_spread_per_1000 {
+    type: number
+    sql: ${TABLE}.UW_Spread_per_1000 ;;
   }
 
-  dimension: various_counties_statewide {
-    type: string
-    sql: ${TABLE}.Various_Counties_Statewide ;;
-  }
+
 
   dimension: voter_approved {
     type: string
     sql: ${TABLE}.Voter_Approved ;;
   }
 
-  dimension: weighted_price_indicator {
-    type: string
-    sql: ${TABLE}.Weighted_Price_Indicator ;;
-  }
-
-  dimension: when_issued_indicator {
-    type: string
-    sql: ${TABLE}.When_Issued_Indicator ;;
-  }
-
   dimension: year_identifier {
     type: string
-    sql: ${TABLE}.YearIdentifier ;;
+    sql: ${TABLE}.Year_Identifier ;;
   }
 
   dimension: yield {
-    type: string
+    type: number
+    value_format: "0.00\%"
     sql: ${TABLE}.Yield ;;
   }
 
   measure: count {
     type: count
-    drill_fields: [reporter_name, issuer_name]
+    drill_fields: [issuer_name]
   }
+  measure: sum_travel_cost {
+  type: string
+  sql: ${travel_costs} ;;
+}
+
 }
