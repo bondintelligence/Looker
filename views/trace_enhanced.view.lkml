@@ -42,7 +42,7 @@ view: trace_enhanced {
       minute,
       second
     ]
-    label: "Execution Datetime"
+    label: "Execution"
     sql: CONCAT(${TABLE}.trd_exctn_dt, " ", ${TABLE}.trd_exctn_tm) ;;
     datatype: datetime
     convert_tz: no
@@ -66,7 +66,7 @@ view: trace_enhanced {
       year
 
     ]
-    label: "Report Date"
+    label: "Report"
     sql: CONCAT(${TABLE}.trd_rpt_dt, " ", ${TABLE}.trd_rpt_tm) ;;
     datatype: date
     convert_tz: no
@@ -129,6 +129,7 @@ view: trace_enhanced {
   dimension: asof_cd {
     type: string
     label: "As Of Indicator"
+    description: "This field indicates if the transaction being reported is an As/Of trade or Reversal from a prior business day"
     sql: ${TABLE}.asof_cd ;;
   }
 
@@ -208,7 +209,7 @@ view: trace_enhanced {
       quarter,
       year
     ]
-    label: "Settlement Date"
+    label: "Settlement"
     sql: ${TABLE}.stlmnt_dt ;;
     datatype: date
     convert_tz: no
@@ -254,7 +255,7 @@ view: trace_enhanced {
       quarter,
       year
     ]
-    label: "Prior Trade Report Date"
+    label: "Prior Trade Report"
     sql: ${TABLE}.pr_trd_dt ;;
     datatype: date
     convert_tz: no
@@ -270,7 +271,7 @@ view: trace_enhanced {
       quarter,
       year
     ]
-    label: "First Trade Control Date"
+    label: "First Trade Control"
     sql: ${TABLE}.first_trade_ctrl_date ;;
     datatype: date
     convert_tz: no
