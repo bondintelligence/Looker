@@ -10,26 +10,8 @@ datagroup: production_default_datagroup {
 
 persist_with: production_default_datagroup
 
-explore: bloomberg1 {}
+explore: price_graphv1 {}
 
 explore: predictedprice {}
 
-explore: bond_data1_mili {}
-
-explore: bond_data1_mili_processed {}
-
-explore: df_v1 {}
-
-explore: final_data {}
-
-explore: imported_model2_results {}
-
-explore: imported_model2_testresults {}
-
-explore: imported_model2_values {}
-
-explore: million_unique_test_updated {}
-
-explore: testmodel_results {}
-
-explore: trunc_corp {}
+explore: yieldgraphsv3 {}
