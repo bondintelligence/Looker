@@ -99,7 +99,6 @@ view: compustat_financial_ratios {
 
   dimension: cusip {
     type: string
-    primary_key: yes
     sql: ${TABLE}.cusip ;;
   }
 

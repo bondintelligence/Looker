@@ -14,7 +14,6 @@ view: bloomberg2 {
 
   dimension: cusip {
     type: string
-    primary_key: yes
     sql: ${TABLE}.CUSIP ;;
   }
 
