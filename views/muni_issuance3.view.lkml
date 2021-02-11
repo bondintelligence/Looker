@@ -81,7 +81,7 @@ view: muni_issuance {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.Closing_Date ;;
-    }
+  }
 
 
 
@@ -250,7 +250,7 @@ view: muni_issuance {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.Maturity_Date ;;
-}
+  }
 
 
 
@@ -379,7 +379,7 @@ view: muni_issuance {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.Sale_Date ;;
-    }
+  }
 
 
 
@@ -417,7 +417,7 @@ view: muni_issuance {
     datatype: date
     sql: ${TABLE}.Settlement_Date ;;
 
-}
+  }
 
   dimension: state_identifier {
     type: string
@@ -496,7 +496,7 @@ view: muni_issuance {
     datatype: date
     sql: ${TABLE}.Trade_Date ;;
 
-}
+  }
 
   dimension: trade_type_indicator {
     type: string
@@ -566,7 +566,7 @@ view: muni_issuance {
     drill_fields: [issuer_name]
   }
   measure: sum_travel_cost {
-  type: string
-  sql: ${travel_costs} ;;
-}
+    type: string
+    sql: ${travel_costs} ;;
+  }
 }
