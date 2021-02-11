@@ -12,6 +12,7 @@ view: trace_enhanced {
   dimension: cusip_id {
     type: string
     label: "CUSIP"
+    primary_key: yes
     sql: ${TABLE}.cusip_id ;;
   }
 
@@ -63,10 +64,11 @@ view: trace_enhanced {
       month,
       quarter,
       year
+
     ]
     label: "Report Date"
     sql: CONCAT(${TABLE}.trd_rpt_dt, " ", ${TABLE}.trd_rpt_tm) ;;
-    datatype: datetime
+    datatype: date
     convert_tz: no
   }
 

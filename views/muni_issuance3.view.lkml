@@ -1,4 +1,4 @@
-view: muni_issuance {
+view: muni_issuance_3 {
   sql_table_name: `bi-model-development.looker_FINAL.Muni_Issuance`
     ;;
 
