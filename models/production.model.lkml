@@ -10,6 +10,21 @@ datagroup: production_default_datagroup {
 
 persist_with: production_default_datagroup
 
+explore: mergent_bond_redemption {}
+
+explore: bloomberg1 {}
+
+explore: risk_table {}
+
+explore: bloomberg2_pivot2 {}
+
+explore: muni_issuance {}
+
+explore: bloomberg2_table {}
+
+explore: bloomberg2 {}
+
+explore: bloombergcopy {}
 
 explore: bond_data1_mili {}
 
@@ -20,6 +35,8 @@ explore: df_v1 {}
 explore: final_data {}
 
 explore: imported_model2_results {}
+
+explore: imported_model2_test {}
 
 explore: imported_model2_testresults {}
 
