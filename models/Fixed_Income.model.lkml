@@ -58,7 +58,11 @@ explore: compustat_financial_fundamental {}
 
 explore:compustat_financial_ratios {}
 
-explore: trace_enhanced {}
+explore: trace_enhanced {
+  always_filter: {
+    filters: [cusip_id: "369604BQ5"]
+  }
+}
 
 explore:  mergent_issuance{}
 
