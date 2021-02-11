@@ -73,6 +73,9 @@ view: muni_issuance {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -122,6 +125,9 @@ view: muni_issuance {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -236,6 +242,9 @@ view: muni_issuance {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -362,6 +371,9 @@ view: muni_issuance {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -396,6 +408,9 @@ view: muni_issuance {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -472,6 +487,9 @@ view: muni_issuance {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -547,4 +565,8 @@ view: muni_issuance {
     type: count
     drill_fields: [issuer_name]
   }
+  measure: sum_travel_cost {
+  type: string
+  sql: ${travel_costs} ;;
+}
 }

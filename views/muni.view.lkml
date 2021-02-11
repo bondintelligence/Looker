@@ -205,6 +205,9 @@ view: muni {
       raw,
       date,
       week,
+      day_of_week,
+      day_of_month,
+      month_name,
       month,
       quarter,
       year
@@ -343,6 +346,9 @@ view: muni {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -557,6 +563,9 @@ view: muni {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -624,6 +633,9 @@ view: muni {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     sql: ${TABLE}.Time_of_Trade ;;
@@ -650,6 +662,9 @@ view: muni {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     sql: ${TABLE}.Trade_Date ;;

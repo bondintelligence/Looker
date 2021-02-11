@@ -4,11 +4,15 @@ view: mergent_bond_redemption {
 
   dimension: accel_opt_info {
     type: string
+    label: "Accerlation_Option_Info"
+    group_label: "Sinking Fund"
+    description: "Provides commentary on the acceleration option associated with the issue's sinking fund."
     sql: ${TABLE}.ACCEL_OPT_INFO ;;
   }
 
   dimension: action_type {
     type: string
+    description: "A four-letter code representing the type of action that took place to change the amount outstanding."
     sql: ${TABLE}.ACTION_TYPE ;;
   }
 
@@ -19,12 +23,16 @@ view: mergent_bond_redemption {
 
   dimension_group: call_date {
     type: time
+    label: "Call"
     timeframes: [
       raw,
       date,
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: yes
@@ -39,11 +47,13 @@ view: mergent_bond_redemption {
 
   dimension: call_in_whole {
     type: string
+    description: "A flag indicating whether an issue is callable only as a whole but not in part"
     sql: ${TABLE}.CALL_IN_WHOLE ;;
   }
 
   dimension: call_notice_days {
     type: number
+    description: "Represents the number of days which the holder of a bond must be notified in advance of a redemption by the issuing company."
     sql: ${TABLE}.CALL_NOTICE_DAYS ;;
   }
 
@@ -71,6 +81,7 @@ view: mergent_bond_redemption {
 
   dimension: index_redemption {
     type: string
+    description: "A flag indicating whether an issue is subject to redemption."
     sql: ${TABLE}.INDEX_REDEMPTION ;;
   }
 
@@ -82,6 +93,7 @@ view: mergent_bond_redemption {
   dimension: ipo_clawback {
     type: string
     label: "IPO Clawback"
+    description: "PO_CLAWBACK, lists the provisions applicable if the issuer has the right to call the issue with the proceeds of an initial or subsequent stock offering."
     sql: ${TABLE}.IPO_CLAWBACK ;;
   }
 
@@ -103,7 +115,7 @@ view: mergent_bond_redemption {
 
   dimension: issuer_cusip {
     type: string
-    label: "Issue CUSIP"
+    label: "Issuer CUSIP"
     sql: ${TABLE}.ISSUER_CUSIP ;;
   }
 
@@ -114,15 +126,20 @@ view: mergent_bond_redemption {
 
   dimension: maint_replac {
     type: string
+    label: "maintenance_and_replacement"
+    group_label: "maintenance_and_replacement"
+    description: "lists the details of the issue's maintenance and replacement (M&R) fund requirements. An M&R fund is used to assure that mortgaged property is kept in good operating condition. Electric utility bond indentures usually require that a certain percentage of gross operating revenues, a percentage of the aggregate bonded indebtedness, or a percentage of the utility's property account be paid to the trustee for the M&R fund. A major portion of the M&R requirement is usually satisfied with normal maintenance expenditures. To the extent that there is an additional requirement, the company may contribute cash, the pledge of unbonded property additions, or bonds."
     sql: ${TABLE}.MAINT_REPLAC ;;
   }
 
   dimension: make_whole {
     type: string
+    description: "A flag indicating that a premium could be paid if the bond where to be called for redemption."
     sql: ${TABLE}.MAKE_WHOLE ;;
   }
 
   dimension_group: make_whole_end_date {
+    label: "Make Whole End"
     type: time
     timeframes: [
       raw,
@@ -130,19 +147,25 @@ view: mergent_bond_redemption {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: yes
     datatype: date
+    description: "The date on which a make whole call option (if applicable) will expire."
     sql: REPLACE(${TABLE}.MAKE_WHOLE_END_DATE, "/", "-");;
   }
 
   dimension: make_whole_spread {
     type: string
+    description: "If applicable, the spread above a comparable treasury issue that will have to be paid if the make whole call option is exercised or pertinent information"
     sql: ${TABLE}.MAKE_WHOLE_SPREAD ;;
   }
 
   dimension_group: make_whole_start_date {
+    label: "Make Whole Start"
     type: time
     timeframes: [
       raw,
@@ -150,6 +173,9 @@ view: mergent_bond_redemption {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: yes
@@ -159,13 +185,16 @@ view: mergent_bond_redemption {
 
   dimension_group: maturity {
     type: time
-    label: "Maturity Date"
+    label: "Maturity"
     timeframes: [
       raw,
       date,
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: yes
@@ -175,13 +204,18 @@ view: mergent_bond_redemption {
 
   dimension_group: mr_date {
     type: time
-    label: "MR Date"
+    label: "m&r_Date"
+    group_label: "maintenance_and_replacement"
+    description: "Date on which bonds may be called using money in the maintenance and replacement fund."
     timeframes: [
       raw,
       date,
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: yes
@@ -191,11 +225,15 @@ view: mergent_bond_redemption {
 
   dimension: mr_price {
     type: number
-    label: "MR Price"
+    label: "m&r_Price"
+    group_label: "maintenance_and_replacement"
+    description: "The price at which bonds may be called where funded by moneys in the maintenance and replacement fund."
     sql: ${TABLE}.MR_PRICE ;;
   }
 
   dimension_group: next_call_date {
+    description: "The next date on which a call for redemption by the issuer would become effective."
+    label: "Next Call"
     type: time
     timeframes: [
       raw,
@@ -203,6 +241,9 @@ view: mergent_bond_redemption {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: yes
@@ -211,45 +252,56 @@ view: mergent_bond_redemption {
   }
 
   dimension: next_call_price {
+    label: "Redemption"
     type: number
     sql: ${TABLE}.NEXT_CALL_PRICE ;;
   }
 
   dimension: next_sf_amount {
     type: number
-    label: "Next SF Amount"
+    label: "Next Sinking Fund Amount"
+    group_label: "Sinking Fund"
+    description: "The dollar amount of the issue (in $000’s) that will be redeemed on the next_sf_date (unless skipped)."
     sql: ${TABLE}.NEXT_SF_AMOUNT ;;
   }
 
   dimension_group: next_sf_date {
     type: time
-    label: "Next SF Date"
+    label: "Sinking Fund Next"
     timeframes: [
       raw,
       date,
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: yes
     datatype: date
+    group_label: "Sinking Fund"
     sql: REPLACE(${TABLE}.NEXT_SF_DATE, "/", "-");;
   }
 
   dimension: next_sf_price {
     type: number
-    label: "Next SF Price"
+    label: "Next Sinking Fund Price"
+    group_label: "Sinking Fund"
     sql: ${TABLE}.NEXT_SF_PRICE ;;
   }
 
   dimension: next_sf_skip {
     type: string
-    label: "Next SF Skip"
+    label: "Next Sinking Fund Skip"
+    group_label: "Sinking Fund"
+    description: "A flag indicating that the sinking fund payment for the next_sf_date is going to be skipped."
     sql: ${TABLE}.NEXT_SF_SKIP ;;
   }
 
   dimension_group: offering_date {
+    label: "Issue Offering"
     type: time
     timeframes: [
       raw,
@@ -257,6 +309,9 @@ view: mergent_bond_redemption {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -275,22 +330,27 @@ view: mergent_bond_redemption {
 
   dimension: sf_accel_pct {
     type: number
-    label: "SF Accel Pct"
+    label: "Sinking Fund Acceleration Pct"
+    group_label: "Sinking Fund"
+    description: "A field indicating by how much (in percent) the issuer can increase a sinking fund payment."
     sql: ${TABLE}.SF_ACCEL_PCT ;;
   }
 
   dimension: sinking_fund {
     type: string
+    group_label: "Sinking Fund"
     sql: ${TABLE}.SINKING_FUND ;;
   }
 
   dimension: sudden_death_par {
     type: string
+    description: "A flag denoting that the issuer has the right to call the issue at par under certain conditions not specified by the normal call schedule. Sudden death calls are triggered when tax laws are changed (Yankee issues), an asset is sold (asset backed issue), or other extraordinary events occur."
     sql: ${TABLE}.SUDDEN_DEATH_PAR ;;
   }
 
   dimension: sudden_death_premium {
     type: string
+    description: "A flag denoting the issuer has the right to call the issue at a premium under certain conditions not specified by the normal call schedule. Sudden death calls are"
     sql: ${TABLE}.SUDDEN_DEATH_PREMIUM ;;
   }
 
