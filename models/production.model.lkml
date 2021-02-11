@@ -27,7 +27,7 @@ explore: price_muni_prediction {}
 
 explore: price_corp_prediction {}
 
-
+explore: predictedprice {}
 
 explore: compustat_financial_fundamental {}
 
@@ -40,3 +40,5 @@ explore:  mergent_issuance{}
 explore:  mergent_bond_redemption{}
 
 explore: price_graphv1{}
+
+explore: predictedrisk {}
