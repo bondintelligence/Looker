@@ -271,6 +271,7 @@ view: corp {
   }
 
   dimension_group: offering_date {
+    label: " Offering"
     type: time
     timeframes: [
       raw,
@@ -364,6 +365,7 @@ view: corp {
   }
 
   dimension_group: reinstated_date {
+    label: "Reinstated"
     type: time
     timeframes: [
       raw,
