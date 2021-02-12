@@ -641,5 +641,4 @@ view: bloomberg1 {
     sql: ${yieldat_issue} ;;
     }
 
-
-      }
+}

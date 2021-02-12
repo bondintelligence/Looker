@@ -10,31 +10,24 @@ view: price_graphv1 {
        SELECT CUSIP, CAST(Date AS TIMESTAMP) as `Date`, Price_Data_.Category as `Category`,Price_Data_.Price as `Price` FROM original
       CROSS JOIN UNNEST (original.Price_Data) AS Price_Data_
 
-       ORDER BY 1 ASC
-
-       ;;
+       ORDER BY 1 ASC  ;;
   }
-
   measure: count {
     type: count
     drill_fields: [detail*]
   }
-
   dimension: cusip {
     type: string
     sql: ${TABLE}.CUSIP ;;
   }
-
   dimension_group: date {
     type: time
     sql: ${TABLE}.Date ;;
   }
-
   dimension: category {
     type: string
     sql: ${TABLE}.Category ;;
   }
-
   dimension: price {
     type: number
     sql: ${TABLE}.Price ;;
@@ -44,7 +37,6 @@ view: price_graphv1 {
     type: number
     sql: ${TABLE}.Price ;;
   }
-
   set: detail {
     fields: [cusip, date_time, category, price]
   }
