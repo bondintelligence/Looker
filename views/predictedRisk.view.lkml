@@ -3,22 +3,27 @@ view: predictedrisk {
     sql: SELECT * FROM ML.PREDICT(MODEL `bi-model-development.looker_FINAL.risk_muni`,
       (
       SELECT
-      C_20th_Percentile_Income,
-      Days_between_maturity_date_and_trade_date,
-      Median_Gross_Rent_dollars_MH,
-      Percent_Non_Hispanic_White,
-      Percent_bachelor_s_degree_or_higher_dem,
-      Poverty_Rate_eco,
-      Ratings1,Ratings2,Ratings3,
-      Trade_Date,
-      Unemployment_Rate_eco,
-      Yield_at_Issue,
-      _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted
-      FROM `bi-model-development.risk_model.kmeans_scaledratings_579178`
+      _20th_Percentile_Income AS C_20th_Percentile_Income,
+      Days_between_maturity_date_and_trade_date AS Days_between_maturity_date_and_trade_date,
+      Median_Gross_Rent_dollars_MH AS Median_Gross_Rent_dollars_MH,
+      __Non_Hispanic_White AS Percent_Non_Hispanic_White,
+      percent_bachelor_s_degree_or_higher_dem AS Percent_bachelor_s_degree_or_higher_dem,
+      Poverty_Rate_eco AS Poverty_Rate_eco,
+      Ratings1 AS Ratings1,Ratings2 AS Ratings2,Ratings3 AS Ratings3,
+      Trade_Date AS Trade_Date,
+      Unemployment_Rate_eco AS Unemployment_Rate_eco,
+      Yield_at_Issue AS Yield_at_Issue,
+      _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted AS _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted
+      FROM `bi-model-development.looker_FINAL.Muni_Risk_Model_Input`
+      WHERE CUSIP = "{% parameter CUSIP %}"
       LIMIT 1
       )
       )
  ;;
+  }
+
+  parameter: CUSIP {
+    type: unquoted
   }
 
   measure: count {
@@ -128,9 +133,13 @@ view: predictedrisk {
   measure: evaluated_risk {
     type: string
     sql:
-    CASE WHEN ${nearest_Centroid_Distance} < 3 THEN "High Risk"
+    CASE WHEN ${nearest_centroid_id} = 3 OR ${nearest_centroid_id} = 5 THEN "Low"
+    WHEN ${nearest_centroid_id} = 1 OR ${nearest_centroid_id} = 4 OR ${nearest_centroid_id} = 6 THEN "Medium"
+    WHEN ${nearest_centroid_id} = 2 THEN "High"
+    ELSE NULL END
     ;;
   }
+
 
   set: detail {
     fields: [

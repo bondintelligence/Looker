@@ -19,7 +19,7 @@ explore: corp {}
 explore: muni {}
 
 
-explore: muni_issuance {}
+explore: muni_issuance_3 {}
 
 
 explore: price_muni_prediction {}
@@ -42,3 +42,7 @@ explore:  mergent_bond_redemption{}
 explore: price_graphv1{}
 
 explore: predictedrisk {}
+
+explore: comparable_trades {}
+
+explore: last_trades {}
