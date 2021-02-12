@@ -252,23 +252,18 @@ view: raven_pack_sentiment {
     group_label: "RavenPack IDs"
   }
 
-  dimension_group: rpna {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+  dimension: rpna_date_utc {
+    type: string
     sql: ${TABLE}.RPNA_DATE_UTC ;;
-    datatype: date
-    convert_tz: no
     label: "RavenPack News Story"
+
   }
 
+
+  dimension: rpna_time_utc {
+    type: string
+    sql: ${TABLE}.RPNA_TIME_UTC ;;
+  }
 
   dimension: source {
     type: string
