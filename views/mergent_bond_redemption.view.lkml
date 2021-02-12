@@ -43,6 +43,60 @@ view: mergent_bond_redemption {
   dimension: call_frequency {
     type: string
     sql: ${TABLE}.CALL_FREQUENCY ;;
+    case: {
+      when: {
+        sql:${TABLE}.CALL_FREQUENCY = "A"  ;;
+        label: "Annual"
+      }
+      when: {
+        sql:${TABLE}.CALL_FREQUENCY = "C"  ;;
+        label: "Continuously"
+      }
+      when: {
+        sql:${TABLE}.CALL_FREQUENCY = "D"  ;;
+        label: "Every 3 Years"
+      }
+      when: {
+        sql:${TABLE}.CALL_FREQUENCY = "E"  ;;
+        label: "Every 5 Years"
+      }
+      when: {
+        sql:${TABLE}.CALL_FREQUENCY = "F"  ;;
+        label: "Every 2 Years"
+      }
+      when: {
+        sql:${TABLE}.CALL_FREQUENCY = "G"  ;;
+        label: "Daily"
+      }
+      when: {
+        sql:${TABLE}.CALL_FREQUENCY = "H"  ;;
+        label: "Every 4 Years"
+      }
+      when: {
+        sql:${TABLE}.CALL_FREQUENCY = "M"  ;;
+        label: "Monthly"
+      }
+      when: {
+        sql:${TABLE}.CALL_FREQUENCY = "N"  ;;
+        label: "Other"
+      }
+      when: {
+        sql:${TABLE}.CALL_FREQUENCY = "O"  ;;
+        label: "Once"
+      }
+      when: {
+        sql:${TABLE}.CALL_FREQUENCY = "Q"  ;;
+        label: "Quarterly"
+      }
+      when: {
+        sql:${TABLE}.CALL_FREQUENCY = "S"  ;;
+        label: "Semi-Annual"
+      }
+      when: {
+        sql:${TABLE}.CALL_FREQUENCY = "T"  ;;
+        label: "Twice"
+      }
+    }
   }
 
   dimension: call_in_whole {
