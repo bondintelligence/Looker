@@ -19,7 +19,124 @@ view: mergent_issuance {
     type: string
     group_label: "Amount_Outstanding"
     description: "A four-letter code representing the type of action that took place to change the amount outstanding."
-    sql: ${TABLE}.ACTION_TYPE ;;
+    case: {
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "B" ;;
+        label: "BalanceOfIssueCalled"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "C" ;;
+        label: "IssueConverted"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "D" ;;
+        label: "EminentDomain"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "E" ;;
+        label: "EntireIssueCalled"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "I" ;;
+        label: "InitialOfferingOfAnIssue"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "IA" ;;
+        label: "InactiveIssue"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "ID" ;;
+        label: "IssueDefeased"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "II" ;;
+        label: "InitialOfferingIncrease"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "IL" ;;
+        label: "InitialLoad"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "IM" ;;
+        label: "IssueMatured"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "IPO" ;;
+        label: "IPOClawbackOption"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "IRM" ;;
+        label: "IssueRemarketed"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "IRP" ;;
+        label: "IssueRepurchased"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "L" ;;
+        label: "ReleaseOfProperty"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "M" ;;
+        label: "MaintenanceAndReplacement"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "N" ;;
+        label: "NotAvailable"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "O" ;;
+        label: "OptionalSinkingFundIncrease"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "OA" ;;
+        label: "Over-Allotment"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "P" ;;
+        label: "PartOfAnIssueCalled"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "PIK" ;;
+        label: "Pay-In-Kind"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "R" ;;
+        label: "Reorganization"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "REV" ;;
+        label: "Review"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "RO" ;;
+        label: "Reopening"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "S" ;;
+        label: "SinkingFundPayment"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "SA" ;;
+        label: "SaleOfAsset"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "SD" ;;
+        label: "SuddenDeath"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "T" ;;
+        label: "IssueTendered"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "TR" ;;
+        label: "TreasuryReconstitution"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "X" ;;
+        label: "IssueExchanged"
+      }
+    }
   }
 
   dimension: active_issue {
