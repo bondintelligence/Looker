@@ -4,6 +4,7 @@ view: compustat_financial_fundamental {
 
   dimension: acchg {
     type: number
+    label: "Accounting Changes - Cumulative Effect"
     sql: ${TABLE}.acchg ;;
   }
 
@@ -29,6 +30,7 @@ view: compustat_financial_fundamental {
 
   dimension: aco {
     type: number
+    label: "Current Assets - Other"
     sql: ${TABLE}.aco ;;
   }
 
@@ -44,6 +46,7 @@ view: compustat_financial_fundamental {
 
   dimension: acox {
     type: number
+    label: "Current Assets - Other - Excluding Prepaid Expense"
     sql: ${TABLE}.acox ;;
   }
 
@@ -109,6 +112,7 @@ view: compustat_financial_fundamental {
 
   dimension: act {
     type: number
+    label: "Current Assets - Total"
     sql: ${TABLE}.act ;;
   }
 
@@ -154,6 +158,7 @@ view: compustat_financial_fundamental {
 
   dimension: adrr {
     type: number
+    label: "ADR Ratio"
     sql: ${TABLE}.adrr ;;
   }
 
@@ -174,6 +179,7 @@ view: compustat_financial_fundamental {
 
   dimension: ajex {
     type: number
+    label: "Adjustment Factor (Cumulative) by Ex-Date"
     sql: ${TABLE}.ajex ;;
   }
 
@@ -189,6 +195,7 @@ view: compustat_financial_fundamental {
 
   dimension: am {
     type: number
+    label: "Amortization of Intangibles"
     sql: ${TABLE}.am ;;
   }
 
@@ -214,6 +221,7 @@ view: compustat_financial_fundamental {
 
   dimension: ao {
     type: number
+    label: "Assets - Other"
     sql: ${TABLE}.ao ;;
   }
 
@@ -249,21 +257,25 @@ view: compustat_financial_fundamental {
 
   dimension: aoloch {
     type: number
+    label: "Assets and Liabilities - Other (Net Change) (Statement of Cash Flows)"
     sql: ${TABLE}.aoloch ;;
   }
 
   dimension: aox {
     type: number
+    label: "Assets - Other - Excluding Deferred Charges"
     sql: ${TABLE}.aox ;;
   }
 
   dimension: ap {
     type: number
+    label: "Accounts Payable"
     sql: ${TABLE}.ap ;;
   }
 
   dimension: apalch {
     type: number
+    label: "Accounts Payable and Accrued Liabilities - Other (Net Change) (Statement of Cash Flows)"
     sql: ${TABLE}.apalch ;;
   }
 
@@ -304,6 +316,7 @@ view: compustat_financial_fundamental {
 
   dimension: aqc {
     type: number
+    label: "Acquisitions (Statement of Cash Flows)"
     sql: ${TABLE}.aqc ;;
   }
 
@@ -319,6 +332,7 @@ view: compustat_financial_fundamental {
 
   dimension: aqi {
     type: number
+    label: "Acquisitions - Income Contribution"
     sql: ${TABLE}.aqi ;;
   }
 
@@ -334,6 +348,7 @@ view: compustat_financial_fundamental {
 
   dimension: aqs {
     type: number
+    label: "Acquisition - Sales Contribution"
     sql: ${TABLE}.aqs ;;
   }
 
@@ -369,6 +384,7 @@ view: compustat_financial_fundamental {
 
   dimension: at {
     type: number
+    label: "Assets - Total"
     sql: ${TABLE}.`at` ;;
   }
 
@@ -409,11 +425,13 @@ view: compustat_financial_fundamental {
 
   dimension: bast {
     type: number
+    label: "Short-Term Borrowings - Average"
     sql: ${TABLE}.bast ;;
   }
 
   dimension: bastr {
     type: number
+    label: "Short-Term Borrowings - Average Interest Rate"
     sql: ${TABLE}.bastr ;;
   }
 
@@ -489,6 +507,7 @@ view: compustat_financial_fundamental {
 
   dimension: capr1 {
     type: number
+    label: "Risk-Adjusted Capital Ratio - Tier 1"
     sql: ${TABLE}.capr1 ;;
   }
 
@@ -499,26 +518,31 @@ view: compustat_financial_fundamental {
 
   dimension: capr3 {
     type: number
+    label: "Risk-Adjusted Capital Ratio - Total"
     sql: ${TABLE}.capr3 ;;
   }
 
   dimension: caps {
     type: number
+    label: "Capital Surplus"
     sql: ${TABLE}.caps ;;
   }
 
   dimension: capx {
     type: number
+    label: "Capital Expenditures"
     sql: ${TABLE}.capx ;;
   }
 
   dimension: capxv {
     type: number
+    label: "Property, Plant and Equipment - Capital Expenditures (Schedule V)"
     sql: ${TABLE}.capxv ;;
   }
 
   dimension: cb {
     type: number
+    label: "Compensating Balance"
     sql: ${TABLE}.cb ;;
   }
 
@@ -544,16 +568,19 @@ view: compustat_financial_fundamental {
 
   dimension: ceq {
     type: number
+    label: "Common Equity - Total"
     sql: ${TABLE}.ceq ;;
   }
 
   dimension: ceql {
     type: number
+    label: "Common Equity - Liquidation Value"
     sql: ${TABLE}.ceql ;;
   }
 
   dimension: ceqt {
     type: number
+    label: "Common Equity - Tangible"
     sql: ${TABLE}.ceqt ;;
   }
 
@@ -604,16 +631,19 @@ view: compustat_financial_fundamental {
 
   dimension: ch {
     type: number
+    label: "Cash"
     sql: ${TABLE}.ch ;;
   }
 
   dimension: che {
     type: number
+    label: "Cash and Short-term Investments"
     sql: ${TABLE}.che ;;
   }
 
   dimension: chech {
     type: number
+    label: "Cash and Cash Equivalents - Increase (Decrease) (Statement of Cash Flow)"
     sql: ${TABLE}.chech ;;
   }
 
@@ -624,6 +654,7 @@ view: compustat_financial_fundamental {
 
   dimension: ci {
     type: number
+    label: "Comprehensive Income - Total"
     sql: ${TABLE}.ci ;;
   }
 
@@ -649,6 +680,7 @@ view: compustat_financial_fundamental {
 
   dimension: cimii {
     type: number
+    label: "Comprehensive Income - Noncontrolling Interest"
     sql: ${TABLE}.cimii ;;
   }
 
@@ -679,21 +711,25 @@ view: compustat_financial_fundamental {
 
   dimension: cld2 {
     type: number
+    label: "Capitalized Leases - Due in Year 2"
     sql: ${TABLE}.cld2 ;;
   }
 
   dimension: cld3 {
     type: number
+    label: "Capitalized Leases - Due in Year 3"
     sql: ${TABLE}.cld3 ;;
   }
 
   dimension: cld4 {
     type: number
+    label: "Capitalized Leases - Due in Year 4"
     sql: ${TABLE}.cld4 ;;
   }
 
   dimension: cld5 {
     type: number
+    label: "Capitalized Leases - Due in Year 5"
     sql: ${TABLE}.cld5 ;;
   }
 
@@ -709,6 +745,7 @@ view: compustat_financial_fundamental {
 
   dimension: clg {
     type: number
+    label: "Contingent Liabilities - Guarantees"
     sql: ${TABLE}.clg ;;
   }
 
@@ -754,6 +791,7 @@ view: compustat_financial_fundamental {
 
   dimension: cogs {
     type: number
+    label: "Cost of Goods Sold"
     sql: ${TABLE}.cogs ;;
   }
 
@@ -824,6 +862,7 @@ view: compustat_financial_fundamental {
 
   dimension: cshfd {
     type: number
+    label: "Common Shares Used to Calculate Earnings per Share (Diluted)"
     sql: ${TABLE}.cshfd ;;
   }
 
@@ -834,21 +873,25 @@ view: compustat_financial_fundamental {
 
   dimension: csho {
     type: number
+    label: "Common Shares Outstanding"
     sql: ${TABLE}.csho ;;
   }
 
   dimension: cshpri {
     type: number
+    label: "Common Shares used to Calculate Earnings per share (Basic)"
     sql: ${TABLE}.cshpri ;;
   }
 
   dimension: cshr {
     type: number
+    label: "Common Shareholders"
     sql: ${TABLE}.cshr ;;
   }
 
   dimension: cshrc {
     type: number
+    label: "Common Shares Reserved for Conversion - Preferred Stock"
     sql: ${TABLE}.cshrc ;;
   }
 
@@ -859,16 +902,19 @@ view: compustat_financial_fundamental {
 
   dimension: cshrso {
     type: number
+    label: "Common Shares Reserved For Conversion - Stock Options"
     sql: ${TABLE}.cshrso ;;
   }
 
   dimension: cshrt {
     type: number
+    label: "Common Shares Reserved for Conversion - Total"
     sql: ${TABLE}.cshrt ;;
   }
 
   dimension: cshrw {
     type: number
+    label: "Common Shares Reserved for Conversion - Warrants"
     sql: ${TABLE}.cshrw ;;
   }
 
@@ -884,6 +930,7 @@ view: compustat_financial_fundamental {
 
   dimension: cstk {
     type: number
+    label: "Common Stock"
     sql: ${TABLE}.cstk ;;
   }
 
@@ -894,6 +941,7 @@ view: compustat_financial_fundamental {
 
   dimension: cstke {
     type: number
+    label: "Common Stock Equivalents - Dollar Savings"
     sql: ${TABLE}.cstke ;;
   }
 
@@ -909,6 +957,7 @@ view: compustat_financial_fundamental {
 
   dimension: currtr {
     type: number
+    label: "Currency Translation Rate"
     sql: ${TABLE}.currtr ;;
   }
 
@@ -950,6 +999,7 @@ view: compustat_financial_fundamental {
 
   dimension: dc {
     type: number
+    label: "Deferred Charges"
     sql: ${TABLE}.dc ;;
   }
 
@@ -965,6 +1015,7 @@ view: compustat_financial_fundamental {
 
   dimension: dcpstk {
     type: number
+    label: "Convertible Debt and Preferred Stock"
     sql: ${TABLE}.dcpstk ;;
   }
 
