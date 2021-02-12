@@ -13,6 +13,7 @@ view: trace_enhanced {
     type: string
     description: "Unique identifier assigned to each bond by Standard & Poor’s CUSIP Service Bureau."
     label: "CUSIP"
+    primary_key: yes
     sql: ${TABLE}.cusip_id ;;
   }
 
