@@ -764,25 +764,25 @@ view: mergent_issuance {
 
 
 
-dimension_group: effective_date {
-  label: "Amount Outstanding Effective"
-  description: "The date on which the change to the issue's amount outstanding became effective. The date is set to the end of the quarter or the end of the fiscal year when the date is not available."
-  type: time
-  timeframes: [
-    raw,
-    date,
-    week,
-    month,
-    quarter,
-    day_of_week,
+  dimension_group: effective_date {
+    label: "Amount Outstanding Effective"
+    description: "The date on which the change to the issue's amount outstanding became effective. The date is set to the end of the quarter or the end of the fiscal year when the date is not available."
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      day_of_week,
       day_of_month,
       month_name,
-    year
-  ]
-  convert_tz: yes
-  datatype: date
-  sql: REPLACE(${TABLE}.EFFECTIVE_DATE, "/", "-");;
-}
+      year
+    ]
+    convert_tz: yes
+    datatype: date
+    sql: REPLACE(${TABLE}.EFFECTIVE_DATE, "/", "-");;
+  }
 
 
 
@@ -1106,7 +1106,7 @@ dimension_group: effective_date {
   dimension: maintenance_net_worth {
     type: string
     group_label: "Issuer"
-  description: "Issuer must maintain a minimum specified net worth."
+    description: "Issuer must maintain a minimum specified net worth."
     sql: ${TABLE}.MAINTENANCE_NET_WORTH ;;
   }
 
@@ -1139,7 +1139,7 @@ dimension_group: effective_date {
     datatype: date
     sql: REPLACE(${TABLE}.MATURITY, "/", "-");;
 
-}
+  }
 
 
   dimension: mtn {

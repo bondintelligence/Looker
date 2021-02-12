@@ -18,12 +18,12 @@ explore: bloomberg1 {always_filter: {
 
     filters: [cusip: "005596DZ1"]
   }
-    join: bloomberg2 {
-      type: full_outer
-      relationship: many_to_one
-      sql_on: ${bloomberg1.cusip}=${bloomberg2.cusip} ;;
-    }
+  join: bloomberg2 {
+    type: full_outer
+    relationship: many_to_one
+    sql_on: ${bloomberg1.cusip}=${bloomberg2.cusip} ;;
   }
+}
 
 
 explore: bloomberg2 {
@@ -85,9 +85,9 @@ explore: muni_issuance {
     type: full_outer
     relationship: many_to_one
     sql_on: ${muni_issuance.cusip1}=${muni.cusip} ;;
-    }
-
   }
+
+}
 
 
 
@@ -109,11 +109,11 @@ explore: compustat_financial_fundamental {
     relationship: many_to_one
     sql_on: ${compustat_financial_fundamental.cusip}=${mergent_bond_redemption.complete_cusip};;
   }
-    join: mergent_issuance {
+  join: mergent_issuance {
     type: full_outer
     relationship: many_to_one
     sql_on: ${compustat_financial_fundamental.cusip}=${mergent_issuance.complete_cusip};;
-}
+  }
 }
 
 
@@ -193,7 +193,7 @@ explore:  mergent_bond_redemption{
     type: full_outer
     relationship: many_to_one
     sql_on: ${mergent_bond_redemption.complete_cusip}=${compustat_financial_fundamental.cusip} ;;
-}
+  }
   join: mergent_issuance {
     type: full_outer
     relationship: many_to_one
@@ -212,8 +212,7 @@ explore:  mergent_bond_redemption{
 }
 
 explore:  raven_pack_sentiment {
-  description: "RavenPack News Analytics is a unique source of explanatory and predictive inputs derived from news. The product includes a data set rich with structured information and potential signals and creates new trading opportunities on both scheduled and unscheduled news events. This data is used to power a number of applications ranging from high frequency trading systems requiring low latency inputs to risk and asset management models requiring factors whose time resolution may be daily, weekly, and monthly.RavenPack automatically tracks and monitors relevant information on nearly 200,000 companies, government organizations, influential people, key geographical locations, and all major currencies and traded commodities. Among the many benefits, RavenPack delivers sentiment analysis and event data most likely to impact financial markets and trading around the world
-"
+  description: "RavenPack News Analytics is a unique source of explanatory and predictive inputs derived from news. The product includes a data set rich with structured information and potential signals and creates new trading opportunities on both scheduled and unscheduled news events. This data is used to power a number of applications ranging from high frequency trading systems requiring low latency inputs to risk and asset management models requiring factors whose time resolution may be daily, weekly, and monthly.RavenPack automatically tracks and monitors relevant information on nearly 200,000 companies, government organizations, influential people, key geographical locations, and all major currencies and traded commodities. Among the many benefits, RavenPack delivers sentiment analysis and event data most likely to impact financial markets and trading around the world"
 }
 
 explore: board_ex_org_summary{
