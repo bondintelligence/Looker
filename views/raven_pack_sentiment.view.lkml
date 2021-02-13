@@ -358,7 +358,7 @@ Taxonomy."
     type: string
     description: "A collection of related events. The second highest level of the RavenPack Event Taxonomy."
     sql: ${TABLE}.`GROUP` ;;
-    label: "Event Group"
+    label: "News Story Group"
     group_label: "News Story Classification"
   }
 
@@ -383,13 +383,13 @@ Taxonomy."
     description: "A named attribute of an event such as an entity, role, or string extracted from a matched event type.
     When applicable, the role played by the entity in the story is detected and tagged."
     sql: ${TABLE}.PROPERTY ;;
-    label: "Relavant Event Property"
+    label: "News Story Property"
     group_label: "News Story Classification"
   }
 
   dimension: category {
     type: string
-    label: "Event Category"
+    label: "News Story Category"
     description: "A unique tag to label, identify, and recognize a particular type and property of an entity-specific
     news event."
     sql: ${TABLE}.CATEGORY ;;
