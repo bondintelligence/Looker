@@ -10,6 +10,11 @@ entity compared to the total count of events measured over a rolling 91-
 day window in a particular package (Dow Jones, Web or PR Editions)."
     sql: ${TABLE}.AES ;;
   }
+  measure: aes_measure {
+    type: number
+    label: "Aggregate Event Sentiment Measure"
+    sql: ${TABLE}.AES ;;
+  }
 
   dimension: aev {
     type: number
@@ -17,14 +22,6 @@ day window in a particular package (Dow Jones, Web or PR Editions)."
     description: "A value that represents the count of events for an entity (excluding neutral ones) measured over a
 rolling 91-day window in a particular package (Dow Jones, Web, or PR Editions)."
     sql: ${TABLE}.AEV ;;
-  }
-
-  dimension: category {
-    type: string
-    label: "Event Category"
-    description: "A unique tag to label, identify, and recognize a particular type and property of an entity-specific
-news event."
-    sql: ${TABLE}.CATEGORY ;;
   }
 
   dimension: country_code {
@@ -81,7 +78,6 @@ value 0.00000 means a similar story exists with the exact same timestamp."
     description: "An alphanumeric identifier that provides a way to chain or relate stories about the same categorized
     event for the same entities."
     label: "Entity Name"
-    primary_key: yes
   }
 
   dimension: entity_type {
@@ -210,13 +206,6 @@ past. The value 0.00000 means a similar story exists with the exact same timesta
     group_label: "Global Event Novelty"
   }
 
-  dimension: group {
-    type: string
-    description: "A collection of related events. The second highest level of the RavenPack Event Taxonomy."
-    sql: ${TABLE}.`GROUP` ;;
-    label: "Event Group"
-  }
-
   dimension: news_type {
     type: string
     description: "Classifies the type of news story into one of five categories:
@@ -232,7 +221,7 @@ news provider.
 5. TABULAR-MATERIAL: A news article composed of both a headline and one or more
 segments of mostly tabular data."
     sql: ${TABLE}.NEWS_TYPE ;;
-    label: "News Story Type"
+    label: "News Story Format"
   }
 
   dimension: position_name {
@@ -273,14 +262,6 @@ segments of mostly tabular data."
       }
     }
     label: "Subscription Package Key"
-  }
-
-  dimension: property {
-    type: string
-    description: "A named attribute of an event such as an entity, role, or string extracted from a matched event type.
-When applicable, the role played by the entity in the story is detected and tagged."
-    sql: ${TABLE}.PROPERTY ;;
-    label: "Relavant Event Property"
   }
 
   dimension: relevance {
@@ -334,6 +315,7 @@ unique across all records. Example: 1FB2B3F5E99C4D3BCF59FDB3E8C8C9BD."
     sql: ${TABLE}.RP_STORY_ID ;;
     label: "News Story ID"
     group_label: "RavenPack IDs"
+    primary_key: yes
   }
 
   dimension_group: rpna {
@@ -363,14 +345,6 @@ tracked is assigned a unique identifier comprised of 6 alphanumeric characters."
     label: "News Source Identifier"
   }
 
-  dimension: sub_type {
-    type: string
-    description: "A subdivision of a particular class of events."
-    sql: ${TABLE}.SUB_TYPE ;;
-    label: "News Story Subtype"
-    group_label: "News Story Classification"
-  }
-
   dimension: topic {
     type: string
     description: "A subject or theme of events detected by RavenPack. The highest level of the RavenPack Event
@@ -380,11 +354,45 @@ Taxonomy."
     group_label: "News Story Classification"
   }
 
+  dimension: group {
+    type: string
+    description: "A collection of related events. The second highest level of the RavenPack Event Taxonomy."
+    sql: ${TABLE}.`GROUP` ;;
+    label: "Event Group"
+    group_label: "News Story Classification"
+  }
+
   dimension: type {
     type: string
     description: "A class of events, the constituents of which share similar characteristics."
     sql: ${TABLE}.TYPE ;;
     label: "News Story Type"
+    group_label: "News Story Classification"
+  }
+
+  dimension: sub_type {
+    type: string
+    description: "A subdivision of a particular class of events."
+    sql: ${TABLE}.SUB_TYPE ;;
+    label: "News Story Subtype"
+    group_label: "News Story Classification"
+  }
+
+  dimension: property {
+    type: string
+    description: "A named attribute of an event such as an entity, role, or string extracted from a matched event type.
+    When applicable, the role played by the entity in the story is detected and tagged."
+    sql: ${TABLE}.PROPERTY ;;
+    label: "Relavant Event Property"
+    group_label: "News Story Classification"
+  }
+
+  dimension: category {
+    type: string
+    label: "Event Category"
+    description: "A unique tag to label, identify, and recognize a particular type and property of an entity-specific
+    news event."
+    sql: ${TABLE}.CATEGORY ;;
     group_label: "News Story Classification"
   }
 
@@ -401,7 +409,17 @@ Taxonomy."
 
   measure: sum_distinct_AES {
     type: sum_distinct
+    sql_distinct_key: CAST(${aes} AS INT64) ;;
     sql: CAST(${aes} AS INT64);;
+  }
+  measure: mean_AES {
+    type:  average
+    sql: CAST(${aes} AS INT64);;
+  }
+
+  measure: list_AES {
+    type: list
+    list_field: aes
   }
 
 }
