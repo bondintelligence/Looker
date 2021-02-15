@@ -39,7 +39,7 @@ their COUNTRY_CODE label is 'XX'."
     label: "Event Novelty Score"
     description: "A score between 0 and 100 that represents how 'new' or novel a news story is within a 24-hour
 time window across all news stories in a particular package (Dow Jones, Web or PR Editions)."
-    sql: ${TABLE}.ENS ;;
+    sql: CAST(${TABLE}.ENS AS INT64) ;;
     group_label: "Event Novelty"
   }
 
@@ -119,7 +119,7 @@ value 0.00000 means a similar story exists with the exact same timestamp."
 
   dimension: ess {
     type: number
-    sql: ${TABLE}.ESS ;;
+    sql: CAST(${TABLE}.ESS AS INT64) ;;
     description: "A granular score between 0 and 100 that represents the news sentiment for a given entity by
 measuring various proxies sampled from the news. The score is determined by systematically
 matching stories typically categorized by financial experts as having short-term positive or negative
@@ -162,7 +162,7 @@ entities."
 
   dimension: g_ens {
     type: number
-    sql: ${TABLE}.G_ENS ;;
+    sql: CAST(${TABLE}.G_ENS AS INT64) ;;
     label: "Global Event Novelty Score"
     description: "A score between 0 and 100 that represents how 'new' or novel a news story is within a 24-hour
 time window across all news providers covered by RavenPack. Any two stories that match the same
@@ -271,7 +271,7 @@ with higher values indicating greater relevance. For any news story that mention
 RavenPack provides a relevance score. A score of 0 means the entity was passively mentioned
 while a score of 100 means the entity was prominent in the news story. Values above 75 are
 considered significantly relevant."
-    sql: ${TABLE}.RELEVANCE ;;
+    sql: CAST(${TABLE}.RELEVANCE AS INT64) ;;
     label: "Entity Relevance"
   }
 
@@ -427,7 +427,7 @@ Taxonomy."
 
   measure: count {
     type: count
-    drill_fields: [entity_name, rp_story_id, aes, ess, g_ens, ens, relevance]
+    drill_fields: [entity_name, rp_story_id, aes, ess, g_ens, ens, g_ens_similarity_gap, ens_similarity_gap, relevance]
   }
   ##############################
 
