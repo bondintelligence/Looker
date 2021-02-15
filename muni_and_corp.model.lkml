@@ -2,7 +2,7 @@ connection: "bqwarehouse"
 
 include: "/views/*.view.lkml"
 
-explore: muni {}
+#explore: muni{}
 explore: corp {}
 
 # include all views in the views/ folder in this project
