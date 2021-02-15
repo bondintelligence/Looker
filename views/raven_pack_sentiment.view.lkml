@@ -8,7 +8,7 @@ view: raven_pack_sentiment {
     description: "A granular score between 0 and 100 that represents the ratio of positive events reported on an
 entity compared to the total count of events measured over a rolling 91-
 day window in a particular package (Dow Jones, Web or PR Editions)."
-    sql: ${TABLE}.AES ;;
+    sql: CAST(${TABLE}.AES AS INT64) ;;
   }
   measure: aes_measure {
     type: number
@@ -396,30 +396,50 @@ Taxonomy."
     group_label: "News Story Classification"
   }
 
+  dimension: AES_RANKING {
+    type: string
+    sql: ${TABLE}.AES ;;
+    description: "Ranking of Event based off of average Aggregate Event Sentiment Scores."
+    case: {
+      when: {
+        sql: CAST(${aes} AS INT64) >= 80 ;;
+        label: "Excellent"
+      }
+      when: {
+        sql: CAST(${aes} AS INT64) >= 60 and CAST(${aes} AS INT64) < 80;;
+        label: "Good"
+      }
+      when: {
+        sql: CAST(${aes} AS INT64) >= 40 and CAST(${aes} AS INT64) < 60;;
+        label: "Fair"
+      }
+      when: {
+        sql: CAST(${aes} AS INT64) >= 20 and CAST(${aes} AS INT64) < 40;;
+        label: "Okay"
+      }
+      when: {
+        sql: CAST(${aes} AS INT64) >= 0 and CAST(${aes} AS INT64) < 20;;
+        label: "Poor"
+      }
+    }
+    label: "Aggregate Event Sentiment Ranking"
+  }
+
   measure: count {
     type: count
-    drill_fields: [entity_name, position_name]
+    drill_fields: [entity_name, rp_story_id, aes, ess, g_ens, ens, relevance]
   }
   ##############################
 
-  measure: sum_AES {
-    type: sum
-    sql: CAST(${aes} AS INT64);;
-  }
-
-  measure: sum_distinct_AES {
-    type: sum_distinct
-    sql_distinct_key: CAST(${aes} AS INT64) ;;
-    sql: CAST(${aes} AS INT64);;
-  }
   measure: mean_AES {
     type:  average
+    label: "Average Aggregate Event Sentiment"
     sql: CAST(${aes} AS INT64);;
   }
 
-  measure: list_AES {
-    type: list
-    list_field: aes
+  measure: mean_g_ens {
+    type:  average
+    label: "Average Global Event Novelty Score"
+    sql: CAST(${g_ens} AS INT64);;
   }
-
 }
