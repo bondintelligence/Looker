@@ -216,6 +216,6 @@ explore:  raven_pack_sentiment {
   "
 }
 
-explore: board_ex_org_summary{
+explore: board_ex_summary{
   description: "BoardEx data consists of compensation, employment, and relationship data for 20,000+ companies from 1999-present. Access educational background, prior employment, and connections of directors and executives. Analyze the proportion of politically connected directors, using CEO-level controls such as age, gender, and experience. Extract executive stock option holdings."
 }
