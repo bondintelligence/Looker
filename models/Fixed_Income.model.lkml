@@ -117,7 +117,6 @@ explore: compustat_financial_fundamental {
 }
 
 
-
 explore:compustat_financial_ratios {
   description: "Standard & Poor's (S&P) Capital IQ is a leading provider in financial market intelligence. Standard & Poor’s is the world’s foremost provider of independent credit ratings, risk evaluation, investment research, indices, data and valuations. Compustat provides more than 500 company-level fundamentals, including items such as Income Statements, Balance Sheets, and Flow of Funds. It also offers an even larger number of supplemental data items for more than 47,000 active and 37,000 inactive companies. Compustat primarily draws its data from SEC filings, which it standardizes to allow for better comparisons. It is supplemented with additional data sources as needed. For a North American company to be added to the database, it must file distinct 10K's or 10Q's with the SEC."
   always_filter: {
