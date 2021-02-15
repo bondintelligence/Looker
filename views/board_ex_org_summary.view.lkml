@@ -1,4 +1,4 @@
-view: board_ex_org_summary {
+view: board_ex_summary {
   sql_table_name: `bi-model-development.looker_FINAL.BoardEx_Org_Summary`
     ;;
 

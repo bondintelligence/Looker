@@ -106,6 +106,7 @@ view: muni_issuance {
 
   dimension: cusip1 {
     type: string
+    label: "cusip"
     primary_key: yes
     sql: ${TABLE}.CUSIP1 ;;
   }
@@ -114,6 +115,7 @@ view: muni_issuance {
 
   dimension: cusiprefunded_bond2 {
     type: string
+    label: "cusip_refunded_bond"
     sql: ${TABLE}.CUSIPRefundedBond2 ;;
   }
 
@@ -552,6 +554,7 @@ view: muni_issuance {
 
   dimension: year_identifier {
     type: string
+    label: "Year"
     sql: ${TABLE}.Year_Identifier ;;
   }
 
