@@ -427,18 +427,20 @@ Taxonomy."
 
   measure: count {
     type: count
-    drill_fields: [entity_name, rp_story_id, aes, ess, g_ens, ens, g_ens_similarity_gap, ens_similarity_gap, relevance]
+    drill_fields: [entity_name, rp_story_id, aes, ess, g_ens, ens, relevance]
   }
   ##############################
 
   measure: mean_AES {
     type:  average
     label: "Average Aggregate Event Sentiment"
+    value_format: "0.00"
     sql: CAST(${aes} AS INT64);;
   }
 
   measure: mean_g_ens {
     type:  average
+    value_format: "0.00"
     label: "Average Global Event Novelty Score"
     sql: CAST(${g_ens} AS INT64);;
   }
