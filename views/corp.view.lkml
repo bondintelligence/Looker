@@ -14,10 +14,7 @@ view: corp {
     sql: ${TABLE}.BOND_TYPE ;;
   }
 
-  dimension: bond_sym_id {
-    type: string
-    sql: ${TABLE}.bond_sym_id ;;
-  }
+
 
   dimension: company_symbol {
     type: string
@@ -62,6 +59,7 @@ view: corp {
   }
 
   dimension_group: date {
+    label: ""
     type: time
     timeframes: [
       raw,
@@ -69,6 +67,9 @@ view: corp {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -91,6 +92,8 @@ view: corp {
   }
 
   dimension_group: dated_date {
+    label: "Dated"
+    description: "Date from which interest accrues or from which original issue discount is amortized.   "
     type: time
     timeframes: [
       raw,
@@ -98,6 +101,9 @@ view: corp {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -107,10 +113,12 @@ view: corp {
 
   dimension: day_count_basis {
     type: string
+    description: "Basis used for determining the interest paid during each interest period"
     sql: ${TABLE}.DAY_COUNT_BASIS ;;
   }
 
   dimension_group: default_date {
+    label: "Default"
     type: time
     timeframes: [
       raw,
@@ -118,6 +126,9 @@ view: corp {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -132,15 +143,18 @@ view: corp {
 
   dimension: defaulted {
     type: string
+    description: "Flag indicating that the issuer is in default of the terms of this issue"
     sql: ${TABLE}.DEFAULTED ;;
   }
 
   dimension: duration {
     type: number
+    description: "Modified Duration"
     sql: ${TABLE}.DURATION ;;
   }
 
   dimension_group: first_interest_date {
+    label: "First Interest"
     type: time
     timeframes: [
       raw,
@@ -148,6 +162,9 @@ view: corp {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -156,22 +173,18 @@ view: corp {
   }
 
   dimension: gap {
+    label: "Gap Months"
     type: number
+    description: "Gap Months from Previous Record"
     sql: ${TABLE}.GAP ;;
   }
 
-  dimension: isin {
-    type: string
-    sql: ${TABLE}.ISIN ;;
-  }
 
-  dimension: issue_id {
-    type: string
-    sql: ${TABLE}.ISSUE_ID ;;
-  }
+
 
 
   dimension_group: last_interest_date {
+    label: "Last Interest"
     type: time
     timeframes: [
       raw,
@@ -179,6 +192,9 @@ view: corp {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -194,6 +210,9 @@ view: corp {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -207,26 +226,7 @@ view: corp {
     sql: ${TABLE}.MULTICOUPS ;;
   }
 
-  dimension: n_fr {
-    type: number
-    label: "n_fitch"
-    group_label: "ratings"
-    sql: ${TABLE}.N_FR ;;
-  }
 
-  dimension: n_mr {
-    type: number
-    label: "n_moody"
-    group_label: "ratings"
-    sql: ${TABLE}.N_MR ;;
-  }
-
-  dimension: n_sp {
-    type: number
-    label: "n_standard_poor"
-    group_label: "ratings"
-    sql: ${TABLE}.N_SP ;;
-  }
 
   dimension: ncoups {
     type: string
@@ -235,6 +235,8 @@ view: corp {
   }
 
   dimension_group: nextcoup {
+    label: "Next Coupon"
+    description: "Date when Next Coupon is Due"
     type: time
     timeframes: [
       raw,
@@ -242,6 +244,9 @@ view: corp {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -271,6 +276,7 @@ view: corp {
   }
 
   dimension_group: offering_date {
+    label: "Offering"
     type: time
     timeframes: [
       raw,
@@ -278,6 +284,9 @@ view: corp {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -295,11 +304,14 @@ view: corp {
     type: number
     value_format: "$#,##0.00"
     label: "price_end_of_month"
+    description: "Last price at which bond was traded in a given month"
     sql: ${TABLE}.PRICE_EOM ;;
   }
 
   dimension: price_l5_m {
     type: string
+    description: "Last price at which the bond was traded in a given month, if that day falls within the last 5 trading days of the month "
+    label: "price last 5 days of month"
     sql: ${TABLE}.PRICE_L5M ;;
   }
 
@@ -307,6 +319,7 @@ view: corp {
     type: number
     value_format: "$#,##0.00"
     label: "price_last_trading_day_of_month "
+    description: "Price on last trading day of the month if available, missing if bond didn’t trade on that day "
     sql: ${TABLE}.PRICE_LDM ;;
   }
 
@@ -319,21 +332,21 @@ view: corp {
 
   dimension: r_fr {
     type: string
-    label: "fitch_rating"
+    label: "Fitch Rating"
     group_label: "ratings"
     sql: ${TABLE}.R_FR ;;
   }
 
   dimension: r_mr {
     type: string
-    label: "moody_rating"
+    label: "Moody Rating"
     group_label: "ratings"
     sql: ${TABLE}.R_MR ;;
   }
 
   dimension: r_sp {
     type: string
-    label: "standard_poor_rating"
+    label: "S&P Rating"
     group_label: "ratings"
     sql: ${TABLE}.R_SP ;;
   }
@@ -364,6 +377,7 @@ view: corp {
   }
 
   dimension_group: reinstated_date {
+    label: "Reinstated"
     type: time
     timeframes: [
       raw,
@@ -371,6 +385,9 @@ view: corp {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -387,18 +404,22 @@ view: corp {
   dimension: ret_eom {
     type: number
     label: "return_end_of_month"
+    description: "Monthly return calculated based on PRICE_EOM and accrued coupon interest"
     value_format: "0.00\%"
     sql: ${TABLE}.RET_EOM ;;
   }
 
   dimension: ret_l5_m {
     type: string
+    description: "Monthly return calculated based on PRICE_L5M and accrued coupon interest"
+    label: "return_last_5_days"
     sql: ${TABLE}.RET_L5M ;;
   }
 
   dimension: ret_ldm {
     type: number
     label: "return_last_trading_day_of_month"
+    description: "Monthly return calculated based on PRICE_LDM and accrued coupon interest"
     value_format: "0.00\%"
     sql: ${TABLE}.RET_LDM ;;
   }
@@ -410,13 +431,16 @@ view: corp {
 
   dimension_group: t_date {
     type: time
-    label: "execution_date"
+    label: "Execution"
     timeframes: [
       raw,
       date,
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -447,6 +471,8 @@ view: corp {
 
   dimension: t_spread {
     type: number
+    label: "Spread"
+    description: "Average trade‐weighted bid‐ask spread"
     value_format: "0.00\%"
     sql: ${TABLE}.T_Spread ;;
   }
@@ -461,6 +487,7 @@ view: corp {
   dimension: t_yld_pt {
     type: number
     label: "trade_weighted_yield_point"
+    description: "Average trade‐weighted yield point"
     value_format: "0.00\%"
     sql: ${TABLE}.T_Yld_Pt ;;
   }
@@ -493,10 +520,7 @@ view: corp {
     sql: ${amount_outstanding} ;;
   }
 
-  measure: bond_sym_id_ {
-    type: string
-    sql: ${bond_sym_id} ;;
-  }
+
 
   measure: bond_type_ {
     type: string
@@ -544,6 +568,7 @@ view: corp {
   }
 
   measure: date_ {
+    label: "_"
     type: time
     timeframes: [
       raw,
@@ -551,6 +576,9 @@ view: corp {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -573,6 +601,7 @@ view: corp {
   }
 
   measure: dated_date_ {
+    label: "Dated"
     type: time
     timeframes: [
       raw,
@@ -580,6 +609,9 @@ view: corp {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -593,6 +625,7 @@ view: corp {
   }
 
   measure: default_date_ {
+    label: "Defualt"
     type: time
     timeframes: [
       raw,
@@ -642,15 +675,7 @@ view: corp {
     sql: ${gap} ;;
   }
 
-  measure: isin_ {
-    type: string
-    sql: ${isin} ;;
-  }
 
-  measure: issue_id_ {
-    type: number
-    sql: ${issue_id} ;;
-  }
 
   measure: last_interest_date_ {
     type: time
@@ -687,20 +712,7 @@ view: corp {
     sql: ${multicoups} ;;
   }
 
-  measure: n_fr_ {
-    type: string
-    sql: ${n_fr} ;;
-  }
 
-  measure: n_mr_ {
-    type: string
-    sql: ${n_mr} ;;
-  }
-
-  measure: n_sp_ {
-    type: string
-    sql: ${n_sp} ;;
-  }
 
   measure: ncoups_ {
     type: number

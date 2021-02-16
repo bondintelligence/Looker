@@ -117,7 +117,6 @@ explore: compustat_financial_fundamental {
 }
 
 
-
 explore:compustat_financial_ratios {
   description: "Standard & Poor's (S&P) Capital IQ is a leading provider in financial market intelligence. Standard & Poor’s is the world’s foremost provider of independent credit ratings, risk evaluation, investment research, indices, data and valuations. Compustat provides more than 500 company-level fundamentals, including items such as Income Statements, Balance Sheets, and Flow of Funds. It also offers an even larger number of supplemental data items for more than 47,000 active and 37,000 inactive companies. Compustat primarily draws its data from SEC filings, which it standardizes to allow for better comparisons. It is supplemented with additional data sources as needed. For a North American company to be added to the database, it must file distinct 10K's or 10Q's with the SEC."
   always_filter: {
@@ -215,6 +214,6 @@ explore:  raven_pack_sentiment {
   description: "RavenPack News Analytics is a unique source of explanatory and predictive inputs derived from news. The product includes a data set rich with structured information and potential signals and creates new trading opportunities on both scheduled and unscheduled news events. This data is used to power a number of applications ranging from high frequency trading systems requiring low latency inputs to risk and asset management models requiring factors whose time resolution may be daily, weekly, and monthly.RavenPack automatically tracks and monitors relevant information on nearly 200,000 companies, government organizations, influential people, key geographical locations, and all major currencies and traded commodities. Among the many benefits, RavenPack delivers sentiment analysis and event data most likely to impact financial markets and trading around the world"
 }
 
-explore: board_ex_org_summary{
+explore: board_ex_summary{
   description: "BoardEx data consists of compensation, employment, and relationship data for 20,000+ companies from 1999-present. Access educational background, prior employment, and connections of directors and executives. Analyze the proportion of politically connected directors, using CEO-level controls such as age, gender, and experience. Extract executive stock option holdings."
 }
