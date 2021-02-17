@@ -8,6 +8,18 @@ view: trace_enhanced {
     type: count
     drill_fields: [detail*]
   }
+  measure: average_yield {
+    type: average
+    sql: CAST(${TABLE}.yld_pt AS FLOAT64);;
+    value_format: "0.00"
+    label: "Average Yield"
+  }
+  measure: average_price{
+    label: "Average Price"
+    sql: CAST(${TABLE}.rptd_pr AS FLOAT64);;
+    value_format_name: usd
+    type: average
+  }
 
   dimension: cusip_id {
     type: string
