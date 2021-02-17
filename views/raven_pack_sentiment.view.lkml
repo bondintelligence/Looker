@@ -129,27 +129,6 @@ what degree."
     label: "Event Sentiment Score"
   }
 
-  dimension: evaluation_method {
-    type: string
-    sql: ${TABLE}.EVALUATION_METHOD ;;
-    description: "A period of time used to measure changes from previous levels in an event."
-    label: "Evaluation Method"
-    case: {
-      when: {
-        sql: ${TABLE}.EVALUATION_METHOD = "YOY" ;;
-        label: "Year-over-Year Change"
-      }
-      when: {
-        sql: ${TABLE}.EVALUATION_METHOD = "QOQ" ;;
-        label: "Quarter-over-Quarter Change"
-      }
-      when: {
-        sql: ${TABLE}.EVALUATION_METHOD = "MOM" ;;
-        label: "Month-over-Month Change"
-      }
-    }
-  }
-
   dimension: event_similarity_key {
     type: string
     description: "A unique 32 character key that identifies similar stories in the RPNA data. All similar stories across
@@ -224,13 +203,6 @@ segments of mostly tabular data."
     label: "News Story Format"
   }
 
-  dimension: position_name {
-    type: string
-    description: "The position held by an individual within the entity involved in a specific news event."
-    sql: ${TABLE}.POSITION_NAME ;;
-    label: "Relevant Position Title"
-  }
-
   dimension: product_key {
     type: string
     sql: ${TABLE}.PRODUCT_KEY ;;
@@ -281,15 +253,6 @@ considered significantly relevant."
     description: "A unique and permanent entity identifier assigned by RavenPack. Every entity tracked is assigned
 a unique identifier comprised of 6 alphanumeric characters."
     label: "RavenPack Entity ID"
-    group_label: "RavenPack IDs"
-  }
-
-  dimension: rp_position_id {
-    type: string
-    sql: ${TABLE}.RP_POSITION_ID ;;
-    description: "A unique and permanent identifier for positions assigned by RavenPack. Every position tracked is
-assigned a unique entity identifier comprised of 6 alphanumeric characters."
-    label: "RavenPack Position ID"
     group_label: "RavenPack IDs"
   }
 
