@@ -29,12 +29,14 @@ view: board_ex_summary {
   }
   dimension: board_id {
     type: number
+    label: "Company ID"
     sql: ${TABLE}.BoardID ;;
     group_label: "Company Info"
   }
 
   dimension: board_name {
     type: string
+    label: "Company Name"
     sql: ${TABLE}.BoardName ;;
     group_label: "Company Info"
   }
@@ -258,100 +260,127 @@ view: board_ex_summary {
   dimension: ticker {
     type: string
     sql: ${TABLE}.Ticker ;;
+    group_label: "Company Info"
   }
 
   dimension: time_brd {
     type: number
+    label: "Time on Board"
     sql: ${TABLE}.TimeBrd ;;
   }
 
   dimension: time_in_co {
     type: number
+    label: "Time in Company"
     sql: ${TABLE}.TimeInCo ;;
   }
 
   dimension: time_retirement {
     type: number
+    label: "Time to Retirement"
     sql: ${TABLE}.TimeRetirement ;;
   }
 
   dimension: time_role {
     type: number
+    label: "Time in Role"
     sql: ${TABLE}.TimeRole ;;
   }
 
   dimension: tot_curr_no_lstd_brd {
     type: number
+    label: "Listed Boards"
+    group_label: "Total Current Number of Boards sitting on"
     sql: ${TABLE}.TotCurrNoLstdBrd ;;
   }
 
   dimension: tot_curr_no_oth_lstd_brd {
     type: number
+    label: "Other Boards"
+    group_label: "Total Current Number of Boards sitting on"
     sql: ${TABLE}.TotCurrNoOthLstdBrd ;;
   }
 
   dimension: tot_curr_no_un_lstd_brd {
     type: number
+    label: "Unlisted Boards"
+    group_label: "Total Current Number of Boards sitting on"
     sql: ${TABLE}.TotCurrNoUnLstdBrd ;;
   }
 
   dimension: tot_eq_at_risk {
     type: number
+    label: "Total Stock, Option, and LTIP Awards"
     sql: ${TABLE}.TotEqAtRisk ;;
   }
 
   dimension: tot_eq_linked_wlth {
     type: number
+    label: "Total Value of Equity Linked Wealth"
     sql: ${TABLE}.TotEqLinkedWlth ;;
   }
 
   dimension: tot_no_lstd_brd {
     type: number
+    label: "Listed Boards"
+    group_label: "Total Number of Boards sat on"
     sql: ${TABLE}.TotNoLstdBrd ;;
   }
 
   dimension: tot_no_oth_lstd_brd {
     type: number
+    label: "Other Boards"
+    group_label: "Total Number of Boards sat on"
     sql: ${TABLE}.TotNoOthLstdBrd ;;
   }
 
   dimension: tot_no_un_lstd_brd {
     type: number
+    label: "Unlisted Boards"
+    group_label: "Total Number of Boards sat on"
     sql: ${TABLE}.TotNoUnLstdBrd ;;
   }
 
   dimension: tot_rem_period {
     type: number
+    label: "Total Awards for the Remuneration Period"
     sql: ${TABLE}.TotRemPeriod ;;
   }
 
   dimension: total_compensation {
     type: number
+    group_label: "Compensation"
     sql: ${TABLE}.TotalCompensation ;;
   }
 
   dimension: total_direct_comp {
     type: number
+    group_label: "Compensation"
+    label: "Total Direct Compensation"
     sql: ${TABLE}.TotalDirectComp ;;
   }
 
   dimension: val_eq_award {
     type: number
+    label: "Value of Equity Awarded in last year"
     sql: ${TABLE}.ValEqAward ;;
   }
 
   dimension: val_ltipheld {
     type: number
+    label: "Value of Long Term Incentive Plans Held"
     sql: ${TABLE}.ValLTIPHeld ;;
   }
 
   dimension: val_tot_eq_held {
     type: number
+    label: "Value of Total Equity Held"
     sql: ${TABLE}.ValTotEqHeld ;;
   }
 
   dimension: wealth_delta {
     type: number
+    label: "WealthDelta"
     sql: ${TABLE}.WealthDelta ;;
   }
 

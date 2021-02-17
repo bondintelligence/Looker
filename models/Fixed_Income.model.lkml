@@ -35,7 +35,7 @@ explore: bloomberg2 {
 }
 
 
-explore: corp {
+explore: FINRA_CRSP {
   label: "FINRA_CRSP"
   description: "The WRDS Bond Database is a novel and unique corporate bond database compiled by WRDS Researchers using the best standards in recent fixed income research. The WRDS Bond Database allows researchers to easily and effectively access cleaned datasets of corporate bond transactions, sourced from TRACE Standard and TRACE Enhanced datasets, along with a separate dataset for monthly price, return, coupon and yield information for all corporate bonds traded since July 2002. The chart illustrates the comprehensive database coverage of all traded corporate bond issues over time. Additionally, the WRDS Bond Database includes a unique and essential mapping table that links all bond and equity issues for every firm and at each point time using information in TRACE and CRSP databases."
   always_filter: {
@@ -45,32 +45,32 @@ explore: corp {
   join: trace_enhanced {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${corp.cusip}=${trace_enhanced.cusip_id};;
+    sql_on: ${FINRA_CRSP.cusip}=${trace_enhanced.cusip_id};;
   }
   join: mergent_bond_redemption {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${corp.cusip}=${mergent_bond_redemption.complete_cusip};;
+    sql_on: ${FINRA_CRSP.cusip}=${mergent_bond_redemption.complete_cusip};;
   }
   join: mergent_issuance {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${corp.cusip}=${mergent_issuance.complete_cusip};;
+    sql_on: ${FINRA_CRSP.cusip}=${mergent_issuance.complete_cusip};;
   }
 }
 
 
-explore: muni {
+explore: MSRB_EMMA {
   label: "MSRB_EMMA"
   description: "Municipal Securities Rulemaking Board is the primary regulator of the $3.7 trillion municipal security market, the MSRB collects and makes publicly available through its Electronic Municipal Market Access (EMMA). The trades represent transactions by investors and dealers in the over-the-counter market for municipal securities issued by municipal entities, including states, counties, cities and special tax districts."
   always_filter: {
 
-    filters: [cusip: "00037CRB8", muni.trade_date: ""]
+    filters: [cusip: "00037CRB8", MSRB_EMMA.trade_date: ""]
   }
   join: muni_issuance {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${muni.cusip}= ${muni_issuance.cusip1};;
+    sql_on: ${MSRB_EMMA.cusip}= ${muni_issuance.cusip1};;
   }
 
 }
@@ -81,10 +81,10 @@ explore: muni_issuance {
 
     filters: [muni_issuance.cusip1: "512714"]
   }
-  join: muni {
+  join: MSRB_EMMA {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${muni_issuance.cusip1}=${muni.cusip} ;;
+    sql_on: ${muni_issuance.cusip1}=${MSRB_EMMA.cusip} ;;
   }
 
 }
@@ -133,10 +133,10 @@ explore: trace_enhanced {
 
     filters: [trace_enhanced.cusip_id: "38259PAB8"]
   }
-  join: corp {
+  join: FINRA_CRSP {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${trace_enhanced.cusip_id}=${corp.cusip} ;;
+    sql_on: ${trace_enhanced.cusip_id}=${FINRA_CRSP.cusip} ;;
   }
   join: mergent_bond_redemption {
     type: full_outer
@@ -163,10 +163,10 @@ explore:  mergent_issuance{
     relationship: many_to_one
     sql_on: ${mergent_issuance.complete_cusip}=${mergent_bond_redemption.complete_cusip} ;;
   }
-  join: corp {
+  join: FINRA_CRSP {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${mergent_issuance.complete_cusip}=${corp.cusip} ;;
+    sql_on: ${mergent_issuance.complete_cusip}=${FINRA_CRSP.cusip} ;;
   }
   join: trace_enhanced {
     type: full_outer
@@ -179,6 +179,8 @@ explore:  mergent_issuance{
     sql_on: ${mergent_issuance.complete_cusip}=${compustat_financial_fundamental.cusip} ;;
   }
 }
+
+explore: yieldgraphsv3 {}
 
 
 
@@ -198,10 +200,10 @@ explore:  mergent_bond_redemption{
     relationship: many_to_one
     sql_on: ${mergent_bond_redemption.complete_cusip}=${mergent_issuance.complete_cusip} ;;
   }
-  join: corp {
+  join: FINRA_CRSP {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${mergent_bond_redemption.complete_cusip}=${corp.cusip} ;;
+    sql_on: ${mergent_bond_redemption.complete_cusip}=${FINRA_CRSP.cusip} ;;
   }
   join: trace_enhanced {
     type: full_outer
