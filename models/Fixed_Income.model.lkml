@@ -184,7 +184,6 @@ explore:  mergent_issuance{
   }
 }
 
-explore: yieldgraphsv3 {}
 
 
 

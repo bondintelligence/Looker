@@ -356,7 +356,7 @@ view: bloomberg1 {
     type: sum
     drill_fields: []
 
-}
+  }
 
   measure: measure_amount_outstanding {
     type: number
@@ -639,6 +639,7 @@ view: bloomberg1 {
   measure: measure_yieldat_issue {
     type: number
     sql: ${yieldat_issue} ;;
-    }
+  }
+
 
 }
