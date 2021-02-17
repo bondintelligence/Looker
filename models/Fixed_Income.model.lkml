@@ -60,17 +60,17 @@ explore: FINRA_CRSP {
 }
 
 
-explore: MSRB_EMMA {
+explore: muni {
   label: "MSRB_EMMA"
   description: "Municipal Securities Rulemaking Board is the primary regulator of the $3.7 trillion municipal security market, the MSRB collects and makes publicly available through its Electronic Municipal Market Access (EMMA). The trades represent transactions by investors and dealers in the over-the-counter market for municipal securities issued by municipal entities, including states, counties, cities and special tax districts."
   always_filter: {
 
-    filters: [cusip: "00037CRB8", MSRB_EMMA.trade_date: ""]
+    filters: [cusip: "00037CRB8", muni.trade_date: ""]
   }
   join: muni_issuance {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${MSRB_EMMA.cusip}= ${muni_issuance.cusip1};;
+    sql_on: ${muni.cusip}= ${muni_issuance.cusip1};;
   }
 
 }
@@ -81,10 +81,10 @@ explore: muni_issuance {
 
     filters: [muni_issuance.cusip1: "512714"]
   }
-  join: MSRB_EMMA {
+  join: muni {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${muni_issuance.cusip1}=${MSRB_EMMA.cusip} ;;
+    sql_on: ${muni_issuance.cusip1}=${muni.cusip} ;;
   }
 
 }
