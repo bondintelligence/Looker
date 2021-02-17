@@ -14,7 +14,10 @@ persist_with: production_default_datagroup
 
 
 
-explore: bloomberg1 {always_filter: {
+explore: bloomberg1 {
+  label: "Bloomberg"
+  description: "Bloomberg’s corporate action data contains more than 50 action types across capital changes, distributions, corporate events, and fixed income-specific actions. By leveraging the same identifiers as our instrument and legal entities, our corporate actions data content is linked seamlessly to instrument and legal entities for custodians, asset servicers, and other industry participants.Bloomberg’s Muni Fundamentals dataset is the largest and most comprehensive database of municipal issuer financial and operational information in the industry — allowing users to spend less time compiling data and more time on analysis.Bloomberg provides financials, operational, and reference data for 50,000+ issuers (about 120,000 funds) of municipal debt, covering 99 percent of outstanding general obligation debt and 94 percent of revenue debt. The dataset includes history going back to 2003."
+  always_filter: {
 
     filters: [cusip: "005596DZ1"]
   }
@@ -35,7 +38,7 @@ explore: bloomberg2 {
 }
 
 
-explore: corp {
+explore: FINRA_CRSP {
   label: "FINRA_CRSP"
   description: "The WRDS Bond Database is a novel and unique corporate bond database compiled by WRDS Researchers using the best standards in recent fixed income research. The WRDS Bond Database allows researchers to easily and effectively access cleaned datasets of corporate bond transactions, sourced from TRACE Standard and TRACE Enhanced datasets, along with a separate dataset for monthly price, return, coupon and yield information for all corporate bonds traded since July 2002. The chart illustrates the comprehensive database coverage of all traded corporate bond issues over time. Additionally, the WRDS Bond Database includes a unique and essential mapping table that links all bond and equity issues for every firm and at each point time using information in TRACE and CRSP databases."
   always_filter: {
@@ -45,17 +48,17 @@ explore: corp {
   join: trace_enhanced {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${corp.cusip}=${trace_enhanced.cusip_id};;
+    sql_on: ${FINRA_CRSP.cusip}=${trace_enhanced.cusip_id};;
   }
   join: mergent_bond_redemption {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${corp.cusip}=${mergent_bond_redemption.complete_cusip};;
+    sql_on: ${FINRA_CRSP.cusip}=${mergent_bond_redemption.complete_cusip};;
   }
   join: mergent_issuance {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${corp.cusip}=${mergent_issuance.complete_cusip};;
+    sql_on: ${FINRA_CRSP.cusip}=${mergent_issuance.complete_cusip};;
   }
 }
 
@@ -77,6 +80,7 @@ explore: muni {
 
 
 explore: muni_issuance {
+  description: "Source: U.S Department of Commerce"
   always_filter: {
 
     filters: [muni_issuance.cusip1: "512714"]
@@ -117,7 +121,6 @@ explore: compustat_financial_fundamental {
 }
 
 
-
 explore:compustat_financial_ratios {
   description: "Standard & Poor's (S&P) Capital IQ is a leading provider in financial market intelligence. Standard & Poor’s is the world’s foremost provider of independent credit ratings, risk evaluation, investment research, indices, data and valuations. Compustat provides more than 500 company-level fundamentals, including items such as Income Statements, Balance Sheets, and Flow of Funds. It also offers an even larger number of supplemental data items for more than 47,000 active and 37,000 inactive companies. Compustat primarily draws its data from SEC filings, which it standardizes to allow for better comparisons. It is supplemented with additional data sources as needed. For a North American company to be added to the database, it must file distinct 10K's or 10Q's with the SEC."
   always_filter: {
@@ -134,10 +137,10 @@ explore: trace_enhanced {
 
     filters: [trace_enhanced.cusip_id: "38259PAB8"]
   }
-  join: corp {
+  join: FINRA_CRSP {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${trace_enhanced.cusip_id}=${corp.cusip} ;;
+    sql_on: ${trace_enhanced.cusip_id}=${FINRA_CRSP.cusip} ;;
   }
   join: mergent_bond_redemption {
     type: full_outer
@@ -164,10 +167,10 @@ explore:  mergent_issuance{
     relationship: many_to_one
     sql_on: ${mergent_issuance.complete_cusip}=${mergent_bond_redemption.complete_cusip} ;;
   }
-  join: corp {
+  join: FINRA_CRSP {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${mergent_issuance.complete_cusip}=${corp.cusip} ;;
+    sql_on: ${mergent_issuance.complete_cusip}=${FINRA_CRSP.cusip} ;;
   }
   join: trace_enhanced {
     type: full_outer
@@ -180,6 +183,8 @@ explore:  mergent_issuance{
     sql_on: ${mergent_issuance.complete_cusip}=${compustat_financial_fundamental.cusip} ;;
   }
 }
+
+explore: yieldgraphsv3 {}
 
 
 
@@ -199,10 +204,10 @@ explore:  mergent_bond_redemption{
     relationship: many_to_one
     sql_on: ${mergent_bond_redemption.complete_cusip}=${mergent_issuance.complete_cusip} ;;
   }
-  join: corp {
+  join: FINRA_CRSP {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${mergent_bond_redemption.complete_cusip}=${corp.cusip} ;;
+    sql_on: ${mergent_bond_redemption.complete_cusip}=${FINRA_CRSP.cusip} ;;
   }
   join: trace_enhanced {
     type: full_outer
@@ -215,6 +220,6 @@ explore:  raven_pack_sentiment {
   description: "RavenPack News Analytics is a unique source of explanatory and predictive inputs derived from news. The product includes a data set rich with structured information and potential signals and creates new trading opportunities on both scheduled and unscheduled news events. This data is used to power a number of applications ranging from high frequency trading systems requiring low latency inputs to risk and asset management models requiring factors whose time resolution may be daily, weekly, and monthly.RavenPack automatically tracks and monitors relevant information on nearly 200,000 companies, government organizations, influential people, key geographical locations, and all major currencies and traded commodities. Among the many benefits, RavenPack delivers sentiment analysis and event data most likely to impact financial markets and trading around the world"
 }
 
-explore: board_ex_org_summary{
+explore: board_ex_summary{
   description: "BoardEx data consists of compensation, employment, and relationship data for 20,000+ companies from 1999-present. Access educational background, prior employment, and connections of directors and executives. Analyze the proportion of politically connected directors, using CEO-level controls such as age, gender, and experience. Extract executive stock option holdings."
 }

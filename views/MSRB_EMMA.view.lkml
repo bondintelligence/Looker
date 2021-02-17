@@ -81,6 +81,7 @@ view: muni {
   dimension: alternative_trading_system_ats_indicator {
     type: yesno
     label: "_alternative_trading_system_ats_indicator"
+    description: "An indicator (Y) showing that an inter-dealer transaction was executed with or using the services of an alternative trading system (ATS) with Form ATS on file with the SEC."
     sql: ${TABLE}.Alternative_Trading_System_ATS_Indicator ;;
   }
 
@@ -124,6 +125,7 @@ view: muni {
 
   dimension: assumed_settlement_date {
     type: string
+    description: "For new issues where the initial settlement date is not known at the time of execution, this field is a date 15 business days after trade date."
     label: "_assumed_settlement_date"
     sql: ${TABLE}.Assumed_Settlement_Date ;;
   }
@@ -165,7 +167,7 @@ view: muni {
 
   dimension: broker_s_broker_indicator {
     type: string
-    label: "_broker_s_broker_indicator"
+    label: "_brokers_indicator"
     sql: ${TABLE}.Broker_s_Broker_Indicator ;;
   }
 
@@ -198,6 +200,7 @@ view: muni {
 
 
   dimension_group: dated_date_of_the_issue_traded {
+    description: "DATED DATE is the date from which interest on a new issue of municipal securities typically starts to accrue. This date is often used to identify a particular series of bonds of an issuer."
     type: time
     label: "_dated_date_of_the_issue_traded"
     timeframes: [
@@ -323,6 +326,7 @@ view: muni {
   dimension: list_offering_price_takedown_indicator {
     type: yesno
     label: "_list_offering_price_takedown_indicator"
+    description: "An indicator (Y) showing that the transaction price was reported as a primary market sale transaction executed on the first day of trading of a new issue:-by a sole underwriter, syndicate manager, syndicate member or selling group member at the published list offering price for the security (“List Offering Price” ); or-by a sole underwriter, syndicate manager, syndicate member or selling group member at a discount from the published list offering price for the security (“RTRS Takedown Transaction”)."
     sql: ${TABLE}.List_Offering_Price_Takedown_Indicator ;;
   }
 
@@ -395,6 +399,7 @@ view: muni {
   dimension: non_transaction_based_compensation_arrangement_ntbc_indicator {
     type: yesno
     label: "_non_transaction_based_compensation_arrangement_ntbc_indicator"
+    description: "An indicator (Y) showing that a customer transaction did not include a mark-up, mark-down or commission"
     sql: ${TABLE}.Non_Transaction_Based_Compensation_Arrangement_NTBC_Indicator ;;
   }
 
@@ -682,6 +687,7 @@ view: muni {
 
   dimension: weighted_price_indicator {
     type: string
+    description: "An indicator (Y) that the transaction price was a “weighted average price” based on multiple transactions done at different prices earlier in the day to accumulate the par amount needed to make this transaction."
     label: "_weighted_price_indicator"
     sql: ${TABLE}.Weighted_Price_Indicator ;;
   }
