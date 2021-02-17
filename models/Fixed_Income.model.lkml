@@ -180,6 +180,8 @@ explore:  mergent_issuance{
   }
 }
 
+explore: yieldgraphsv3 {}
+
 
 
 explore:  mergent_bond_redemption{

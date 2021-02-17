@@ -40,6 +40,12 @@ view: compustat_financial_fundamental {
     sql: ${TABLE}.aco ;;
   }
 
+  measure: aco_value {
+    label: "Current Assets Other Total"
+    type: number
+    sql: ${TABLE}.aco ;;
+  }
+
   dimension: acodo {
     type: number
     label: "Other Current Assets Excl Discontinued Operations"
@@ -675,6 +681,12 @@ view: compustat_financial_fundamental {
     sql: ${TABLE}.capx ;;
   }
 
+  measure: CashFlow_1 {
+    type: number
+    label: "Capital Expenditures"
+    sql: ${TABLE}.capx ;;
+  }
+
   dimension: capxv {
     type: number
     label: "Property, Plant and Equipment - Capital Expenditures (Schedule V)"
@@ -1019,7 +1031,15 @@ view: compustat_financial_fundamental {
 
   dimension: costat {
     type: string
-    sql: ${TABLE}.costat ;;
+    sql: CASE
+  WHEN ${TABLE}.costat = "I" THEN 'Inactive'
+  WHEN ${TABLE}.costat = "A" THEN 'Active'
+  END ;;
+  }
+
+  measure: costat_count {
+    type: count
+    drill_fields: [costat]
   }
 
   dimension: county {
@@ -1525,6 +1545,12 @@ view: compustat_financial_fundamental {
     sql: ${TABLE}.dpc ;;
   }
 
+  measure: cashflow_3 {
+    type: number
+    label: "Depreciation and Amortization"
+    sql: ${TABLE}.dpc ;;
+  }
+
   dimension: dpdc {
     type: number
     label: "Demand - Customer"
@@ -1654,6 +1680,12 @@ view: compustat_financial_fundamental {
   dimension: dv {
     type: number
     label: "Cash Dividends (Cash Flow)"
+    sql: ${TABLE}.dv ;;
+  }
+
+  measure: CashFlow_2 {
+    type: number
+    label: "Cash Dividends"
     sql: ${TABLE}.dv ;;
   }
 
@@ -2048,6 +2080,13 @@ view: compustat_financial_fundamental {
   dimension: fincf {
     type: number
     label: "Financing Activities Net Cash Flow"
+    sql: ${TABLE}.fincf ;;
+  }
+
+
+  measure: financial_net_flow {
+    type: number
+    label: "Financing Activities"
     sql: ${TABLE}.fincf ;;
   }
 
@@ -3058,6 +3097,12 @@ view: compustat_financial_fundamental {
     sql: ${TABLE}.ivncf ;;
   }
 
+  measure: investing_cash_flow{
+    type: number
+    label: "Investing Activities"
+    sql: ${TABLE}.ivncf ;;
+  }
+
   dimension: ivpt {
     type: number
     label: "Permanent - Total"
@@ -3153,6 +3198,13 @@ view: compustat_financial_fundamental {
     group_label: "Current Liabilities"
     sql: ${TABLE}.lco ;;
   }
+
+  measure: lco_value {
+    type: number
+    label: "Current Liabilities Other Total"
+    sql: ${TABLE}.lco ;;
+  }
+
 
   dimension: lcox {
     type: number
@@ -3612,6 +3664,12 @@ view: compustat_financial_fundamental {
   dimension: oancf {
     type: number
     label: "Operating Activities Net Cash Flow"
+    sql: ${TABLE}.oancf ;;
+  }
+
+  measure: operating_cash_flow {
+    type: number
+    label: "Operating Activities"
     sql: ${TABLE}.oancf ;;
   }
 
@@ -4732,6 +4790,12 @@ view: compustat_financial_fundamental {
     sql: ${TABLE}.sale ;;
   }
 
+  measure: total_operating {
+    type: number
+    label: "Total Operating Revenue"
+    sql: ${TABLE}.sale ;;
+  }
+
   dimension: salepfc {
     type: number
     label: "Pro Forma Net Sales - Current Year"
@@ -4893,6 +4957,12 @@ view: compustat_financial_fundamental {
   dimension: sppiv {
     type: number
     label: "Sale of Property, Plant and Equipment and Investments Gain (Loss)"
+    sql: ${TABLE}.sppiv ;;
+  }
+
+  measure: cashflow_4 {
+    type: number
+    label: "Sale of Property, Plant and Equipment"
     sql: ${TABLE}.sppiv ;;
   }
 
@@ -6028,6 +6098,12 @@ view: compustat_financial_fundamental {
   dimension: xopr {
     type: number
     label: "Operating Expenses Total "
+    sql: ${TABLE}.xopr ;;
+  }
+
+  measure: total_operating_expense{
+    type: number
+    label: "Total Operating Expense "
     sql: ${TABLE}.xopr ;;
   }
 
