@@ -631,4 +631,369 @@ description: "Operating Income before D&A as a fraction of Current Liabilities"
     type: count
     drill_fields: []
   }
+
+  measure: accrual_measure {
+    type: number
+    sql: ${TABLE}.accrual ;;
+  }
+
+  measure: adv_sale_measure {
+    type: number
+    sql: ${TABLE}.adv_sale ;;
+  }
+
+  measure: aftret_eq_measure {
+    type: number
+    sql: ${TABLE}.aftret_eq ;;
+  }
+
+  measure: aftret_equity_measure {
+    type: number
+    sql: ${TABLE}.aftret_equity ;;
+  }
+
+  measure: aftret_invcapx_measure {
+    type: number
+    sql: ${TABLE}.aftret_invcapx ;;
+  }
+
+  measure: at_turn_measure {
+    type: number
+    sql: ${TABLE}.at_turn ;;
+  }
+
+  measure: bm_measure {
+    type: number
+    sql: ${TABLE}.bm ;;
+  }
+
+  measure: capei_measure {
+    type: number
+    sql: ${TABLE}.CAPEI ;;
+  }
+
+  measure: capital_ratio_measure {
+    type: number
+    sql: ${TABLE}.capital_ratio ;;
+  }
+
+  measure: cash_conversion_measure {
+    type: number
+    sql: ${TABLE}.cash_conversion ;;
+  }
+
+  measure: cash_debt_measure {
+    type: number
+    sql: ${TABLE}.cash_debt ;;
+  }
+
+  measure: cash_lt_measure {
+    type: number
+    sql: ${TABLE}.cash_lt ;;
+  }
+
+  measure: cash_ratio_measure {
+    type: number
+    sql: ${TABLE}.cash_ratio ;;
+  }
+
+  measure: cfm_measure {
+    type: number
+    sql: ${TABLE}.cfm ;;
+  }
+
+  measure: curr_debt_measure {
+    type: number
+    sql: ${TABLE}.curr_debt ;;
+  }
+
+  measure: curr_ratio_measure {
+    type: number
+    sql: ${TABLE}.curr_ratio ;;
+  }
+
+  measure: de_ratio_measure {
+    type: number
+    sql: ${TABLE}.de_ratio ;;
+  }
+
+  measure: debt_assets_measure {
+    type: number
+    sql: ${TABLE}.debt_assets ;;
+  }
+
+  measure: debt_at_measure {
+    type: number
+    sql: ${TABLE}.debt_at ;;
+  }
+
+  measure: debt_capital_measure {
+    type: number
+    sql: ${TABLE}.debt_capital ;;
+  }
+
+  measure: debt_ebitda_measure {
+    type: number
+    sql: ${TABLE}.debt_ebitda ;;
+  }
+
+  measure: debt_invcap_measure {
+    type: number
+    sql: ${TABLE}.debt_invcap ;;
+  }
+
+  measure: divyield_measure {
+    type: number
+    sql: ${TABLE}.divyield ;;
+  }
+
+  measure: dltt_be_measure {
+    type: number
+    sql: ${TABLE}.dltt_be ;;
+  }
+
+  measure: dpr_measure {
+    type: number
+    sql: ${TABLE}.dpr ;;
+  }
+
+  measure: efftax_measure {
+    type: number
+    sql: ${TABLE}.efftax ;;
+  }
+
+  measure: equity_invcap_measure {
+    type: number
+    sql: ${TABLE}.equity_invcap ;;
+  }
+
+  measure: evm_measure {
+    type: number
+    sql: ${TABLE}.evm ;;
+  }
+
+  measure: fcf_ocf_measure {
+    type: number
+    sql: ${TABLE}.fcf_ocf ;;
+  }
+
+  measure: gpm_measure {
+    type: number
+    sql: ${TABLE}.gpm ;;
+  }
+
+  measure: gprof_measure {
+    type: number
+    sql: ${TABLE}.GProf ;;
+  }
+
+  measure: gvkey_measure {
+    type: number
+    sql: ${TABLE}.gvkey ;;
+  }
+
+  measure: int_debt_measure {
+    type: number
+    sql: ${TABLE}.int_debt ;;
+  }
+
+  measure: int_totdebt_measure {
+    type: number
+    sql: ${TABLE}.int_totdebt ;;
+  }
+
+  measure: intcov_measure {
+    type: number
+    sql: ${TABLE}.intcov ;;
+  }
+
+  measure: intcov_ratio_measure {
+    type: number
+    sql: ${TABLE}.intcov_ratio ;;
+  }
+
+  measure: inventory_turnover_measure {
+    type: number
+    sql: ${TABLE}.inv_turn ;;
+  }
+
+  measure: invt_act_measure {
+    type: number
+    sql: ${TABLE}.invt_act ;;
+  }
+
+  measure: lt_debt_measure {
+    type: number
+    sql: ${TABLE}.lt_debt ;;
+  }
+
+  measure: lt_ppent_measure {
+    type: number
+    sql: ${TABLE}.lt_ppent ;;
+  }
+
+  measure: npm_measure {
+    type: number
+    sql: ${TABLE}.npm ;;
+  }
+
+  measure: ocf_lct_measure {
+    type: number
+    sql: ${TABLE}.ocf_lct ;;
+  }
+
+  measure: opmad_measure {
+    type: number
+    sql: ${TABLE}.opmad ;;
+  }
+
+  measure: opmbd_measure {
+    type: number
+    sql: ${TABLE}.opmbd ;;
+  }
+
+  measure: pay_turn_measure {
+    type: number
+    sql: ${TABLE}.pay_turn ;;
+  }
+
+  measure: pcf_measure {
+    type: number
+    sql: ${TABLE}.pcf ;;
+  }
+
+  measure: pe_exi_measure {
+    type: number
+    sql: ${TABLE}.pe_exi ;;
+  }
+
+  measure: pe_inc_measure {
+    type: number
+    sql: ${TABLE}.pe_inc ;;
+  }
+
+  measure: pe_op_basic_measure {
+    type: number
+    sql: ${TABLE}.pe_op_basic ;;
+  }
+
+  measure: pe_op_dil_measure {
+    type: number
+    sql: ${TABLE}.pe_op_dil ;;
+  }
+
+  measure: peg_1yrforward_measure {
+    type: number
+    sql: ${TABLE}.PEG_1yrforward ;;
+  }
+
+  measure: peg_ltgforward_measure {
+    type: number
+    sql: ${TABLE}.PEG_ltgforward ;;
+  }
+
+  measure: peg_trailing_measure {
+    type: number
+    sql: ${TABLE}.PEG_trailing ;;
+  }
+
+  measure: permno_measure {
+    type: number
+    sql: ${TABLE}.permno ;;
+  }
+
+  measure: pretret_earnat_measure {
+    type: number
+    sql: ${TABLE}.pretret_earnat ;;
+  }
+
+  measure: pretret_noa_measure {
+    type: number
+    sql: ${TABLE}.pretret_noa ;;
+  }
+
+  measure: profit_lct_measure {
+    type: number
+    sql: ${TABLE}.profit_lct ;;
+  }
+
+  measure: ps_measure {
+    type: number
+    sql: ${TABLE}.ps ;;
+  }
+
+  measure: ptb_measure {
+    type: number
+    sql: ${TABLE}.ptb ;;
+  }
+
+  measure: ptpm_measure {
+    type: number
+    sql: ${TABLE}.ptpm ;;
+  }
+
+  measure: quick_ratio_measure {
+    type: number
+    sql: ${TABLE}.quick_ratio ;;
+  }
+
+  measure: rd_sale_measure {
+    type: number
+    sql: ${TABLE}.rd_sale ;;
+  }
+
+  measure: rect_act_measure {
+    type: number
+    sql: ${TABLE}.rect_act ;;
+  }
+
+  measure: rect_turn_measure {
+    type: number
+    sql: ${TABLE}.rect_turn ;;
+  }
+
+  measure: roa_measure {
+    type: number
+    sql: ${TABLE}.roa ;;
+  }
+
+  measure: roce_measure {
+    type: number
+    sql: ${TABLE}.roce ;;
+  }
+
+  measure: roe_measure {
+    type: number
+    sql: ${TABLE}.roe ;;
+  }
+
+  measure: sale_equity_measure {
+    type: number
+    sql: ${TABLE}.sale_equity ;;
+  }
+
+  measure: sale_invcap_measure {
+    type: number
+    sql: ${TABLE}.sale_invcap ;;
+  }
+
+  measure: sale_nwc_measure {
+    type: number
+    sql: ${TABLE}.sale_nwc ;;
+  }
+
+  measure: short_debt_measure {
+    type: number
+    sql: ${TABLE}.short_debt ;;
+  }
+
+  measure: staff_sale_measure {
+    type: number
+    sql: ${TABLE}.staff_sale ;;
+  }
+
+  measure: totdebt_invcap_measure {
+    type: number
+    sql: ${TABLE}.totdebt_invcap ;;
+  }
 }
