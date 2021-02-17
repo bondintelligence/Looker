@@ -1,4 +1,4 @@
-view: price_graphv1 {
+view: lastPrice {
   derived_table: {
     sql: WITH original AS
       (SELECT CUSIP, Date, Date2,
@@ -8,7 +8,7 @@ view: price_graphv1 {
       AS Price_Data FROM `bi-model-development.looker_FINAL.bloomberg2`)
 
        SELECT CUSIP, CAST(Date AS TIMESTAMP) as `Date`, Price_Data_.Category as `Category`,Price_Data_.Price as `Price` FROM original
-      CROSS JOIN UNNEST (original.Price_Data) AS Price_Data_
+      CROSS JOIN UNNEST (original.Price_Data) AS Price_Data_ WHERE Category = "LastPrice"
 
        ORDER BY 1 ASC  ;;
   }
@@ -28,16 +28,12 @@ view: price_graphv1 {
     type: string
     sql: ${TABLE}.Category ;;
   }
-  dimension: price {
-    type: number
-    sql: ${TABLE}.Price ;;
-  }
 
-  measure: price_value {
+  dimension: last_price {
     type: number
     sql: ${TABLE}.Price ;;
   }
   set: detail {
-    fields: [cusip, date_time, category, price]
+    fields: [cusip, date_time, category, last_price]
   }
 }

@@ -31,6 +31,7 @@ view: predictedprice {
 
   parameter: CUSIP {
     type: unquoted
+
   }
 
   measure: count {
@@ -146,6 +147,30 @@ view: predictedprice {
     sql: ${TABLE}.Presence_of_violation_poll ;;
   }
 
+  dimension: min_value  {
+    type: number
+    sql: ${predicted_dollar_price_of_the_trade}-5 ;;
+  }
+
+  dimension: max_value {
+    type: number
+    sql: ${predicted_dollar_price_of_the_trade}+5 ;;
+  }
+
+
+  measure: min_value_measure  {
+    type: number
+    sql: ${predicted_dollar_price_of_the_trade}-5 ;;
+  }
+
+  measure: max_value_measure {
+    type: number
+    sql: ${predicted_dollar_price_of_the_trade}+5 ;;
+  }
+
+  measure: predicted_dollar_price_measure{
+    sql: ${predicted_dollar_price_of_the_trade} ;;
+  }
 
   set: detail {
     fields: [
