@@ -52,14 +52,14 @@ view: raven_pack_sentiment {
     group_label: "Event Novelty"
   }
 
-  dimension: ens_key {
-    type: string
-    sql: ${TABLE}.ENS_KEY ;;
-    description: "An alphanumeric identifier that provides a way to chain or relate stories about the same categorized
-    event for the same entities."
-    label: "Event Novelty Key"
-    group_label: "Event Novelty"
-  }
+  # dimension: ens_key {
+  #   type: string
+  #   sql: ${TABLE}.ENS_KEY ;;
+  #   description: "An alphanumeric identifier that provides a way to chain or relate stories about the same categorized
+  #   event for the same entities."
+  #   label: "Event Novelty Key"
+  #   group_label: "Event Novelty"
+  # }
 
   dimension: ens_similarity_gap {
     type: number
@@ -129,15 +129,15 @@ view: raven_pack_sentiment {
     label: "Event Sentiment Score"
   }
 
-  dimension: event_similarity_key {
-    type: string
-    description: "A unique 32 character key that identifies similar stories in the RPNA data. All similar stories across
-    the entire archive and those arriving on the real-time feed share the same
-    EVENT_SIMILARITY_KEY. Stories are similar when they are categorized with the same event and
-    entities."
-    sql: ${TABLE}.EVENT_SIMILARITY_KEY ;;
-    label: "Event Similarity Key"
-  }
+  # dimension: event_similarity_key {
+  #   type: string
+  #   description: "A unique 32 character key that identifies similar stories in the RPNA data. All similar stories across
+  #   the entire archive and those arriving on the real-time feed share the same
+  #   EVENT_SIMILARITY_KEY. Stories are similar when they are categorized with the same event and
+  #   entities."
+  #   sql: ${TABLE}.EVENT_SIMILARITY_KEY ;;
+  #   label: "Event Similarity Key"
+  # }
 
   dimension: g_ens {
     type: number
@@ -165,14 +165,14 @@ view: raven_pack_sentiment {
     group_label: "Global Event Novelty"
   }
 
-  dimension: g_ens_key {
-    type: string
-    sql: ${TABLE}.G_ENS_KEY ;;
-    label: "Global Event Novelty Key"
-    description: "An alphanumeric identifier that provides a way to chain or relate stories about the same categorized
-    event for the same entities."
-    group_label: "Global Event Novelty"
-  }
+  # dimension: g_ens_key {
+  #   type: string
+  #   sql: ${TABLE}.G_ENS_KEY ;;
+  #   label: "Global Event Novelty Key"
+  #   description: "An alphanumeric identifier that provides a way to chain or relate stories about the same categorized
+  #   event for the same entities."
+  #   group_label: "Global Event Novelty"
+  # }
 
   dimension: g_ens_similarity_gap {
     type: number

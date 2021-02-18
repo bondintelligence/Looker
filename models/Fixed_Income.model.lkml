@@ -264,6 +264,10 @@ explore:  mergent_bond_redemption{
 
 explore:  raven_pack_sentiment {
   description: "RavenPack News Analytics is a unique source of explanatory and predictive inputs derived from news. The product includes a data set rich with structured information and potential signals and creates new trading opportunities on both scheduled and unscheduled news events. This data is used to power a number of applications ranging from high frequency trading systems requiring low latency inputs to risk and asset management models requiring factors whose time resolution may be daily, weekly, and monthly.RavenPack automatically tracks and monitors relevant information on nearly 200,000 companies, government organizations, influential people, key geographical locations, and all major currencies and traded commodities. Among the many benefits, RavenPack delivers sentiment analysis and event data most likely to impact financial markets and trading around the world"
+  always_filter: {
+
+    filters: [raven_pack_sentiment.g_ens: "NOT NULL"]
+  }
 }
 
 explore: board_ex_summary{
