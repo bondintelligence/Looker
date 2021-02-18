@@ -29,12 +29,14 @@ view: board_ex_summary {
   }
   dimension: board_id {
     type: number
+    label: "Company ID"
     sql: ${TABLE}.BoardID ;;
     group_label: "Company Info"
   }
 
   dimension: board_name {
     type: string
+    label: "Company Name"
     sql: ${TABLE}.BoardName ;;
     group_label: "Company Info"
   }

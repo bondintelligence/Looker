@@ -85,6 +85,7 @@ view: bloomberg1 {
 
   dimension: cusip {
     type: string
+    primary_key: yes
     sql: ${TABLE}.CUSIP ;;
   }
 
@@ -355,7 +356,7 @@ view: bloomberg1 {
     type: sum
     drill_fields: []
 
-}
+  }
 
   measure: measure_amount_outstanding {
     type: number
@@ -638,7 +639,7 @@ view: bloomberg1 {
   measure: measure_yieldat_issue {
     type: number
     sql: ${yieldat_issue} ;;
-    }
+  }
 
 
-      }
+}
