@@ -9,12 +9,21 @@ view: muni_issuance {
     sql: ${TABLE}.Admin_Fee ;;
   }
 
-
-
   dimension: bond_cap_amount {
     type: number
     value_format: "$#,##0.00"
-    sql: ${TABLE}.Bond_Cap_Amount ;;
+    sql: ${TABLE}. ;;
+  }
+
+
+  dimension: Dollar_Price_of_the_trade {
+    type: number
+    sql: ${TABLE}.Dollar_Price_of_the_trade ;;
+  }
+
+  dimension: The_yield_of_the_trade {
+    type: number
+    sql: ${TABLE}.The_yield_of_the_trade ;;
   }
 
   dimension: bond_cap_issue {
@@ -106,6 +115,7 @@ view: muni_issuance {
 
   dimension: cusip1 {
     type: string
+    label: "cusip"
     primary_key: yes
     sql: ${TABLE}.CUSIP1 ;;
   }
@@ -114,6 +124,7 @@ view: muni_issuance {
 
   dimension: cusiprefunded_bond2 {
     type: string
+    label: "cusip_refunded_bond"
     sql: ${TABLE}.CUSIPRefundedBond2 ;;
   }
 
@@ -552,6 +563,7 @@ view: muni_issuance {
 
   dimension: year_identifier {
     type: string
+    label: "Year"
     sql: ${TABLE}.Year_Identifier ;;
   }
 
