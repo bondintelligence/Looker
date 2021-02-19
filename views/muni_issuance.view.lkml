@@ -10,12 +10,21 @@ view: muni_issuance {
     sql: ${TABLE}.Admin_Fee ;;
   }
 
-
-
   dimension: bond_cap_amount {
     type: number
     value_format: "$#,##0.00"
-    sql: ${TABLE}.Bond_Cap_Amount ;;
+    sql: ${TABLE}. ;;
+  }
+
+
+  dimension: Dollar_Price_of_the_trade {
+    type: number
+    sql: ${TABLE}.Dollar_Price_of_the_trade ;;
+  }
+
+  dimension: The_yield_of_the_trade {
+    type: number
+    sql: ${TABLE}.The_yield_of_the_trade ;;
   }
 
   dimension: bond_cap_issue {

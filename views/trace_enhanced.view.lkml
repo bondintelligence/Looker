@@ -8,6 +8,18 @@ view: trace_enhanced {
     type: count
     drill_fields: [detail*]
   }
+  measure: average_yield {
+    type: average
+    sql: CAST(${TABLE}.yld_pt AS FLOAT64);;
+    value_format: "0.00"
+    label: "Average Yield"
+  }
+  measure: average_price{
+    label: "Average Price"
+    sql: CAST(${TABLE}.rptd_pr AS FLOAT64);;
+    value_format_name: usd
+    type: average
+  }
 
   dimension: cusip_id {
     type: string
@@ -188,7 +200,7 @@ view: trace_enhanced {
 
   dimension: days_to_sttl_ct {
     type: string
-    description: "Used when Sale Condition = ‘R’, this field will represent the number of days to settlement associated with the transaction. Otherwise, the field will contain the value ‘000’."
+    description: "Used when Sale Condition = ‘R’, this field will represent the number of days to settlement associated with the transaction. Otherwise, the field will contain the value ‘N/A’."
     label: "Seller Sales Day"
     sql: ${TABLE}.days_to_sttl_ct ;;
   }
@@ -333,6 +345,16 @@ view: trace_enhanced {
     type: string
     description: "This field indicates the existence of a special trade condition (as defined in FINRA Rule 6730(d)(4)(A)) that impacted the execution price."
     label: "Special Price Indicator"
+    case: {
+      when: {
+        sql: ${TABLE}.spcl_trd_fl = "Y" ;;
+        label: "Special Price Trade"
+      }
+      when: {
+        sql: ${TABLE}.spcl_trd_fl = "N" ;;
+        label: "Non-Special Price Trade"
+      }
+    }
     sql: ${TABLE}.spcl_trd_fl ;;
   }
 
@@ -358,13 +380,6 @@ view: trace_enhanced {
     description: "Indicates whether the trade was disseminated (via BTDS, or ATDS for Agency Bonds) or not."
     label: "Dissemination Flag"
     sql: ${TABLE}.dissem_fl ;;
-  }
-
-  dimension: orig_msg_seq_nb {
-    type: string
-    description: "Populated on Cancels, Corrections and Reversals. Blank on regular Trade Reports."
-    label: "Original Message Sequence Number"
-    sql: ${TABLE}.orig_msg_seq_nb ;;
   }
 
   dimension: sub_prdct {
@@ -453,23 +468,12 @@ view: trace_enhanced {
     type: string
     label: "ATS Indicator"
     sql: ${TABLE}.ats_indicator ;;
-  }
-
-  dimension_group: pr_trd_dt {
-    type: time
-    description: "Populated on Cancels, Corrections and Reversals. Blank on regular Trade Reports."
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    label: "Prior Trade Report Date"
-    sql: CAST(${TABLE}.pr_trd_dt AS DATE) ;;
-    datatype: date
-    convert_tz: no
+    case: {
+      when: {
+        sql: (${TABLE}.ats_indicator IS NULL);;
+        label: "N"
+      }
+    }
   }
 
   dimension_group: first_trade_ctrl_date {
@@ -534,7 +538,6 @@ view: trace_enhanced {
       spcl_trd_fl,
       trdg_mkt_cd,
       dissem_fl,
-      orig_msg_seq_nb,
       sub_prdct,
       stlmnt_dt_date,
       stlmnt_dt_week,
@@ -546,11 +549,6 @@ view: trace_enhanced {
       rptg_party_type,
       lckd_in_ind,
       ats_indicator,
-      pr_trd_dt_date,
-      pr_trd_dt_week,
-      pr_trd_dt_month,
-      pr_trd_dt_quarter,
-      pr_trd_dt_year,
       first_trade_ctrl_date_date,
       first_trade_ctrl_date_week,
       first_trade_ctrl_date_month,
