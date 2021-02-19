@@ -15,7 +15,8 @@ view: FINRA_CRSP {
       N_MR IS NOT NULL AND
       N_FR IS NOT NULL AND
       RATING_CLASS IS NOT NULL AND
-      T_Spread IS NOT NULL AND
+      T_Volume IS NOT NULL AND
+      T_DVolume IS NOT NULL AND
       T_Spread IS NOT NULL AND
       T_Yld_Pt IS NOT NULL AND
       YIELD IS NOT NULL AND
