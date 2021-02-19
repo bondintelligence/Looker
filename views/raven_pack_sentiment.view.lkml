@@ -1,6 +1,10 @@
 view: raven_pack_sentiment {
-  sql_table_name: `bi-model-development.looker_FINAL.RavenPack_Sentiment`
-    ;;
+  #sql_table_name: `bi-model-development.looker_FINAL.RavenPack_Sentiment`;;
+
+  derived_table: {
+    sql:
+      SELECT * FROM`bi-model-development.looker_FINAL.RavenPack_Sentiment` WHERE g_ens IS NOT NULL ;;
+  }
 
   dimension: aes {
     type: number
@@ -74,10 +78,18 @@ view: raven_pack_sentiment {
 
   dimension: entity_name {
     type: string
-    sql: ${TABLE}.ENTITY_NAME ;;
+    sql: ${TABLE}.ENTITY_NAME;;
     description: "An alphanumeric identifier that provides a way to chain or relate stories about the same categorized
     event for the same entities."
     label: "Entity Name"
+  }
+
+  measure: entity_name_filtered {
+    type: string
+    sql: ${TABLE}.ENTITY_NAME WHERE ${TABLE}.G_ENS IS NOT NULL;;
+    description: "An alphanumeric identifier that provides a way to chain or relate stories about the same categorized
+    event for the same entities."
+    label: "Entity Name Filtered"
   }
 
   dimension: entity_type {
