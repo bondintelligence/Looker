@@ -19,7 +19,124 @@ view: mergent_issuance {
     type: string
     group_label: "Amount_Outstanding"
     description: "A four-letter code representing the type of action that took place to change the amount outstanding."
-    sql: ${TABLE}.ACTION_TYPE ;;
+    case: {
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "B" ;;
+        label: "BalanceOfIssueCalled"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "C" ;;
+        label: "IssueConverted"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "D" ;;
+        label: "EminentDomain"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "E" ;;
+        label: "EntireIssueCalled"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "I" ;;
+        label: "InitialOfferingOfAnIssue"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "IA" ;;
+        label: "InactiveIssue"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "ID" ;;
+        label: "IssueDefeased"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "II" ;;
+        label: "InitialOfferingIncrease"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "IL" ;;
+        label: "InitialLoad"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "IM" ;;
+        label: "IssueMatured"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "IPO" ;;
+        label: "IPOClawbackOption"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "IRM" ;;
+        label: "IssueRemarketed"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "IRP" ;;
+        label: "IssueRepurchased"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "L" ;;
+        label: "ReleaseOfProperty"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "M" ;;
+        label: "MaintenanceAndReplacement"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "N" ;;
+        label: "NotAvailable"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "O" ;;
+        label: "OptionalSinkingFundIncrease"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "OA" ;;
+        label: "Over-Allotment"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "P" ;;
+        label: "PartOfAnIssueCalled"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "PIK" ;;
+        label: "Pay-In-Kind"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "R" ;;
+        label: "Reorganization"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "REV" ;;
+        label: "Review"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "RO" ;;
+        label: "Reopening"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "S" ;;
+        label: "SinkingFundPayment"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "SA" ;;
+        label: "SaleOfAsset"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "SD" ;;
+        label: "SuddenDeath"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "T" ;;
+        label: "IssueTendered"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "TR" ;;
+        label: "TreasuryReconstitution"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "X" ;;
+        label: "IssueExchanged"
+      }
+    }
   }
 
   dimension: active_issue {
@@ -120,7 +237,237 @@ view: mergent_issuance {
   dimension: bond_type {
     type: string
     group_label: "Issue"
-    sql: ${TABLE}.BOND_TYPE ;;
+    case: {
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "ABS" ;;
+        label: "US Asset Backed Security"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "ADEB" ;;
+        label: "US Agency Debenture"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "ADNT" ;;
+        label: "US Agency Discount Notes"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "AMTN" ;;
+        label: "US Agency MTN"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "ARNT" ;;
+        label: "US Agency Retail Note"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "ASPZ" ;;
+        label: "US Agency Strips/Zero"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "BBON" ;;
+        label: "Brady Bonds"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "C10Y" ;;
+        label: "On-The-Run 10-Year Canadian Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "C1Y" ;;
+        label: "On-The-Run 1-Year Canadian Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "C2Y" ;;
+        label: "On-The-Run 2-Year Canadian Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "C30Y" ;;
+        label: "On-The-Run 30-Year Canadian Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "C3M" ;;
+        label: "On-The-Run 3-Month Canadian Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "C5Y" ;;
+        label: "On-The-Run 5-Year Canadian Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "C6M" ;;
+        label: "On-The-Run 6-Month Canadian Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "CCOV" ;;
+        label: "US Corporate Convertible"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "CCPI" ;;
+        label: "US Corporate Inflation Indexed"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "CLOC" ;;
+        label: "US Corporate LOC Backed"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "CMTN" ;;
+        label: "US Corporate MTN"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "CMTZ" ;;
+        label: "US Corporate MTN Zero"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "CP" ;;
+        label: "US Corporate Paper"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "CPIK" ;;
+        label: "US Corporate PIK Bond"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "CS" ;;
+        label: "US Corporate Strip"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "CPAS" ;;
+        label: "US Corporate Pass Thru Trust"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "CTBD" ;;
+        label: "Canadian Treasury Bond"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "CTBL" ;;
+        label: "Canadian Treasury Bill"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "CUIT" ;;
+        label: "US Corporate UIT"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "CZ" ;;
+        label: "US Corporate Zero"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "EBON" ;;
+        label: "Eurobond"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "EMTN" ;;
+        label: "Euro MTN"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "FGOV" ;;
+        label: "Foreign Governments and Agencies"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "FGS" ;;
+        label: "Foreign Government Strip"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "IIDX" ;;
+        label: "Inflation Indexed Security"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "MBS" ;;
+        label: "US Mortgage Backed Security"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "MUNI" ;;
+        label: "Municipal"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "O10Y" ;;
+        label: "On-The-Run 10-Year Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "O13W" ;;
+        label: "On-The-Run 13-Week Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "O26W" ;;
+        label: "On-The-Run 26-Week Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "O2Y" ;;
+        label: "On-The-Run 2-Year Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "O30Y" ;;
+        label: "On-The-Run 30-Year Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "O3Y" ;;
+        label: "On-The-Run 3-Year Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "O4W" ;;
+        label: "On-The-Run 4-Week Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "O52W" ;;
+        label: "On-The-Run 52-Week Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "O5Y" ;;
+        label: "On-The-Run 5-Year Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "O7Y" ;;
+        label: "On-The-Run 7-Year Treasury"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "PS" ;;
+        label: "Preferred Security"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "PSTK" ;;
+        label: "Preferred Stock"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "RNT" ;;
+        label: "Retail Note"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "TPCS" ;;
+        label: "Trust Preferred Capital Security"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "TXMU" ;;
+        label: "Taxable Muni"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "UCID" ;;
+        label: "US Corporate Insured Debenture"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "USBD" ;;
+        label: "US Government Bond"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "USBL" ;;
+        label: "US Government Bill"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "USBN" ;;
+        label: "US Corporate Bank Note"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "USNT" ;;
+        label: "US Government Note"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "USSI" ;;
+        label: "US Government Strips - Interest"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "USSP" ;;
+        label: "US Government Strips - Principal"
+      }
+      when: {
+        sql: ${TABLE}.ACTION_TYPE = "USTC" ;;
+        label: "US Government Trust Certificate"
+      }
+
+    }
   }
 
   dimension: borrowing_restricted {
