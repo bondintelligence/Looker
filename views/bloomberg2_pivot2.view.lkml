@@ -1,21 +1,15 @@
-view: bloomberg2 {
-  sql_table_name: `bi-model-development.looker_FINAL.bloomberg2`
+view: bloomberg2_pivot2 {
+  sql_table_name: `bi-model-development.looker_FINAL.bloomberg2_pivot2`
     ;;
 
   dimension: ask_ytm {
-    type: string
+    type: number
     sql: ${TABLE}.AskYTM ;;
   }
 
   dimension: bid_ytm {
-    type: string
+    type: number
     sql: ${TABLE}.BidYTM ;;
-  }
-
-  dimension: cusip {
-    type: string
-    primary_key: yes
-    sql: ${TABLE}.CUSIP ;;
   }
 
   dimension_group: date {
@@ -33,7 +27,10 @@ view: bloomberg2 {
     sql: ${TABLE}.Date ;;
   }
 
-
+  dimension: f0_ {
+    type: number
+    sql: ${TABLE}.f0_ ;;
+  }
 
   dimension: last_price {
     type: number
@@ -50,10 +47,13 @@ view: bloomberg2 {
     sql: ${TABLE}.MidYTM ;;
   }
 
+  dimension: type {
+    type: string
+    sql: ${TABLE}.type ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
   }
-
-
 }

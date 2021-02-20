@@ -4,6 +4,15 @@ connection: "bqwarehouse"
 
 # include all the views
 include: "/views/**/*.view"
+include: "/askYield.view"
+include: "/bidYield.view"
+include: "/default_probablity.view"
+include: "/lastPrice.view"
+include: "/last_trades.view"
+include: "/midPrice.view"
+include: "/midYield.view"
+include: "/predictedprice.view"
+include: "/predictedRisk.view"
 
 datagroup: production_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -14,7 +23,10 @@ persist_with: production_default_datagroup
 
 
 
-explore: bloomberg1 {always_filter: {
+explore: bloomberg1 {
+  label: "Bloomberg"
+  description: "Bloomberg’s corporate action data contains more than 50 action types across capital changes, distributions, corporate events, and fixed income-specific actions. By leveraging the same identifiers as our instrument and legal entities, our corporate actions data content is linked seamlessly to instrument and legal entities for custodians, asset servicers, and other industry participants.Bloomberg’s Muni Fundamentals dataset is the largest and most comprehensive database of municipal issuer financial and operational information in the industry — allowing users to spend less time compiling data and more time on analysis.Bloomberg provides financials, operational, and reference data for 50,000+ issuers (about 120,000 funds) of municipal debt, covering 99 percent of outstanding general obligation debt and 94 percent of revenue debt. The dataset includes history going back to 2003."
+  always_filter: {
 
     filters: [cusip: "005596DZ1"]
   }
@@ -60,41 +72,80 @@ explore: FINRA_CRSP {
 }
 
 
-explore: MSRB_EMMA {
+explore: muni {
   label: "MSRB_EMMA"
   description: "Municipal Securities Rulemaking Board is the primary regulator of the $3.7 trillion municipal security market, the MSRB collects and makes publicly available through its Electronic Municipal Market Access (EMMA). The trades represent transactions by investors and dealers in the over-the-counter market for municipal securities issued by municipal entities, including states, counties, cities and special tax districts."
   always_filter: {
 
-    filters: [cusip: "00037CRB8", MSRB_EMMA.trade_date: ""]
+    filters: [cusip: "00037CRB8", muni.trade_date: ""]
   }
   join: muni_issuance {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${MSRB_EMMA.cusip}= ${muni_issuance.cusip1};;
+    sql_on: ${muni.cusip}= ${muni_issuance.cusip1};;
   }
 
 }
 
 
 explore: muni_issuance {
+  description: "Source: U.S Department of Commerce"
   always_filter: {
 
     filters: [muni_issuance.cusip1: "512714"]
   }
-  join: MSRB_EMMA {
+  join: muni {
     type: full_outer
     relationship: many_to_one
-    sql_on: ${muni_issuance.cusip1}=${MSRB_EMMA.cusip} ;;
+    sql_on: ${muni_issuance.cusip1}=${muni.cusip} ;;
   }
 
 }
 
 
+explore: askYield {
+  hidden: yes
+}
 
-explore: price_muni_prediction {}
+explore: bidYield {
+  hidden: yes
+}
+
+explore: default_probablity {
+  hidden: yes
+}
+
+explore: lastPrice {
+  hidden: yes
+}
+
+explore: last_trades {
+  hidden: yes
+}
+
+explore: midPrice {
+  hidden: yes
+}
+
+explore: midYield {
+  hidden: yes
+}
+
+explore: predictedprice {
+  hidden: yes
+}
+
+explore: price_muni_prediction {
+  hidden: yes
+}
 
 
-explore: price_corp_prediction {}
+explore: price_corp_prediction {
+  hidden: yes
+}
+
+explore: predictedrisk {}
+
 
 
 
@@ -180,7 +231,6 @@ explore:  mergent_issuance{
   }
 }
 
-explore: yieldgraphsv3 {}
 
 
 

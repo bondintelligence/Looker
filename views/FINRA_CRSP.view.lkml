@@ -1,13 +1,42 @@
 
 view: FINRA_CRSP {
-  sql_table_name: `bi-model-development.looker_FINAL.corp`
-    ;;
+  #sql_table_name: `bi-model-development.looker_FINAL.corp` ;;
 
-  dimension: amount_outstanding {
-    type: number
-    value_format: "$#,##0.00"
-    sql: ${TABLE}.AMOUNT_OUTSTANDING ;;
+  derived_table: {
+    sql:
+      SELECT * FROM`bi-model-development.looker_FINAL.corp` WHERE
+      OFFERING_PRICE IS NOT NULL AND
+      company_symbol IS NOT NULL AND
+      TREASURY_MATURITY IS NOT NULL AND
+      R_FR IS NOT NULL AND
+      R_SP IS NOT NULL AND
+      R_MR IS NOT NULL AND
+      N_SP IS NOT NULL AND
+      N_MR IS NOT NULL AND
+      N_FR IS NOT NULL AND
+      RATING_CLASS IS NOT NULL AND
+      T_Spread IS NOT NULL AND
+      T_Spread IS NOT NULL AND
+      T_Yld_Pt IS NOT NULL AND
+      YIELD IS NOT NULL AND
+      PRICE_EOM IS NOT NULL AND
+      PRICE_LDM IS NOT NULL AND
+      PRICE_L5M IS NOT NULL AND
+      GAP IS NOT NULL AND
+      COUPMONTH IS NOT NULL AND
+      nextcoup IS NOT NULL AND
+      RET_EOM IS NOT NULL AND
+      RET_LDM IS NOT NULL AND
+      RET_L5M IS NOT NULL;;
   }
+
+
+
+  # dimension: amount_outstanding {
+  #   type: number
+  #   value_format: "$#,##0.00"
+  #   sql: ${TABLE}.AMOUNT_OUTSTANDING ;;
+  # }
 
   dimension: bond_type {
     type: string
@@ -117,29 +146,29 @@ view: FINRA_CRSP {
     sql: ${TABLE}.DAY_COUNT_BASIS ;;
   }
 
-  dimension_group: default_date {
-    label: "Default"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.DEFAULT_DATE, 1, 4),"-",SUBSTRING(${TABLE}.DEFAULT_DATE, 5, 2),"-",SUBSTRING(${TABLE}.DEFAULT_DATE, 7, 2));;
-  }
+  # dimension_group: default_date {
+  #   label: "Default"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.DEFAULT_DATE, 1, 4),"-",SUBSTRING(${TABLE}.DEFAULT_DATE, 5, 2),"-",SUBSTRING(${TABLE}.DEFAULT_DATE, 7, 2));;
+  # }
 
-  dimension: default_type {
-    type: string
-    sql: ${TABLE}.DEFAULT_TYPE ;;
-  }
+  # dimension: default_type {
+  #   type: string
+  #   sql: ${TABLE}.DEFAULT_TYPE ;;
+  # }
 
   dimension: defaulted {
     type: string
@@ -371,29 +400,29 @@ view: FINRA_CRSP {
     sql: ${TABLE}.RATING_NUM ;;
   }
 
-  dimension: reinstated {
-    type: string
-    sql: ${TABLE}.REINSTATED ;;
-  }
+  # dimension: reinstated {
+  #   type: string
+  #   sql: ${TABLE}.REINSTATED ;;
+  # }
 
-  dimension_group: reinstated_date {
-    label: "Reinstated"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.REINSTATED_DATE, 1, 4),"-",SUBSTRING(${TABLE}.REINSTATED_DATE, 5, 2),"-",SUBSTRING(${TABLE}.REINSTATED_DATE, 7, 2));;
-  }
+  # dimension_group: reinstated_date {
+  #   label: "Reinstated"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.REINSTATED_DATE, 1, 4),"-",SUBSTRING(${TABLE}.REINSTATED_DATE, 5, 2),"-",SUBSTRING(${TABLE}.REINSTATED_DATE, 7, 2));;
+  # }
 
   dimension: remcoups {
     type: number
@@ -515,10 +544,10 @@ view: FINRA_CRSP {
     drill_fields: []
   }
 
-  measure: amount_outstanding_ {
-    type: number
-    sql: ${amount_outstanding} ;;
-  }
+  # measure: amount_outstanding_ {
+  #   type: number
+  #   sql: ${amount_outstanding} ;;
+  # }
 
 
 
@@ -527,10 +556,10 @@ view: FINRA_CRSP {
     sql: ${bond_type} ;;
   }
 
-  measure: bsym_ {
-    type: string
-    sql: ${bsym };;
-  }
+  # measure: bsym_ {
+  #   type: string
+  #   sql: ${bsym };;
+  # }
 
   measure: company_symbol_ {
     type: string
@@ -624,26 +653,26 @@ view: FINRA_CRSP {
     sql: ${day_count_basis} ;;
   }
 
-  measure: default_date_ {
-    label: "Defualt"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.DEFAULT_DATE, 1, 4),"-",SUBSTRING(${TABLE}.DEFAULT_DATE, 5, 2),"-",SUBSTRING(${TABLE}.DEFAULT_DATE, 7, 2));;
-  }
+  # measure: default_date_ {
+  #   label: "Default"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.DEFAULT_DATE, 1, 4),"-",SUBSTRING(${TABLE}.DEFAULT_DATE, 5, 2),"-",SUBSTRING(${TABLE}.DEFAULT_DATE, 7, 2));;
+  # }
 
-  measure: default_type_ {
-    type: string
-    sql: ${default_type} ;;
-  }
+  # measure: default_type_ {
+  #   type: string
+  #   sql: ${default_type} ;;
+  # }
 
   measure: defaulted_ {
     type: string
@@ -823,25 +852,25 @@ view: FINRA_CRSP {
     sql: ${rating_num} ;;
   }
 
-  measure: reinstated_ {
-    type: string
-    sql: ${reinstated} ;;
-  }
+  # measure: reinstated_ {
+  #   type: string
+  #   sql: ${reinstated} ;;
+  # }
 
-  measure: reinstated_date_ {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.REINSTATED_DATE, 1, 4),"-",SUBSTRING(${TABLE}.REINSTATED_DATE, 5, 2),"-",SUBSTRING(${TABLE}.REINSTATED_DATE, 7, 2));;
-  }
+  # measure: reinstated_date_ {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.REINSTATED_DATE, 1, 4),"-",SUBSTRING(${TABLE}.REINSTATED_DATE, 5, 2),"-",SUBSTRING(${TABLE}.REINSTATED_DATE, 7, 2));;
+  # }
 
   measure: remcoups_ {
     type: number

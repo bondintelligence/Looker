@@ -469,8 +469,8 @@ view: compustat_financial_ratios {
   dimension: profit_lct {
     type: number
     label: "Profit Before Depreciation/Current Liabilities"
-group_label: "Financial Soundness"
-description: "Operating Income before D&A as a fraction of Current Liabilities"
+    group_label: "Financial Soundness"
+    description: "Operating Income before D&A as a fraction of Current Liabilities"
     sql: ${TABLE}.profit_lct ;;
   }
 

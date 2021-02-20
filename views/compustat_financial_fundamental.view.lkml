@@ -928,7 +928,7 @@ view: compustat_financial_fundamental {
 
   dimension: clfc {
     type: number
-     label: "Forward and Future Contracts"
+    label: "Forward and Future Contracts"
     group_label: "Contingent Liabilities"
     sql: ${TABLE}.clfc ;;
   }
@@ -1032,9 +1032,9 @@ view: compustat_financial_fundamental {
   dimension: costat {
     type: string
     sql: CASE
-  WHEN ${TABLE}.costat = "I" THEN 'Inactive'
-  WHEN ${TABLE}.costat = "A" THEN 'Active'
-  END ;;
+        WHEN ${TABLE}.costat = "I" THEN 'Inactive'
+        WHEN ${TABLE}.costat = "A" THEN 'Active'
+        END ;;
   }
 
   measure: costat_count {
@@ -2241,7 +2241,7 @@ view: compustat_financial_fundamental {
 
   dimension: glceeps {
     type: number
-  label: "Gain/Loss on Sale (Core Earnings Adjusted) Basic EPS Effect  "
+    label: "Gain/Loss on Sale (Core Earnings Adjusted) Basic EPS Effect  "
     sql: ${TABLE}.glceeps ;;
   }
 
