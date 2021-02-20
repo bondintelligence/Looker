@@ -5,21 +5,15 @@ view: FINRA_CRSP {
   derived_table: {
     sql:
       SELECT * FROM`bi-model-development.looker_FINAL.corp` WHERE
+      T_Spread IS NOT NULL AND
       OFFERING_PRICE IS NOT NULL AND
       company_symbol IS NOT NULL AND
       TREASURY_MATURITY IS NOT NULL AND
-      R_FR IS NOT NULL AND
-      R_SP IS NOT NULL AND
-      R_MR IS NOT NULL AND
-      N_SP IS NOT NULL AND
-      N_MR IS NOT NULL AND
-      N_FR IS NOT NULL AND
       RATING_CLASS IS NOT NULL AND
       T_Volume IS NOT NULL AND
       T_DVolume IS NOT NULL AND
-      T_Spread IS NOT NULL AND
-      T_Yld_Pt IS NOT NULL AND
       YIELD IS NOT NULL AND
+      T_Yld_Pt IS NOT NULL AND
       PRICE_EOM IS NOT NULL AND
       PRICE_LDM IS NOT NULL AND
       PRICE_L5M IS NOT NULL AND
@@ -432,10 +426,11 @@ view: FINRA_CRSP {
   }
 
   dimension: ret_eom {
-    type: number
+    #Was number
+    type: string
     label: "return_end_of_month"
     description: "Monthly return calculated based on PRICE_EOM and accrued coupon interest"
-    value_format: "0.00\%"
+    #value_format: "0.00\%"
     sql: ${TABLE}.RET_EOM ;;
   }
 
@@ -447,10 +442,11 @@ view: FINRA_CRSP {
   }
 
   dimension: ret_ldm {
-    type: number
+    #Was number
+    type: string
     label: "return_last_trading_day_of_month"
     description: "Monthly return calculated based on PRICE_LDM and accrued coupon interest"
-    value_format: "0.00\%"
+    #value_format: "0.00\%"
     sql: ${TABLE}.RET_LDM ;;
   }
 
@@ -494,22 +490,23 @@ view: FINRA_CRSP {
 
   dimension: t_dvolume {
     type: number
-    value_format: "$#,##0.00"
     label: "total_dollar_volume"
     sql: ${TABLE}.T_DVolume ;;
   }
 
   dimension: t_spread {
-    type: number
+    #Was number
+    type: string
     label: "Spread"
     description: "Average trade‐weighted bid‐ask spread"
-    value_format: "0.00\%"
+    #value_format: "0.00\%"
     sql: ${TABLE}.T_Spread ;;
   }
 
   dimension: t_volume {
-    type: number
-    value_format: "$#,##0.00"
+    #Was number
+    type: string
+    #value_format: "$#,##0.00"
     label: "total_par_value_volume  "
     sql: ${TABLE}.T_Volume ;;
   }
@@ -534,7 +531,7 @@ view: FINRA_CRSP {
   }
 
   dimension: yield {
-    type: number
+    type: string
     value_format: "0.00\%"
     sql: ${TABLE}.YIELD ;;
   }
