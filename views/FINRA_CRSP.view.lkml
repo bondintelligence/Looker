@@ -1,6 +1,6 @@
 
 view: FINRA_CRSP {
-  #sql_table_name: `bi-model-development.looker_FINAL.corp` ;;
+  # sql_table_name: `bi-model-development.looker_FINAL.corp` ;;
 
   derived_table: {
     sql:
@@ -491,6 +491,7 @@ view: FINRA_CRSP {
   dimension: t_dvolume {
     type: number
     label: "total_dollar_volume"
+    value_format: "$#,##0.00"
     sql: ${TABLE}.T_DVolume ;;
   }
 
