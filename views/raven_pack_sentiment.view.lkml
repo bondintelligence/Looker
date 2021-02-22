@@ -328,6 +328,9 @@ view: raven_pack_sentiment {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     sql: ${TABLE}.RPNA_DATE_UTC ;;

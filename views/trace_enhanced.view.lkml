@@ -53,11 +53,14 @@ view: trace_enhanced {
       month,
       quarter,
       year,
+      day_of_week,
+      day_of_month,
+      month_name,
       hour,
       minute,
       second
     ]
-    label: "Execution Datetime"
+    label: "Execution time"
     sql: CAST(CONCAT(${TABLE}.trd_exctn_dt, " ", ${TABLE}.trd_exctn_tm) AS DATETIME) ;;
     datatype: datetime
     convert_tz: no
@@ -73,9 +76,12 @@ view: trace_enhanced {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
-    label: "Report Datetime"
+    label: "Report time"
     sql: CAST(CONCAT(${TABLE}.trd_rpt_dt, " ", ${TABLE}.trd_rpt_tm) AS DATETIME) ;;
     datatype: datetime
     convert_tz: no
@@ -411,9 +417,12 @@ view: trace_enhanced {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
-    label: "Settlement Date"
+    label: "Settlement"
     sql: CAST(${TABLE}.stlmnt_dt AS DATE) ;;
     datatype: date
     convert_tz: no
@@ -476,9 +485,12 @@ view: trace_enhanced {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
-    label: "Prior Trade Report Date"
+    label: "Prior Trade Report"
     sql: CAST(${TABLE}.pr_trd_dt AS DATE) ;;
     datatype: date
     convert_tz: no
@@ -493,9 +505,12 @@ view: trace_enhanced {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
-    label: "First Trade Control Date"
+    label: "First Trade Control"
     sql: CAST(${TABLE}.first_trade_ctrl_date AS DATE) ;;
     datatype: date
     convert_tz: no

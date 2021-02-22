@@ -1217,6 +1217,8 @@ view: compustat_financial_fundamental {
   }
 
   dimension_group: datadate {
+    label: "Data"
+    description: " is often combined with GVKEY to make company records unique. For example, monthly supplemental company records and quarterly company records are unique to each. represents the reporting date for a data record.. Much of the data delivered by Xpressfeed is date sensitive"
     type: time
     timeframes: [
       raw,
@@ -1224,6 +1226,9 @@ view: compustat_financial_fundamental {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -1396,6 +1401,9 @@ view: compustat_financial_fundamental {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -2022,6 +2030,9 @@ view: compustat_financial_fundamental {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -2779,6 +2790,9 @@ view: compustat_financial_fundamental {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -3917,7 +3931,7 @@ view: compustat_financial_fundamental {
   }
 
   dimension_group: pdate {
-    label: "Preliminary Date"
+    label: "Preliminary"
     type: time
     timeframes: [
       raw,
@@ -3925,6 +3939,9 @@ view: compustat_financial_fundamental {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no

@@ -13,6 +13,7 @@ include: "/midPrice.view"
 include: "/midYield.view"
 include: "/predictedprice.view"
 include: "/predictedRisk.view"
+include: "/comparable_trades.view"
 
 datagroup: production_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -142,6 +143,10 @@ explore: price_muni_prediction {
 
 explore: price_corp_prediction {
   hidden: yes
+}
+
+explore: comparable_trades {
+  hidden:  yes
 }
 
 explore: predictedrisk {}
