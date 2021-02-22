@@ -500,9 +500,8 @@ view: FINRA_CRSP {
   }
 
   dimension: t_volume {
-    #Was number
     type: number
-    #value_format: "$#,##0.00"
+    value_format: "$#,##0.00"
     label: "total_par_value_volume  "
     sql: ${TABLE}.T_Volume ;;
   }
