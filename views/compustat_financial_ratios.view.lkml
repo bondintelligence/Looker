@@ -1,6 +1,13 @@
 view: compustat_financial_ratios {
-  sql_table_name: `bi-model-development.looker_FINAL.Compustat_Financial_Ratios`
-    ;;
+  # sql_table_name: `bi-model-development.looker_FINAL.Compustat_Financial_Ratios`
+  #   ;;
+
+  derived_table: {
+    sql: SELECT * FROM bi-model-development.looker_FINAL.Compustat_Financial_Ratios WHERE equity_invcap IS NOT NULL AND
+    totdebt_invcap IS NOT NULL AND divyield IS NOT NULL AND npm IS NOT NULL AND debt_capital IS NOT NULL
+    AND debt_at IS NOT NULL AND sale_invcap IS NOT NULL AND cfm IS NOT NULL AND lt_ppent IS NOT NULL AND
+    invt_act IS NOT NULL;;
+  }
 
   dimension: accrual {
     type: number
@@ -149,7 +156,7 @@ view: compustat_financial_ratios {
 
   dimension: cusip {
     type: string
-    sql: ${TABLE}.cusip ;;
+    sql: ${TABLE}.cusip;;
   }
 
   dimension: de_ratio {

@@ -54,4 +54,6 @@ view: bloomberg2 {
     type: count
     drill_fields: []
   }
+
+
 }

@@ -52,8 +52,8 @@ explore: FINRA_CRSP {
   label: "FINRA_CRSP"
   description: "The WRDS Bond Database is a novel and unique corporate bond database compiled by WRDS Researchers using the best standards in recent fixed income research. The WRDS Bond Database allows researchers to easily and effectively access cleaned datasets of corporate bond transactions, sourced from TRACE Standard and TRACE Enhanced datasets, along with a separate dataset for monthly price, return, coupon and yield information for all corporate bonds traded since July 2002. The chart illustrates the comprehensive database coverage of all traded corporate bond issues over time. Additionally, the WRDS Bond Database includes a unique and essential mapping table that links all bond and equity issues for every firm and at each point time using information in TRACE and CRSP databases."
   always_filter: {
-
-    filters: [cusip: "000325AA8"]
+    filters: [cusip: "17313YAL5"]
+    #filters: [cusip: "000325AA8"]
   }
   join: trace_enhanced {
     type: full_outer

@@ -1,6 +1,7 @@
 view: muni_issuance {
-  sql_table_name: `bi-model-development.looker_FINAL.Muni_Issuance`
-    ;;
+  sql_table_name: `bi-model-development.looker_FINAL.Muni_Issuance`;;
+
+
 
   dimension: admin_fee {
     type: number
@@ -9,12 +10,21 @@ view: muni_issuance {
     sql: ${TABLE}.Admin_Fee ;;
   }
 
-
-
   dimension: bond_cap_amount {
     type: number
     value_format: "$#,##0.00"
-    sql: ${TABLE}.Bond_Cap_Amount ;;
+    sql: ${TABLE}. ;;
+  }
+
+
+  dimension: Dollar_Price_of_the_trade {
+    type: number
+    sql: ${TABLE}.Dollar_Price_of_the_trade ;;
+  }
+
+  dimension: The_yield_of_the_trade {
+    type: number
+    sql: ${TABLE}.The_yield_of_the_trade ;;
   }
 
   dimension: bond_cap_issue {
@@ -429,7 +439,6 @@ view: muni_issuance {
 
 
 
-
   dimension: tax_ex_interest_variable {
     type: string
     sql: ${TABLE}.Tax_Ex_Interest_Variable ;;
@@ -457,10 +466,6 @@ view: muni_issuance {
     value_format: "$#,##0.00"
     sql: ${TABLE}.Taxable_Par_Value ;;
   }
-
-
-
-
 
   dimension_group: time_of_trade{
     type: time
@@ -548,10 +553,6 @@ view: muni_issuance {
     sql: ${TABLE}.Voter_Approved ;;
   }
 
-
-
-
-
   dimension: year_identifier {
     type: string
     label: "Year"
@@ -572,4 +573,5 @@ view: muni_issuance {
     type: string
     sql: ${travel_costs} ;;
   }
+
 }
