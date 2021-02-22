@@ -203,10 +203,6 @@ view: FINRA_CRSP {
     sql: ${TABLE}.GAP ;;
   }
 
-
-
-
-
   dimension_group: last_interest_date {
     label: "Last Interest"
     type: time
@@ -333,9 +329,10 @@ view: FINRA_CRSP {
   }
 
   dimension: price_l5_m {
-    type: string
+    type: number
     description: "Last price at which the bond was traded in a given month, if that day falls within the last 5 trading days of the month "
     label: "price last 5 days of month"
+    value_format: "$#,##0.00"
     sql: ${TABLE}.PRICE_L5M ;;
   }
 
@@ -426,27 +423,26 @@ view: FINRA_CRSP {
   }
 
   dimension: ret_eom {
-    #Was number
-    type: string
+    type: number
     label: "return_end_of_month"
     description: "Monthly return calculated based on PRICE_EOM and accrued coupon interest"
-    #value_format: "0.00\%"
+    value_format: "0.00\%"
     sql: ${TABLE}.RET_EOM ;;
   }
 
   dimension: ret_l5_m {
-    type: string
+    type: number
     description: "Monthly return calculated based on PRICE_L5M and accrued coupon interest"
     label: "return_last_5_days"
+    value_format: "0.00\%"
     sql: ${TABLE}.RET_L5M ;;
   }
 
   dimension: ret_ldm {
-    #Was number
-    type: string
+    type: number
     label: "return_last_trading_day_of_month"
     description: "Monthly return calculated based on PRICE_LDM and accrued coupon interest"
-    #value_format: "0.00\%"
+    value_format: "0.00\%"
     sql: ${TABLE}.RET_LDM ;;
   }
 
@@ -496,17 +492,16 @@ view: FINRA_CRSP {
   }
 
   dimension: t_spread {
-    #Was number
-    type: string
+    type: number
     label: "Spread"
     description: "Average trade‐weighted bid‐ask spread"
-    #value_format: "0.00\%"
+    value_format: "0.00\%"
     sql: ${TABLE}.T_Spread ;;
   }
 
   dimension: t_volume {
     #Was number
-    type: string
+    type: number
     #value_format: "$#,##0.00"
     label: "total_par_value_volume  "
     sql: ${TABLE}.T_Volume ;;
@@ -532,7 +527,7 @@ view: FINRA_CRSP {
   }
 
   dimension: yield {
-    type: string
+    type: number
     value_format: "0.00\%"
     sql: ${TABLE}.YIELD ;;
   }
