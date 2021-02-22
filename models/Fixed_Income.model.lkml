@@ -4,13 +4,8 @@ connection: "bqwarehouse"
 
 # include all the views
 include: "/views/**/*.view"
-include: "/askYield.view"
-include: "/bidYield.view"
 include: "/default_probablity.view"
-include: "/lastPrice.view"
 include: "/last_trades.view"
-include: "/midPrice.view"
-include: "/midYield.view"
 include: "/predictedprice.view"
 include: "/predictedRisk.view"
 
@@ -103,31 +98,13 @@ explore: muni_issuance {
 }
 
 
-explore: askYield {
-  hidden: yes
-}
-
-explore: bidYield {
-  hidden: yes
-}
 
 explore: default_probablity {
   hidden: yes
 }
 
-explore: lastPrice {
-  hidden: yes
-}
 
 explore: last_trades {
-  hidden: yes
-}
-
-explore: midPrice {
-  hidden: yes
-}
-
-explore: midYield {
   hidden: yes
 }
 

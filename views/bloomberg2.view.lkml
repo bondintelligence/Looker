@@ -54,4 +54,30 @@ view: bloomberg2 {
     type: count
     drill_fields: []
   }
+
+  measure: last_price_ {
+    type: number
+    sql: ${TABLE}.LastPrice ;;
+  }
+
+  measure: mid_price_ {
+    type: number
+    sql: ${TABLE}.MidPrice ;;
+  }
+
+  measure: mid_ytm_ {
+    type: number
+    sql: ${TABLE}.MidYTM ;;
+  }
+
+  measure: ask_ytm_ {
+    type: number
+    sql: CAST(${TABLE}.AskYTM AS float64) ;;
+  }
+
+  measure: bid_ytm_ {
+    type: number
+    sql: CAST(${TABLE}.BidYTM AS float64) ;;
+  }
+
 }

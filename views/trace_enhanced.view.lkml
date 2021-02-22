@@ -1,6 +1,10 @@
 view: trace_enhanced {
   derived_table: {
-    sql: SELECT * FROM looker_FINAL.TRACE_Enhanced
+    sql: SELECT * FROM looker_FINAL.TRACE_Enhanced WHERE
+              cmsn_trd IS NOT NULL AND
+              yld_sign_cd IS NOT NULL AND
+              asof_cd IS NOT NULL AND
+              sell_cpcty_cd IS NOT NULL
       ;;
   }
 
@@ -116,22 +120,22 @@ view: trace_enhanced {
     }
   }
 
-  dimension: scrty_type_cd {
-    type: string
-    description: "Identifies the type of security reported in the trade."
-    label: "Security Type"
-    case: {
-      when: {
-        sql: ${TABLE}.scrty_type_cd = "C" ;;
-        label: "Corporate Bond"
-      }
-      when: {
-        sql: ${TABLE}.scrty_type_cd = "E" ;;
-        label: "Equity Linked Note"
-      }
-    }
-    sql: ${TABLE}.scrty_type_cd ;;
-  }
+  # dimension: scrty_type_cd {
+  #   type: string
+  #   description: "Identifies the type of security reported in the trade."
+  #   label: "Security Type"
+  #   case: {
+  #     when: {
+  #       sql: ${TABLE}.scrty_type_cd = "C" ;;
+  #       label: "Corporate Bond"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.scrty_type_cd = "E" ;;
+  #       label: "Equity Linked Note"
+  #     }
+  #   }
+  #   sql: ${TABLE}.scrty_type_cd ;;
+  # }
 
   dimension: wis_fl {
     type: string
@@ -205,38 +209,38 @@ view: trace_enhanced {
     sql: ${TABLE}.days_to_sttl_ct ;;
   }
 
-  dimension: sale_cndtn_cd {
-    type: string
-    description: "This field will indicate if there are any special conditions or modifiers applicable to the trade transaction, using alphanumeric or special characters."
-    label: "Sale Condition"
-    case: {
-      when: {
-        sql: ${TABLE}.sale_cndtn_cd = "A" ;;
-        label: "Trades Reported Outside Market Hours"
-      }
-      when: {
-        sql: ${TABLE}.sale_cndtn_cd = "C" ;;
-        label: "Cash Sale"
-      }
-      when: {
-        sql: ${TABLE}.sale_cndtn_cd = "N" ;;
-        label: "Next Day Settlement"
-      }
-      when: {
-        sql: ${TABLE}.sale_cndtn_cd = "R" ;;
-        label: "Sellers Option Settlement"
-      }
-      when: {
-        sql: ${TABLE}.sale_cndtn_cd = "W" ;;
-        label: "Weighted Average Price"
-      }
-      when: {
-        sql: ${TABLE}.sale_cndtn_cd = "Z" ;;
-        label: "Sold Out of Sequence (Reported Late)"
-      }
-      else: "Regular Trade"
-    }
-  }
+  # dimension: sale_cndtn_cd {
+  #   type: string
+  #   description: "This field will indicate if there are any special conditions or modifiers applicable to the trade transaction, using alphanumeric or special characters."
+  #   label: "Sale Condition"
+  #   case: {
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn_cd = "A" ;;
+  #       label: "Trades Reported Outside Market Hours"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn_cd = "C" ;;
+  #       label: "Cash Sale"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn_cd = "N" ;;
+  #       label: "Next Day Settlement"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn_cd = "R" ;;
+  #       label: "Sellers Option Settlement"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn_cd = "W" ;;
+  #       label: "Weighted Average Price"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn_cd = "Z" ;;
+  #       label: "Sold Out of Sequence (Reported Late)"
+  #     }
+  #     else: "Regular Trade"
+  #   }
+  # }
 
   dimension: sale_cndtn2_cd {
     type: string
@@ -517,7 +521,7 @@ view: trace_enhanced {
       trd_rpt_dt_year,
       msg_seq_nb,
       trc_st,
-      scrty_type_cd,
+     # scrty_type_cd,
       wis_fl,
       cmsn_trd,
       entrd_vol_qt,
@@ -526,7 +530,7 @@ view: trace_enhanced {
       yld_pt,
       asof_cd,
       days_to_sttl_ct,
-      sale_cndtn_cd,
+     # sale_cndtn_cd,
       sale_cndtn2_cd,
       agu_qsr_id,
       rpt_side_cd,

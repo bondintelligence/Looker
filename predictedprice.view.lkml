@@ -32,7 +32,7 @@ view: predictedprice {
   parameter: CUSIP {
     type: unquoted
 
-  }
+    }
 
   measure: count {
     type: count
