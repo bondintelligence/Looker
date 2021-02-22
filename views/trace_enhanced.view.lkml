@@ -1,10 +1,7 @@
 view: trace_enhanced {
   derived_table: {
-    sql: SELECT * FROM looker_FINAL.TRACE_Enhanced WHERE
-              cmsn_trd IS NOT NULL AND
-              yld_sign_cd IS NOT NULL AND
-              asof_cd IS NOT NULL AND
-              sell_cpcty_cd IS NOT NULL
+    sql: SELECT * FROM `bi-model-development.looker_FINAL.TRACE_Enhanced` WHERE
+              buy_cpcty_cd IS NOT NULL AND  sell_cpcty_cd IS NOT NULL AND yld_sign_cd  IS NOT NULL
       ;;
   }
 
@@ -144,12 +141,12 @@ view: trace_enhanced {
     sql: ${TABLE}.wis_fl ;;
   }
 
-  dimension: cmsn_trd {
-    type: string
-    description: "Indicates if the reported price is inclusive of dealer commission."
-    label: "Commission Indicator"
-    sql: ${TABLE}.cmsn_trd ;;
-  }
+  # dimension: cmsn_trd {
+  #   type: string
+  #   description: "Indicates if the reported price is inclusive of dealer commission."
+  #   label: "Commission Indicator"
+  #   sql: ${TABLE}.cmsn_trd ;;
+  # }
 
   dimension: entrd_vol_qt {
     type: number
@@ -242,22 +239,22 @@ view: trace_enhanced {
   #   }
   # }
 
-  dimension: sale_cndtn2_cd {
-    type: string
-    description: "This field is used to describe a second sale condition that is applicable to the trade."
-    label: "Second Modifier"
-    case: {
-      when: {
-        sql: ${TABLE}.sale_cndtn2_cd = "A" ;;
-        label: "Trades Reported Outside Market Hours"
-      }
-      when: {
-        sql: ${TABLE}.sale_cndtn2_cd = "Z" ;;
-        label: "Sold Out of Sequence (Reported Late)"
-      }
-      else: "Single or No Modifiers on Trade"
-    }
-  }
+  # dimension: sale_cndtn2_cd {
+  #   type: string
+  #   description: "This field is used to describe a second sale condition that is applicable to the trade."
+  #   label: "Second Modifier"
+  #   case: {
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn2_cd = "A" ;;
+  #       label: "Trades Reported Outside Market Hours"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn2_cd = "Z" ;;
+  #       label: "Sold Out of Sequence (Reported Late)"
+  #     }
+  #     else: "Single or No Modifiers on Trade"
+  #   }
+  # }
 
   dimension: rpt_side_cd {
     type: string
@@ -521,17 +518,17 @@ view: trace_enhanced {
       trd_rpt_dt_year,
       msg_seq_nb,
       trc_st,
-     # scrty_type_cd,
+     #scrty_type_cd,
       wis_fl,
-      cmsn_trd,
+     #cmsn_trd,
       entrd_vol_qt,
       rptd_pr,
       yld_sign_cd,
       yld_pt,
       asof_cd,
       days_to_sttl_ct,
-     # sale_cndtn_cd,
-      sale_cndtn2_cd,
+      # sale_cndtn_cd,
+      # sale_cndtn2_cd,
       agu_qsr_id,
       rpt_side_cd,
       buy_cmsn_rt,
