@@ -59,5 +59,31 @@ view: bloomberg2 {
 
   }
 
+  measure: ask_ytm_ {
+    type:  number
+    sql: ${ask_ytm} ;;
+  }
+
+  measure: bid_ytm_ {
+    type: number
+    sql: ${bid_ytm} ;;
+  }
+
+  measure: mid_ytm_ {
+    type: number
+    sql: ${mid_ytm} ;;
+  }
+
+
+  measure: last_price_ {
+    type: number
+    sql: ${last_price} ;;
+  }
+
+  measure: mid_price_ {
+    type: number
+    sql: ${mid_price} ;;
+  }
+
 
 }
