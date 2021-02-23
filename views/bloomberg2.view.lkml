@@ -50,9 +50,13 @@ view: bloomberg2 {
     sql: ${TABLE}.MidYTM ;;
   }
 
+
   measure: count {
     type: count
     drill_fields: []
+
+
+
   }
 
 
