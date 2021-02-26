@@ -184,7 +184,7 @@ view: mergent_bond_redemption {
   # }
 
   dimension: issue_id {
-    type: number
+    type: string
     sql: ${TABLE}.ISSUE_ID ;;
   }
 
@@ -200,7 +200,7 @@ view: mergent_bond_redemption {
   # }
 
   dimension: issuer_id {
-    type: number
+    type: string
     sql: ${TABLE}.ISSUER_ID ;;
   }
 
@@ -308,7 +308,7 @@ view: mergent_bond_redemption {
   #   label: "m&r_Price"
   #   group_label: "maintenance_and_replacement"
   #   description: "The price at which bonds may be called where funded by moneys in the maintenance and replacement fund."
-  #   sql: ${TABLE}.MR_PRICE ;;
+  #   sql: coalesce(${TABLE}.MR_PRICE, NULL, "0");;
   # }
 
   # dimension_group: next_call_date {
@@ -331,11 +331,11 @@ view: mergent_bond_redemption {
   #   sql: REPLACE(${TABLE}.NEXT_CALL_DATE, "/", "-");;
   # }
 
-  # dimension: next_call_price {
-  #   label: "Redemption"
-  #   type: number
-  #   sql: ${TABLE}.NEXT_CALL_PRICE ;;
-  # }
+  dimension: next_call_price {
+
+    type: number
+    sql: coalesce(${TABLE}.NEXT_CALL_PRICE, NULL, "0") ;;
+  }
 
   dimension: next_sf_amount {
     type: number
@@ -433,10 +433,27 @@ view: mergent_bond_redemption {
     sql: ${TABLE}.SUDDEN_DEATH_PREMIUM ;;
   }
 
+################################################################################
+
+
   measure: count {
     type: count
     drill_fields: [prospectus_issuer_name, issue_name]
   }
 
+  measure: next_sf_amount_ {
+    type: number
+    label: "Next Sinking Fund Amount"
+    group_label: "Sinking Fund"
+    description: "The dollar amount of the issue (in $000’s) that will be redeemed on the next_sf_date (unless skipped)."
+    sql: ${TABLE}.NEXT_SF_AMOUNT ;;
+  }
+
+  measure: next_sf_price_ {
+    type: number
+    label: "Next Sinking Fund Price"
+    group_label: "Sinking Fund"
+    sql: ${TABLE}.NEXT_SF_PRICE ;;
+  }
 
 }

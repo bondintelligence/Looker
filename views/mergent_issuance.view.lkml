@@ -146,37 +146,37 @@ view: mergent_issuance {
     sql: ${TABLE}.ACTIVE_ISSUE ;;
   }
 
-  dimension: after_acquired_property_clause {
-    type: string
-    group_label: "Bond Holder"
-    description: "Property acquired after the sale of current debt issues will be included in the current issuer's mortgage. Normally found in utility issuers with blanket mortgages."
-    sql: ${TABLE}.AFTER_ACQUIRED_PROPERTY_CLAUSE ;;
-  }
+  # dimension: after_acquired_property_clause {
+  #   type: string
+  #   group_label: "Bond Holder"
+  #   description: "Property acquired after the sale of current debt issues will be included in the current issuer's mortgage. Normally found in utility issuers with blanket mortgages."
+  #   sql: ${TABLE}.AFTER_ACQUIRED_PROPERTY_CLAUSE ;;
+  # }
 
-  dimension: agent_id {
-    type: number
-    sql: ${TABLE}.AGENT_ID ;;
-  }
+  # dimension: agent_id {
+  #   type: number
+  #   sql: ${TABLE}.AGENT_ID ;;
+  # }
 
-  dimension: allocated_offering_price_other {
-    type: number
-    group_label: "Other Security"
-    description: "Portion of the unit price allocated to the non-debt, non-warrant security in the unit."
-    sql: ${TABLE}.ALLOCATED_OFFERING_PRICE_OTHER ;;
-  }
+  # dimension: allocated_offering_price_other {
+  #   type: number
+  #   group_label: "Other Security"
+  #   description: "Portion of the unit price allocated to the non-debt, non-warrant security in the unit."
+  #   sql: ${TABLE}.ALLOCATED_OFFERING_PRICE_OTHER ;;
+  # }
 
-  dimension: allocated_offering_price_unit {
-    type: number
-    group_label: "Unit"
-    description: "From the prospectus, the value of the bond part of the unit. The unit's price is divided into the price allocated to the bond and the price allocated to the second security in the unit."
-    sql: ${TABLE}.ALLOCATED_OFFERING_PRICE_UNIT ;;
-  }
+  # dimension: allocated_offering_price_unit {
+  #   type: number
+  #   group_label: "Unit"
+  #   description: "From the prospectus, the value of the bond part of the unit. The unit's price is divided into the price allocated to the bond and the price allocated to the second security in the unit."
+  #   sql: ${TABLE}.ALLOCATED_OFFERING_PRICE_UNIT ;;
+  # }
 
-  dimension: amount {
-    type: number
-    group_label: "Overallotment"
-    sql: ${TABLE}.AMOUNT ;;
-  }
+  # dimension: amount {
+  #   type: number
+  #   group_label: "Overallotment"
+  #   sql: ${TABLE}.AMOUNT ;;
+  # }
 
   dimension: amount_outstanding {
     type: number
@@ -185,13 +185,13 @@ view: mergent_issuance {
     sql: ${TABLE}.AMOUNT_OUTSTANDING ;;
   }
 
-  dimension: amt_offered {
-    type: number
-    group_label: "Issue"
-    label: "Amount Offered"
-    description: "Issue's par amount in the currency of denomination."
-    sql: ${TABLE}.AMT_OFFERED ;;
-  }
+  # dimension: amt_offered {
+  #   type: number
+  #   group_label: "Issue"
+  #   label: "Amount Offered"
+  #   description: "Issue's par amount in the currency of denomination."
+  #   sql: ${TABLE}.AMT_OFFERED ;;
+  # }
 
   dimension: announced_call {
     type: string
@@ -200,25 +200,25 @@ view: mergent_issuance {
     sql: ${TABLE}.ANNOUNCED_CALL ;;
   }
 
-  dimension_group: as_of_date {
-    label: "Convertible As of"
-    description: "The date the current convertible information was added to the issue."
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.AS_OF_DATE, 1, 4),"-",SUBSTRING(${TABLE}.AS_OF_DATE, 5, 2),"-",SUBSTRING(${TABLE}.AS_OF_DATE, 7, 2));;
-  }
+  # dimension_group: as_of_date {
+  #   label: "Convertible As of"
+  #   description: "The date the current convertible information was added to the issue."
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.AS_OF_DATE, 1, 4),"-",SUBSTRING(${TABLE}.AS_OF_DATE, 5, 2),"-",SUBSTRING(${TABLE}.AS_OF_DATE, 7, 2));;
+  # }
 
   dimension: asset_backed {
     type: string
@@ -227,12 +227,12 @@ view: mergent_issuance {
     sql: ${TABLE}.ASSET_BACKED ;;
   }
 
-  dimension: asset_sale_clause {
-    type: string
-    group_label: "Bond Holder"
-    description: "Covenant requiring the issuer to use net proceeds from the sale of certain assets to redeem the bonds at par or at a premium. This covenant does not limit the issuers right to sell assets"
-    sql: ${TABLE}.ASSET_SALE_CLAUSE ;;
-  }
+  # dimension: asset_sale_clause {
+  #   type: string
+  #   group_label: "Bond Holder"
+  #   description: "Covenant requiring the issuer to use net proceeds from the sale of certain assets to redeem the bonds at par or at a premium. This covenant does not limit the issuers right to sell assets"
+  #   sql: ${TABLE}.ASSET_SALE_CLAUSE ;;
+  # }
 
   dimension: bond_type {
     type: string
@@ -470,139 +470,139 @@ view: mergent_issuance {
     }
   }
 
-  dimension: borrowing_restricted {
-    type: string
-    group_label: "Subsidiary Restrictive"
-    description: "Indicates subsidiaries are restricted from borrowing, except from parent."
-    sql: ${TABLE}.BORROWING_RESTRICTED ;;
-  }
+  # dimension: borrowing_restricted {
+  #   type: string
+  #   group_label: "Subsidiary Restrictive"
+  #   description: "Indicates subsidiaries are restricted from borrowing, except from parent."
+  #   sql: ${TABLE}.BORROWING_RESTRICTED ;;
+  # }
 
 
 
-  dimension: change_control_put_provisions {
-    type: string
-    group_label: "Bond Holder"
-    description: "Upon a change of control in the issuer, bondholders have the option of selling the issue back to the issuer (poison put). Other conditions may limit the bondholder's ability to exercise the put option. Poison puts are often used when a company fears an unwanted takeover by ensuring that a successful hostile takeover bid will trigger an event that substantially reduces the value of the company."
-    sql: ${TABLE}.CHANGE_CONTROL_PUT_PROVISIONS ;;
-  }
+  # dimension: change_control_put_provisions {
+  #   type: string
+  #   group_label: "Bond Holder"
+  #   description: "Upon a change of control in the issuer, bondholders have the option of selling the issue back to the issuer (poison put). Other conditions may limit the bondholder's ability to exercise the put option. Poison puts are often used when a company fears an unwanted takeover by ensuring that a successful hostile takeover bid will trigger an event that substantially reduces the value of the company."
+  #   sql: ${TABLE}.CHANGE_CONTROL_PUT_PROVISIONS ;;
+  # }
 
-  dimension_group: change_date {
-    label: "Convertible Change"
-    description: "The date the current convertible information was added to the issue."
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.CHANGE_DATE, 1, 4),"-",SUBSTRING(${TABLE}.CHANGE_DATE, 5, 2),"-",SUBSTRING(${TABLE}.CHANGE_DATE, 7, 2));;
-  }
+  # dimension_group: change_date {
+  #   label: "Convertible Change"
+  #   description: "The date the current convertible information was added to the issue."
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.CHANGE_DATE, 1, 4),"-",SUBSTRING(${TABLE}.CHANGE_DATE, 5, 2),"-",SUBSTRING(${TABLE}.CHANGE_DATE, 7, 2));;
+  # }
 
-  dimension: coco_change_frequency {
-    type: string
-    label: "COCO Change Freq"
-    group_label: "Convertible Additional Terms"
-    sql: ${TABLE}.COCO_CHANGE_FREQUENCY ;;
-  }
+  # dimension: coco_change_frequency {
+  #   type: string
+  #   label: "COCO Change Freq"
+  #   group_label: "Convertible Additional Terms"
+  #   sql: ${TABLE}.COCO_CHANGE_FREQUENCY ;;
+  # }
 
-  dimension: coco_change_rate {
-    type: number
-    label: "COCO Change Rate"
-    group_label: "Convertible Additional Terms"
-    description: "Annual percentage change of the coco_initial_trigger_percent."
-    sql: ${TABLE}.COCO_CHANGE_RATE ;;
-  }
+  # dimension: coco_change_rate {
+  #   type: number
+  #   label: "COCO Change Rate"
+  #   group_label: "Convertible Additional Terms"
+  #   description: "Annual percentage change of the coco_initial_trigger_percent."
+  #   sql: ${TABLE}.COCO_CHANGE_RATE ;;
+  # }
 
-  dimension_group: conv_end_date {
-    type: time
-    label: "Convertible End Date"
-    description: "Last date that the conditional conversion terms apply."
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.COCO_END_DATE, 1, 4),"-",SUBSTRING(${TABLE}.COCO_END_DATE, 5, 2),"-",SUBSTRING(${TABLE}.COCO_END_DATE, 7, 2));;
-  }
+  # dimension_group: conv_end_date {
+  #   type: time
+  #   label: "Convertible End Date"
+  #   description: "Last date that the conditional conversion terms apply."
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.COCO_END_DATE, 1, 4),"-",SUBSTRING(${TABLE}.COCO_END_DATE, 5, 2),"-",SUBSTRING(${TABLE}.COCO_END_DATE, 7, 2));;
+  # }
 
-  dimension: coco_initial_trigger_percent {
-    type: number
-    label: "COCO Init Trigger Pct"
-    group_label: "Convertible Additional Terms"
-    description: "Stock price level initially required to trigger conditional conversion."
-    sql: ${TABLE}.COCO_INITIAL_TRIGGER_PERCENT ;;
-  }
+  # dimension: coco_initial_trigger_percent {
+  #   type: number
+  #   label: "COCO Init Trigger Pct"
+  #   group_label: "Convertible Additional Terms"
+  #   description: "Stock price level initially required to trigger conditional conversion."
+  #   sql: ${TABLE}.COCO_INITIAL_TRIGGER_PERCENT ;;
+  # }
 
-  dimension: coco_min_trigger_level {
-    type: number
-    label: "COCO Min Trigger Level"
-    group_label: "Convertible Additional Terms"
-    description: "The lowest number the trigger percent will reach."
-    sql: ${TABLE}.COCO_MIN_TRIGGER_LEVEL ;;
-  }
+  # dimension: coco_min_trigger_level {
+  #   type: number
+  #   label: "COCO Min Trigger Level"
+  #   group_label: "Convertible Additional Terms"
+  #   description: "The lowest number the trigger percent will reach."
+  #   sql: ${TABLE}.COCO_MIN_TRIGGER_LEVEL ;;
+  # }
 
-  dimension_group: coco_start_date {
-    type: time
-    label: "Convertible Start"
-    description: "Date at which conversion becomes conditional."
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.COCO_START_DATE, 1, 4),"-",SUBSTRING(${TABLE}.COCO_START_DATE, 5, 2),"-",SUBSTRING(${TABLE}.COCO_START_DATE, 7, 2));;
-  }
+  # dimension_group: coco_start_date {
+  #   type: time
+  #   label: "Convertible Start"
+  #   description: "Date at which conversion becomes conditional."
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.COCO_START_DATE, 1, 4),"-",SUBSTRING(${TABLE}.COCO_START_DATE, 5, 2),"-",SUBSTRING(${TABLE}.COCO_START_DATE, 7, 2));;
+  # }
 
-  dimension: coco_trade_days {
-    type: string
-    label: "COCO Trade Days"
-    group_label: "Convertible Additional Terms"
-    description: "The number of trading days that the conversion commodity must trade at or above the trigger percent."
-    sql: ${TABLE}.COCO_TRADE_DAYS ;;
-  }
+  # dimension: coco_trade_days {
+  #   type: string
+  #   label: "COCO Trade Days"
+  #   group_label: "Convertible Additional Terms"
+  #   description: "The number of trading days that the conversion commodity must trade at or above the trigger percent."
+  #   sql: ${TABLE}.COCO_TRADE_DAYS ;;
+  # }
 
-  dimension: coco_trade_days_in_previous {
-    type: string
-    label: "COCO Trade Period"
-    group_label: "Convertible Additional Terms"
-    sql: ${TABLE}.COCO_TRADE_DAYS_IN_PREVIOUS ;;
-  }
+  # dimension: coco_trade_days_in_previous {
+  #   type: string
+  #   label: "COCO Trade Period"
+  #   group_label: "Convertible Additional Terms"
+  #   sql: ${TABLE}.COCO_TRADE_DAYS_IN_PREVIOUS ;;
+  # }
 
-  dimension: coco_trigger_expressed_as {
-    type: string
-    label: "COCO Trigger Code"
-    group_label: "Convertible Additional Terms"
-    description: "A four-letter code indicating how the coco_initial_trigger_percent is expressed."
-    sql: ${TABLE}.COCO_TRIGGER_EXPRESSED_AS ;;
-  }
+  # dimension: coco_trigger_expressed_as {
+  #   type: string
+  #   label: "COCO Trigger Code"
+  #   group_label: "Convertible Additional Terms"
+  #   description: "A four-letter code indicating how the coco_initial_trigger_percent is expressed."
+  #   sql: ${TABLE}.COCO_TRIGGER_EXPRESSED_AS ;;
+  # }
 
-  dimension: commod_price {
-    type: number
-    group_label: "Convertible"
-    label: "Commodity Price"
-    sql: ${TABLE}.COMMOD_PRICE ;;
-  }
+  # dimension: commod_price {
+  #   type: number
+  #   group_label: "Convertible"
+  #   label: "Commodity Price"
+  #   sql: ${TABLE}.COMMOD_PRICE ;;
+  # }
 
   dimension: comp_neg_exch_deal {
     type: string
@@ -626,202 +626,202 @@ view: mergent_issuance {
     sql: ${TABLE}.CONDITIONAL_CONV_TERMS ;;
   }
 
-  dimension: consolidation_merger {
-    type: string
-    group_label: "Issuer"
-    description: "Indicates that a consolidation or merger of the issuer with another entity is restricted."
-    sql: ${TABLE}.CONSOLIDATION_MERGER ;;
-  }
+  # dimension: consolidation_merger {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "Indicates that a consolidation or merger of the issuer with another entity is restricted."
+  #   sql: ${TABLE}.CONSOLIDATION_MERGER ;;
+  # }
 
-  dimension: conv_cash {
-    type: number
-    label: "Convertible Cash"
-    group_label: "Convertible"
-    description: "Additional cash payable by bondholder to effect conversion."
-    sql: ${TABLE}.CONV_CASH ;;
-  }
+  # dimension: conv_cash {
+  #   type: number
+  #   label: "Convertible Cash"
+  #   group_label: "Convertible"
+  #   description: "Additional cash payable by bondholder to effect conversion."
+  #   sql: ${TABLE}.CONV_CASH ;;
+  # }
 
-  dimension: conv_commod_cusip {
-    type: string
-    label: "Convertible Commodity CUSIP"
-    group_label: "Convertible"
-    sql: ${TABLE}.CONV_COMMOD_CUSIP ;;
-  }
+  # dimension: conv_commod_cusip {
+  #   type: string
+  #   label: "Convertible Commodity CUSIP"
+  #   group_label: "Convertible"
+  #   sql: ${TABLE}.CONV_COMMOD_CUSIP ;;
+  # }
 
-  dimension: conv_commod_issuer {
-    type: string
-    label: "Convertible Commodity Issuer"
-    group_label: "Convertible"
-    sql: ${TABLE}.CONV_COMMOD_ISSUER ;;
-  }
+  # dimension: conv_commod_issuer {
+  #   type: string
+  #   label: "Convertible Commodity Issuer"
+  #   group_label: "Convertible"
+  #   sql: ${TABLE}.CONV_COMMOD_ISSUER ;;
+  # }
 
-  dimension: conv_commod_type {
-    type: string
-    label: "Convertible Commodity Type"
-    group_label: "Convertible"
-    sql: ${TABLE}.CONV_COMMOD_TYPE ;;
-  }
+  # dimension: conv_commod_type {
+  #   type: string
+  #   label: "Convertible Commodity Type"
+  #   group_label: "Convertible"
+  #   sql: ${TABLE}.CONV_COMMOD_TYPE ;;
+  # }
 
-  dimension_group: conv_eff_date {
-    label: "Convertible Effective"
-    description: "First date on which issue may be converted. It is the settlement date, if not specified."
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.CONV_EFF_DATE, 1, 4),"-",SUBSTRING(${TABLE}.CONV_EFF_DATE, 5, 2),"-",SUBSTRING(${TABLE}.CONV_EFF_DATE, 7, 2));;
-  }
+  # dimension_group: conv_eff_date {
+  #   label: "Convertible Effective"
+  #   description: "First date on which issue may be converted. It is the settlement date, if not specified."
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.CONV_EFF_DATE, 1, 4),"-",SUBSTRING(${TABLE}.CONV_EFF_DATE, 5, 2),"-",SUBSTRING(${TABLE}.CONV_EFF_DATE, 7, 2));;
+  # }
 
-  dimension_group: conv_exp_date {
-    label: "Convertible Expiration"
-    description: "Date on which conversion privilege expires"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.CONV_EXP_DATE, 1, 4),"-",SUBSTRING(${TABLE}.CONV_EXP_DATE, 5, 2),"-",SUBSTRING(${TABLE}.CONV_EXP_DATE, 7, 2));;
-  }
+  # dimension_group: conv_exp_date {
+  #   label: "Convertible Expiration"
+  #   description: "Date on which conversion privilege expires"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.CONV_EXP_DATE, 1, 4),"-",SUBSTRING(${TABLE}.CONV_EXP_DATE, 5, 2),"-",SUBSTRING(${TABLE}.CONV_EXP_DATE, 7, 2));;
+  # }
 
-  dimension: conv_part_trade_days {
-    group_label: "Convertible"
-    label: "Convertible Part Trade Days"
-    description: "The number of trading days that the conversion security must trade at or above a certain price to allow redemption."
-    type: number
-    sql: ${TABLE}.CONV_PART_TRADE_DAYS ;;
-  }
+  # dimension: conv_part_trade_days {
+  #   group_label: "Convertible"
+  #   label: "Convertible Part Trade Days"
+  #   description: "The number of trading days that the conversion security must trade at or above a certain price to allow redemption."
+  #   type: number
+  #   sql: ${TABLE}.CONV_PART_TRADE_DAYS ;;
+  # }
 
-  dimension: conv_period_days {
-    type: number
-    description: "Number of days prior to the announced redemption date that the bondholders are allowed to convert their bonds.."
-    group_label: "Convertible"
-    label: "Convertible Period Days"
-    sql: ${TABLE}.CONV_PERIOD_DAYS ;;
-  }
+  # dimension: conv_period_days {
+  #   type: number
+  #   description: "Number of days prior to the announced redemption date that the bondholders are allowed to convert their bonds.."
+  #   group_label: "Convertible"
+  #   label: "Convertible Period Days"
+  #   sql: ${TABLE}.CONV_PERIOD_DAYS ;;
+  # }
 
-  dimension: conv_period_spec {
-    type: string
-    group_label: "Convertible"
-    label: "Convertible Period Spec"
-    description: "Indicates whether or not the bondholder must submit their security for conversion in a specified time period prior to redemption"
-    sql: ${TABLE}.CONV_PERIOD_SPEC ;;
-  }
+  # dimension: conv_period_spec {
+  #   type: string
+  #   group_label: "Convertible"
+  #   label: "Convertible Period Spec"
+  #   description: "Indicates whether or not the bondholder must submit their security for conversion in a specified time period prior to redemption"
+  #   sql: ${TABLE}.CONV_PERIOD_SPEC ;;
+  # }
 
-  dimension: conv_premium {
-    type: number
-    group_label: "Convertible"
-    label: "Convertible Premium"
-    description: "The percentage difference between the conversion price and the market price of the conversion commodity as of the AS_OF_DATE."
-    sql: ${TABLE}.CONV_PREMIUM ;;
-  }
+  # dimension: conv_premium {
+  #   type: number
+  #   group_label: "Convertible"
+  #   label: "Convertible Premium"
+  #   description: "The percentage difference between the conversion price and the market price of the conversion commodity as of the AS_OF_DATE."
+  #   sql: ${TABLE}.CONV_PREMIUM ;;
+  # }
 
-  dimension: conv_price {
-    type: number
-    group_label: "Convertible"
-    label: "Convertible Price"
-    sql: ${TABLE}.CONV_PRICE ;;
-  }
+  # dimension: conv_price {
+  #   type: number
+  #   group_label: "Convertible"
+  #   label: "Convertible Price"
+  #   sql: ${TABLE}.CONV_PRICE ;;
+  # }
 
-  dimension: conv_price_percent {
-    type: number
-    group_label: "Convertible"
-    label: "Convertible Price Percent"
-    description: "Minimum percentage of the applicable conversion price at which the conversion commodity must trade at before restrictions on redemption are lifted."
-    sql: ${TABLE}.CONV_PRICE_PERCENT ;;
-  }
+  # dimension: conv_price_percent {
+  #   type: number
+  #   group_label: "Convertible"
+  #   label: "Convertible Price Percent"
+  #   description: "Minimum percentage of the applicable conversion price at which the conversion commodity must trade at before restrictions on redemption are lifted."
+  #   sql: ${TABLE}.CONV_PRICE_PERCENT ;;
+  # }
 
-  dimension_group: conv_prohibited_from {
-    label: "Convertible Prohibited From"
-    description: "Start date of current soft call feature."
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.CONV_PROHIBITED_FROM, 1, 4),"-",SUBSTRING(${TABLE}.CONV_PROHIBITED_FROM, 5, 2),"-",SUBSTRING(${TABLE}.CONV_PROHIBITED_FROM, 7, 2));;
+  # dimension_group: conv_prohibited_from {
+  #   label: "Convertible Prohibited From"
+  #   description: "Start date of current soft call feature."
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.CONV_PROHIBITED_FROM, 1, 4),"-",SUBSTRING(${TABLE}.CONV_PROHIBITED_FROM, 5, 2),"-",SUBSTRING(${TABLE}.CONV_PROHIBITED_FROM, 7, 2));;
 
-  }
+  # }
 
-  dimension_group: conv_redemp_date {
-    label: "Convertible Redemption"
-    description: "End date of current soft call feature."
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.CONV_REDEMP_DATE, 1, 4),"-",SUBSTRING(${TABLE}.CONV_REDEMP_DATE, 5, 2),"-",SUBSTRING(${TABLE}.CONV_REDEMP_DATE, 7, 2));;
-  }
+  # dimension_group: conv_redemp_date {
+  #   label: "Convertible Redemption"
+  #   description: "End date of current soft call feature."
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.CONV_REDEMP_DATE, 1, 4),"-",SUBSTRING(${TABLE}.CONV_REDEMP_DATE, 5, 2),"-",SUBSTRING(${TABLE}.CONV_REDEMP_DATE, 7, 2));;
+  # }
 
-  dimension: conv_redemp_exception {
-    type: string
-    group_label: "Convertible"
-    label: "Convertible Redemption Exception"
-    description: "Flag indicating whether a soft call provision has been specified."
-    sql: ${TABLE}.CONV_REDEMP_EXCEPTION ;;
-  }
+  # dimension: conv_redemp_exception {
+  #   type: string
+  #   group_label: "Convertible"
+  #   label: "Convertible Redemption Exception"
+  #   description: "Flag indicating whether a soft call provision has been specified."
+  #   sql: ${TABLE}.CONV_REDEMP_EXCEPTION ;;
+  # }
 
-  dimension: conv_total_trade_days {
-    type: number
-    group_label: "Convertible"
-    label: "Convertible Total Trade Days"
-    description: "Number of trading days during which the conversion commodity's price is measured for lifting redemption restrictions."
-    sql: ${TABLE}.CONV_TOTAL_TRADE_DAYS ;;
-  }
+  # dimension: conv_total_trade_days {
+  #   type: number
+  #   group_label: "Convertible"
+  #   label: "Convertible Total Trade Days"
+  #   description: "Number of trading days during which the conversion commodity's price is measured for lifting redemption restrictions."
+  #   sql: ${TABLE}.CONV_TOTAL_TRADE_DAYS ;;
+  # }
 
 
 
-  dimension: convert_on_call {
-    type: string
-    group_label: "Convertible"
-    label: "Convertible on Call"
-    description: "A flag indicating whether the holder is able to convert their security if it is called for redemption."
-    sql: ${TABLE}.CONVERT_ON_CALL ;;
-  }
+  # dimension: convert_on_call {
+  #   type: string
+  #   group_label: "Convertible"
+  #   label: "Convertible on Call"
+  #   description: "A flag indicating whether the holder is able to convert their security if it is called for redemption."
+  #   sql: ${TABLE}.CONVERT_ON_CALL ;;
+  # }
 
-  dimension: convertible {
-    type: string
-    group_label: "Issue"
-    description: "Flag indicating the issue can be converted to the common stock (or other security) of the issuer"
-    sql: ${TABLE}.CONVERTIBLE ;;
-  }
+  # dimension: convertible {
+  #   type: string
+  #   group_label: "Issue"
+  #   description: "Flag indicating the issue can be converted to the common stock (or other security) of the issuer"
+  #   sql: ${TABLE}.CONVERTIBLE ;;
+  # }
 
   dimension: country_domicile {
     type: string
@@ -846,13 +846,13 @@ view: mergent_issuance {
     sql: ${TABLE}.COUPON_TYPE ;;
   }
 
-  dimension: covenant_defeas_wo_tax_conseq {
-    type: string
-    group_label: "Bond Holder"
-    label: "Covenant Defeas w.o. Tax"
-    description: "Gives the issuer the right to defease indenture covenants without tax consequences for bondholders. If exercised, this would free the issuer from covenants set forth in the indenture or prospectus, but leaves them liable for the remaining debt. The issuer must also set forth an opinion of counsel that states bondholders will not recognize income for federal tax purposes as a result of the defeasance."
-    sql: ${TABLE}.COVENANT_DEFEAS_WO_TAX_CONSEQ ;;
-  }
+  # dimension: covenant_defeas_wo_tax_conseq {
+  #   type: string
+  #   group_label: "Bond Holder"
+  #   label: "Covenant Defeas w.o. Tax"
+  #   description: "Gives the issuer the right to defease indenture covenants without tax consequences for bondholders. If exercised, this would free the issuer from covenants set forth in the indenture or prospectus, but leaves them liable for the remaining debt. The issuer must also set forth an opinion of counsel that states bondholders will not recognize income for federal tax purposes as a result of the defeasance."
+  #   sql: ${TABLE}.COVENANT_DEFEAS_WO_TAX_CONSEQ ;;
+  # }
 
   dimension: covenants {
     type: string
@@ -860,19 +860,19 @@ view: mergent_issuance {
     sql: ${TABLE}.COVENANTS ;;
   }
 
-  dimension: cross_acceleration {
-    type: string
-    group_label: "Bond Holder"
-    description: "A bondholder protective covenant that allows the holder to accelerate their debt, if any other debt of the organization has been accelerated due to an event of default."
-    sql: ${TABLE}.CROSS_ACCELERATION ;;
-  }
+  # dimension: cross_acceleration {
+  #   type: string
+  #   group_label: "Bond Holder"
+  #   description: "A bondholder protective covenant that allows the holder to accelerate their debt, if any other debt of the organization has been accelerated due to an event of default."
+  #   sql: ${TABLE}.CROSS_ACCELERATION ;;
+  # }
 
-  dimension: cross_default {
-    type: string
-    group_label: "Bond Holder"
-    description: "A bondholder protective covenant that will activate an event of default in their issue, if an event of default has occurred under any other debt of the company."
-    sql: ${TABLE}.CROSS_DEFAULT ;;
-  }
+  # dimension: cross_default {
+  #   type: string
+  #   group_label: "Bond Holder"
+  #   description: "A bondholder protective covenant that will activate an event of default in their issue, if an event of default has occurred under any other debt of the company."
+  #   sql: ${TABLE}.CROSS_DEFAULT ;;
+  # }
 
 
   dimension: cusip_name {
@@ -881,33 +881,33 @@ view: mergent_issuance {
     sql: ${TABLE}.CUSIP_NAME ;;
   }
 
-  dimension: date_subj_adjustment {
-    type: string
-    group_label: "Other Security"
-    label: "Date Subject Adjustment"
-    description: "A flag indicating that the date on which the unit is free to trade as separate security is subject to adjustment."
-    sql: ${TABLE}.DATE_SUBJ_ADJUSTMENT ;;
-  }
+  # dimension: date_subj_adjustment {
+  #   type: string
+  #   group_label: "Other Security"
+  #   label: "Date Subject Adjustment"
+  #   description: "A flag indicating that the date on which the unit is free to trade as separate security is subject to adjustment."
+  #   sql: ${TABLE}.DATE_SUBJ_ADJUSTMENT ;;
+  # }
 
-  dimension_group: date_transferable {
-    label: "Other Security Transferable"
-    type: time
-    description: "The date on which each security offered as part of the unit may be sold separately."
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.DATE_TRANSFERABLE, 1, 4),"-",SUBSTRING(${TABLE}.DATE_TRANSFERABLE, 5, 2),"-",SUBSTRING(${TABLE}.DATE_TRANSFERABLE, 7, 2));;
-  }
+  # dimension_group: date_transferable {
+  #   label: "Other Security Transferable"
+  #   type: time
+  #   description: "The date on which each security offered as part of the unit may be sold separately."
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.DATE_TRANSFERABLE, 1, 4),"-",SUBSTRING(${TABLE}.DATE_TRANSFERABLE, 5, 2),"-",SUBSTRING(${TABLE}.DATE_TRANSFERABLE, 7, 2));;
+  # }
 
   dimension_group: dated_date {
     description: "Date from which interest accrues or from which original issue discount is amortized."
@@ -938,32 +938,32 @@ view: mergent_issuance {
     sql: ${TABLE}.DAY_COUNT_BASIS ;;
   }
 
-  dimension: declining_net_worth {
-    type: string
-    group_label: "Bond Holder"
-    description: "If issuer's net worth (as defined) falls below minimum level, certain bond provisions are triggered."
-    sql: ${TABLE}.DECLINING_NET_WORTH ;;
-  }
+  # dimension: declining_net_worth {
+  #   type: string
+  #   group_label: "Bond Holder"
+  #   description: "If issuer's net worth (as defined) falls below minimum level, certain bond provisions are triggered."
+  #   sql: ${TABLE}.DECLINING_NET_WORTH ;;
+  # }
 
-  dimension: declining_net_worth_percentage {
-    type: number
-    group_label: "Bond Holder"
-    description: "Percentage of bonds to be redeemed."
-    sql: ${TABLE}.DECLINING_NET_WORTH_PERCENTAGE ;;
-  }
+  # dimension: declining_net_worth_percentage {
+  #   type: number
+  #   group_label: "Bond Holder"
+  #   description: "Percentage of bonds to be redeemed."
+  #   sql: ${TABLE}.DECLINING_NET_WORTH_PERCENTAGE ;;
+  # }
 
-  dimension: declining_net_worth_provisions {
-    type: string
-    group_label: "Bond Holder"
-    sql: ${TABLE}.DECLINING_NET_WORTH_PROVISIONS ;;
-  }
+  # dimension: declining_net_worth_provisions {
+  #   type: string
+  #   group_label: "Bond Holder"
+  #   sql: ${TABLE}.DECLINING_NET_WORTH_PROVISIONS ;;
+  # }
 
-  dimension: declining_net_worth_trigger {
-    type: number
-    group_label: "Bond Holder"
-    description: "Issuer's minimum net worth (as defined) which triggers special provisions."
-    sql: ${TABLE}.DECLINING_NET_WORTH_TRIGGER ;;
-  }
+  # dimension: declining_net_worth_trigger {
+  #   type: number
+  #   group_label: "Bond Holder"
+  #   description: "Issuer's minimum net worth (as defined) which triggers special provisions."
+  #   sql: ${TABLE}.DECLINING_NET_WORTH_TRIGGER ;;
+  # }
 
   dimension: defaulted {
     type: string
@@ -971,20 +971,20 @@ view: mergent_issuance {
     sql: ${TABLE}.DEFAULTED ;;
   }
 
-  dimension: defeasance_type {
-    type: string
-    group_label: "Issue"
-    description: "A code indicating the type of defeasance allowed (e.g., covenants or legal). Covenant defeasance removes the restrictions of indenture covenants, but leaves the issuer liable for the remaining debt. Legal defeasance removes the issue from the issuer's balance sheet but leaves the issuer liable for any covenants specified in the indenture."
-    sql: ${TABLE}.DEFEASANCE_TYPE ;;
-  }
+  # dimension: defeasance_type {
+  #   type: string
+  #   group_label: "Issue"
+  #   description: "A code indicating the type of defeasance allowed (e.g., covenants or legal). Covenant defeasance removes the restrictions of indenture covenants, but leaves the issuer liable for the remaining debt. Legal defeasance removes the issue from the issuer's balance sheet but leaves the issuer liable for any covenants specified in the indenture."
+  #   sql: ${TABLE}.DEFEASANCE_TYPE ;;
+  # }
 
-  dimension: defeasance_wo_tax_conseq {
-    type: string
-    group_label: "Bond Holder"
-    label: "Defeasance w.o. Tax Conseq"
-    description: "Gives the issuer the right to defease the monetary portion of the security without tax consequence for bondholders. This type of defeasance occurs when the issuer places in an escrow account an amount of money or U.S. government securities sufficient to match the remaining interest and principle payments of the current issue. This removes the debt from the issuers’ balance sheet, but leaves the borrower still liable for covenants set forth under the indenture. The issuer must also set forth an opinion of counsel that states bondholders will not recognize income for federal tax purposes as a result of the defeasance."
-    sql: ${TABLE}.DEFEASANCE_WO_TAX_CONSEQ ;;
-  }
+  # dimension: defeasance_wo_tax_conseq {
+  #   type: string
+  #   group_label: "Bond Holder"
+  #   label: "Defeasance w.o. Tax Conseq"
+  #   description: "Gives the issuer the right to defease the monetary portion of the security without tax consequence for bondholders. This type of defeasance occurs when the issuer places in an escrow account an amount of money or U.S. government securities sufficient to match the remaining interest and principle payments of the current issue. This removes the debt from the issuers’ balance sheet, but leaves the borrower still liable for covenants set forth under the indenture. The issuer must also set forth an opinion of counsel that states bondholders will not recognize income for federal tax purposes as a result of the defeasance."
+  #   sql: ${TABLE}.DEFEASANCE_WO_TAX_CONSEQ ;;
+  # }
 
   dimension: defeased {
     type: string
@@ -992,24 +992,24 @@ view: mergent_issuance {
     sql: ${TABLE}.DEFEASED ;;
   }
 
-  dimension_group: defeased_ {
-    label: "Issue Defeased"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: REPLACE(${TABLE}.DEFEASED_DATE, "/", "-");;
-  }
+  # dimension_group: defeased_date {
+  #   label: "Issue Defeased"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: REPLACE(${TABLE}.DEFEASED_DATE, "/", "-");;
+  # }
 
   dimension_group: delivery_ {
     label: "Issue Delivery"
@@ -1034,79 +1034,79 @@ view: mergent_issuance {
     sql: ${TABLE}.DENOMINATION ;;
   }
 
-  dimension: dep_eligibility {
-    type: string
-    group_label: "Issue"
-    label: "Eligible Depositories"
-    description: "Code indicating the depositories on which the offered bonds are eligible for trading (e.g., DTC, Euroclear, Cedel, etc.)."
-    sql: ${TABLE}.DEP_ELIGIBILITY ;;
-  }
+  # dimension: dep_eligibility {
+  #   type: string
+  #   group_label: "Issue"
+  #   label: "Eligible Depositories"
+  #   description: "Code indicating the depositories on which the offered bonds are eligible for trading (e.g., DTC, Euroclear, Cedel, etc.)."
+  #   sql: ${TABLE}.DEP_ELIGIBILITY ;;
+  # }
 
-  dimension_group: determination_date {
-    label: "Coupon Determination"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.DETERMINATION_DATE, 1, 4),"-",SUBSTRING(${TABLE}.DETERMINATION_DATE, 5, 2),"-",SUBSTRING(${TABLE}.DETERMINATION_DATE, 7, 2));;
-  }
+  # dimension_group: determination_date {
+  #   label: "Coupon Determination"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.DETERMINATION_DATE, 1, 4),"-",SUBSTRING(${TABLE}.DETERMINATION_DATE, 5, 2),"-",SUBSTRING(${TABLE}.DETERMINATION_DATE, 7, 2));;
+  # }
 
-  dimension_group: determination_date_orig {
-    label: "Coupon Original Determination"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.DETERMINATION_DATE_ORIG, 1, 4),"-",SUBSTRING(${TABLE}.DETERMINATION_DATE_ORIG, 5, 2),"-",SUBSTRING(${TABLE}.DETERMINATION_DATE_ORIG, 7, 2));;
-  }
+  # dimension_group: determination_date_orig {
+  #   label: "Coupon Original Determination"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.DETERMINATION_DATE_ORIG, 1, 4),"-",SUBSTRING(${TABLE}.DETERMINATION_DATE_ORIG, 5, 2),"-",SUBSTRING(${TABLE}.DETERMINATION_DATE_ORIG, 7, 2));;
+  # }
 
-  dimension: dilution_protection {
-    type: string
-    group_label: "Convertible"
-    description: "A flag indicating whether or not the quantity of commodity will be adjusted for stock splits, dividends, distributions, or other specified events."
-    sql: ${TABLE}.DILUTION_PROTECTION ;;
-  }
+  # dimension: dilution_protection {
+  #   type: string
+  #   group_label: "Convertible"
+  #   description: "A flag indicating whether or not the quantity of commodity will be adjusted for stock splits, dividends, distributions, or other specified events."
+  #   sql: ${TABLE}.DILUTION_PROTECTION ;;
+  # }
 
-  dimension: dividends_related_payments_is {
-    type: string
-    group_label: "Issuer"
-    description: "Flag indicating that payments made to shareholders or other entities may be limited to a certain percentage of net income or some other ratio."
-    sql: ${TABLE}.DIVIDENDS_RELATED_PAYMENTS_IS ;;
-  }
+  # dimension: dividends_related_payments_is {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "Flag indicating that payments made to shareholders or other entities may be limited to a certain percentage of net income or some other ratio."
+  #   sql: ${TABLE}.DIVIDENDS_RELATED_PAYMENTS_IS ;;
+  # }
 
-  dimension: dividends_related_payments_sub {
-    type: string
-    group_label: "Subsidiary Restrictive"
-    description: "Limits the subsidiaries’ payment of dividends to a certain percentage of net income or some other ratio. For captive finance subsidiaries, this provision limits the amount of dividends which can be paid to the parent. This provision protects the"
-    sql: ${TABLE}.DIVIDENDS_RELATED_PAYMENTS_SUB ;;
-  }
+  # dimension: dividends_related_payments_sub {
+  #   type: string
+  #   group_label: "Subsidiary Restrictive"
+  #   description: "Limits the subsidiaries’ payment of dividends to a certain percentage of net income or some other ratio. For captive finance subsidiaries, this provision limits the amount of dividends which can be paid to the parent. This provision protects the"
+  #   sql: ${TABLE}.DIVIDENDS_RELATED_PAYMENTS_SUB ;;
+  # }
 
-  dimension: economic_cov_def {
-    type: string
-    group_label: "Bond Holder"
-    description: "Gives the issuer the right to defease indenture covenants. If exercised, this would free the issuer from covenants set forth in the indenture or prospectus, but leaves them liable for the remaining debt. This type of defeasance may have tax consequences for bondholders."
-    sql: ${TABLE}.ECONOMIC_COV_DEF ;;
-  }
+  # dimension: economic_cov_def {
+  #   type: string
+  #   group_label: "Bond Holder"
+  #   description: "Gives the issuer the right to defease indenture covenants. If exercised, this would free the issuer from covenants set forth in the indenture or prospectus, but leaves them liable for the remaining debt. This type of defeasance may have tax consequences for bondholders."
+  #   sql: ${TABLE}.ECONOMIC_COV_DEF ;;
+  # }
 
 
 
@@ -1148,11 +1148,11 @@ view: mergent_issuance {
     sql: ${TABLE}.ESOP ;;
   }
 
-  dimension: exchange {
-    type: string
-    group_label: "Convertible"
-    sql: ${TABLE}.EXCHANGE ;;
-  }
+  # dimension: exchange {
+  #   type: string
+  #   group_label: "Convertible"
+  #   sql: ${TABLE}.EXCHANGE ;;
+  # }
 
   dimension: exchangeable {
     type: string
@@ -1161,50 +1161,50 @@ view: mergent_issuance {
     sql: ${TABLE}.EXCHANGEABLE ;;
   }
 
-  dimension: exercised {
-    type: string
-    group_label: "Overallotment"
-    description: "A flag indicating that the issue's underwriters exercised their overallotment option."
-    sql: ${TABLE}.EXERCISED ;;
-  }
+  # dimension: exercised {
+  #   type: string
+  #   group_label: "Overallotment"
+  #   description: "A flag indicating that the issue's underwriters exercised their overallotment option."
+  #   sql: ${TABLE}.EXERCISED ;;
+  # }
 
-  dimension_group: exercised_date {
-    label: "Overallotment Exercised"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.EXERCISED_DATE, 1, 4),"-",SUBSTRING(${TABLE}.EXERCISED_DATE, 5, 2),"-",SUBSTRING(${TABLE}.EXERCISED_DATE, 7, 2));;
-  }
+  # dimension_group: exercised_date {
+  #   label: "Overallotment Exercised"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.EXERCISED_DATE, 1, 4),"-",SUBSTRING(${TABLE}.EXERCISED_DATE, 5, 2),"-",SUBSTRING(${TABLE}.EXERCISED_DATE, 7, 2));;
+  # }
 
-  dimension_group: filing_date {
-    label: " Bankruptcy Filing"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.FILING_DATE, 1, 4),"-",SUBSTRING(${TABLE}.FILING_DATE, 5, 2),"-",SUBSTRING(${TABLE}.FILING_DATE, 7, 2));;
-  }
+  # dimension_group: filing_date {
+  #   label: " Bankruptcy Filing"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.FILING_DATE, 1, 4),"-",SUBSTRING(${TABLE}.FILING_DATE, 5, 2),"-",SUBSTRING(${TABLE}.FILING_DATE, 7, 2));;
+  # }
 
   dimension_group: first_interest_date {
     label: "Coupon First Interest"
@@ -1225,26 +1225,26 @@ view: mergent_issuance {
     sql: CONCAT(SUBSTRING(${TABLE}.FIRST_INTEREST_DATE, 1, 4),"-",SUBSTRING(${TABLE}.FIRST_INTEREST_DATE, 5, 2),"-",SUBSTRING(${TABLE}.FIRST_INTEREST_DATE, 7, 2));;
   }
 
-  dimension: fix_frequency {
-    type: string
-    group_label: "Coupon"
-    description: "A four-letter code indicating how often the coupon will be reset."
-    sql: ${TABLE}.FIX_FREQUENCY ;;
-  }
+  # dimension: fix_frequency {
+  #   type: string
+  #   group_label: "Coupon"
+  #   description: "A four-letter code indicating how often the coupon will be reset."
+  #   sql: ${TABLE}.FIX_FREQUENCY ;;
+  # }
 
-  dimension: fixed_charge_coverage_is {
-    type: string
-    group_label: "Issuer"
-    description: "Issuer is required to have a ratio of earnings available for fixed charges, of at least a minimum specified level."
-    sql: ${TABLE}.FIXED_CHARGE_COVERAGE_IS ;;
-  }
+  # dimension: fixed_charge_coverage_is {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "Issuer is required to have a ratio of earnings available for fixed charges, of at least a minimum specified level."
+  #   sql: ${TABLE}.FIXED_CHARGE_COVERAGE_IS ;;
+  # }
 
-  dimension: fixed_charge_coverage_sub {
-    type: string
-    group_label: "Subsidiary Restrictive"
-    description: "Subsidiaries are required to maintain a minimum ratio of net income to fixed charges."
-    sql: ${TABLE}.FIXED_CHARGE_COVERAGE_SUB ;;
-  }
+  # dimension: fixed_charge_coverage_sub {
+  #   type: string
+  #   group_label: "Subsidiary Restrictive"
+  #   description: "Subsidiaries are required to maintain a minimum ratio of net income to fixed charges."
+  #   sql: ${TABLE}.FIXED_CHARGE_COVERAGE_SUB ;;
+  # }
 
 
   dimension: form_of_own {
@@ -1255,19 +1255,19 @@ view: mergent_issuance {
     sql: ${TABLE}.FORM_OF_OWN ;;
   }
 
-  dimension: funded_debt_is {
-    type: string
-    group_label: "Issuer"
-    description: "Restricts issuer from issuing additional funded debt. Funded debt is any debt with an initial maturity of one year or longer."
-    sql: ${TABLE}.FUNDED_DEBT_IS ;;
-  }
+  # dimension: funded_debt_is {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "Restricts issuer from issuing additional funded debt. Funded debt is any debt with an initial maturity of one year or longer."
+  #   sql: ${TABLE}.FUNDED_DEBT_IS ;;
+  # }
 
-  dimension: funded_debt_sub {
-    type: string
-    group_label: "Subsidiary Restrictive"
-    description: "Restricts issuer’s subsidiaries from issuing additional funded debt (debt with an initial maturity of longer than one year)."
-    sql: ${TABLE}.FUNDED_DEBT_SUB ;;
-  }
+  # dimension: funded_debt_sub {
+  #   type: string
+  #   group_label: "Subsidiary Restrictive"
+  #   description: "Restricts issuer’s subsidiaries from issuing additional funded debt (debt with an initial maturity of longer than one year)."
+  #   sql: ${TABLE}.FUNDED_DEBT_SUB ;;
+  # }
 
   dimension: fungible {
     type: string
@@ -1276,12 +1276,12 @@ view: mergent_issuance {
     sql: ${TABLE}.FUNGIBLE ;;
   }
 
-  dimension: greater_of {
-    type: string
-    group_label: "Coupon"
-    description: "A flag indicating that the issue's coupon resets to the greater of the associated rate calculation formulas in the INDEX table."
-    sql: ${TABLE}.GREATER_OF ;;
-  }
+  # dimension: greater_of {
+  #   type: string
+  #   group_label: "Coupon"
+  #   description: "A flag indicating that the issue's coupon resets to the greater of the associated rate calculation formulas in the INDEX table."
+  #   sql: ${TABLE}.GREATER_OF ;;
+  # }
 
   dimension: gross_spread {
     type: number
@@ -1296,19 +1296,19 @@ view: mergent_issuance {
     sql: ${TABLE}.IN_BANKRUPTCY ;;
   }
 
-  dimension: indebtedness_is {
-    type: string
-    group_label: "Issuer"
-    description: "Restricts user from incurring additional debt with limits on absolute dollar amount of debt outstanding or percentage total capital"
-    sql: ${TABLE}.INDEBTEDNESS_IS ;;
-  }
+  # dimension: indebtedness_is {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "Restricts user from incurring additional debt with limits on absolute dollar amount of debt outstanding or percentage total capital"
+  #   sql: ${TABLE}.INDEBTEDNESS_IS ;;
+  # }
 
-  dimension: indebtedness_sub {
-    type: string
-    group_label: "Subsidiary Restrictive"
-    description: "Restricts the total indebtedness of the subsidiaries."
-    sql: ${TABLE}.INDEBTEDNESS_SUB ;;
-  }
+  # dimension: indebtedness_sub {
+  #   type: string
+  #   group_label: "Subsidiary Restrictive"
+  #   description: "Restricts the total indebtedness of the subsidiaries."
+  #   sql: ${TABLE}.INDEBTEDNESS_SUB ;;
+  # }
 
   dimension: industry_code {
     type: string
@@ -1328,18 +1328,18 @@ view: mergent_issuance {
     sql: ${TABLE}.INTEREST_FREQUENCY ;;
   }
 
-  dimension: investments {
-    type: string
-    group_label: "Issuer"
-    description: "Restricts issuer’s investment policy to prevent risky investments."
-    sql: ${TABLE}.INVESTMENTS ;;
-  }
+  # dimension: investments {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "Restricts issuer’s investment policy to prevent risky investments."
+  #   sql: ${TABLE}.INVESTMENTS ;;
+  # }
 
-  dimension: investments_unrestricted_subs {
-    type: string
-    group_label: "Subsidiary Restrictive"
-    sql: ${TABLE}.INVESTMENTS_UNRESTRICTED_SUBS ;;
-  }
+  # dimension: investments_unrestricted_subs {
+  #   type: string
+  #   group_label: "Subsidiary Restrictive"
+  #   sql: ${TABLE}.INVESTMENTS_UNRESTRICTED_SUBS ;;
+  # }
 
   dimension: isin {
     type: string
@@ -1390,79 +1390,79 @@ view: mergent_issuance {
 
 
 
-  dimension_group: last_interest_date {
-    type: time
-    label: "Coupon Last Interest"
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.LAST_INTEREST_DATE, 1, 4),"-",SUBSTRING(${TABLE}.LAST_INTEREST_DATE, 5, 2),"-",SUBSTRING(${TABLE}.LAST_INTEREST_DATE, 7, 2));;
-  }
+  # dimension_group: last_interest_date {
+  #   type: time
+  #   label: "Coupon Last Interest"
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.LAST_INTEREST_DATE, 1, 4),"-",SUBSTRING(${TABLE}.LAST_INTEREST_DATE, 5, 2),"-",SUBSTRING(${TABLE}.LAST_INTEREST_DATE, 7, 2));;
+  # }
 
-  dimension: legal_defeasance {
-    type: string
-    group_label: "Bond Holder"
-    sql: ${TABLE}.LEGAL_DEFEASANCE ;;
-  }
+  # dimension: legal_defeasance {
+  #   type: string
+  #   group_label: "Bond Holder"
+  #   sql: ${TABLE}.LEGAL_DEFEASANCE ;;
+  # }
 
-  dimension: lesser_of {
-    type: string
-    group_label: "Coupon"
-    description: "A flag indicating that the issue's coupon resets to the lesser of the associated rate calculation formulas in the INDEX table"
-    sql: ${TABLE}.LESSER_OF ;;
-  }
+  # dimension: lesser_of {
+  #   type: string
+  #   group_label: "Coupon"
+  #   description: "A flag indicating that the issue's coupon resets to the lesser of the associated rate calculation formulas in the INDEX table"
+  #   sql: ${TABLE}.LESSER_OF ;;
+  # }
 
-  dimension: leverage_test_is {
-    type: string
-    group_label: "Issuer"
-    description: "Restricts total-indebtedness of the issuer."
-    sql: ${TABLE}.LEVERAGE_TEST_IS ;;
-  }
+  # dimension: leverage_test_is {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "Restricts total-indebtedness of the issuer."
+  #   sql: ${TABLE}.LEVERAGE_TEST_IS ;;
+  # }
 
-  dimension: leverage_test_sub {
-    type: string
-    group_label: "Subsidiary Restrictive"
-    description: "Limits subsidiaries’ leverage."
-    sql: ${TABLE}.LEVERAGE_TEST_SUB ;;
-  }
+  # dimension: leverage_test_sub {
+  #   type: string
+  #   group_label: "Subsidiary Restrictive"
+  #   description: "Limits subsidiaries’ leverage."
+  #   sql: ${TABLE}.LEVERAGE_TEST_SUB ;;
+  # }
 
-  dimension: liens_is {
-    type: string
-    group_label: "Issuer"
-    description: "In the case of default, the bondholders have the legal right to sell mortgaged property to satisfy their unpaid obligations."
-    sql: ${TABLE}.LIENS_IS ;;
-  }
+  # dimension: liens_is {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "In the case of default, the bondholders have the legal right to sell mortgaged property to satisfy their unpaid obligations."
+  #   sql: ${TABLE}.LIENS_IS ;;
+  # }
 
-  dimension: liens_sub {
-    type: string
-    group_label: "Subsidiary Restrictive"
-    description: "Restricts subsidiaries from acquiring liens on their property."
-    sql: ${TABLE}.LIENS_SUB ;;
-  }
+  # dimension: liens_sub {
+  #   type: string
+  #   group_label: "Subsidiary Restrictive"
+  #   description: "Restricts subsidiaries from acquiring liens on their property."
+  #   sql: ${TABLE}.LIENS_SUB ;;
+  # }
 
-  dimension: maintenance_net_worth {
-    type: string
-    group_label: "Issuer"
-    description: "Issuer must maintain a minimum specified net worth."
-    sql: ${TABLE}.MAINTENANCE_NET_WORTH ;;
-  }
+  # dimension: maintenance_net_worth {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "Issuer must maintain a minimum specified net worth."
+  #   sql: ${TABLE}.MAINTENANCE_NET_WORTH ;;
+  # }
 
-  dimension: market_price {
-    type: number
-    group_label: "Other Security"
-    description: "The market price of the unit's other security as of the issue's offering date."
-    sql: ${TABLE}.MARKET_PRICE ;;
-  }
+  # dimension: market_price {
+  #   type: number
+  #   group_label: "Other Security"
+  #   description: "The market price of the unit's other security as of the issue's offering date."
+  #   sql: ${TABLE}.MARKET_PRICE ;;
+  # }
 
 
 
@@ -1503,50 +1503,50 @@ view: mergent_issuance {
     sql: ${TABLE}.NAICS_CODE ;;
   }
 
-  dimension: negative_pledge_covenant {
-    type: string
-    group_label: "Bond Holder"
-    description: "The issuer cannot issue secured debt unless it secures the current issue on a pari passu basis."
-    sql: ${TABLE}.NEGATIVE_PLEDGE_COVENANT ;;
-  }
+  # dimension: negative_pledge_covenant {
+  #   type: string
+  #   group_label: "Bond Holder"
+  #   description: "The issuer cannot issue secured debt unless it secures the current issue on a pari passu basis."
+  #   sql: ${TABLE}.NEGATIVE_PLEDGE_COVENANT ;;
+  # }
 
-  dimension: net_earnings_test_issuance {
-    type: string
-    group_label: "Issuer"
-    description: "To issue additional debt the issuer must have achieved or maintained certain profitability levels. This test is a variations of the (more common) fixed coverage tests."
-    sql: ${TABLE}.NET_EARNINGS_TEST_ISSUANCE ;;
-  }
+  # dimension: net_earnings_test_issuance {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "To issue additional debt the issuer must have achieved or maintained certain profitability levels. This test is a variations of the (more common) fixed coverage tests."
+  #   sql: ${TABLE}.NET_EARNINGS_TEST_ISSUANCE ;;
+  # }
 
-  dimension_group: next_put_date {
-    group_label: "Put"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.NEXT_PUT_DATE, 1, 4),"-",SUBSTRING(${TABLE}.NEXT_PUT_DATE, 5, 2),"-",SUBSTRING(${TABLE}.NEXT_PUT_DATE, 7, 2));;
-  }
+  # dimension_group: next_put_date {
+  #   group_label: "Put"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.NEXT_PUT_DATE, 1, 4),"-",SUBSTRING(${TABLE}.NEXT_PUT_DATE, 5, 2),"-",SUBSTRING(${TABLE}.NEXT_PUT_DATE, 7, 2));;
+  # }
 
-  dimension: next_put_price {
-    type: number
-    group_label: "Put"
-    sql: ${TABLE}.NEXT_PUT_PRICE ;;
-  }
+  # dimension: next_put_price {
+  #   type: number
+  #   group_label: "Put"
+  #   sql: ${TABLE}.NEXT_PUT_PRICE ;;
+  # }
 
-  dimension: notification_period {
-    type: string
-    group_label: "Put"
-    sql: ${TABLE}.NOTIFICATION_PERIOD ;;
-  }
+  # dimension: notification_period {
+  #   type: string
+  #   group_label: "Put"
+  #   sql: ${TABLE}.NOTIFICATION_PERIOD ;;
+  # }
 
   dimension: offering_amt {
     type: number
@@ -1595,78 +1595,78 @@ view: mergent_issuance {
     sql: ${TABLE}.OID ;;
   }
 
-  dimension: orig_commod_price {
-    type: number
-    group_label: "Convertible"
-    label: "Orig Commodity Price"
-    sql: ${TABLE}.ORIG_COMMOD_PRICE ;;
-  }
+  # dimension: orig_commod_price {
+  #   type: number
+  #   group_label: "Convertible"
+  #   label: "Orig Commodity Price"
+  #   sql: ${TABLE}.ORIG_COMMOD_PRICE ;;
+  # }
 
-  dimension: orig_conv_premium {
-    type: number
-    group_label: "Convertible"
-    sql: ${TABLE}.ORIG_CONV_PREMIUM ;;
-  }
+  # dimension: orig_conv_premium {
+  #   type: number
+  #   group_label: "Convertible"
+  #   sql: ${TABLE}.ORIG_CONV_PREMIUM ;;
+  # }
 
-  dimension: orig_conv_price {
-    type: number
-    group_label: "Convertible"
-    sql: ${TABLE}.ORIG_CONV_PRICE ;;
-  }
+  # dimension: orig_conv_price {
+  #   type: number
+  #   group_label: "Convertible"
+  #   sql: ${TABLE}.ORIG_CONV_PRICE ;;
+  # }
 
-  dimension: orig_percent_outstanding_com {
-    type: number
-    group_label: "Convertible"
-    label: "Orig Percent Outstanding Commodity."
-    sql: ${TABLE}.ORIG_PERCENT_OUTSTANDING_COM ;;
-  }
+  # dimension: orig_percent_outstanding_com {
+  #   type: number
+  #   group_label: "Convertible"
+  #   label: "Orig Percent Outstanding Commodity."
+  #   sql: ${TABLE}.ORIG_PERCENT_OUTSTANDING_COM ;;
+  # }
 
-  dimension: orig_qty_of_commod {
-    type: number
-    group_label: "Convertible"
-    label: "Orig Quantity of Commodity."
-    sql: ${TABLE}.ORIG_QTY_OF_COMMOD ;;
-  }
+  # dimension: orig_qty_of_commod {
+  #   type: number
+  #   group_label: "Convertible"
+  #   label: "Orig Quantity of Commodity."
+  #   sql: ${TABLE}.ORIG_QTY_OF_COMMOD ;;
+  # }
 
-  dimension: orig_shares_outstanding {
-    type: number
-    group_label: "Convertible"
-    sql: ${TABLE}.ORIG_SHARES_OUTSTANDING ;;
-  }
+  # dimension: orig_shares_outstanding {
+  #   type: number
+  #   group_label: "Convertible"
+  #   sql: ${TABLE}.ORIG_SHARES_OUTSTANDING ;;
+  # }
 
-  dimension: other_sec_issuer {
-    type: string
-    group_label: "Other Security"
-    description: "The name of the issuer of the other security."
-    sql: ${TABLE}.OTHER_SEC_ISSUER ;;
-  }
+  # dimension: other_sec_issuer {
+  #   type: string
+  #   group_label: "Other Security"
+  #   description: "The name of the issuer of the other security."
+  #   sql: ${TABLE}.OTHER_SEC_ISSUER ;;
+  # }
 
-  dimension: other_sec_type {
-    type: string
-    group_label: "Other Security"
-    description: "A four-character code indicating the type of the other security."
-    sql: ${TABLE}.OTHER_SEC_TYPE ;;
-  }
+  # dimension: other_sec_type {
+  #   type: string
+  #   group_label: "Other Security"
+  #   description: "A four-character code indicating the type of the other security."
+  #   sql: ${TABLE}.OTHER_SEC_TYPE ;;
+  # }
 
-  dimension_group: overallotment_expiration_date {
-    description: "The last date for the issue's underwriters to exercise their overallotment option"
-    label: "Overallotment Expiration"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.OVERALLOTMENT_EXPIRATION_DATE, 1, 4),"-",SUBSTRING(${TABLE}.OVERALLOTMENT_EXPIRATION_DATE, 5, 2),"-",SUBSTRING(${TABLE}.OVERALLOTMENT_EXPIRATION_DATE, 7, 2));;
-  }
+  # dimension_group: overallotment_expiration_date {
+  #   description: "The last date for the issue's underwriters to exercise their overallotment option"
+  #   label: "Overallotment Expiration"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.OVERALLOTMENT_EXPIRATION_DATE, 1, 4),"-",SUBSTRING(${TABLE}.OVERALLOTMENT_EXPIRATION_DATE, 5, 2),"-",SUBSTRING(${TABLE}.OVERALLOTMENT_EXPIRATION_DATE, 7, 2));;
+  # }
 
   dimension: overallotment_opt {
     type: string
@@ -1689,95 +1689,95 @@ view: mergent_issuance {
     sql: ${TABLE}.PAY_IN_KIND ;;
   }
 
-  dimension_group: pay_in_kind_exp_date {
-    label: "Coupon Pay in Kind Expiration"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.PAY_IN_KIND_EXP_DATE, 1, 4),"-",SUBSTRING(${TABLE}.PAY_IN_KIND_EXP_DATE, 5, 2),"-",SUBSTRING(${TABLE}.PAY_IN_KIND_EXP_DATE, 7, 2));;
-  }
+  # dimension_group: pay_in_kind_exp_date {
+  #   label: "Coupon Pay in Kind Expiration"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.PAY_IN_KIND_EXP_DATE, 1, 4),"-",SUBSTRING(${TABLE}.PAY_IN_KIND_EXP_DATE, 5, 2),"-",SUBSTRING(${TABLE}.PAY_IN_KIND_EXP_DATE, 7, 2));;
+  # }
 
-  dimension: peps {
-    type: string
-    label: "Convertible Terms"
-    description: "A flag indicating the issue has additional conversion terms (dealing with a high and low conversion commodity selling price) specified in the convertible_additional_terms table."
-    group_label: "Convertible"
-    sql: ${TABLE}.PEPS ;;
-  }
+  # dimension: peps {
+  #   type: string
+  #   label: "Convertible Terms"
+  #   description: "A flag indicating the issue has additional conversion terms (dealing with a high and low conversion commodity selling price) specified in the convertible_additional_terms table."
+  #   group_label: "Convertible"
+  #   sql: ${TABLE}.PEPS ;;
+  # }
 
-  dimension: peps_higher_price {
-    type: number
-    label: "Convertible Min Ratio Price"
-    description: "Conversion commodity price at which minimum conversion ratio applies."
-    group_label: "Convertible Additional Terms"
-    sql: ${TABLE}.PEPS_HIGHER_PRICE ;;
-  }
+  # dimension: peps_higher_price {
+  #   type: number
+  #   label: "Convertible Min Ratio Price"
+  #   description: "Conversion commodity price at which minimum conversion ratio applies."
+  #   group_label: "Convertible Additional Terms"
+  #   sql: ${TABLE}.PEPS_HIGHER_PRICE ;;
+  # }
 
-  dimension: peps_issue_price {
-    type: number
-    label: "Issue Price"
-    group_label: "Convertible Additional Terms"
-    description: "The face value or principal amount of the bond."
-    sql: ${TABLE}.PEPS_ISSUE_PRICE ;;
-  }
+  # dimension: peps_issue_price {
+  #   type: number
+  #   label: "Issue Price"
+  #   group_label: "Convertible Additional Terms"
+  #   description: "The face value or principal amount of the bond."
+  #   sql: ${TABLE}.PEPS_ISSUE_PRICE ;;
+  # }
 
-  dimension: peps_lower_price {
-    type: number
-    label: "Convertible Max Ratio Price"
-    group_label: "Convertible Additional Terms"
-    description: "Conversion commodity price at which maximum conversion ratio applies."
-    sql: ${TABLE}.PEPS_LOWER_PRICE ;;
-  }
+  # dimension: peps_lower_price {
+  #   type: number
+  #   label: "Convertible Max Ratio Price"
+  #   group_label: "Convertible Additional Terms"
+  #   description: "Conversion commodity price at which maximum conversion ratio applies."
+  #   sql: ${TABLE}.PEPS_LOWER_PRICE ;;
+  # }
 
-  dimension: peps_max_conversion_ratio {
-    type: number
-    label: "Max Convertible Ratio"
-    group_label: "Convertible Additional Terms"
-    description: "Maximum value of the conversion ratio."
-    sql: ${TABLE}.PEPS_MAX_CONVERSION_RATIO ;;
-  }
+  # dimension: peps_max_conversion_ratio {
+  #   type: number
+  #   label: "Max Convertible Ratio"
+  #   group_label: "Convertible Additional Terms"
+  #   description: "Maximum value of the conversion ratio."
+  #   sql: ${TABLE}.PEPS_MAX_CONVERSION_RATIO ;;
+  # }
 
-  dimension: peps_min_conversion_ratio {
-    type: number
-    label: "Min Convertible Ratio"
-    group_label: "Convertible Additional Terms"
-    description: "Minimum value of the conversion ratio."
-    sql: ${TABLE}.PEPS_MIN_CONVERSION_RATIO ;;
-  }
+  # dimension: peps_min_conversion_ratio {
+  #   type: number
+  #   label: "Min Convertible Ratio"
+  #   group_label: "Convertible Additional Terms"
+  #   description: "Minimum value of the conversion ratio."
+  #   sql: ${TABLE}.PEPS_MIN_CONVERSION_RATIO ;;
+  # }
 
-  dimension: percent_of_outstanding_commod {
-    type: number
-    group_label: "Convertible"
-    label: "Percent of Outstanding Commodity"
-    description: "The percentage of the total conversion commodity available through conversion of the issue as of the AS_OF_DATE."
-    sql: ${TABLE}.PERCENT_OF_OUTSTANDING_COMMOD ;;
-  }
+  # dimension: percent_of_outstanding_commod {
+  #   type: number
+  #   group_label: "Convertible"
+  #   label: "Percent of Outstanding Commodity"
+  #   description: "The percentage of the total conversion commodity available through conversion of the issue as of the AS_OF_DATE."
+  #   sql: ${TABLE}.PERCENT_OF_OUTSTANDING_COMMOD ;;
+  # }
 
-  dimension: percs {
-    type: string
-    label: "Max Payoff"
-    description: "A flag indicating the security has maximum payoff upon conversion specified in the convertible_additional_terms table."
-    group_label: "Convertible"
-    sql: ${TABLE}.PERCS ;;
-  }
+  # dimension: percs {
+  #   type: string
+  #   label: "Max Payoff"
+  #   description: "A flag indicating the security has maximum payoff upon conversion specified in the convertible_additional_terms table."
+  #   group_label: "Convertible"
+  #   sql: ${TABLE}.PERCS ;;
+  # }
 
-  dimension: percs_max_payoff {
-    type: number
-    description: "Maximum payoff bondholder will receive upon conversion or at maturity per PERCS."
-    group_label: "Convertible Additional Terms"
-    sql: ${TABLE}.PERCS_MAX_PAYOFF ;;
-  }
+  # dimension: percs_max_payoff {
+  #   type: number
+  #   description: "Maximum payoff bondholder will receive upon conversion or at maturity per PERCS."
+  #   group_label: "Convertible Additional Terms"
+  #   sql: ${TABLE}.PERCS_MAX_PAYOFF ;;
+  # }
 
   dimension: perpetual {
     type: string
@@ -1793,19 +1793,19 @@ view: mergent_issuance {
     sql: ${TABLE}.PREFERRED_SECURITY ;;
   }
 
-  dimension: preferred_stock_issuance {
-    type: string
-    description: "Restricts subsidiaries’ ability to issue preferred stock."
-    group_label: "Subsidiary Restrictive"
-    sql: ${TABLE}.PREFERRED_STOCK_ISSUANCE ;;
-  }
+  # dimension: preferred_stock_issuance {
+  #   type: string
+  #   description: "Restricts subsidiaries’ ability to issue preferred stock."
+  #   group_label: "Subsidiary Restrictive"
+  #   sql: ${TABLE}.PREFERRED_STOCK_ISSUANCE ;;
+  # }
 
-  dimension: press_release {
-    type: string
-    group_label: "Issue"
-    description: "Flag indicating whether this issue contains a press release in the footnotes relating to a Fitch rating action. If flag is Y, check footnotes for the press release."
-    sql: ${TABLE}.PRESS_RELEASE ;;
-  }
+  # dimension: press_release {
+  #   type: string
+  #   group_label: "Issue"
+  #   description: "Flag indicating whether this issue contains a press release in the footnotes relating to a Fitch rating action. If flag is Y, check footnotes for the press release."
+  #   sql: ${TABLE}.PRESS_RELEASE ;;
+  # }
 
   dimension: principal_amt {
     type: number
@@ -1815,12 +1815,12 @@ view: mergent_issuance {
     sql: ${TABLE}.PRINCIPAL_AMT ;;
   }
 
-  dimension: principal_amt_per_unit {
-    type: number
-    group_label: "Unit"
-    label: "Principal Amount per Unit"
-    sql: ${TABLE}.PRINCIPAL_AMT_PER_UNIT ;;
-  }
+  # dimension: principal_amt_per_unit {
+  #   type: number
+  #   group_label: "Unit"
+  #   label: "Principal Amount per Unit"
+  #   sql: ${TABLE}.PRINCIPAL_AMT_PER_UNIT ;;
+  # }
 
   dimension: private_placement {
     type: string
@@ -1842,34 +1842,28 @@ view: mergent_issuance {
     sql: ${TABLE}.PUTABLE ;;
   }
 
-  dimension: qty_of_commod {
-    type: number
-    group_label: "Convertible"
-    label: "Quantity of Commodity"
-    description: "The quantity of the conversion commodity that the bondholder will receive upon conversion as of the AS_OF_DATE."
-    sql: ${TABLE}.QTY_OF_COMMOD ;;
-  }
+  # dimension: qty_of_commod {
+  #   type: number
+  #   group_label: "Convertible"
+  #   label: "Quantity of Commodity"
+  #   description: "The quantity of the conversion commodity that the bondholder will receive upon conversion as of the AS_OF_DATE."
+  #   sql: ${TABLE}.QTY_OF_COMMOD ;;
+  # }
 
-  dimension: quantity {
-    type: number
-    group_label: "Other Security"
-    description: "The quantity of other security offered with the unit."
-    sql: ${TABLE}.QUANTITY ;;
-  }
 
-  dimension: rating_decline_provision {
-    type: string
-    group_label: "Bond Holder"
-    description: "Describes the consequences of a drop in the issue's credit rating below some preset minimum"
-    sql: ${TABLE}.RATING_DECLINE_PROVISION ;;
-  }
+  # dimension: rating_decline_provision {
+  #   type: string
+  #   group_label: "Bond Holder"
+  #   description: "Describes the consequences of a drop in the issue's credit rating below some preset minimum"
+  #   sql: ${TABLE}.RATING_DECLINE_PROVISION ;;
+  # }
 
-  dimension: rating_decline_trigger_put {
-    type: string
-    description: "A decline in the credit rating of the issuer (or issue) triggers a bondholder put provision."
-    group_label: "Bond Holder"
-    sql: ${TABLE}.RATING_DECLINE_TRIGGER_PUT ;;
-  }
+  # dimension: rating_decline_trigger_put {
+  #   type: string
+  #   description: "A decline in the credit rating of the issuer (or issue) triggers a bondholder put provision."
+  #   group_label: "Bond Holder"
+  #   sql: ${TABLE}.RATING_DECLINE_TRIGGER_PUT ;;
+  # }
 
   dimension: reallowance {
     type: number
@@ -1878,12 +1872,12 @@ view: mergent_issuance {
     sql: ${TABLE}.REALLOWANCE ;;
   }
 
-  dimension: reason {
-    type: string
-    group_label: "Convertible"
-    description: "The reason for the change of the convertible information on the change_date."
-    sql: ${TABLE}.REASON ;;
-  }
+  # dimension: reason {
+  #   type: string
+  #   group_label: "Convertible"
+  #   description: "The reason for the change of the convertible information on the change_date."
+  #   sql: ${TABLE}.REASON ;;
+  # }
 
   dimension: redeemable {
     type: string
@@ -1898,78 +1892,78 @@ view: mergent_issuance {
     sql: ${TABLE}.REFUND_PROTECTION ;;
   }
 
-  dimension_group: refunding_date {
-    label: "Issue Refunding"
-    description: "The first date on which the issuer may refund the issue. An issue is refunded when the issuer redeems the issue from proceeds of a subsequent stock or bond issue."
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: REPLACE(${TABLE}.REFUNDING_DATE, "/", "-");;
-  }
+  # dimension_group: refunding_date {
+  #   label: "Issue Refunding"
+  #   description: "The first date on which the issuer may refund the issue. An issue is refunded when the issuer redeems the issue from proceeds of a subsequent stock or bond issue."
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: REPLACE(${TABLE}.REFUNDING_DATE, "/", "-");;
+  # }
 
-  dimension: registration_rights {
-    type: string
-    group_label: "Issue"
-    description: "Indicates the issue contains a registration rights agreement whereby the issuer agrees to file a registration statement (or an exchange offer registration statement) within a specified period."
-    sql: ${TABLE}.REGISTRATION_RIGHTS ;;
-  }
+  # dimension: registration_rights {
+  #   type: string
+  #   group_label: "Issue"
+  #   description: "Indicates the issue contains a registration rights agreement whereby the issuer agrees to file a registration statement (or an exchange offer registration statement) within a specified period."
+  #   sql: ${TABLE}.REGISTRATION_RIGHTS ;;
+  # }
 
-  dimension_group: reset_date {
-    label: "Coupon Reset"
-    description: "The next date as of which the issue will begin to accrue interest at the new coupon rate. The new coupon rate is calculated as of the determination date"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.RESET_DATE, 1, 4),"-",SUBSTRING(${TABLE}.RESET_DATE, 5, 2),"-",SUBSTRING(${TABLE}.RESET_DATE, 7, 2));;
-  }
+  # dimension_group: reset_date {
+  #   label: "Coupon Reset"
+  #   description: "The next date as of which the issue will begin to accrue interest at the new coupon rate. The new coupon rate is calculated as of the determination date"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.RESET_DATE, 1, 4),"-",SUBSTRING(${TABLE}.RESET_DATE, 5, 2),"-",SUBSTRING(${TABLE}.RESET_DATE, 7, 2));;
+  # }
 
-  dimension_group: reset_date_orig {
-    label: "Coupon Reset Original"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.RESET_DATE_ORIG, 1, 4),"-",SUBSTRING(${TABLE}.RESET_DATE_ORIG, 5, 2),"-",SUBSTRING(${TABLE}.RESET_DATE_ORIG, 7, 2));;
-  }
+  # dimension_group: reset_date_orig {
+  #   label: "Coupon Reset Original"
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.RESET_DATE_ORIG, 1, 4),"-",SUBSTRING(${TABLE}.RESET_DATE_ORIG, 5, 2),"-",SUBSTRING(${TABLE}.RESET_DATE_ORIG, 7, 2));;
+  # }
 
-  dimension: restricted_payments {
-    type: string
-    group_label: "Issuer"
-    description: "Restricts issuer's freedom to make payments (other than dividend related payments) to shareholders and others."
-    sql: ${TABLE}.RESTRICTED_PAYMENTS ;;
-  }
+  # dimension: restricted_payments {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "Restricts issuer's freedom to make payments (other than dividend related payments) to shareholders and others."
+  #   sql: ${TABLE}.RESTRICTED_PAYMENTS ;;
+  # }
 
   dimension: rule_144_a {
     type: string
@@ -1987,103 +1981,103 @@ view: mergent_issuance {
     sql: ${TABLE}.RULE_415_REG ;;
   }
 
-  dimension: sale_assets {
-    type: string
-    group_label: "Issuer"
-    description: "Restrictions on the ability of an issuer to sell assets or restrictions on the issuer's use of the proceeds from the sale of assets. Such restrictions may require the issuer to apply some or all of the sales proceeds to the repurchase of debt through a tender offer or call."
-    sql: ${TABLE}.SALE_ASSETS ;;
-  }
+  # dimension: sale_assets {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "Restrictions on the ability of an issuer to sell assets or restrictions on the issuer's use of the proceeds from the sale of assets. Such restrictions may require the issuer to apply some or all of the sales proceeds to the repurchase of debt through a tender offer or call."
+  #   sql: ${TABLE}.SALE_ASSETS ;;
+  # }
 
-  dimension: sale_xfer_assets_unrestricted {
-    type: string
-    description: "Issuer must use proceeds from sale of subsidiaries' assets (either certain asset sales or all asset sales over some threshold) to reduce debt."
-    group_label: "Subsidiary Restrictive"
-    sql: ${TABLE}.SALE_XFER_ASSETS_UNRESTRICTED ;;
-  }
+  # dimension: sale_xfer_assets_unrestricted {
+  #   type: string
+  #   description: "Issuer must use proceeds from sale of subsidiaries' assets (either certain asset sales or all asset sales over some threshold) to reduce debt."
+  #   group_label: "Subsidiary Restrictive"
+  #   sql: ${TABLE}.SALE_XFER_ASSETS_UNRESTRICTED ;;
+  # }
 
-  dimension: sales_leaseback_is {
-    type: string
-    group_label: "Issuer"
-    description: "Restricts issuer to the type or amount of property used in a sale leaseback transaction and may restrict its use of the proceeds of the sale. A sale leaseback transaction is a method of raising capital in which an organization sells some specific assets to an entity that simultaneously leases the asset back to the organization for a fixed term and agreed upon rate."
-    sql: ${TABLE}.SALES_LEASEBACK_IS ;;
-  }
+  # dimension: sales_leaseback_is {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "Restricts issuer to the type or amount of property used in a sale leaseback transaction and may restrict its use of the proceeds of the sale. A sale leaseback transaction is a method of raising capital in which an organization sells some specific assets to an entity that simultaneously leases the asset back to the organization for a fixed term and agreed upon rate."
+  #   sql: ${TABLE}.SALES_LEASEBACK_IS ;;
+  # }
 
-  dimension: sales_leaseback_sub {
-    type: string
-    group_label: "Subsidiary Restrictive"
-    description: "Restricts subsidiaries from selling then leasing back assets that provide security for the debtholder. This provision usually requires that assets or cash equal to the property sold and leased back be applied to the retirement of the debt in question or used to acquire another property to increase the debtholders’ security."
-    sql: ${TABLE}.SALES_LEASEBACK_SUB ;;
-  }
+  # dimension: sales_leaseback_sub {
+  #   type: string
+  #   group_label: "Subsidiary Restrictive"
+  #   description: "Restricts subsidiaries from selling then leasing back assets that provide security for the debtholder. This provision usually requires that assets or cash equal to the property sold and leased back be applied to the retirement of the debt in question or used to acquire another property to increase the debtholders’ security."
+  #   sql: ${TABLE}.SALES_LEASEBACK_SUB ;;
+  # }
 
-  dimension: sc_make_whole_change_percent {
-    type: number
-    group_label: "Convertible Additional Terms"
-    label: "Soft Call Change Percent"
-    description: "The percentage (of the face value) by which the soft call make-whole payment payable is reduced on an annual basis if the bond is called for redemption."
-    sql: ${TABLE}.SC_MAKE_WHOLE_CHANGE_PERCENT ;;
-  }
+  # dimension: sc_make_whole_change_percent {
+  #   type: number
+  #   group_label: "Convertible Additional Terms"
+  #   label: "Soft Call Change Percent"
+  #   description: "The percentage (of the face value) by which the soft call make-whole payment payable is reduced on an annual basis if the bond is called for redemption."
+  #   sql: ${TABLE}.SC_MAKE_WHOLE_CHANGE_PERCENT ;;
+  # }
 
-  dimension: sc_make_whole_decrement_type {
-    type: string
-    group_label: "Convertible Additional Terms"
-    label: "soft Call Change Code"
-    sql: ${TABLE}.SC_MAKE_WHOLE_DECREMENT_TYPE ;;
-  }
+  # dimension: sc_make_whole_decrement_type {
+  #   type: string
+  #   group_label: "Convertible Additional Terms"
+  #   label: "soft Call Change Code"
+  #   sql: ${TABLE}.SC_MAKE_WHOLE_DECREMENT_TYPE ;;
+  # }
 
-  dimension_group: sc_make_whole_end_date {
-    description: "The final date at which a soft call make-whole payment is payable if the bond is called for redemption."
-    type: time
-    label: "Convertible Soft Call End"
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.SC_MAKE_WHOLE_END_DATE, 1, 4),"-",SUBSTRING(${TABLE}.SC_MAKE_WHOLE_END_DATE, 5, 2),"-",SUBSTRING(${TABLE}.SC_MAKE_WHOLE_END_DATE, 7, 2));;
-  }
+  # dimension_group: sc_make_whole_end_date {
+  #   description: "The final date at which a soft call make-whole payment is payable if the bond is called for redemption."
+  #   type: time
+  #   label: "Convertible Soft Call End"
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.SC_MAKE_WHOLE_END_DATE, 1, 4),"-",SUBSTRING(${TABLE}.SC_MAKE_WHOLE_END_DATE, 5, 2),"-",SUBSTRING(${TABLE}.SC_MAKE_WHOLE_END_DATE, 7, 2));;
+  # }
 
-  dimension: sc_make_whole_initial_amount {
-    type: number
-    group_label: "Convertible Additional Terms"
-    description: "The initial soft call make-whole payment amount that would be payable if the bond were called for redemption on the soft call make- whole start date."
-    label: "Soft Call Initial Amount"
-    sql: ${TABLE}.SC_MAKE_WHOLE_INITIAL_AMOUNT ;;
-  }
+  # dimension: sc_make_whole_initial_amount {
+  #   type: number
+  #   group_label: "Convertible Additional Terms"
+  #   description: "The initial soft call make-whole payment amount that would be payable if the bond were called for redemption on the soft call make- whole start date."
+  #   label: "Soft Call Initial Amount"
+  #   sql: ${TABLE}.SC_MAKE_WHOLE_INITIAL_AMOUNT ;;
+  # }
 
-  dimension_group: sc_make_whole_start_date {
+  # dimension_group: sc_make_whole_start_date {
 
-    type: time
-    label: "Convertible Soft Call Start"
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.SC_MAKE_WHOLE_START_DATE, 1, 4),"-",SUBSTRING(${TABLE}.SC_MAKE_WHOLE_START_DATE, 5, 2),"-",SUBSTRING(${TABLE}.SC_MAKE_WHOLE_START_DATE, 7, 2));;
-  }
+  #   type: time
+  #   label: "Convertible Soft Call Start"
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.SC_MAKE_WHOLE_START_DATE, 1, 4),"-",SUBSTRING(${TABLE}.SC_MAKE_WHOLE_START_DATE, 5, 2),"-",SUBSTRING(${TABLE}.SC_MAKE_WHOLE_START_DATE, 7, 2));;
+  # }
 
-  dimension: sec_cusip {
-    type: string
-    group_label: "Other Security"
-    label: "SEC CUSIP"
-    sql: ${TABLE}.SEC_CUSIP ;;
-  }
+  # dimension: sec_cusip {
+  #   type: string
+  #   group_label: "Other Security"
+  #   label: "SEC CUSIP"
+  #   sql: ${TABLE}.SEC_CUSIP ;;
+  # }
 
   dimension: sec_reg_type1 {
     type: string
@@ -2106,28 +2100,28 @@ view: mergent_issuance {
     sql: ${TABLE}.SECURITY_LEVEL ;;
   }
 
-  dimension: security_pledge {
-    type: string
-    group_label: "Issue"
-    description: "A flag indicating that certain assets have been pledged as security for the issue."
-    sql: ${TABLE}.SECURITY_PLEDGE ;;
-  }
+  # dimension: security_pledge {
+  #   type: string
+  #   group_label: "Issue"
+  #   description: "A flag indicating that certain assets have been pledged as security for the issue."
+  #   sql: ${TABLE}.SECURITY_PLEDGE ;;
+  # }
 
-  dimension: sedol {
-    type: string
-    group_label: "Issue"
-    label: "SEDOL"
-    description: "A unique seven character number assigned to securities by the Stock Exchange Daily Official List."
-    sql: ${TABLE}.SEDOL ;;
-  }
+  # dimension: sedol {
+  #   type: string
+  #   group_label: "Issue"
+  #   label: "SEDOL"
+  #   description: "A unique seven character number assigned to securities by the Stock Exchange Daily Official List."
+  #   sql: ${TABLE}.SEDOL ;;
+  # }
 
-  dimension: see_note {
-    type: string
-    group_label: "Coupon"
-    description: "Indicates that the structure of the coupon formula could not be captured fully in within the table, COUPON_FORMULA_INDEX."
-    label: "Note Flag"
-    sql: ${TABLE}.SEE_NOTE ;;
-  }
+  # dimension: see_note {
+  #   type: string
+  #   group_label: "Coupon"
+  #   description: "Indicates that the structure of the coupon formula could not be captured fully in within the table, COUPON_FORMULA_INDEX."
+  #   label: "Note Flag"
+  #   sql: ${TABLE}.SEE_NOTE ;;
+  # }
 
   dimension: selling_concession {
     type: number
@@ -2136,18 +2130,18 @@ view: mergent_issuance {
     sql: ${TABLE}.SELLING_CONCESSION ;;
   }
 
-  dimension: senior_debt_issuance {
-    type: string
-    group_label: "Issuer"
-    description: "Restricts issuer to the amount of senior debt it may issue in the future."
-    sql: ${TABLE}.SENIOR_DEBT_ISSUANCE ;;
-  }
+  # dimension: senior_debt_issuance {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "Restricts issuer to the amount of senior debt it may issue in the future."
+  #   sql: ${TABLE}.SENIOR_DEBT_ISSUANCE ;;
+  # }
 
-  dimension: settlement {
-    type: string
-    group_label: "Issue"
-    sql: ${TABLE}.SETTLEMENT ;;
-  }
+  # dimension: settlement {
+  #   type: string
+  #   group_label: "Issue"
+  #   sql: ${TABLE}.SETTLEMENT ;;
+  # }
 
   dimension: settlement_type {
     type: string
@@ -2156,12 +2150,12 @@ view: mergent_issuance {
     sql: ${TABLE}.SETTLEMENT_TYPE ;;
   }
 
-  dimension: shares_outstanding {
-    type: number
-    group_label: "Convertible"
-    description: "The total number of securities/shares of the conversion commodity outstanding as of the AS_OF_DATE."
-    sql: ${TABLE}.SHARES_OUTSTANDING ;;
-  }
+  # dimension: shares_outstanding {
+  #   type: number
+  #   group_label: "Convertible"
+  #   description: "The total number of securities/shares of the conversion commodity outstanding as of the AS_OF_DATE."
+  #   sql: ${TABLE}.SHARES_OUTSTANDING ;;
+  # }
 
   dimension: sic_code {
     type: string
@@ -2178,68 +2172,68 @@ view: mergent_issuance {
     sql: ${TABLE}.SLOB ;;
   }
 
-  dimension: soft_call_make_whole {
-    type: string
-    label: "Soft Call Make Whole"
-    group_label: "Convertible"
-    description: "A flag indicating the soft call feature contains a make whole payment provision specified in the convertible_additional_terms table."
-    sql: ${TABLE}.SOFT_CALL_MAKE_WHOLE ;;
-  }
+  # dimension: soft_call_make_whole {
+  #   type: string
+  #   label: "Soft Call Make Whole"
+  #   group_label: "Convertible"
+  #   description: "A flag indicating the soft call feature contains a make whole payment provision specified in the convertible_additional_terms table."
+  #   sql: ${TABLE}.SOFT_CALL_MAKE_WHOLE ;;
+  # }
 
-  dimension_group: split_date {
-    label: "Convertible Split "
-    description: "The date of the last known conversion commodity split."
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: yes
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.SPLIT_DATE, 1, 4),"-",SUBSTRING(${TABLE}.SPLIT_DATE, 5, 2),"-",SUBSTRING(${TABLE}.SPLIT_DATE, 7, 2));;
-  }
+  # dimension_group: split_date {
+  #   label: "Convertible Split "
+  #   description: "The date of the last known conversion commodity split."
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: yes
+  #   datatype: date
+  #   sql: CONCAT(SUBSTRING(${TABLE}.SPLIT_DATE, 1, 4),"-",SUBSTRING(${TABLE}.SPLIT_DATE, 5, 2),"-",SUBSTRING(${TABLE}.SPLIT_DATE, 7, 2));;
+  # }
 
-  dimension: split_ratio {
-    type: string
-    group_label: "Convertible"
-    description: "The ratio to which the conversion commodity was split."
-    sql: ${TABLE}.SPLIT_RATIO ;;
-  }
+  # dimension: split_ratio {
+  #   type: string
+  #   group_label: "Convertible"
+  #   description: "The ratio to which the conversion commodity was split."
+  #   sql: ${TABLE}.SPLIT_RATIO ;;
+  # }
 
-  dimension: stock_issuance {
-    type: string
-    group_label: "Subsidiary Restrictive"
-    description: "Restricts issuer from issuing additional common stock in restricted subsidiaries. Restricted subsidiaries are those which are considered to be consolidated for financial test purposes."
-    sql: ${TABLE}.STOCK_ISSUANCE ;;
-  }
+  # dimension: stock_issuance {
+  #   type: string
+  #   group_label: "Subsidiary Restrictive"
+  #   description: "Restricts issuer from issuing additional common stock in restricted subsidiaries. Restricted subsidiaries are those which are considered to be consolidated for financial test purposes."
+  #   sql: ${TABLE}.STOCK_ISSUANCE ;;
+  # }
 
-  dimension: stock_issuance_issuer {
-    type: string
-    group_label: "Issuer"
-    sql: ${TABLE}.STOCK_ISSUANCE_ISSUER ;;
-  }
+  # dimension: stock_issuance_issuer {
+  #   type: string
+  #   group_label: "Issuer"
+  #   sql: ${TABLE}.STOCK_ISSUANCE_ISSUER ;;
+  # }
 
-  dimension: stock_transfer_sale_disp {
-    type: string
-    group_label: "Issuer"
-    label: " stock transfer sale disposing"
-    description: "Restricts the issuer from transferring, selling, or disposing of it’s own common"
-    sql: ${TABLE}.STOCK_TRANSFER_SALE_DISP ;;
-  }
+  # dimension: stock_transfer_sale_disp {
+  #   type: string
+  #   group_label: "Issuer"
+  #   label: " stock transfer sale disposing"
+  #   description: "Restricts the issuer from transferring, selling, or disposing of it’s own common"
+  #   sql: ${TABLE}.STOCK_TRANSFER_SALE_DISP ;;
+  # }
 
-  dimension: subordinated_debt_issuance {
-    type: string
-    description: "Restricts issuance of junior or subordinated debt."
-    group_label: "Issuer"
-    sql: ${TABLE}.SUBORDINATED_DEBT_ISSUANCE ;;
-  }
+  # dimension: subordinated_debt_issuance {
+  #   type: string
+  #   description: "Restricts issuance of junior or subordinated debt."
+  #   group_label: "Issuer"
+  #   sql: ${TABLE}.SUBORDINATED_DEBT_ISSUANCE ;;
+  # }
 
   dimension: subsequent_data {
     type: string
@@ -2248,19 +2242,19 @@ view: mergent_issuance {
     sql: ${TABLE}.SUBSEQUENT_DATA ;;
   }
 
-  dimension: subsidiary_guarantee {
-    type: string
-    group_label: "Subsidiary Restrictive"
-    description: "Subsidiary is restricted from issuing guarantees for the payment of interest and/or principal of certain debt obligations"
-    sql: ${TABLE}.SUBSIDIARY_GUARANTEE ;;
-  }
+  # dimension: subsidiary_guarantee {
+  #   type: string
+  #   group_label: "Subsidiary Restrictive"
+  #   description: "Subsidiary is restricted from issuing guarantees for the payment of interest and/or principal of certain debt obligations"
+  #   sql: ${TABLE}.SUBSIDIARY_GUARANTEE ;;
+  # }
 
-  dimension: subsidiary_redesignation {
-    type: string
-    group_label: "Subsidiary Restrictive"
-    description: "Indicates if restricted subsidiaries may be reclassified as an unrestricted subsidiaries. Restricted subsidiaries are those which are considered to be consolidated for financial test purposes."
-    sql: ${TABLE}.SUBSIDIARY_REDESIGNATION ;;
-  }
+  # dimension: subsidiary_redesignation {
+  #   type: string
+  #   group_label: "Subsidiary Restrictive"
+  #   description: "Indicates if restricted subsidiaries may be reclassified as an unrestricted subsidiaries. Restricted subsidiaries are those which are considered to be consolidated for financial test purposes."
+  #   sql: ${TABLE}.SUBSIDIARY_REDESIGNATION ;;
+  # }
 
   dimension: tender_exch_offer {
     type: string
@@ -2270,31 +2264,31 @@ view: mergent_issuance {
     sql: ${TABLE}.TENDER_EXCH_OFFER ;;
   }
 
-  dimension: ticker {
-    type: string
-    group_label: "Convertible"
-    sql: ${TABLE}.TICKER ;;
-  }
+  # dimension: ticker {
+  #   type: string
+  #   group_label: "Convertible"
+  #   sql: ${TABLE}.TICKER ;;
+  # }
 
-  dimension: total_units_offered {
-    type: number
-    group_label: "Unit"
-    sql: ${TABLE}.TOTAL_UNITS_OFFERED ;;
-  }
+  # dimension: total_units_offered {
+  #   type: number
+  #   group_label: "Unit"
+  #   sql: ${TABLE}.TOTAL_UNITS_OFFERED ;;
+  # }
 
-  dimension: transaction_affiliates {
-    type: string
-    group_label: "Issuer"
-    description: "Issuer is restricted in certain business dealings with its subsidiaries."
-    sql: ${TABLE}.TRANSACTION_AFFILIATES ;;
-  }
+  # dimension: transaction_affiliates {
+  #   type: string
+  #   group_label: "Issuer"
+  #   description: "Issuer is restricted in certain business dealings with its subsidiaries."
+  #   sql: ${TABLE}.TRANSACTION_AFFILIATES ;;
+  # }
 
-  dimension: treasury_maturity {
-    type: string
-    group_label: "Issue"
-    description: "Maturity of benchmark Treasury issue against which the issue's offering yield was measured."
-    sql: ${TABLE}.TREASURY_MATURITY ;;
-  }
+  # dimension: treasury_maturity {
+  #   type: string
+  #   group_label: "Issue"
+  #   description: "Maturity of benchmark Treasury issue against which the issue's offering yield was measured."
+  #   sql: ${TABLE}.TREASURY_MATURITY ;;
+  # }
 
   dimension: treasury_spread {
     type: number
@@ -2303,12 +2297,12 @@ view: mergent_issuance {
     sql: ${TABLE}.TREASURY_SPREAD ;;
   }
 
-  dimension: unit_cusip {
-    type: string
-    group_label: "Unit"
-    label: "Unit CUSIP"
-    sql: ${TABLE}.UNIT_CUSIP ;;
-  }
+  # dimension: unit_cusip {
+  #   type: string
+  #   group_label: "Unit"
+  #   label: "Unit CUSIP"
+  #   sql: ${TABLE}.UNIT_CUSIP ;;
+  # }
 
   dimension: unit_deal {
     type: string
@@ -2317,19 +2311,19 @@ view: mergent_issuance {
     sql: ${TABLE}.UNIT_DEAL ;;
   }
 
-  dimension: voting_power_percentage {
-    type: number
-    group_label: "Bond Holder"
-    description: "The issue’s change of control provisions are triggered if an investor controls more than this percentage of the issuer’s stock. Designed as a hostile takeover defense."
-    sql: ${TABLE}.VOTING_POWER_PERCENTAGE ;;
-  }
+  # dimension: voting_power_percentage {
+  #   type: number
+  #   group_label: "Bond Holder"
+  #   description: "The issue’s change of control provisions are triggered if an investor controls more than this percentage of the issuer’s stock. Designed as a hostile takeover defense."
+  #   sql: ${TABLE}.VOTING_POWER_PERCENTAGE ;;
+  # }
 
-  dimension: voting_power_percentage_erp {
-    type: number
-    group_label: "Bond Holder"
-    description: "The issue’s change of control provisions are triggered if the issuer’s employee retirement plan controls more than this percentage of the issuer’s stock. Designed as a hostile takeover defense."
-    sql: ${TABLE}.VOTING_POWER_PERCENTAGE_ERP ;;
-  }
+  # dimension: voting_power_percentage_erp {
+  #   type: number
+  #   group_label: "Bond Holder"
+  #   description: "The issue’s change of control provisions are triggered if the issuer’s employee retirement plan controls more than this percentage of the issuer’s stock. Designed as a hostile takeover defense."
+  #   sql: ${TABLE}.VOTING_POWER_PERCENTAGE_ERP ;;
+  # }
 
   dimension: yankee {
     type: string
