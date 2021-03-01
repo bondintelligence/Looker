@@ -1,6 +1,6 @@
 view: predictedprice {
   derived_table: {
-    sql: SELECT *
+    sql: SELECT ModelReturn.*
       FROM ML.PREDICT(MODEL looker_FINAL.price_muni,
       (
       SELECT Poverty_Rate_eco,
@@ -9,12 +9,22 @@ view: predictedprice {
       Income_Ratio,
       Population,
       _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted,
-      Interest_rate_of_the_issue_traded,
+      CASE
+          WHEN {% parameter Interest_rate_of_the_issue_traded %} IS NULL THEN Interest_rate_of_the_issue_traded
+          ELSE {% parameter Interest_rate_of_the_issue_traded %}
+          END AS Interest_rate_of_the_issue_traded,
       The_par_value_of_the_trade,
       Issue_Size,
       MaturitySize,
-      Price_At_Issue,
-      Yield_at_Issue,
+      CASE
+          WHEN {% parameter Price_At_Issue %} IS NULL THEN Price_At_Issue
+            ELSE {% parameter Price_At_Issue %}
+            END AS Price_At_Issue,
+      CASE
+          WHEN {% parameter Yield_at_Issue %} IS NOT NULL THEN
+            {% parameter Yield_at_Issue %}
+            ELSE Yield_at_Issue
+            END AS Yield_at_Issue,
       Dollar_Price_of_the_trade,
       CAST(Issuer_Type AS string) AS Issuer_Type,
       CAST(Trade_Type_Indicator AS string) AS Trade_Type_Indicator,
@@ -24,15 +34,26 @@ view: predictedprice {
       WHERE CUSIP = "{% parameter CUSIP %}"
       LIMIT 1
       )
-      )
+      ) AS ModelReturn
       ;;
   }
 
 
+  parameter: Interest_rate_of_the_issue_traded{
+    type: number
+  }
+
+  parameter: Price_At_Issue{
+    type: number
+  }
+
+  parameter:Yield_at_Issue{
+    type: number
+  }
+
   parameter: CUSIP {
     type: unquoted
-
-    }
+  }
 
   measure: count {
     type: count

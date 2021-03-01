@@ -109,7 +109,7 @@ explore: last_trades {
 }
 
 explore: predictedprice {
-  hidden: yes
+  hidden: no
 }
 
 explore: price_muni_prediction {
