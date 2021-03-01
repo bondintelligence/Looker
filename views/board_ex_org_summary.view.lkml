@@ -10,6 +10,9 @@ view: board_ex_summary {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no

@@ -1,24 +1,19 @@
 
 view: FINRA_CRSP {
-  #sql_table_name: `bi-model-development.looker_FINAL.corp` ;;
+  # sql_table_name: `bi-model-development.looker_FINAL.corp` ;;
 
   derived_table: {
     sql:
       SELECT * FROM`bi-model-development.looker_FINAL.corp` WHERE
+      T_Spread IS NOT NULL AND
       OFFERING_PRICE IS NOT NULL AND
       company_symbol IS NOT NULL AND
       TREASURY_MATURITY IS NOT NULL AND
-      R_FR IS NOT NULL AND
-      R_SP IS NOT NULL AND
-      R_MR IS NOT NULL AND
-      N_SP IS NOT NULL AND
-      N_MR IS NOT NULL AND
-      N_FR IS NOT NULL AND
       RATING_CLASS IS NOT NULL AND
-      T_Spread IS NOT NULL AND
-      T_Spread IS NOT NULL AND
-      T_Yld_Pt IS NOT NULL AND
+      T_Volume IS NOT NULL AND
+      T_DVolume IS NOT NULL AND
       YIELD IS NOT NULL AND
+      T_Yld_Pt IS NOT NULL AND
       PRICE_EOM IS NOT NULL AND
       PRICE_LDM IS NOT NULL AND
       PRICE_L5M IS NOT NULL AND
@@ -208,10 +203,6 @@ view: FINRA_CRSP {
     sql: ${TABLE}.GAP ;;
   }
 
-
-
-
-
   dimension_group: last_interest_date {
     label: "Last Interest"
     type: time
@@ -338,9 +329,10 @@ view: FINRA_CRSP {
   }
 
   dimension: price_l5_m {
-    type: string
+    type: number
     description: "Last price at which the bond was traded in a given month, if that day falls within the last 5 trading days of the month "
     label: "price last 5 days of month"
+    value_format: "$#,##0.00"
     sql: ${TABLE}.PRICE_L5M ;;
   }
 
@@ -439,9 +431,10 @@ view: FINRA_CRSP {
   }
 
   dimension: ret_l5_m {
-    type: string
+    type: number
     description: "Monthly return calculated based on PRICE_L5M and accrued coupon interest"
     label: "return_last_5_days"
+    value_format: "0.00\%"
     sql: ${TABLE}.RET_L5M ;;
   }
 
@@ -493,8 +486,8 @@ view: FINRA_CRSP {
 
   dimension: t_dvolume {
     type: number
-    value_format: "$#,##0.00"
     label: "total_dollar_volume"
+    value_format: "$#,##0.00"
     sql: ${TABLE}.T_DVolume ;;
   }
 

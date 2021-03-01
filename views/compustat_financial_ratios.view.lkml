@@ -17,6 +17,7 @@ view: compustat_financial_ratios {
   }
 
   dimension_group: adate {
+    label: "year end"
     type: time
     timeframes: [
       raw,
@@ -24,6 +25,9 @@ view: compustat_financial_ratios {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -506,6 +510,9 @@ view: compustat_financial_ratios {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no
@@ -514,6 +521,7 @@ view: compustat_financial_ratios {
   }
 
   dimension_group: qdate {
+    label: "quarter end"
     type: time
     timeframes: [
       raw,
@@ -521,6 +529,9 @@ view: compustat_financial_ratios {
       week,
       month,
       quarter,
+      day_of_week,
+      day_of_month,
+      month_name,
       year
     ]
     convert_tz: no

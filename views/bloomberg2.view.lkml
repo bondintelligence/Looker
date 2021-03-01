@@ -50,11 +50,14 @@ view: bloomberg2 {
     sql: ${TABLE}.MidYTM ;;
   }
 
+
   measure: count {
     type: count
     drill_fields: []
-  }
 
+
+
+  }
 
   measure: last_price_ {
     type: number

@@ -1,21 +1,29 @@
 view: compustat_financial_fundamental {
-  sql_table_name: `bi-model-development.looker_FINAL.Compustat_Financial_Fundamental`
-    ;;
+  # sql_table_name: `bi-model-development.looker_FINAL.Compustat_Financial_Fundamental`
+  #   ;;
+
+  derived_table: {
+    sql: SELECT * FROM bi-model-development.looker_FINAL.Compustat_Financial_Fundamental
+      WHERE seq IS NOT NULL AND capx IS NOT NULL AND dv IS NOT NULL AND dpc IS NOT NULL AND sppiv IS NOT NULL AND tic IS NOT NULL AND conm IS NOT NULL AND costat IS NOT NULL AND curcd IS NOT NULL AND city IS NOT NULL AND state IS NOT NULL AND loc IS NOT NULL AND `at` IS NOT NULL AND lt IS NOT NULL AND icapt IS NOT NULL AND invt IS NOT NULL AND re IS NOT NULL AND dltt IS NOT NULL AND dlc IS NOT NULL;;
+  }
 
   dimension: acchg {
     type: number
+    hidden: yes
     label: "Accounting Changes - Cumulative Effect"
     sql: ${TABLE}.acchg ;;
   }
 
   dimension: acco {
     type: number
+    hidden: yes
     label: "Acceptances Outstanding"
     sql: ${TABLE}.acco ;;
   }
 
   dimension: acctchg {
     type: string
+    hidden: yes
     label: "Adoption of Accounting Changes"
     sql: ${TABLE}.acctchg ;;
   }
@@ -68,6 +76,7 @@ view: compustat_financial_fundamental {
 
   dimension: acoxar {
     type: number
+    hidden: yes
     label: "Other - Total As Reported"
     group_label: "Current Assets"
     sql: ${TABLE}.acoxar ;;
@@ -75,6 +84,7 @@ view: compustat_financial_fundamental {
 
   dimension: acqao {
     type: number
+    hidden: yes
     label: "Other Long-Term Assets"
     group_label: "Acquired Assets"
     sql: ${TABLE}.acqao ;;
@@ -82,6 +92,7 @@ view: compustat_financial_fundamental {
 
   dimension: acqcshi {
     type: number
+    hidden: yes
     label: "Shares Issued for Acquisition  "
     sql: ${TABLE}.acqcshi ;;
   }
@@ -95,6 +106,7 @@ view: compustat_financial_fundamental {
 
   dimension: acqic {
     type: number
+    hidden: yes
     label: "Current Income Contribution"
     group_label: "Acquisitions"
     sql: ${TABLE}.acqic ;;
@@ -102,6 +114,7 @@ view: compustat_financial_fundamental {
 
   dimension: acqintan {
     type: number
+    hidden: yes
     label: "Intangibles"
     group_label: "Acquired Assets"
     sql: ${TABLE}.acqintan ;;
@@ -109,6 +122,7 @@ view: compustat_financial_fundamental {
 
   dimension: acqinvt {
     type: number
+    hidden: yes
     label: "Inventory "
     group_label: "Acquired Assets"
     sql: ${TABLE}.acqinvt ;;
@@ -116,24 +130,28 @@ view: compustat_financial_fundamental {
 
   dimension: acqlntal {
     type: number
+    hidden: yes
     label: "Acquired Loans"
     sql: ${TABLE}.acqlntal ;;
   }
 
   dimension: acqmeth {
     type: string
+    hidden: yes
     label: "Acquisition Method"
     sql: ${TABLE}.acqmeth ;;
   }
 
   dimension: acqniintc {
     type: string
+    hidden: yes
     label: "Net Interest Income Contribution  "
     sql: ${TABLE}.acqniintc ;;
   }
 
   dimension: acqppe {
     type: number
+    hidden: yes
     label: "Property, Plant & Equipment"
     group_label: "Acquired Assets"
     sql: ${TABLE}.acqppe ;;
@@ -141,6 +159,7 @@ view: compustat_financial_fundamental {
 
   dimension: acqsc {
     type: number
+    hidden: yes
     label: "Current Sales Contribution"
     group_label: "Acquisitions"
     sql: ${TABLE}.acqsc ;;
@@ -202,30 +221,35 @@ view: compustat_financial_fundamental {
 
   dimension: adpac {
     type: number
+    hidden: yes
     label: "Amortization of Deferred Policy Acquisition Costs"
     sql: ${TABLE}.adpac ;;
   }
 
   dimension: adrr {
     type: number
+    hidden: yes
     label: "ADR Ratio"
     sql: ${TABLE}.adrr ;;
   }
 
   dimension: aedi {
     type: number
+    hidden: yes
     label: "Accrued Expenses and Deferred Income  "
     sql: ${TABLE}.aedi ;;
   }
 
   dimension: afudcc {
     type: number
+    hidden: yes
     label: "Allowance for Funds Used During Construction (Cash Flow)"
     sql: ${TABLE}.afudcc ;;
   }
 
   dimension: afudci {
     type: number
+    hidden: yes
     label: "Allowance for Funds Used During Construction (Investing) (Cash Flow)"
     sql: ${TABLE}.afudci ;;
   }
@@ -246,18 +270,21 @@ view: compustat_financial_fundamental {
 
   dimension: aldo {
     type: number
+    hidden: yes
     label: "Long-term Assets of Discontinued Operations"
     sql: ${TABLE}.aldo ;;
   }
 
   dimension: am {
     type: number
+    hidden: yes
     label: "Amortization of Intangibles"
     sql: ${TABLE}.am ;;
   }
 
   dimension: amc {
     type: number
+    hidden: yes
     label: "Utility"
     group_label: "Amortization (Cash Flow)"
     sql: ${TABLE}.amc ;;
@@ -265,18 +292,21 @@ view: compustat_financial_fundamental {
 
   dimension: amdc {
     type: number
+    hidden: yes
     label: "Amortization of Deferred Charges"
     sql: ${TABLE}.amdc ;;
   }
 
   dimension: amgw {
     type: number
+    hidden: yes
     label: "Amortization of Goodwill"
     sql: ${TABLE}.amgw ;;
   }
 
   dimension: ano {
     type: number
+    hidden: yes
     label: "Assets Netting & Other Adjustments"
     group_label: "Assets"
     sql: ${TABLE}.ano ;;
@@ -360,6 +390,7 @@ view: compustat_financial_fundamental {
 
   dimension: apb {
     type: number
+    hidden: yes
     label: "Brokers, Dealers, and Clearing Organizations"
     group_label: "Accounts Payable/Creditors"
     sql: ${TABLE}.apb ;;
@@ -367,6 +398,7 @@ view: compustat_financial_fundamental {
 
   dimension: apc {
     type: number
+    hidden: yes
     label: " Customer"
     group_label: "Accounts Payable/Creditors"
     sql: ${TABLE}.apc ;;
@@ -390,6 +422,7 @@ view: compustat_financial_fundamental {
 
   dimension: apofs {
     type: number
+    hidden: yes
     label: "Other - FS"
     group_label: "Accounts Payable/Creditors"
     sql: ${TABLE}.apofs;;
@@ -397,6 +430,7 @@ view: compustat_financial_fundamental {
 
   dimension: aqa {
     type: number
+    hidden: yes
     label: "Acquisition/Merger After-tax"
     sql: ${TABLE}.aqa ;;
   }
@@ -410,18 +444,21 @@ view: compustat_financial_fundamental {
 
   dimension: aqd {
     type: number
+    hidden: yes
     label: "Acquisition/Merger Diluted EPS Effect "
     sql: ${TABLE}.aqd ;;
   }
 
   dimension: aqeps {
     type: number
+    hidden: yes
     label: "Acquisition/Merger Basic EPS Effect "
     sql: ${TABLE}.aqeps ;;
   }
 
   dimension: aqi {
     type: number
+    hidden: yes
     label: "Income Contribution"
     group_label: "Acquisitions"
     sql: ${TABLE}.aqi ;;
@@ -429,12 +466,14 @@ view: compustat_financial_fundamental {
 
   dimension: aqp {
     type: number
+    hidden: yes
     label: "Acquisition/Merger Pretax"
     sql: ${TABLE}.aqp ;;
   }
 
   dimension: aqpl1 {
     type: number
+    hidden: yes
     group_label: "Assets"
     label: "Assets Level1 (Quoted Prices)"
     sql: ${TABLE}.aqpl1 ;;
@@ -442,6 +481,7 @@ view: compustat_financial_fundamental {
 
   dimension: aqs {
     type: number
+    hidden: yes
     label: "Sales Contribution"
     group_label: "Acquisitions"
     sql: ${TABLE}.aqs ;;
@@ -449,6 +489,7 @@ view: compustat_financial_fundamental {
 
   dimension: arb {
     type: number
+    hidden: yes
     label: "Brokers, Dealers, and Clearing Organization"
     group_label: "Accounts Receivable/Debtors"
     sql: ${TABLE}.arb ;;
@@ -456,6 +497,7 @@ view: compustat_financial_fundamental {
 
   dimension: arc {
     type: number
+    hidden: yes
     label: "Customer"
     group_label: "Accounts Receivable/Debtors"
     sql: ${TABLE}.arc ;;
@@ -463,24 +505,28 @@ view: compustat_financial_fundamental {
 
   dimension: arce {
     type: number
+    hidden: yes
     label: "As Reported Core After-tax"
     sql: ${TABLE}.arce ;;
   }
 
   dimension: arced {
     type: number
+    hidden: yes
     label: "As Reported Core Diluted EPS Effect"
     sql: ${TABLE}.arced ;;
   }
 
   dimension: arceeps {
     type: number
+    hidden: yes
     label: "As Reported Core Basic EPS Effect"
     sql: ${TABLE}.arceeps ;;
   }
 
   dimension: artfs {
     type: number
+    hidden: yes
     label: "Total"
     group_label: "Accounts Receivable/Debtors"
     sql: ${TABLE}.artfs ;;
@@ -502,6 +548,7 @@ view: compustat_financial_fundamental {
 
   dimension: aul3 {
     type: number
+    hidden: yes
     group_label: "Assets"
     label: "Assets Level3 (Unobservable)"
     sql: ${TABLE}.aul3 ;;
@@ -632,6 +679,7 @@ view: compustat_financial_fundamental {
 
   dimension: bspr {
     type: string
+    hidden: yes
     label: "Balance Sheet Presentation"
     sql: ${TABLE}.bspr ;;
   }
@@ -1008,6 +1056,7 @@ view: compustat_financial_fundamental {
 
   dimension: compst {
     type: string
+    hidden: yes
     label: "Comparability Status"
     sql: ${TABLE}.compst ;;
   }
@@ -1545,7 +1594,7 @@ view: compustat_financial_fundamental {
     sql: ${TABLE}.dpc ;;
   }
 
-  measure: cashflow_3 {
+  measure: CashFlow_3 {
     type: number
     label: "Depreciation and Amortization"
     sql: ${TABLE}.dpc ;;
@@ -2074,7 +2123,9 @@ view: compustat_financial_fundamental {
   dimension: final {
     type: yesno
     label: "Final Indicator Flag"
-    sql: ${TABLE}.final ;;
+    sql: CASE WHEN ${TABLE}.final = true THEN true
+          ELSE false
+          END;;
   }
 
   dimension: fincf {
@@ -3382,6 +3433,7 @@ view: compustat_financial_fundamental {
 
   dimension: ltcm {
     type: number
+    hidden: yes
     label: "Long Term Contract Method"
     sql: ${TABLE}.ltcm ;;
   }
@@ -3681,6 +3733,7 @@ view: compustat_financial_fundamental {
 
   dimension: ogm {
     type: string
+    hidden: yes
     label: "OIL & GAS METHOD"
     sql: ${TABLE}.ogm ;;
   }
@@ -4847,7 +4900,7 @@ view: compustat_financial_fundamental {
   dimension: seq {
     type: number
     label: "Stockholders' Equity - Total"
-    sql: ${TABLE}.seq ;;
+    sql: ${TABLE}.seq;;
   }
 
   dimension: seqo {
@@ -4960,7 +5013,7 @@ view: compustat_financial_fundamental {
     sql: ${TABLE}.sppiv ;;
   }
 
-  measure: cashflow_4 {
+  measure: CashFlow_4 {
     type: number
     label: "Sale of Property, Plant and Equipment"
     sql: ${TABLE}.sppiv ;;
@@ -5004,6 +5057,7 @@ view: compustat_financial_fundamental {
 
   dimension: stalt {
     type: string
+    hidden: yes
     label: "Status Alert"
     sql: ${TABLE}.stalt ;;
   }
@@ -5626,6 +5680,7 @@ view: compustat_financial_fundamental {
 
   dimension: udpl {
     type: number
+    hidden: yes
     label: "Utility - Liberalized Depreciation Code"
     sql: ${TABLE}.udpl ;;
   }
