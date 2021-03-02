@@ -3,17 +3,29 @@ view: predictedrisk {
     sql: SELECT * FROM ML.PREDICT(MODEL `bi-model-development.looker_FINAL.risk_muni`,
       (
       SELECT
-      _20th_Percentile_Income AS C_20th_Percentile_Income,
-      Days_between_maturity_date_and_trade_date AS Days_between_maturity_date_and_trade_date,
-      Median_Gross_Rent_dollars_MH AS Median_Gross_Rent_dollars_MH,
+      CASE WHEN {% parameter _20th_Percentile_Income %} IS NULL THEN _20th_Percentile_Income
+          ELSE {% parameter _20th_Percentile_Income%}
+          END AS C_20th_Percentile_Income,
+      CASE WHEN {% parameter Days_between_maturity_date_and_trade_date %} IS NULL THEN Days_between_maturity_date_and_trade_date
+          ELSE {% parameter Days_between_maturity_date_and_trade_date %}
+          END AS Days_between_maturity_date_and_trade_date,
+      CASE WHEN {% parameter Median_Gross_Rent_dollars_MH%} IS NULL THEN Median_Gross_Rent_dollars_MH
+        ELSE {% parameter Median_Gross_Rent_dollars_MH%}
+        END AS Median_Gross_Rent_dollars_MH,
       __Non_Hispanic_White AS Percent_Non_Hispanic_White,
       percent_bachelor_s_degree_or_higher_dem AS Percent_bachelor_s_degree_or_higher_dem,
-      Poverty_Rate_eco AS Poverty_Rate_eco,
+      CASE WHEN {% parameter Poverty_Rate_eco%} IS NULL THEN Poverty_Rate_eco
+        ELSE {% parameter Poverty_Rate_eco%}
+        END AS Poverty_Rate_eco,
       Ratings1 AS Ratings1,Ratings2 AS Ratings2,Ratings3 AS Ratings3,
       Trade_Date AS Trade_Date,
-      Unemployment_Rate_eco AS Unemployment_Rate_eco,
-      Yield_at_Issue AS Yield_at_Issue,
-      _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted AS _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted
+      CASE WHEN {% parameter Unemployment_Rate_eco %} IS NULL THEN Unemployment_Rate_eco
+        ELSE {% parameter Unemployment_Rate_eco %}
+        END AS Unemployment_Rate_eco,
+     Yield_at_Issue AS Yield_at_Issue,
+      CASE WHEN {% parameter _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted %} IS NULL THEN _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted
+        ELSE {% parameter _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted%}
+        END AS _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted,
       FROM `bi-model-development.looker_FINAL.Muni_Risk_Model_Input`
       WHERE CUSIP = "{% parameter CUSIP %}"
       LIMIT 1
@@ -25,6 +37,33 @@ view: predictedrisk {
   parameter: CUSIP {
     type: unquoted
   }
+
+  parameter: Days_between_maturity_date_and_trade_date {
+    type: number
+  }
+
+  parameter: _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted {
+    type: number
+  }
+
+  parameter: Unemployment_Rate_eco {
+    type: number
+  }
+
+  parameter: Poverty_Rate_eco {
+    type:  number
+  }
+
+  parameter: Median_Gross_Rent_dollars_MH {
+    type: number
+  }
+
+  parameter: _20th_Percentile_Income {
+    type: number
+  }
+
+
+
 
   measure: count {
     type: count
