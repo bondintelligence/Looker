@@ -425,28 +425,28 @@ view: board_ex_summary {
     drill_fields: [hocountry_name, role_name, director_name, board_name]
   }
 
-  dimension: attrition_ {
+  measure: attrition_ {
     description: "Number of Directors that have left a role as a proportion of average number of Directors for the preceding reporting period at the Annual Report Date selected"
     type: number
     sql: ${TABLE}.Attrition ;;
   }
 
 
-  dimension: avg_time_oth_co_ {
+  measure: avg_time_oth_co_ {
     label: "Average Time in Other Companies"
     description: "The Average Time that a Director sits on the Board of Quoted Companies"
     type: number
     sql: ${TABLE}.AvgTimeOthCo ;;
   }
 
-  dimension: eq_link_rem_ratio_ {
+  measure: eq_link_rem_ratio_ {
     type: number
     label: "Equity Linked Remuneration Ratio"
     description: "Ratio Equity Linked Compensation as a proportion of total compensation for the individual based on the closing stock price of the Annual Report Date selected"
     sql: ${TABLE}.EqLinkRemRatio ;;
   }
 
-  dimension: est_val_opt_award_ {
+  measure: est_val_opt_award_ {
     type: number
     label: "Estimated Value of Options Awarded"
     description: "in Last Year (in 000s) A valuation of Options awarded during the period based on the closing stock price of the Annual Report Date selected"
@@ -454,74 +454,74 @@ view: board_ex_summary {
     group_label: "Estimated Value of Options"
   }
 
-  dimension: est_val_opt_held_ {
+  measure: est_val_opt_held_ {
     type: number
     label: "Estimated Value of Options Held"
     sql: ${TABLE}.EstValOptHeld ;;
     group_label: "Estimated Value of Options"
   }
 
-  dimension: gender_ratio_ {
+  measure: gender_ratio_ {
     type: number
     description: "The proportion of male directors at the Annual Report Date selected"
     sql: ${TABLE}.GenderRatio ;;
   }
 
-  dimension: ltipvalue_ {
+  measure: ltipvalue_ {
     type: number
     label: "Value of LTIP Awarded"
     description: "Value of LTIPs awarded during the period based on the closing stock price of the Annual Report Date selected "
     sql: ${TABLE}.LTIPValue ;;
   }
 
-  dimension: nationality_mix_ {
+  measure: nationality_mix_ {
     type: number
     description: "Proportion of Directors from different countries at the Annual Report Date selected"
     sql: ${TABLE}.NationalityMix ;;
   }
 
 
-  dimension: network_size_ {
+  measure: network_size_ {
     type: number
     label: "Individual Network Size"
     description: "Network size of selected indivdual (number of overlaps through employment, other activities, and education)"
     sql: ${TABLE}.NetworkSize ;;
   }
 
-  dimension: no_quals_ {
+  measure: no_quals_ {
     type: number
     label: "Number of Qualifications"
     description: "The average number of qualifications at undergraduate level and and above forall the Directors at the Annual Report Date selected"
     sql: ${TABLE}.NoQuals ;;
   }
 
-  dimension: number_directors_ {
+  measure: number_directors_ {
     type: number
     label: "Number of Directors on Board"
     sql: ${TABLE}.NumberDirectors ;;
   }
 
-  dimension: other_ {
+  measure: other_ {
     type: number
     description: "(in 000s) Value of annual ad hoc cash payments such as relocation or fringe benefits awarded during the period"
     sql: ${TABLE}.Other ;;
   }
 
-  dimension: pen_emp_con_ {
+  measure: pen_emp_con_ {
     type: number
     label: "Employers Defined Contribution"
     description: "for each Director (in 000s) Employers Defined Retirement/Pension Contribution for each Director in a report period"
     sql: ${TABLE}.PenEmpCon ;;
   }
 
-  dimension: perf_total_ {
+  measure: perf_total_ {
     type: number
     label: "LTIP Value / Total Awards for the Period"
     description: "Performance to total - Ratio of Value of LTIPs Held to Total Compensation for the period"
     sql: ${TABLE}.PerfTotal ;;
   }
 
-  dimension: rem_chge_last_ {
+  measure: rem_chge_last_ {
     type: number
     label: "Remuneration Change since Last R&A"
     description: "Percentage change in total compensation from the previous report period for the individual"
@@ -529,159 +529,159 @@ view: board_ex_summary {
   }
 
 
-  dimension: salary_ {
+  measure: salary_ {
     type: number
     description: "(in 000s) Base annual pay in cash for each Director in a report period"
     sql: ${TABLE}.Salary ;;
   }
 
 
-  dimension: stdevage_ {
+  measure: stdevage_ {
     type: number
     label: "SD of Age"
     sql: ${TABLE}.STDEVAge ;;
     group_label: "Standard Deviation"
   }
 
-  dimension: stdevno_quals_ {
+  measure: stdevno_quals_ {
     type: number
     label: "SD of Total Number of Qualifications"
     group_label: "Standard Deviation"
     sql: ${TABLE}.STDEVNoQuals ;;
   }
 
-  dimension: stdevtime_brd_ {
+  measure: stdevtime_brd_ {
     type: number
     label: "SD of Time on Board"
     group_label: "Standard Deviation"
     sql: ${TABLE}.STDEVTimeBrd ;;
   }
 
-  dimension: stdevtime_in_co_ {
+  measure: stdevtime_in_co_ {
     type: number
     label: "SD of Time in Company"
     group_label: "Standard Deviation"
     sql: ${TABLE}.STDEVTimeInCo ;;
   }
 
-  dimension: stdevtot_curr_no_lstd_brd_{
+  measure: stdevtot_curr_no_lstd_brd_{
     type: number
     label: "SD of Total Number of Current Listed Boards sat on"
     group_label: "Standard Deviation"
     sql: ${TABLE}.STDEVTotCurrNoLstdBrd ;;
   }
 
-  dimension: stdevtot_no_lstd_brd_ {
+  measure: stdevtot_no_lstd_brd_ {
     type: number
     label: "SD of Total Number of Listed Boards sat on"
     group_label: "Standard Deviation"
     sql: ${TABLE}.STDEVTotNoLstdBrd ;;
   }
 
-  dimension: succession_rate{
+  measure: succession_rate{
     type: number
     description: "Measurement of the Clustering of Directors around retirement age at the Annual Report Date selected"
     sql: ${TABLE}.Succession ;;
   }
 
 
-  dimension: time_brd_ {
+  measure: time_brd_ {
     type: number
     label: "Time on Board"
     sql: ${TABLE}.TimeBrd ;;
   }
 
-  dimension: time_in_co_ {
+  measure: time_in_co_ {
     type: number
     description: "Time in Company for the individual at a selected Annual Report Date"
     label: "Time in Company"
     sql: ${TABLE}.TimeInCo ;;
   }
 
-  dimension: time_retirement_ {
+  measure: time_retirement_ {
     type: number
     description: "Time to Retirement for the individual at a selected Annual Report Date assuming a retirement age of 70"
     label: "Time to Retirement"
     sql: ${TABLE}.TimeRetirement ;;
   }
 
-  dimension: time_role_ {
+  measure: time_role_ {
     type: number
     label: "Time in Role"
     sql: ${TABLE}.TimeRole ;;
   }
 
-  dimension: tot_curr_no_lstd_brd_ {
+  measure: tot_curr_no_lstd_brd_ {
     type: number
     label: "Listed Boards"
     group_label: "Total Current Number of Boards sitting on"
     sql: ${TABLE}.TotCurrNoLstdBrd ;;
   }
 
-  dimension: tot_curr_no_oth_lstd_brd_ {
+  measure: tot_curr_no_oth_lstd_brd_ {
     type: number
     label: "Other Boards"
     group_label: "Total Current Number of Boards sitting on"
     sql: ${TABLE}.TotCurrNoOthLstdBrd ;;
   }
 
-  dimension: tot_curr_no_un_lstd_brd_ {
+  measure: tot_curr_no_un_lstd_brd_ {
     type: number
     label: "Unlisted Boards"
     group_label: "Total Current Number of Boards sitting on"
     sql: ${TABLE}.TotCurrNoUnLstdBrd ;;
   }
 
-  dimension: tot_eq_at_risk_ {
+  measure: tot_eq_at_risk_ {
     type: number
     label: "Total Stock, Option, and LTIP Awards"
     description: "Total stock (ValEqAward), option (EstValOptAward) and LTIP (LTIPValue) awards based on the closing stock price of the Annual Report Date selected"
     sql: ${TABLE}.TotEqAtRisk ;;
   }
 
-  dimension: tot_eq_linked_wlth_ {
+  measure: tot_eq_linked_wlth_ {
     type: number
     label: "Total Value of Equity Linked Wealth"
     description: "A valuation of Total Wealth at the end of the period for the individual based on the closing stock price of the Annual Report Date selected 4"
     sql: ${TABLE}.TotEqLinkedWlth ;;
   }
 
-  dimension: tot_no_lstd_brd_ {
+  measure: tot_no_lstd_brd_ {
     type: number
     label: "Listed Boards"
     group_label: "Total Number of Boards sat on"
     sql: ${TABLE}.TotNoLstdBrd ;;
   }
 
-  dimension: tot_no_oth_lstd_brd_ {
+  measure: tot_no_oth_lstd_brd_ {
     type: number
     label: "Other Boards"
     group_label: "Total Number of Boards sat on"
     sql: ${TABLE}.TotNoOthLstdBrd ;;
   }
 
-  dimension: tot_no_un_lstd_brd_ {
+  measure: tot_no_un_lstd_brd_ {
     type: number
     label: "Unlisted Boards"
     group_label: "Total Number of Boards sat on"
     sql: ${TABLE}.TotNoUnLstdBrd ;;
   }
 
-  dimension: tot_rem_period_ {
+  measure: tot_rem_period_ {
     type: number
     description: "(in 000s) Total awards for the period"
     label: "Total Awards for the Remuneration Period"
     sql: ${TABLE}.TotRemPeriod ;;
   }
 
-  dimension: total_compensation_ {
+  measure: total_compensation_ {
     type: number
     description: "(in 000s) Salary plus Bonus"
     group_label: "Compensation"
     sql: ${TABLE}.TotalCompensation ;;
   }
 
-  dimension: total_direct_comp_ {
+  measure: total_direct_comp_ {
     type: number
     group_label: "Compensation"
     label: "Total Direct Compensation"
@@ -690,21 +690,21 @@ view: board_ex_summary {
   }
 
 
-  dimension: val_ltipheld_ {
+  measure: val_ltipheld_ {
     type: number
     label: "Value of Long Term Incentive Plans Held"
     description: "Value of LTIPs held at the end of the report for the individual based on the closing stock price of the Annual Report Date selected 1"
     sql: ${TABLE}.ValLTIPHeld ;;
   }
 
-  dimension: val_tot_eq_held_ {
+  measure: val_tot_eq_held_ {
     type: number
     label: "Value of Total Equity Held"
     description: " (in 000s) Value of shares held at the end of the reporting period for the individual based on the closing stock price of the Annual Report Date selected"
     sql: ${TABLE}.ValTotEqHeld ;;
   }
 
-  dimension: wealth_delta_ {
+  measure: wealth_delta_ {
     type: number
     label: "WealthDelta"
     description: "(in 000s) Change in wealth in the company (Total Equity Linked Wealth) for each 1% change in the stock price at the Annual Report Date selected for the individual"

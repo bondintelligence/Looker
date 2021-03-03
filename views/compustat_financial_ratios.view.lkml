@@ -645,6 +645,8 @@ view: compustat_financial_ratios {
     sql: ${TABLE}.totdebt_invcap ;;
   }
 
+#####################################################################################
+
   measure: count {
     type: count
     drill_fields: []
