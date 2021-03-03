@@ -14,6 +14,7 @@ include: "/midYield.view"
 include: "/predictedprice.view"
 include: "/predictedRisk.view"
 include: "/comparable_trades.view"
+include: "/price_prediction_muni.view"
 
 datagroup: production_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -105,6 +106,14 @@ explore: muni_issuance {
 }
 
 
+explore: pricemodel {
+  label: "Price Prediction Muni"
+  always_filter: {
+    filters: [pricemodel.CUSIP_Parameter: "010734RA1"]
+  }
+}
+
+
 explore: askYield {
   hidden: yes
 }
@@ -142,7 +151,9 @@ explore: comparable_trades {
   hidden:  yes
 }
 
-explore: predictedrisk {}
+explore: predictedrisk {
+  hidden:  yes
+}
 
 
 
@@ -261,9 +272,15 @@ explore:  mergent_bond_redemption{
 }
 
 explore:  raven_pack_sentiment {
+  always_filter: {
+    filters: [raven_pack_sentiment.entity_name: ""]
+    }
   description: "RavenPack News Analytics is a unique source of explanatory and predictive inputs derived from news. The product includes a data set rich with structured information and potential signals and creates new trading opportunities on both scheduled and unscheduled news events. This data is used to power a number of applications ranging from high frequency trading systems requiring low latency inputs to risk and asset management models requiring factors whose time resolution may be daily, weekly, and monthly.RavenPack automatically tracks and monitors relevant information on nearly 200,000 companies, government organizations, influential people, key geographical locations, and all major currencies and traded commodities. Among the many benefits, RavenPack delivers sentiment analysis and event data most likely to impact financial markets and trading around the world"
 }
 
 explore: board_ex_summary{
+  always_filter: {
+    filters: [board_ex_summary.board_name: ""]
+  }
   description: "BoardEx data consists of compensation, employment, and relationship data for 20,000+ companies from 1999-present. Access educational background, prior employment, and connections of directors and executives. Analyze the proportion of politically connected directors, using CEO-level controls such as age, gender, and experience. Extract executive stock option holdings."
 }
