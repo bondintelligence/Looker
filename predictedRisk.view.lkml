@@ -7,30 +7,30 @@ view: predictedrisk {
     FROM ML.PREDICT(MODEL `bi-model-development.looker_FINAL.risk_muni_model`,
       (
       SELECT
-      CASE WHEN {% parameter _20th_Percentile_Income %} IS NULL THEN ((_20th_Percentile_Income * POWER(4.08144607e+07, 0.5)) + 2.40765872e+04)
+      ((CASE WHEN {% parameter _20th_Percentile_Income %} IS NULL THEN ((_20th_Percentile_Income * POWER(4.08144607e+07, 0.5)) + 2.40765872e+04)
           ELSE {% parameter _20th_Percentile_Income%}
-          END AS _20th_Percentile_Income - 2.40765872e+04/POWER(4.08144607e+07, 0.5),
-      CASE WHEN {% parameter Days_between_maturity_date_and_trade_date %} IS NULL THEN ((Days_between_maturity_date_and_trade_date * POWER(8.81677773e+06, 0.5)) + 4.29082934e+03)
+          END) - 2.40765872e+04)/POWER(4.08144607e+07, 0.5) AS _20th_Percentile_Income,
+      ((CASE WHEN {% parameter Days_between_maturity_date_and_trade_date %} IS NULL THEN ((Days_between_maturity_date_and_trade_date * POWER(8.81677773e+06, 0.5)) + 4.29082934e+03)
           ELSE {% parameter Days_between_maturity_date_and_trade_date %}
-          END AS Days_between_maturity_date_and_trade_date - 4.29082934e+03/POWER(8.81677773e+06, 0.5)),
-      CASE WHEN {% parameter Median_Gross_Rent_dollars_MH%} IS NULL THEN ((Median_Gross_Rent_dollars_MH * POWER(7.37373826e+04 , 0.5)) +  9.93629670e+02)
+          END) - 4.29082934e+03)/POWER(8.81677773e+06, 0.5) AS Days_between_maturity_date_and_trade_date,
+      ((CASE WHEN {% parameter Median_Gross_Rent_dollars_MH%} IS NULL THEN ((Median_Gross_Rent_dollars_MH * POWER(7.37373826e+04 , 0.5)) +  9.93629670e+02)
         ELSE {% parameter Median_Gross_Rent_dollars_MH%}
-        END AS Median_Gross_Rent_dollars_MH - 9.93629670e+02/POWER(7.37373826e+04, 0.5),
+        END) - 9.93629670e+02)/POWER(7.37373826e+04, 0.5) AS Median_Gross_Rent_dollars_MH ,
       __Non_Hispanic_White AS __Non_Hispanic_White,
       percent_bachelor_s_degree_or_higher_dem AS Percent_bachelor_s_degree_or_higher_dem,
-      CASE WHEN {% parameter Poverty_Rate_eco%} IS NULL THEN ((Poverty_Rate_eco * POWER(2.05444267e+01 , 0.5)) + 1.30039056e+01)
+      ((CASE WHEN {% parameter Poverty_Rate_eco%} IS NULL THEN ((Poverty_Rate_eco * POWER(2.05444267e+01 , 0.5)) + 1.30039056e+01)
         ELSE {% parameter Poverty_Rate_eco%}
-        END AS Poverty_Rate_eco - 1.30039056e+01/POWER(2.05444267e+01, 0.5),
+        END) - 1.30039056e+01)/POWER(2.05444267e+01, 0.5) AS Poverty_Rate_eco ,
       Ratings1 AS Ratings1,Ratings2 AS Ratings2,Ratings3 AS Ratings3,
       Trade_Date AS Trade_Date,
-      CASE WHEN {% parameter Unemployment_Rate_eco %} IS NULL THEN ((Unemployment_Rate_eco * POWER(3.04280246e+00 , 0.5)) + 5.37110987e+00)
+      ((CASE WHEN {% parameter Unemployment_Rate_eco %} IS NULL THEN ((Unemployment_Rate_eco * POWER(3.04280246e+00 , 0.5)) + 5.37110987e+00)
         ELSE {% parameter Unemployment_Rate_eco %}
-        END AS Unemployment_Rate_eco - 5.37110987e+00/POWER(3.04280246e+00, 0.5),
+        END) - 5.37110987e+00)/POWER(3.04280246e+00, 0.5) AS Unemployment_Rate_eco ,
      Yield_at_Issue AS Yield_at_Issue,
-      CASE WHEN {% parameter _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted %} IS NULL THEN ((_10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted * POWER(2.27818760e-01 , 0.5)) + 2.39064800e+00)
+      ((CASE WHEN {% parameter _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted %} IS NULL THEN ((_10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted * POWER(2.27818760e-01 , 0.5)) + 2.39064800e+00)
         ELSE {% parameter _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted%}
-        END AS _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted - 2.39064800e+00/POWER(2.27818760e-01, 0.5),
-      FROM `bi-model-development.looker_FINAL.Muni_Risk_Model_Input`
+        END) - 2.39064800e+00)/POWER(2.27818760e-01, 0.5) AS _10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted,
+      FROM `bi-model-development.looker_FINAL.risk_muni_dataset`
       WHERE CUSIP = "{% parameter CUSIP %}"
       LIMIT 1
       )
@@ -38,6 +38,8 @@ view: predictedrisk {
  ;;
   }
 
+
+#Parameters
   parameter: CUSIP {
     type: unquoted
   }
@@ -71,103 +73,168 @@ view: predictedrisk {
     drill_fields: [detail*]
   }
 
-  dimension: nearest_centroid_distance {
+#Dimensions
+
+  dimension: nearest_centroid_distance_ {
     type: number
-    sql: ${TABLE}.nearestCentroidDistance ;;
+    sql: ${TABLE}.nearestCentroidDistance  ;;
   }
 
-  dimension: nearest_centroid_id {
+  dimension: nearest_centroid_id_ {
     type: number
     sql: ${TABLE}.nearestCentroidID;;
   }
 
-  dimension: _20th_percentile_income {
+  dimension: _20th_percentile_income_ {
     type: number
-    sql: ${TABLE}._20th_Percentile_Income ;;
+    sql: ROUND(((${TABLE}._20th_Percentile_Income * POWER(4.08144607e+07, 0.5)) + 2.40765872e+04),2) ;;
   }
 
-  dimension: days_between_maturity_date_and_trade_date {
+  dimension: days_between_maturity_date_and_trade_date_ {
     type: number
-    sql: ${TABLE}.Days_between_maturity_date_and_trade_date ;;
+    sql: ROUND(((${TABLE}.Days_between_maturity_date_and_trade_date * POWER(8.81677773e+06, 0.5)) + 4.29082934e+03),2) ;;
   }
 
-  dimension: median_gross_rent_dollars_mh {
+  dimension: median_gross_rent_dollars_mh_ {
     type: number
-    sql: ${TABLE}.Median_Gross_Rent_dollars_MH ;;
+    sql: ROUND(((${TABLE}.Median_Gross_Rent_dollars_MH * POWER(7.37373826e+04 , 0.5)) +  9.93629670e+02),2) ;;
   }
 
-  dimension: __non_hispanic_white {
+  dimension: __non_hispanic_white_ {
     type: number
-    sql: ${TABLE}.__Non_Hispanic_White ;;
+    sql: ROUND(((${TABLE}.__Non_Hispanic_White  * POWER(2.92049843e+02 , 0.5)) +  6.13443237e+01),2);;
   }
 
-  dimension: percent_bachelor_s_degree_or_higher_dem {
+  dimension: percent_bachelor_s_degree_or_higher_dem_ {
     type: number
-    sql: ${TABLE}.Percent_bachelor_s_degree_or_higher_dem ;;
+    sql: ROUND(((${TABLE}.Percent_bachelor_s_degree_or_higher_dem * POWER(6.93219238e+01   , 0.5)) +  3.27578339e+01),2) ;;
   }
 
-  dimension: poverty_rate_eco {
+  dimension: poverty_rate_eco_ {
     type: number
-    sql: ${TABLE}.Poverty_Rate_eco ;;
+    sql: ROUND(((${TABLE}.Poverty_Rate_eco * POWER(2.05444267e+01 , 0.5)) + 1.30039056e+01),2) ;;
   }
 
-  dimension: ratings1 {
+  dimension: ratings1_ {
     type: number
     sql: ${TABLE}.Ratings1 ;;
   }
 
-  dimension: ratings2 {
+  dimension: ratings2_ {
     type: number
     sql: ${TABLE}.Ratings2 ;;
   }
 
-  dimension: ratings3 {
+  dimension: ratings3_ {
     type: number
-    sql: ${TABLE}.Ratings3 ;;
+    sql: ${TABLE}.Ratings3,0 ;;
   }
 
-  dimension: trade_date {
+  dimension: trade_date_ {
     type: number
-    sql: ${TABLE}.Trade_Date ;;
+    sql: ROUND((( ${TABLE}.Trade_Date * POWER(9.68757300e+04  , 0.5)) + 7.94485367e+04),2)  ;;
   }
 
-  dimension: unemployment_rate_eco {
+  dimension: unemployment_rate_eco_ {
     type: number
-    sql: ${TABLE}.Unemployment_Rate_eco ;;
+    sql: ROUND(((${TABLE}.Unemployment_Rate_eco * POWER(3.04280246e+00 , 0.5)) + 5.37110987e+00),2) ;;
   }
 
-  dimension: yield_at_issue {
+  dimension: yield_at_issue_ {
     type: number
-    sql: ${TABLE}.Yield_at_Issue ;;
+    sql: ROUND(((${TABLE}.Yield_at_Issue * POWER(1.67104499e+00  , 0.5)) + 3.24888764e+00),2) ;;
   }
 
-  dimension: _10_year_treasury_constant_maturity_rate_percent_daily_not_seasonally_adjusted {
+  dimension: _10_year_treasury_constant_maturity_rate_percent_daily_not_seasonally_adjusted_ {
     type: number
-    sql: ${TABLE}._10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted ;;
-  }
-
-  measure: yield_at_issue_ {
-    type: number
-    sql: ${TABLE}.Yield_at_Issue ;;
+    sql: ROUND(((${TABLE}._10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted * POWER(2.27818760e-01 , 0.5)) + 2.39064800e+00),2) ;;
   }
 
 
-  measure: nearest_centroid_distance_ {
+#Measures
+
+  measure: nearest_centroid_distance {
     type: number
-    sql: ${nearest_centroid_distance} ;;
+    sql: ${nearest_centroid_distance_} ;;
   }
 
-  measure: nearest_centroid_id_ {
+  measure: nearest_centroid_id {
     type: number
-    sql: ${nearest_centroid_id};;
+    sql: ${nearest_centroid_id_};;
   }
+
+  measure: _20th_percentile_income {
+    type: number
+    sql: ${_20th_percentile_income_} ;;
+  }
+
+  measure: days_between_maturity_date_and_trade_date {
+    type: number
+    sql: ${days_between_maturity_date_and_trade_date_} ;;
+  }
+
+  measure: median_gross_rent_dollars_mh {
+    type: number
+    sql: ${median_gross_rent_dollars_mh_}  ;;
+  }
+
+  measure: __non_hispanic_white {
+    type: number
+    sql: ${__non_hispanic_white_} ;;
+  }
+
+  measure: percent_bachelor_s_degree_or_higher_dem {
+    type: number
+    sql: ${percent_bachelor_s_degree_or_higher_dem_} ;;
+  }
+
+  measure: poverty_rate_eco {
+    type: number
+    sql: ${poverty_rate_eco_} ;;
+  }
+
+  measure: ratings1 {
+    type: number
+    sql: ${ratings1_} ;;
+  }
+
+  measure: ratings2 {
+    type: number
+    sql: ${ratings2_} ;;
+  }
+
+  measure: ratings3 {
+    type: number
+    sql: ${ratings3_} ;;
+  }
+
+  measure: trade_date {
+    type: number
+    sql: ${trade_date_} ;;
+  }
+
+  measure: unemployment_rate_eco {
+    type: number
+    sql: ${unemployment_rate_eco_} ;;
+  }
+
+  measure: yield_at_issue {
+    type: number
+    sql: ${yield_at_issue_} ;;
+  }
+
+  measure: _10_year_treasury_constant_maturity_rate_percent_daily_not_seasonally_adjusted {
+    type: number
+    sql: ${_10_year_treasury_constant_maturity_rate_percent_daily_not_seasonally_adjusted_} ;;
+  }
+
 
   measure: evaluated_risk {
     type: string
     sql:
-    CASE WHEN ${nearest_centroid_id} = 3 OR ${nearest_centroid_id} = 6 THEN "Low"
-    WHEN ${nearest_centroid_id} = 2 OR ${nearest_centroid_id} = 4 OR ${nearest_centroid_id} = 6 THEN "Medium"
-    WHEN ${nearest_centroid_id} = 1 THEN "High"
+    CASE WHEN ${nearest_centroid_id_} = 3 OR ${nearest_centroid_id_} = 6 THEN "Low"
+    WHEN ${nearest_centroid_id_} = 2 OR ${nearest_centroid_id_} = 4 OR ${nearest_centroid_id_} = 5 THEN "Medium"
+    WHEN ${nearest_centroid_id_} = 1 THEN "High"
     ELSE NULL END
     ;;
   }
