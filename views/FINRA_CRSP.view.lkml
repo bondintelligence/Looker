@@ -82,38 +82,38 @@ view: FINRA_CRSP {
     sql: ${TABLE}.CUSIP ;;
   }
 
-  dimension_group: date {
-    label: ""
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: CASE
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "JAN" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-01-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "FEB" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-02-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "MAR" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-03-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "APR" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-04-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "MAY" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-05-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "JUN" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-06-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "JUL" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-07-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "AUG" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-08-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "SEP" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-09-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "OCT" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-10-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "NOV" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-11-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "DEC" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-12-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      ELSE NULL
-    END ;;
-  }
+  # dimension_group: date {
+  #   label: ""
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: CASE
+  #     WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "JAN" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-01-",SUBSTRING(${TABLE}.DATE, 1, 2))
+  #     WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "FEB" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-02-",SUBSTRING(${TABLE}.DATE, 1, 2))
+  #     WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "MAR" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-03-",SUBSTRING(${TABLE}.DATE, 1, 2))
+  #     WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "APR" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-04-",SUBSTRING(${TABLE}.DATE, 1, 2))
+  #     WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "MAY" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-05-",SUBSTRING(${TABLE}.DATE, 1, 2))
+  #     WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "JUN" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-06-",SUBSTRING(${TABLE}.DATE, 1, 2))
+  #     WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "JUL" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-07-",SUBSTRING(${TABLE}.DATE, 1, 2))
+  #     WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "AUG" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-08-",SUBSTRING(${TABLE}.DATE, 1, 2))
+  #     WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "SEP" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-09-",SUBSTRING(${TABLE}.DATE, 1, 2))
+  #     WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "OCT" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-10-",SUBSTRING(${TABLE}.DATE, 1, 2))
+  #     WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "NOV" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-11-",SUBSTRING(${TABLE}.DATE, 1, 2))
+  #     WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "DEC" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-12-",SUBSTRING(${TABLE}.DATE, 1, 2))
+  #     ELSE NULL
+  #   END ;;
+  # }
 
   dimension_group: dated_date {
     label: "Dated"
@@ -448,6 +448,7 @@ view: FINRA_CRSP {
 
   dimension: security_level {
     type: string
+    description: "Indicates if the security is a secured, senior or subordinated issue of the issuer"
     sql: ${TABLE}.SECURITY_LEVEL ;;
   }
 
@@ -532,6 +533,8 @@ view: FINRA_CRSP {
   }
 
 
+#####################################################################################
+
   measure: count {
     type: count
     drill_fields: []
@@ -543,21 +546,6 @@ view: FINRA_CRSP {
   # }
 
 
-
-  measure: bond_type_ {
-    type: string
-    sql: ${bond_type} ;;
-  }
-
-  # measure: bsym_ {
-  #   type: string
-  #   sql: ${bsym };;
-  # }
-
-  measure: company_symbol_ {
-    type: string
-    sql: ${company_symbol} ;;
-  }
 
   measure: conv_ {
     type: number
@@ -584,150 +572,18 @@ view: FINRA_CRSP {
     sql: ${coupon} ;;
   }
 
-  measure: cusip_ {
-    type: string
-    sql: ${cusip} ;;
-  }
-
-  measure: date_ {
-    label: "_"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: CASE
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "JAN" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-01-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "FEB" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-02-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "MAR" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-03-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "APR" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-04-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "MAY" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-05-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "JUN" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-06-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "JUL" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-07-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "AUG" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-08-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "SEP" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-09-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "OCT" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-10-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "NOV" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-11-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.DATE, 3, 3) = "DEC" THEN CONCAT(SUBSTRING(${TABLE}.DATE, 6, 4),"-12-",SUBSTRING(${TABLE}.DATE, 1, 2))
-      ELSE NULL
-    END ;;
-  }
-
-  measure: dated_date_ {
-    label: "Dated"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      day_of_week,
-      day_of_month,
-      month_name,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.DATED_DATE, 1, 4),"-",SUBSTRING(${TABLE}.DATED_DATE, 5, 2),"-",SUBSTRING(${TABLE}.DATED_DATE, 7, 2));;
-  }
-
-  measure: day_count_basis_ {
-    type: string
-    sql: ${day_count_basis} ;;
-  }
-
-  # measure: default_date_ {
-  #   label: "Default"
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   convert_tz: no
-  #   datatype: date
-  #   sql: CONCAT(SUBSTRING(${TABLE}.DEFAULT_DATE, 1, 4),"-",SUBSTRING(${TABLE}.DEFAULT_DATE, 5, 2),"-",SUBSTRING(${TABLE}.DEFAULT_DATE, 7, 2));;
-  # }
-
-  # measure: default_type_ {
-  #   type: string
-  #   sql: ${default_type} ;;
-  # }
-
-  measure: defaulted_ {
-    type: string
-    sql: ${defaulted} ;;
-  }
 
   measure: duration_ {
     type: number
     sql: ${duration};;
   }
 
-  measure: first_interest_date_ {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.FIRST_INTEREST_DATE, 1, 4),"-",SUBSTRING(${TABLE}.FIRST_INTEREST_DATE, 5, 2),"-",SUBSTRING(${TABLE}.FIRST_INTEREST_DATE, 7, 2));;
-  }
 
   measure: gap_ {
     type: number
     sql: ${gap} ;;
   }
 
-
-
-  measure: last_interest_date_ {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.LAST_INTEREST_DATE, 1, 4),"-",SUBSTRING(${TABLE}.LAST_INTEREST_DATE, 5, 2),"-",SUBSTRING(${TABLE}.LAST_INTEREST_DATE, 7, 2));;
-  }
-
-  measure: maturity_ {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.MATURITY, 1, 4),"-",SUBSTRING(${TABLE}.MATURITY, 5, 2),"-",SUBSTRING(${TABLE}.MATURITY, 7, 2));;
-  }
 
   measure: multicoups_ {
     type: number
@@ -741,54 +597,14 @@ view: FINRA_CRSP {
     sql: ${ncoups} ;;
   }
 
-  measure: nextcoup_ {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: CASE
-      WHEN SUBSTRING(${TABLE}.nextcoup, 3, 3) = "JAN" THEN CONCAT(SUBSTRING(${TABLE}.nextcoup, 6, 4),"-01-",SUBSTRING(${TABLE}.nextcoup, 1, 2))
-      WHEN SUBSTRING(${TABLE}.nextcoup, 3, 3) = "FEB" THEN CONCAT(SUBSTRING(${TABLE}.nextcoup, 6, 4),"-02-",SUBSTRING(${TABLE}.nextcoup, 1, 2))
-      WHEN SUBSTRING(${TABLE}.nextcoup, 3, 3) = "MAR" THEN CONCAT(SUBSTRING(${TABLE}.nextcoup, 6, 4),"-03-",SUBSTRING(${TABLE}.nextcoup, 1, 2))
-      WHEN SUBSTRING(${TABLE}.nextcoup, 3, 3) = "APR" THEN CONCAT(SUBSTRING(${TABLE}.nextcoup, 6, 4),"-04-",SUBSTRING(${TABLE}.nextcoup, 1, 2))
-      WHEN SUBSTRING(${TABLE}.nextcoup, 3, 3) = "MAY" THEN CONCAT(SUBSTRING(${TABLE}.nextcoup, 6, 4),"-05-",SUBSTRING(${TABLE}.nextcoup, 1, 2))
-      WHEN SUBSTRING(${TABLE}.nextcoup, 3, 3) = "JUN" THEN CONCAT(SUBSTRING(${TABLE}.nextcoup, 6, 4),"-06-",SUBSTRING(${TABLE}.nextcoup, 1, 2))
-      WHEN SUBSTRING(${TABLE}.nextcoup, 3, 3) = "JUL" THEN CONCAT(SUBSTRING(${TABLE}.nextcoup, 6, 4),"-07-",SUBSTRING(${TABLE}.nextcoup, 1, 2))
-      WHEN SUBSTRING(${TABLE}.nextcoup, 3, 3) = "AUG" THEN CONCAT(SUBSTRING(${TABLE}.nextcoup, 6, 4),"-08-",SUBSTRING(${TABLE}.nextcoup, 1, 2))
-      WHEN SUBSTRING(${TABLE}.nextcoup, 3, 3) = "SEP" THEN CONCAT(SUBSTRING(${TABLE}.nextcoup, 6, 4),"-09-",SUBSTRING(${TABLE}.nextcoup, 1, 2))
-      WHEN SUBSTRING(${TABLE}.nextcoup, 3, 3) = "OCT" THEN CONCAT(SUBSTRING(${TABLE}.nextcoup, 6, 4),"-10-",SUBSTRING(${TABLE}.nextcoup, 1, 2))
-      WHEN SUBSTRING(${TABLE}.nextcoup, 3, 3) = "NOV" THEN CONCAT(SUBSTRING(${TABLE}.nextcoup, 6, 4),"-11-",SUBSTRING(${TABLE}.nextcoup, 1, 2))
-      WHEN SUBSTRING(${TABLE}.nextcoup, 3, 3) = "DEC" THEN CONCAT(SUBSTRING(${TABLE}.nextcoup, 6, 4),"-12-",SUBSTRING(${TABLE}.nextcoup, 1, 2))
-      ELSE NULL
-    END ;;
-  }
+
 
   measure: offering_amt_ {
     type: number
     sql: ${offering_amt} ;;
   }
 
-  measure: offering_date_ {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: CONCAT(SUBSTRING(${TABLE}.OFFERING_DATE, 1, 4),"-",SUBSTRING(${TABLE}.OFFERING_DATE, 5, 2),"-",SUBSTRING(${TABLE}.OFFERING_DATE, 7, 2));;
-  }
+
 
   measure: offering_price_ {
     type: number
@@ -815,55 +631,13 @@ view: FINRA_CRSP {
     sql: ${principal_amt} ;;
   }
 
-  measure: r_fr_ {
-    type: string
-    sql: ${r_fr} ;;
-  }
 
-  measure: r_mr_ {
-    type: string
-    sql: ${r_mr} ;;
-  }
-
-  measure: r_sp_ {
-    type: string
-    sql: ${r_sp} ;;
-  }
-
-  measure: rating_cat_ {
-    type: string
-    sql: ${rating_cat} ;;
-  }
-
-  measure: rating_class_ {
-    type: string
-    sql: ${rating_class} ;;
-  }
 
   measure: rating_num_ {
     type: number
     sql: ${rating_num} ;;
   }
 
-  # measure: reinstated_ {
-  #   type: string
-  #   sql: ${reinstated} ;;
-  # }
-
-  # measure: reinstated_date_ {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   convert_tz: no
-  #   datatype: date
-  #   sql: CONCAT(SUBSTRING(${TABLE}.REINSTATED_DATE, 1, 4),"-",SUBSTRING(${TABLE}.REINSTATED_DATE, 5, 2),"-",SUBSTRING(${TABLE}.REINSTATED_DATE, 7, 2));;
-  # }
 
   measure: remcoups_ {
     type: number
@@ -885,40 +659,7 @@ view: FINRA_CRSP {
     sql: ${ret_ldm} ;;
   }
 
-  measure: security_level_ {
-    type: string
-    sql: ${security_level} ;;
-  }
 
-  measure: t_date_ {
-    type: time
-    label: "execution_date"
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: CASE
-      WHEN SUBSTRING(${TABLE}.T_DATE, 3, 3) = "JAN" THEN CONCAT(SUBSTRING(${TABLE}.T_DATE, 6, 4),"-01-",SUBSTRING(${TABLE}.T_DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.T_DATE, 3, 3) = "FEB" THEN CONCAT(SUBSTRING(${TABLE}.T_DATE, 6, 4),"-02-",SUBSTRING(${TABLE}.T_DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.T_DATE, 3, 3) = "MAR" THEN CONCAT(SUBSTRING(${TABLE}.T_DATE, 6, 4),"-03-",SUBSTRING(${TABLE}.T_DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.T_DATE, 3, 3) = "APR" THEN CONCAT(SUBSTRING(${TABLE}.T_DATE, 6, 4),"-04-",SUBSTRING(${TABLE}.T_DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.T_DATE, 3, 3) = "MAY" THEN CONCAT(SUBSTRING(${TABLE}.T_DATE, 6, 4),"-05-",SUBSTRING(${TABLE}.T_DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.T_DATE, 3, 3) = "JUN" THEN CONCAT(SUBSTRING(${TABLE}.T_DATE, 6, 4),"-06-",SUBSTRING(${TABLE}.T_DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.T_DATE, 3, 3) = "JUL" THEN CONCAT(SUBSTRING(${TABLE}.T_DATE, 6, 4),"-07-",SUBSTRING(${TABLE}.T_DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.T_DATE, 3, 3) = "AUG" THEN CONCAT(SUBSTRING(${TABLE}.T_DATE, 6, 4),"-08-",SUBSTRING(${TABLE}.T_DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.T_DATE, 3, 3) = "SEP" THEN CONCAT(SUBSTRING(${TABLE}.T_DATE, 6, 4),"-09-",SUBSTRING(${TABLE}.T_DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.T_DATE, 3, 3) = "OCT" THEN CONCAT(SUBSTRING(${TABLE}.T_DATE, 6, 4),"-10-",SUBSTRING(${TABLE}.T_DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.T_DATE, 3, 3) = "NOV" THEN CONCAT(SUBSTRING(${TABLE}.T_DATE, 6, 4),"-11-",SUBSTRING(${TABLE}.T_DATE, 1, 2))
-      WHEN SUBSTRING(${TABLE}.T_DATE, 3, 3) = "DEC" THEN CONCAT(SUBSTRING(${TABLE}.T_DATE, 6, 4),"-12-",SUBSTRING(${TABLE}.T_DATE, 1, 2))
-      ELSE NULL
-    END ;;
-  }
 
   measure: t_dvolume_ {
     type: number
@@ -945,10 +686,6 @@ view: FINRA_CRSP {
     sql: ${tmt} ;;
   }
 
-  measure: treasury_maturity_ {
-    type: string
-    sql: ${treasury_maturity} ;;
-  }
 
   measure: yield_ {
     type: number

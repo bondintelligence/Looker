@@ -1,25 +1,13 @@
 view: trace_enhanced {
   derived_table: {
-    sql: SELECT * FROM looker_FINAL.TRACE_Enhanced
-      ;;
+    sql: SELECT * FROM `bi-model-development.looker_FINAL.TRACE_Enhanced`
+          WHERE company_symbol IS NOT NULL
+          AND (cntra_mp_id = "C" OR cntra_mp_id = "D")
+          AND cusip_id IS NOT NULL
+          AND yld_pt IS NOT NULL
+            ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-  }
-  measure: average_yield {
-    type: average
-    sql: CAST(${TABLE}.yld_pt AS FLOAT64);;
-    value_format: "0.00"
-    label: "Average Yield"
-  }
-  measure: average_price{
-    label: "Average Price"
-    sql: CAST(${TABLE}.rptd_pr AS FLOAT64);;
-    value_format_name: usd
-    type: average
-  }
 
   dimension: cusip_id {
     type: string
@@ -52,15 +40,15 @@ view: trace_enhanced {
       week,
       month,
       quarter,
-      year,
       day_of_week,
       day_of_month,
       month_name,
+      year,
       hour,
       minute,
       second
     ]
-    label: "Execution time"
+    label: "Execution"
     sql: CAST(CONCAT(${TABLE}.trd_exctn_dt, " ", ${TABLE}.trd_exctn_tm) AS DATETIME) ;;
     datatype: datetime
     convert_tz: no
@@ -81,7 +69,7 @@ view: trace_enhanced {
       month_name,
       year
     ]
-    label: "Report time"
+    label: "Report"
     sql: CAST(CONCAT(${TABLE}.trd_rpt_dt, " ", ${TABLE}.trd_rpt_tm) AS DATETIME) ;;
     datatype: datetime
     convert_tz: no
@@ -122,36 +110,36 @@ view: trace_enhanced {
     }
   }
 
-  dimension: scrty_type_cd {
-    type: string
-    description: "Identifies the type of security reported in the trade."
-    label: "Security Type"
-    case: {
-      when: {
-        sql: ${TABLE}.scrty_type_cd = "C" ;;
-        label: "Corporate Bond"
-      }
-      when: {
-        sql: ${TABLE}.scrty_type_cd = "E" ;;
-        label: "Equity Linked Note"
-      }
-    }
-    sql: ${TABLE}.scrty_type_cd ;;
-  }
+  # dimension: scrty_type_cd {
+  #   type: string
+  #   description: "Identifies the type of security reported in the trade."
+  #   label: "Security Type"
+  #   case: {
+  #     when: {
+  #       sql: ${TABLE}.scrty_type_cd = "C" ;;
+  #       label: "Corporate Bond"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.scrty_type_cd = "E" ;;
+  #       label: "Equity Linked Note"
+  #     }
+  #   }
+  #   sql: ${TABLE}.scrty_type_cd ;;
+  # }
 
-  dimension: wis_fl {
-    type: string
-    description: "Indicates if the bond was traded on a ‘When Issued’ basis."
-    label: "When Issued Indicator"
-    sql: ${TABLE}.wis_fl ;;
-  }
+  # dimension: wis_fl {
+  #   type: string
+  #   description: "Indicates if the bond was traded on a ‘When Issued’ basis."
+  #   label: "When Issued Indicator"
+  #   sql: ${TABLE}.wis_fl ;;
+  # }
 
-  dimension: cmsn_trd {
-    type: string
-    description: "Indicates if the reported price is inclusive of dealer commission."
-    label: "Commission Indicator"
-    sql: ${TABLE}.cmsn_trd ;;
-  }
+  # dimension: cmsn_trd {
+  #   type: string
+  #   description: "Indicates if the reported price is inclusive of dealer commission."
+  #   label: "Commission Indicator"
+  #   sql: ${TABLE}.cmsn_trd ;;
+  # }
 
   dimension: entrd_vol_qt {
     type: number
@@ -164,6 +152,7 @@ view: trace_enhanced {
     type: number
     description: "This field represents the reported bond price. Is inclusive of any mark-ups, and/or mark-downs reported by the rm in the trade transaction. It is in percentage of the par value."
     label: "Price"
+    value_format: "$#,##0.00"
     sql: ${TABLE}.rptd_pr ;;
   }
 
@@ -174,18 +163,24 @@ view: trace_enhanced {
     case: {
       when: {
         sql: ${TABLE}.yld_sign_cd = "-" ;;
-        label: "Negative"
+        label: "-"
       }
-      else: "Positive or Zero"
+      else: "+"
     }
   }
 
   dimension: yld_pt {
     type: number
-    description: "This field indicates the eective rate of return earned on a security, expressed as a percentage. The field will be blank if no yield is available. Yield as calculated by FINRA."
+    description: "This field indicates the efective rate of return earned on a security, expressed as a percentage. The field will be blank if no yield is available. Yield as calculated by FINRA."
     label: "Yield"
-    sql: ${TABLE}.yld_pt ;;
-  }
+    value_format: "0.00\%"
+    sql: ${TABLE}.yld_pt;;
+    }
+          # CASE
+          # WHEN ${TABLE}.yld_sign_cd = "-" THEN -1 * CAST(${TABLE}.yld_pt AS FLOAT64)
+          # ELSE CAST(${TABLE}.yld_pt AS FLOAT64)
+          # END;;
+
 
   dimension: asof_cd {
     type: string
@@ -204,62 +199,62 @@ view: trace_enhanced {
     }
   }
 
-  dimension: days_to_sttl_ct {
-    type: string
-    description: "Used when Sale Condition = ‘R’, this field will represent the number of days to settlement associated with the transaction. Otherwise, the field will contain the value ‘N/A’."
-    label: "Seller Sales Day"
-    sql: ${TABLE}.days_to_sttl_ct ;;
-  }
+  # dimension: days_to_sttl_ct {
+  #   type: string
+  #   description: "Used when Sale Condition = ‘R’, this field will represent the number of days to settlement associated with the transaction. Otherwise, the field will contain the value ‘N/A’."
+  #   label: "Seller Sales Day"
+  #   sql: ${TABLE}.days_to_sttl_ct ;;
+  # }
 
-  dimension: sale_cndtn_cd {
-    type: string
-    description: "This field will indicate if there are any special conditions or modifiers applicable to the trade transaction, using alphanumeric or special characters."
-    label: "Sale Condition"
-    case: {
-      when: {
-        sql: ${TABLE}.sale_cndtn_cd = "A" ;;
-        label: "Trades Reported Outside Market Hours"
-      }
-      when: {
-        sql: ${TABLE}.sale_cndtn_cd = "C" ;;
-        label: "Cash Sale"
-      }
-      when: {
-        sql: ${TABLE}.sale_cndtn_cd = "N" ;;
-        label: "Next Day Settlement"
-      }
-      when: {
-        sql: ${TABLE}.sale_cndtn_cd = "R" ;;
-        label: "Sellers Option Settlement"
-      }
-      when: {
-        sql: ${TABLE}.sale_cndtn_cd = "W" ;;
-        label: "Weighted Average Price"
-      }
-      when: {
-        sql: ${TABLE}.sale_cndtn_cd = "Z" ;;
-        label: "Sold Out of Sequence (Reported Late)"
-      }
-      else: "Regular Trade"
-    }
-  }
+  # dimension: sale_cndtn_cd {
+  #   type: string
+  #   description: "This field will indicate if there are any special conditions or modifiers applicable to the trade transaction, using alphanumeric or special characters."
+  #   label: "Sale Condition"
+  #   case: {
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn_cd = "A" ;;
+  #       label: "Trades Reported Outside Market Hours"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn_cd = "C" ;;
+  #       label: "Cash Sale"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn_cd = "N" ;;
+  #       label: "Next Day Settlement"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn_cd = "R" ;;
+  #       label: "Sellers Option Settlement"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn_cd = "W" ;;
+  #       label: "Weighted Average Price"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn_cd = "Z" ;;
+  #       label: "Sold Out of Sequence (Reported Late)"
+  #     }
+  #     else: "Regular Trade"
+  #   }
+  # }
 
-  dimension: sale_cndtn2_cd {
-    type: string
-    description: "This field is used to describe a second sale condition that is applicable to the trade."
-    label: "Second Modifier"
-    case: {
-      when: {
-        sql: ${TABLE}.sale_cndtn2_cd = "A" ;;
-        label: "Trades Reported Outside Market Hours"
-      }
-      when: {
-        sql: ${TABLE}.sale_cndtn2_cd = "Z" ;;
-        label: "Sold Out of Sequence (Reported Late)"
-      }
-      else: "Single or No Modifiers on Trade"
-    }
-  }
+  # dimension: sale_cndtn2_cd {
+  #   type: string
+  #   description: "This field is used to describe a second sale condition that is applicable to the trade."
+  #   label: "Second Modifier"
+  #   case: {
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn2_cd = "A" ;;
+  #       label: "Trades Reported Outside Market Hours"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.sale_cndtn2_cd = "Z" ;;
+  #       label: "Sold Out of Sequence (Reported Late)"
+  #     }
+  #     else: "Single or No Modifiers on Trade"
+  #   }
+  # }
 
   dimension: rpt_side_cd {
     type: string
@@ -271,7 +266,7 @@ view: trace_enhanced {
   dimension: buy_cmsn_rt {
     type: number
     description: "Represents the commission rate charged by the buyer, if applicable. Reported as dollar amount."
-    label: "Buyer Commission"
+    label: "Buyers Commission"
     sql: ${TABLE}.buy_cmsn_rt ;;
   }
 
@@ -288,6 +283,7 @@ view: trace_enhanced {
         sql: ${TABLE}.buy_cpcty_cd = "P" ;;
         label: "Principal"
       }
+      else: "N/A"
     }
   }
 
@@ -311,6 +307,7 @@ view: trace_enhanced {
         sql: ${TABLE}.sell_cpcty_cd = "P" ;;
         label: "Principal"
       }
+      else: "N/A"
     }
   }
 
@@ -328,24 +325,25 @@ view: trace_enhanced {
         label: "Inter Dealer Trade"
       }
     }
+    sql: ${TABLE}.cntra_mp_id ;;
   }
 
-  dimension: agu_qsr_id {
-    type: string
-    description: "This field indicates whether the trade is an AGU (Automatic Give Up) or QSR (Qualified Service Representative) trade, or a regular trade."
-    label: "AGU Indicator"
-    case: {
-      when: {
-        sql: ${TABLE}.agu_qsr_id = "A" ;;
-        label: "AGU Trade"
-      }
-      when: {
-        sql: ${TABLE}.agu_qsr_id = "Q" ;;
-        label: "QSR Trade"
-      }
-      else: "Regular (non-AGU/non-QSR) Trade"
-    }
-  }
+  # dimension: agu_qsr_id {
+  #   type: string
+  #   description: "This field indicates whether the trade is an AGU (Automatic Give Up) or QSR (Qualified Service Representative) trade, or a regular trade."
+  #   label: "AGU Indicator"
+  #   case: {
+  #     when: {
+  #       sql: ${TABLE}.agu_qsr_id = "A" ;;
+  #       label: "AGU Trade"
+  #     }
+  #     when: {
+  #       sql: ${TABLE}.agu_qsr_id = "Q" ;;
+  #       label: "QSR Trade"
+  #     }
+  #     else: "Regular (non-AGU/non-QSR) Trade"
+  #   }
+  # }
 
   dimension: spcl_trd_fl {
     type: string
@@ -447,6 +445,7 @@ view: trace_enhanced {
         sql: ${TABLE}.trd_mod_3 = "U" ;;
         label: "Reported Late After-Market Hours"
       }
+      else: "N/A"
     }
   }
 
@@ -458,56 +457,43 @@ view: trace_enhanced {
         sql: ${TABLE}.trd_mod_4 = "W" ;;
         label: "Weighted Avg Price"
       }
+      else: "Regular Trade"
     }
   }
+
+
 
   dimension: rptg_party_type {
     type: string
     label: "Reporting Party Type"
-    sql: ${TABLE}.rptg_party_type ;;
-  }
+    case: {
+      when: {
+        sql: ${TABLE}.rptg_party_type = "D" ;;
+        label: "Broker/Dealer"
+      }
 
+        when: {
+          sql: ${TABLE}.rptg_party_type = "T" ;;
+          label: "Alternative Trading System"
+        }
+        }
+  }
   dimension: lckd_in_ind {
     type: string
     label: "Locked In Indicator"
     sql: ${TABLE}.lckd_in_ind ;;
   }
-
   dimension: ats_indicator {
     type: string
     label: "ATS Indicator"
     sql: ${TABLE}.ats_indicator ;;
-
+    # case: {
+    #   when: {
+    #     sql: (${TABLE}.ats_indicator IS NULL);;
+    #     label: "N"
+    #   }
+    # }
   }
-
-  # dimension_group: pr_trd_dt {
-  #   type: time
-  #   description: "Populated on Cancels, Corrections and Reversals. Blank on regular Trade Reports."
-  #   timeframes: [
-  #     raw,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     day_of_week,
-  #     day_of_month,
-  #     month_name,
-  #     year
-  #   ]
-  #   label: "Prior Trade Report"
-  #   sql: CAST(${TABLE}.pr_trd_dt AS DATE) ;;
-  #   datatype: date
-  #   convert_tz: no
-
-  #   case: {
-  #     when: {
-  #       sql: (${TABLE}.ats_indicator IS NULL);;
-  #       label: "N"
-  #     }
-  #   }
-
-  # }
-
   dimension_group: first_trade_ctrl_date {
     type: time
     description: "Populated on Cancels, Corrections and Reversals."
@@ -527,13 +513,80 @@ view: trace_enhanced {
     datatype: date
     convert_tz: no
   }
-
   dimension: first_trade_ctrl_num {
     type: string
     description: "Populated on Cancels, Corrections and Reversals."
     label: "First Trade Control Number"
     sql: ${TABLE}.first_trade_ctrl_num ;;
   }
+
+  #######################################################################
+
+
+  measure: count {
+    type: count
+    drill_fields: [detail*]
+  }
+
+  measure: average_yield {
+    type: average
+    sql: CAST(${yld_pt} AS FLOAT64);;
+    value_format: "0.00"
+    label: "Average Yield"
+  }
+
+
+  measure: average_price{
+    label: "Average Price"
+    sql: CAST(${TABLE}.rptd_pr AS FLOAT64);;
+    value_format_name: usd
+    type: average
+  }
+
+
+  measure: entrd_vol_qt_ {
+    type: number
+    description: "The uncapped par value volume reported on the trade. May include a decimal, if entered (for mixed-lot and baby bond trades)."
+    label: "Quantity (Entered Quantity in par value amount)"
+    sql: ${TABLE}.entrd_vol_qt ;;
+  }
+
+
+
+  measure: rptd_pr_ {
+    type: number
+    description: "This field represents the reported bond price. Is inclusive of any mark-ups, and/or mark-downs reported by the rm in the trade transaction. It is in percentage of the par value."
+    label: "Price"
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.rptd_pr ;;
+  }
+
+
+
+  measure: yld_pt_ {
+    type: number
+    description: "This field indicates the efective rate of return earned on a security, expressed as a percentage. The field will be blank if no yield is available. Yield as calculated by FINRA."
+    label: "Yield"
+    value_format: "0.00\%"
+    sql: ${TABLE}.yld_pt;;
+    }
+
+    measure: buy_cmsn_rt_ {
+      type: number
+      description: "Represents the commission rate charged by the buyer, if applicable. Reported as dollar amount."
+      label: "Buyers Commission"
+      sql: ${TABLE}.buy_cmsn_rt ;;
+    }
+
+
+
+
+    measure: sell_cmsn_rt_ {
+      type: number
+      description: "Represents the commission rate charged by the seller, if applicable. Reported as dollar amount."
+      label: "Seller Commission"
+      sql: ${TABLE}.sell_cmsn_rt ;;
+    }
 
   set: detail {
     fields: [
@@ -552,18 +605,18 @@ view: trace_enhanced {
       trd_rpt_dt_year,
       msg_seq_nb,
       trc_st,
-      scrty_type_cd,
-      wis_fl,
-      cmsn_trd,
+      #scrty_type_cd,
+      # wis_fl,
+      #cmsn_trd,
       entrd_vol_qt,
       rptd_pr,
-      yld_sign_cd,
+      # yld_sign_cd,
       yld_pt,
       asof_cd,
-      days_to_sttl_ct,
-      sale_cndtn_cd,
-      sale_cndtn2_cd,
-      agu_qsr_id,
+      # days_to_sttl_ct,
+      # sale_cndtn_cd,
+      # sale_cndtn2_cd,
+      # agu_qsr_id,
       rpt_side_cd,
       buy_cmsn_rt,
       buy_cpcty_cd,

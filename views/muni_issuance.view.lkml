@@ -1,5 +1,18 @@
 view: muni_issuance {
-  sql_table_name: `bi-model-development.looker_FINAL.Muni_Issuance`;;
+  #sql_table_name: `bi-model-development.looker_FINAL.Muni_Issuance`;;
+
+  derived_table: {
+    sql:
+    SELECT * FROM`bi-model-development.looker_FINAL.Muni_Issuance` WHERE
+    DISCOUNT IS NOT NULL AND
+    PREMIUM IS NOT NULL AND
+    total_par_value IS NOT NULL AND
+    The_yield_of_the_trade IS NOT NULL AND
+    Sale_Date IS NOT NULL AND
+    Treasury_Rate IS NOT NULL AND
+    debt_type IS NOT NULL AND
+    Issuer_City_State_Zip IS NOT NULL;;
+  }
 
 
 
