@@ -449,7 +449,33 @@ view: FINRA_CRSP {
   dimension: security_level {
     type: string
     description: "Indicates if the security is a secured, senior or subordinated issue of the issuer"
-    sql: ${TABLE}.SECURITY_LEVEL ;;
+    case: {
+      when: {
+        sql: ${TABLE}.SECURITY_LEVEL = "JUNS" ;;
+        label: "Junior Subordinate"
+      }
+      when: {
+        sql: ${TABLE}.SECURITY_LEVEL = "NON" ;;
+        label: "NONE"
+      }
+      when: {
+        sql: ${TABLE}.SECURITY_LEVEL = "SEN" ;;
+        label: "Senior"
+      }
+      when: {
+        sql: ${TABLE}.SECURITY_LEVEL = "SENS" ;;
+        label: "Senior Subordinate"
+      }
+      when: {
+        sql: ${TABLE}.SECURITY_LEVEL = "SS" ;;
+        label: "Senior Secured"
+      }
+      when: {
+        sql: ${TABLE}.SECURITY_LEVEL = "SUB" ;;
+        label: "Subordinate"
+      }
+
+  }
   }
 
   dimension_group: t_date {
