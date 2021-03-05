@@ -1,12 +1,11 @@
 view: muni {
-  #sql_table_name: `bi-model-development.looker_FINAL.muni`;;
+  sql_table_name: `bi-model-development.looker_FINAL.muni`;;
 
-  derived_table: {
-    sql: SELECT * FROM bi-model-development.looker_FINAL.muni WHERE Ratings3 IS NOT NULL
-    AND MaturitySize IS NOT NULL AND Interest_rate_of_the_issue_traded IS NOT NULL
-    AND Issuer_Type IS NOT NULL
-    AND (broker_s_broker_indicator = "S" OR broker_s_broker_indicator = "P");;
-  }
+  # derived_table: {
+  #   sql: SELECT * FROM bi-model-development.looker_FINAL.muni WHERE
+
+  #   (broker_s_broker_indicator = "S" OR broker_s_broker_indicator = "P");;
+  # }
 
 
   dimension: _10_year_treasury_constant_maturity_rate_percent_daily_not_seasonally_adjusted {
