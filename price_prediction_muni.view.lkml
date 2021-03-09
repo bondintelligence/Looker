@@ -69,6 +69,7 @@ view: pricemodel {
 
   parameter: CUSIP_Parameter {
     type: unquoted
+
   }
 
   # measure: count {
@@ -250,13 +251,13 @@ view: pricemodel {
     sql: ((${TABLE}.Price_At_Issue * POWER(6.27553773e+02, 0.5)) + 8.10222250e+01);;
   }
 
-  dimension: predicted_Dollar_Price_of_the_trade {
+  # dimension: predicted_Dollar_Price_of_the_trade {
 
-    type: number
-    can_filter: no
-    value_format: "$0.00"
-    sql: ${TABLE}.predicted_Dollar_Price_of_the_trade ;;
-  }
+  #   type: number
+  #   can_filter: no
+  #   value_format: "$0.00"
+  #   sql: ${TABLE}.predicted_Dollar_Price_of_the_trade ;;
+  # }
 
   # dimension: Dollar_Price_of_the_Trade {
   #   type: number
@@ -322,4 +323,12 @@ view: pricemodel {
     sql: ((${TABLE}.MaturitySize * POWER(1.76399804e+15, 0.5)) + 1.88481748e+07);;
   }
 
+
+  measure: predicted_Dollar_Price_of_the_trade {
+
+    type: number
+    can_filter: no
+    value_format: "$0.00"
+    sql: ${TABLE}.predicted_Dollar_Price_of_the_trade ;;
+  }
 }

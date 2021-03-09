@@ -333,7 +333,93 @@ view: muni {
   dimension: issuer_industry {
     type: string
     label: "issuer industry"
-    sql: ${TABLE}.Issuer_Industry ;;
+    case: {
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "DEV" ;;
+        label: "Economic/Industrial development"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "EDU" ;;
+        label: "Secondary Education"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "FAC" ;;
+        label: "Facilities"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "GEN" ;;
+        label: "General Revenue"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "GOB" ;;
+        label: "General Obligation"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "HGR" ;;
+        label: "Higher Education"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "HSG" ;;
+        label: "Housing"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "MED" ;;
+        label: "Medical"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "MEL" ;;
+        label: "Mello Roos"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "MFH" ;;
+        label: "Multi Family Housing"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "NUR" ;;
+        label: "Nusring Homes"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "APT" ;;
+        label: "Airport"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "BAB" ;;
+        label: "Build America Bonds"
+      }
+
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "WTR" ;;
+        label: "Water"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "POL" ;;
+        label: "Pollution"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "PWR" ;;
+        label: "Power"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "SCD" ;;
+        label: "School District"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "SFH" ;;
+        label: "Single Family Housing"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "TOB" ;;
+        label: "Tobacco"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "TRN" ;;
+        label: "Transportaion"
+      }
+      when: {
+        sql:  ${TABLE}.Issuer_Industry = "UTL" ;;
+        label: "Utilities"
+      }
+  }
   }
 
   dimension: issuer_type {

@@ -15,6 +15,8 @@ include: "/predictedprice.view"
 include: "/predictedRisk.view"
 include: "/comparable_trades.view"
 include: "/price_prediction_muni.view"
+include: "/Risk_Predicted_Muni.view"
+include: "/Risk_Predicted_Corp.view"
 
 datagroup: production_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -93,6 +95,7 @@ explore: muni {
 
 explore: muni_issuance {
   description: "Source: U.S Department of Commerce"
+  hidden: yes
   always_filter: {
 
     filters: [muni_issuance.cusip1: ""]
@@ -107,12 +110,28 @@ explore: muni_issuance {
 
 
 explore: pricemodel {
+  group_label: "Models"
   label: "Price Prediction Muni"
   always_filter: {
     filters: [pricemodel.CUSIP_Parameter: "010734RA1"]
   }
+
 }
 
+explore: risk_predicted_muni {
+  group_label: "Models"
+  always_filter: {
+    filters: [risk_predicted_muni.CUSIP: "010734RA1"]
+  }
+}
+
+explore: risk_predicted_corp {
+  group_label: "Models"
+  always_filter: {
+    filters: [risk_predicted_corp.CUSIP_Parameter: "172070CP7"]
+  }
+
+}
 
 explore: askYield {
   hidden: yes
@@ -179,10 +198,12 @@ explore: compustat_financial_fundamental {
 
 explore:compustat_financial_ratios {
   description: "Standard & Poor's (S&P) Capital IQ is a leading provider in financial market intelligence. Standard & Poor’s is the world’s foremost provider of independent credit ratings, risk evaluation, investment research, indices, data and valuations. Compustat provides more than 500 company-level fundamentals, including items such as Income Statements, Balance Sheets, and Flow of Funds. It also offers an even larger number of supplemental data items for more than 47,000 active and 37,000 inactive companies. Compustat primarily draws its data from SEC filings, which it standardizes to allow for better comparisons. It is supplemented with additional data sources as needed. For a North American company to be added to the database, it must file distinct 10K's or 10Q's with the SEC."
+  hidden: yes
   always_filter: {
 
     filters: [cusip: ""]
   }
+
 }
 
 
@@ -214,6 +235,7 @@ explore: trace_enhanced {
 
 explore:  mergent_issuance{
   description: "Mergent Fixed Income Securities Database (FISD) is a comprehensive database of publicly offered U.S. bonds. FISD contains issue details on over 140,000 corporate, corporate MTN (medium-term note), supranational, U.S. Agency, and U.S. Treasury debt securities and includes more than 550 data items. FISD provides details on debt issues and the issuers, as well as transactions by insurance companies. It is used to research market trends, deal structures, issuer capital structures, and other areas of fixed income debt research."
+  label: "Mergent FISD"
   always_filter: {
 
     filters: [mergent_issuance.complete_cusip: ""]
@@ -245,6 +267,7 @@ explore:  mergent_issuance{
 
 explore:  mergent_bond_redemption{
   description: "Mergent Fixed Income Securities Database (FISD) is a comprehensive database of publicly offered U.S. bonds. FISD contains issue details on over 140,000 corporate, corporate MTN (medium-term note), supranational, U.S. Agency, and U.S. Treasury debt securities and includes more than 550 data items. FISD provides details on debt issues and the issuers, as well as transactions by insurance companies. It is used to research market trends, deal structures, issuer capital structures, and other areas of fixed income debt research."
+  hidden: yes
   always_filter: {
 
     filters: [mergent_bond_redemption.complete_cusip: ""]
@@ -279,6 +302,7 @@ explore:  raven_pack_sentiment {
 }
 
 explore: board_ex_summary{
+  label: "Board EX"
   always_filter: {
     filters: [board_ex_summary.board_name: ""]
   }
