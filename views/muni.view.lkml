@@ -1,7 +1,9 @@
 view: muni {
-  sql_table_name: `bi-model-development.looker_FINAL.muni`
-    ;;
+  sql_table_name: `bi-model-development.looker_FINAL.muni`;;
 
+ # derived_table: {
+  #  sql: SELECT * FROM bi-model-development.looker_FINAL.muni WHERE rating3 IS NOT NULL ;;
+  #}
 
   dimension: _10_year_treasury_constant_maturity_rate_percent_daily_not_seasonally_adjusted {
     type: number
@@ -78,6 +80,12 @@ view: muni {
     type: yesno
     label: "_alternative_trading_system_ats_indicator"
     sql: ${TABLE}.Alternative_Trading_System_ATS_Indicator ;;
+    #case: {
+    #  when: {
+    #    sql:  ${TABLE}.Alternative_Trading_System_ATS_Indicator = NULL ;;
+    #    label: "false"
+    #  }
+    #}
   }
 
   dimension: american_indian_and_alaska_native_mr2 {
@@ -118,11 +126,11 @@ view: muni {
     value_format: "0.00\%"
   }
 
-  dimension: assumed_settlement_date {
-    type: string
-    label: "_assumed_settlement_date"
-    sql: ${TABLE}.Assumed_Settlement_Date ;;
-  }
+ # dimension: assumed_settlement_date {
+ #  type: string
+ #   label: "_assumed_settlement_date"
+ #   sql: ${TABLE}.Assumed_Settlement_Date ;;
+ # }
 
   dimension: average_daily_pm2_5 {
     type: number
@@ -328,6 +336,12 @@ view: muni {
     type: yesno
     label: "_list_offering_price_takedown_indicator"
     sql: ${TABLE}.List_Offering_Price_Takedown_Indicator ;;
+    #case: {
+    #  when: {
+    #    sql:  ${TABLE}.List_Offering_Price_Takedown_Indicator = "NULL" ;;
+    #    label: "false"
+    #  }
+    #}
   }
 
   dimension: male_mage2 {
@@ -400,6 +414,13 @@ view: muni {
     type: yesno
     label: "_non_transaction_based_compensation_arrangement_ntbc_indicator"
     sql: ${TABLE}.Non_Transaction_Based_Compensation_Arrangement_NTBC_Indicator ;;
+    #case: {
+    #  when: {
+    #    sql:  ${TABLE}.Non_Transaction_Based_Compensation_Arrangement_NTBC_Indicator = "NULL" ;;
+    #    label: "false"
+    #  }
+    #}
+
   }
 
   dimension: not_proficient_in_english {
@@ -698,15 +719,21 @@ view: muni {
 
 
 
-  dimension: weighted_price_indicator {
-    type: string
-    label: "_weighted_price_indicator"
-    sql: ${TABLE}.Weighted_Price_Indicator ;;
-  }
+#  dimension: weighted_price_indicator {
+#    type: string
+#    label: "_weighted_price_indicator"
+#    sql: ${TABLE}.Weighted_Price_Indicator ;;
+#  }
 
   dimension: when_issued_indicator {
     type: yesno
     label: "_when_issued_indicator"
+    #case: {
+    #  when: {
+    #    sql:  ${TABLE}.trade_type_indicator = "NULL" ;;
+    #    label: "false"
+    #  }
+    #}
     sql: ${TABLE}.When_Issued_Indicator ;;
   }
 
