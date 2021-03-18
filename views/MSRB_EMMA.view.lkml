@@ -376,7 +376,7 @@ view: muni {
       }
       when: {
         sql:  ${TABLE}.Issuer_Industry = "NUR" ;;
-        label: "Nusring Homes"
+        label: "Nursing Homes"
       }
       when: {
         sql:  ${TABLE}.Issuer_Industry = "APT" ;;
