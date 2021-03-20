@@ -13,6 +13,7 @@ include: "/midPrice.view"
 include: "/midYield.view"
 include: "/predictedprice.view"
 include: "/predictedRisk.view"
+include: "/Bond_Redemption.dashboard.lookml"
 
 datagroup: production_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
