@@ -1,6 +1,25 @@
 view: muni_issuance {
-  sql_table_name: `bi-model-development.looker_FINAL.Muni_Issuance`;;
+  #sql_table_name: `bi-model-development.looker_FINAL.Muni_Issuance`;;
 
+  derived_table: {
+    sql:
+    SELECT * FROM`bi-model-development.looker_FINAL.Muni_Issuance` WHERE
+    Discount IS NOT NULL AND
+    Premium IS NOT NULL AND
+    total_par_value IS NOT NULL AND
+    The_yield_of_the_trade IS NOT NULL AND
+    Sale_Date IS NOT NULL AND
+    Treasury_Rate IS NOT NULL AND
+    debt_type IS NOT NULL AND
+    Issuer_City_State_Zip IS NOT NULL AND
+    Bond_Cap_Amount IS NOT NULL AND
+    Refund_Discount IS NOT NULL AND
+    Refund_Premium IS NOT NULL AND
+    Refund_Tax_Exempt_ParValue IS NOT NULL AND
+    Refund_Taxable_ParValue IS NOT NULL AND
+    Refund_Total_ParValue IS NOT NULL AND
+    Taxable_Interest_Rate IS NOT NULL;;
+  }
 
 
   dimension: admin_fee {
@@ -13,7 +32,7 @@ view: muni_issuance {
   dimension: bond_cap_amount {
     type: number
     value_format: "$#,##0.00"
-    sql: ${TABLE}. ;;
+    sql:  CAST(${TABLE}.Bond_Cap_Amount AS FLOAT64) ;;
   }
 
 
@@ -165,7 +184,7 @@ view: muni_issuance {
   dimension: discount {
     type: number
     value_format: "$#,##0.00"
-    sql: ${TABLE}.Discount ;;
+    sql: CAST(${TABLE}.Discount AS FLOAT64) ;;
   }
 
 
@@ -274,11 +293,11 @@ view: muni_issuance {
     sql: ${TABLE}.Miscellaneous_Costs ;;
   }
 
-  dimension: net_tax_exempt_interest_rate {
-    type: number
-    value_format: "0.00\%"
-    sql: ${TABLE}.Net_Tax_Exempt_Interest_Rate ;;
-  }
+  # dimension: net_tax_exempt_interest_rate {
+  #   type: number
+  #   value_format: "0.00\%"
+  #   sql: ${TABLE}.Net_Tax_Exempt_Interest_Rate ;;
+  # }
 
   dimension: new_refund_combo {
     type: string
@@ -325,20 +344,20 @@ view: muni_issuance {
   dimension: refund_discount {
     type: number
     value_format: "$#,##0.00"
-    sql: ${TABLE}.Refund_Discount ;;
+    sql: CAST(${TABLE}.Refund_Discount AS FLOAT64) ;;
   }
 
-  dimension: refund_net_tax_exempt_interest_rate {
-    type: number
-    value_format: "0.00\%"
-    sql: ${TABLE}.Refund_Net_Tax_Exempt_Interest_Rate ;;
-  }
+  # dimension: refund_net_tax_exempt_interest_rate {
+  #   type: number
+  #   value_format: "0.00\%"
+  #   sql: ${TABLE}.Refund_Net_Tax_Exempt_Interest_Rate ;;
+  # }
 
-  dimension: refund_net_taxable_interest_rate {
-    type: number
-    value_format: "0.00\%"
-    sql: ${TABLE}.Refund_Net_Taxable_Interest_Rate ;;
-  }
+  # dimension: refund_net_taxable_interest_rate {
+  #   type: number
+  #   value_format: "0.00\%"
+  #   sql: ${TABLE}.Refund_Net_Taxable_Interest_Rate ;;
+  # }
 
   dimension: refund_premium {
     type: number
@@ -364,11 +383,11 @@ view: muni_issuance {
     sql: ${TABLE}.Refund_Total_ParValue ;;
   }
 
-  dimension: refund_yield {
-    type: number
-    value_format: "0.00\%"
-    sql: ${TABLE}.Refund_Yield ;;
-  }
+  # dimension: refund_yield {
+  #   type: number
+  #   value_format: "0.00\%"
+  #   sql: ${TABLE}.Refund_Yield ;;
+  # }
 
   dimension: registrar {
     type: string
@@ -453,7 +472,7 @@ view: muni_issuance {
   dimension: taxable_interest_rate {
     type: number
     value_format: "0.00\%"
-    sql: ${TABLE}.Taxable_Interest_Rate ;;
+    sql: CAST(${TABLE}.Taxable_Interest_Rate AS FLOAT64);;
   }
 
   dimension: taxable_interest_variable {
@@ -507,7 +526,21 @@ view: muni_issuance {
 
   dimension: trade_type_indicator {
     type: string
-    sql: ${TABLE}.Trade_Type_Indicator ;;
+    case: {
+      when: {
+        sql:  ${TABLE}.Trade_Type_Indicator = "D" ;;
+        label: "inter-dealer trade"
+      }
+      when: {
+        sql:  ${TABLE}.Trade_Type_Indicator = "P" ;;
+        label: "purchase from a customer by a dealer"
+      }
+      when: {
+        sql:  ${TABLE}.Trade_Type_Indicator = "S" ;;
+        label: "sale to a customer by a dealer"
+      }
+    }
+
   }
 
   dimension: travel_costs {
@@ -559,19 +592,213 @@ view: muni_issuance {
     sql: ${TABLE}.Year_Identifier ;;
   }
 
-  dimension: yield {
-    type: number
-    value_format: "0.00\%"
-    sql: ${TABLE}.Yield ;;
-  }
+  # dimension: yield {
+  #   type: number
+  #   value_format: "0.00\%"
+  #   sql: ${TABLE}.Yield ;;
+  # }
 
-  measure: count {
+
+####################################################################################
+
+ measure: count {
     type: count
     drill_fields: [issuer_name]
   }
-  measure: sum_travel_cost {
-    type: string
-    sql: ${travel_costs} ;;
+  measure: admin_fee_ {
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
+    sql: ${TABLE}.Admin_Fee ;;
   }
+
+  measure: bond_cap_amount_ {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Bond_Cap_Amount ;;
+  }
+
+
+  measure: Dollar_Price_of_the_trade_ {
+    type: number
+    sql: ${TABLE}.Dollar_Price_of_the_trade ;;
+  }
+
+  measure: The_yield_of_the_trade_ {
+    type: number
+    sql: ${TABLE}.The_yield_of_the_trade ;;
+  }
+
+  measure: bond_counsel_fee_ {
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
+    sql: ${TABLE}.Bond_Counsel_Fee ;;
+  }
+
+  measure: bond_insurance_costs_ {
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
+    sql: ${TABLE}.Bond_Insurance_Costs ;;
+  }
+
+
+  measure: credit_enhancement_fee_ {
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
+    sql: ${TABLE}.Credit_Enhancement_Fee ;;
+  }
+
+  measure: discount_ {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Discount ;;
+  }
+
+
+
+  measure: escrow_costs_ {
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
+    sql: ${TABLE}.Escrow_Costs ;;
+  }
+
+  measure: feasibility_study_fee_ {
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
+    sql: ${TABLE}.Feasibility_Study_Fee ;;
+  }
+
+  measure: financial_advisor_fee_ {
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
+    sql: ${TABLE}.Financial_Advisor_Fee ;;
+  }
+
+  measure: gross_underwriting_spread_ {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Gross_Underwriting_Spread ;;
+  }
+
+  measure: miscellaneous_costs_ {
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
+    sql: ${TABLE}.Miscellaneous_Costs ;;
+  }
+
+  measure: premium_ {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Premium ;;
+  }
+
+  measure: printing_costs_ {
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
+    sql: ${TABLE}.Printing_Costs ;;
+  }
+
+
+  measure: rating_agency_fee_ {
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
+    sql: ${TABLE}.Rating_Agency_Fee ;;
+  }
+
+  measure: refund_discount_ {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Refund_Discount ;;
+  }
+
+
+  measure: refund_premium_ {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Refund_Premium ;;
+  }
+
+  measure: refund_tax_exempt_par_value_ {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Refund_Tax_Exempt_ParValue ;;
+  }
+
+  measure: refund_taxable_par_value_ {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Refund_Taxable_ParValue ;;
+  }
+
+  measure: refund_total_par_value_ {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Refund_Total_ParValue ;;
+  }
+
+
+  measure: tax_exempt_par_value_ {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Tax_Exempt_Par_Value ;;
+  }
+
+  measure: taxable_interest_rate_ {
+    type: number
+    value_format: "0.00\%"
+    sql: ${TABLE}.Taxable_Interest_Rate ;;
+  }
+
+
+  measure: taxable_par_value_ {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Taxable_Par_Value ;;
+  }
+
+
+  measure: total_par_value_ {
+    type: number
+    value_format: "$#,##0.00"
+    sql: ${TABLE}.Total_Par_Value ;;
+  }
+
+  measure: travel_costs_ {
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
+    sql: ${TABLE}.Travel_Costs ;;
+  }
+
+  measure: trustee_fee_ {
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
+    sql: ${TABLE}.Trustee_Fee ;;
+  }
+
+  measure: uw_counsel_fee_ {
+    type: number
+    value_format: "$#,##0.00"
+    group_label: "cost & fees"
+    sql: ${TABLE}.UW_Counsel_Fee ;;
+  }
+
+  measure: uw_spread_per_1000_ {
+    type: number
+    sql: ${TABLE}.UW_Spread_per_1000 ;;
+  }
+
+
+
 
 }
