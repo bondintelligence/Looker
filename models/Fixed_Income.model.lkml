@@ -17,6 +17,7 @@ include: "/comparable_trades.view"
 include: "/price_prediction_muni.view"
 include: "/Risk_Predicted_Muni.view"
 include: "/Risk_Predicted_Corp.view"
+include: "/recommendation_engine.view"
 
 datagroup: production_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -133,6 +134,12 @@ explore: risk_predicted_corp {
 
 }
 
+explore: recommendation_engine {
+  persist_for: "0 seconds"
+  group_label: "Models"
+}
+
+
 explore: askYield {
   hidden: yes
 }
@@ -173,6 +180,7 @@ explore: comparable_trades {
 explore: predictedrisk {
   hidden:  yes
 }
+
 
 
 
