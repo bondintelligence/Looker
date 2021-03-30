@@ -145,7 +145,11 @@ explore: risk_predicted_corp {
   always_filter: {
     filters: [risk_predicted_corp.CUSIP_Parameter: "172070CP7"]
   }
+}
 
+
+explore: recommendation_engine {
+  group_label: "Models"
 }
 
 explore: askYield {
