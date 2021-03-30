@@ -8,7 +8,6 @@ view: bloomberg1 {
     value_format: "$#,##0.00"
   }
 
-
   dimension: ask_current_yield {
     type: number
     sql: ${TABLE}.AskCurrentYield ;;
@@ -23,8 +22,6 @@ view: bloomberg1 {
     value_format: "$#,##0.00"
   }
 
-
-
   dimension: bid_current_yield {
     type: number
     sql: ${TABLE}.BidCurrentYield ;;
@@ -38,7 +35,6 @@ view: bloomberg1 {
     group_label: "price"
     value_format: "$#,##0.00"
   }
-
 
   dimension: borrower {
     type: string
@@ -85,6 +81,7 @@ view: bloomberg1 {
 
   dimension: cusip {
     type: string
+    primary_key: yes
     sql: ${TABLE}.CUSIP ;;
   }
 
@@ -201,7 +198,6 @@ view: bloomberg1 {
     group_label: "issuance"
   }
 
-
   dimension: mid_annual_yield {
     type: number
     sql: ${TABLE}.Mid_Annual_Yield ;;
@@ -222,7 +218,6 @@ view: bloomberg1 {
     group_label: "price"
     value_format: "$#,##0.00"
   }
-
 
 
   dimension: mid_ytm {
@@ -265,8 +260,6 @@ view: bloomberg1 {
     label: "previous_closing_value"
     value_format: "$#,##0.00"
   }
-
-
 
   dimension: price_changeon_day {
     type: number
@@ -355,7 +348,7 @@ view: bloomberg1 {
     type: sum
     drill_fields: []
 
-}
+  }
 
   measure: measure_amount_outstanding {
     type: number
@@ -638,7 +631,7 @@ view: bloomberg1 {
   measure: measure_yieldat_issue {
     type: number
     sql: ${yieldat_issue} ;;
-    }
+  }
 
 
-      }
+}
