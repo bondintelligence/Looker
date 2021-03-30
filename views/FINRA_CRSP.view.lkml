@@ -475,7 +475,7 @@ view: FINRA_CRSP {
         label: "Subordinate"
       }
 
-  }
+    }
   }
 
   dimension_group: t_date {

@@ -376,7 +376,7 @@ view: muni {
       }
       when: {
         sql:  ${TABLE}.Issuer_Industry = "NUR" ;;
-        label: "Nursing Homes"
+        label: "Nusring Homes"
       }
       when: {
         sql:  ${TABLE}.Issuer_Industry = "APT" ;;
@@ -419,7 +419,7 @@ view: muni {
         sql:  ${TABLE}.Issuer_Industry = "UTL" ;;
         label: "Utilities"
       }
-  }
+    }
   }
 
   dimension: issuer_type {

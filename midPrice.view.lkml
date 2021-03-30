@@ -5,7 +5,7 @@ view: midPrice {
       [
       STRUCT('MidPrice' AS Category, MidPrice AS Price),
       STRUCT('LastPrice' AS Category, LastPrice AS Price)]
-      AS Price_Data FROM `bi-model-development.looker_FINAL.bloomberg2`)
+      AS Price_Data FROM `bi-mzodel-development.looker_FINAL.bloomberg2`)
 
        SELECT CUSIP, CAST(Date AS TIMESTAMP) as `Date`, Price_Data_.Category as `Category`,Price_Data_.Price as `Price` FROM original
       CROSS JOIN UNNEST (original.Price_Data) AS Price_Data_ WHERE Category = "MidPrice"

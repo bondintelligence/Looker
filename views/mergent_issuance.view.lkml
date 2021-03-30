@@ -994,7 +994,7 @@ view: mergent_issuance {
         label: "Zero"
       }
 
-  }
+    }
   }
 
   # dimension: covenant_defeas_wo_tax_conseq {
@@ -1430,7 +1430,7 @@ view: mergent_issuance {
         label: "Registered or Coupon"
       }
 
-  }
+    }
   }
 
   # dimension: funded_debt_is {
@@ -1600,7 +1600,7 @@ view: mergent_issuance {
         sql: ${TABLE}.INDUSTRY_CODE = "99" ;;
         label: "Unassigned"
       }
-     }
+    }
   }
 
   dimension: industry_group {
@@ -2407,9 +2407,9 @@ view: mergent_issuance {
     description: "Indicates if the security is a secured, senior or subordinated issue of the issuer."
     case: {
       when: {
-      sql: ${TABLE}.SECURITY_LEVEL = "JUN" ;;
-      label: "Junior"
-    }
+        sql: ${TABLE}.SECURITY_LEVEL = "JUN" ;;
+        label: "Junior"
+      }
       when: {
         sql: ${TABLE}.SECURITY_LEVEL = "JUNS" ;;
         label: "Junior Subordinate"
@@ -2493,7 +2493,7 @@ view: mergent_issuance {
         sql: ${TABLE}.SETTLEMENT_TYPE = "S" ;;
         label: "Same Day"
       }
-   }
+    }
   }
 
   # dimension: shares_outstanding {

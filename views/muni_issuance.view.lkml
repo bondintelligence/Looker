@@ -601,7 +601,7 @@ view: muni_issuance {
 
 ####################################################################################
 
- measure: count {
+  measure: count {
     type: count
     drill_fields: [issuer_name]
   }
