@@ -4,11 +4,11 @@ view: comparable_trades {
 
     sql: SELECT CUSIP,Issue_Date,LastTradePrice, YieldatIssue,IssueType
 
-                FROM `bi-model-development.looker_FINAL.bloomberg1`
+                      FROM `bi-model-development.looker_FINAL.bloomberg1`
 
-                WHERE RAND() < 10/(SELECT COUNT(*) FROM `bi-model-development.looker_FINAL.bloomberg1` )
+                      WHERE RAND() < 10/(SELECT COUNT(*) FROM `bi-model-development.looker_FINAL.bloomberg1` )
 
-            ;;
+                  ;;
 
     }
 
