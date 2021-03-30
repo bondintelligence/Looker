@@ -3,7 +3,7 @@ label: "Fixed Income"
 connection: "bqwarehouse"
 
 # include all the views
-include: "/views/**/*.view"
+
 include: "/askYield.view"
 include: "/bidYield.view"
 include: "/default_probablity.view"
@@ -18,6 +18,20 @@ include: "/price_prediction_muni.view"
 include: "/Risk_Predicted_Muni.view"
 include: "/Risk_Predicted_Corp.view"
 include: "/recommendation_engine.view"
+include: "/FINRA_CRSP.view"
+include: "/MSRB_EMMA.view"
+include: "/bloomberg1.view"
+include: "/bloomberg2.view"
+include: "/board_ex_org_summary.view"
+include: "/compustat_financial_ratios.view"
+include: "/mergent_bond_redemption.view"
+include: "/mergent_issuance.view"
+include: "/muni_issuance.view"
+include: "/raven_pack_sentiment.view"
+include: "/trace_enhanced.view"
+include: "/compustat_financial_fundamental.view"
+
+
 
 datagroup: production_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
