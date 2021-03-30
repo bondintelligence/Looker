@@ -32,6 +32,9 @@ include: "/risk_predicted_muni.view"
 
 include: "/risk_predicted_corp.view"
 
+include: "/views/recommendation_engine.view"
+
+
 datagroup: production_default_datagroup {
 
 # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -213,6 +216,12 @@ explore: risk_predicted_corp {
   }
 
 }
+
+explore: recommendation_engine {
+  persist_for: "0 seconds"
+  group_label: "Models"
+}
+
 
 explore: askYield {
 
