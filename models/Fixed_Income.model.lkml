@@ -33,6 +33,7 @@ include: "/compustat_financial_fundamental.view"
 
 
 
+
 datagroup: production_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
