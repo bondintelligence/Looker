@@ -14,7 +14,7 @@ include: "/midYield.view"
 include: "/predictedprice.view"
 include: "/predictedRisk.view"
 include: "/comparable_trades.view"
-include: "/price_prediction_muni.view"
+include: "/pricemodel.view"
 include: "/Risk_Predicted_Muni.view"
 include: "/Risk_Predicted_Corp.view"
 
