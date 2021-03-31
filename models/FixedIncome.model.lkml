@@ -150,6 +150,7 @@ explore: risk_predicted_corp {
 
 
 explore: recommendation_engine {
+  persist_for: "0 seconds"
   group_label: "Models"
 }
 
