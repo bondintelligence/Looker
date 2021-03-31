@@ -141,6 +141,13 @@ explore: risk_predicted_muni {
   }
 }
 
+explore: risk_predicted_corp {
+  group_label: "Models"
+  always_filter: {
+    filters: [risk_predicted_corp.CUSIP_Parameter: "172070CP7"]
+  }
+}
+
 
 explore: recommendation_engine {
   group_label: "Models"
