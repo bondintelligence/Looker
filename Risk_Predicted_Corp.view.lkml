@@ -217,16 +217,6 @@ view: risk_predicted_corp {
     sql: ${TABLE}.predicted_R_FR ;;
   }
 
-  # dimension: evaluated_risk {
-  #   type: string
-  #   sql:
-  #   CASE WHEN ${predicted_class} = 4 THEN "Low"
-  #   WHEN ${predicted_class} = 2 OR ${predicted_class} = 3 THEN "Medium"
-  #   WHEN ${predicted_class} = 1 OR ${predicted_class} = 0 THEN "High"
-  #   ELSE NULL END
-  #   ;;
-  # }
-
   measure: amount_outstanding {
     type: number
     value_format: "0.###"
@@ -266,9 +256,11 @@ view: risk_predicted_corp {
     type: string
     can_filter: no
     sql:
-          CASE WHEN ${predicted_class} = 4 THEN "Low"
-          WHEN ${predicted_class} = 2 OR ${predicted_class} = 3 THEN "Medium"
-          WHEN ${predicted_class} = 1 OR ${predicted_class} = 0 THEN "High"
+          CASE WHEN ${predicted_class} = 4 THEN "Very Low"
+          WHEN ${predicted_class} = 3 THEN "Low"
+          WHEN ${predicted_class} = 2 THEN "Medium"
+          WHEN ${predicted_class} = 1 THEN "High"
+          WHEN ${predicted_class} = 0 THEN "Very High"
           ELSE NULL END
           ;;
   }
