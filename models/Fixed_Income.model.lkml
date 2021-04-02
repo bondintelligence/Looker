@@ -110,7 +110,6 @@ explore: pricemodel {
 }
 
 
-
 explore: default_probablity {
   hidden: yes
 }
@@ -126,11 +125,11 @@ explore: predictedprice {
 
 
 explore: comparable_trades {
-  hidden:  yes
+  hidden:  no
 }
 
 explore: predictedrisk {
-  hidden:  yes
+  hidden:  no
 }
 
 

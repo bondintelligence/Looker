@@ -215,4 +215,5 @@ view: predictedprice {
       presence_of_violation_poll
     ]
   }
+
 }
