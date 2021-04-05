@@ -169,7 +169,7 @@ view: predictedprice {
   }
 
   measure: predicted_dollar_price_measure{
-    sql: ${predicted_dollar_price_of_the_trade} ;;
+    sql: ROUND(${predicted_dollar_price_of_the_trade},2) ;;
   }
 
   set: detail {
