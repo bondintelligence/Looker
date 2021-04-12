@@ -30,6 +30,7 @@ include: "/muni_issuance.view"
 include: "/raven_pack_sentiment.view"
 include: "/trace_enhanced.view"
 include: "/compustat_financial_fundamental.view"
+include: "/insights.dashboard"
 
 
 

@@ -338,6 +338,18 @@ view: bloomberg1 {
     value_format: "0.00%"
   }
 
+
+  dimension: Trade {
+    type: string
+    html: <p style="color: white; background-color: rgb(45, 137, 189); border-radius: 20px; font-size:125%; text-align:center">{{ rendered_value }}</p> ;;
+    sql: "Trade" ;;
+  }
+
+
+
+
+
+
   measure: count {
     type: count
     drill_fields: []
