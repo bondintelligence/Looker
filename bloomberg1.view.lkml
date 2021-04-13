@@ -341,8 +341,15 @@ view: bloomberg1 {
 
   dimension: Trade {
     type: string
-    html: <p style="color: white; background-color: rgb(45, 137, 189); border-radius: 20px; font-size:125%; text-align:center">{{ rendered_value }}</p> ;;
-    sql: "Trade" ;;
+    # html: <p style="color: white; background-color: rgb(45, 137, 189); border-radius: 20px; font-size:125%; text-align:center">{{ rendered_value }}</p> ;;
+    sql: ${url} ;;
+    html: <a href="{{rendered_value}}"><button style="color: white; background-color: rgb(45, 137, 189); border-radius: 20px; font-size:125%; border:none;padding: 5px 20px; text-align:center">Trade</button></a> ;;
+
+  }
+  dimension: url {
+    type: string
+    hidden: yes
+    sql: "https://transficc.com/" ;;
   }
 
 

@@ -69,7 +69,7 @@ view: pricemodel {
 
   parameter: CUSIP_Parameter {
     type: unquoted
-
+    default_value: "036054AY0"
   }
 
   # measure: count {
@@ -331,4 +331,25 @@ view: pricemodel {
     value_format: "$0.00"
     sql: ${TABLE}.predicted_Dollar_Price_of_the_trade ;;
   }
+
+  dimension: predicted_Dollar_Price_of_the_trade_Dimension {
+    type: number
+    can_filter: no
+    value_format: "$##.##"
+    sql: ${TABLE}.predicted_Dollar_Price_of_the_trade ;;
+  }
+
+  measure: min_predicted_Dollar_Price_of_the_trade  {
+    type: number
+    sql: ${predicted_Dollar_Price_of_the_trade}-5 ;;
+    value_format: "$##.##"
+  }
+
+  measure: max_predicted_Dollar_Price_of_the_trade {
+    type: number
+    sql: ${predicted_Dollar_Price_of_the_trade}+5 ;;
+    value_format: "$##.##"
+  }
+
+
 }
