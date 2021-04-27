@@ -31,7 +31,8 @@ include: "/raven_pack_sentiment.view"
 include: "/trace_enhanced.view"
 include: "/compustat_financial_fundamental.view"
 include: "/insights.dashboard"
-
+include: "/muni_forecast_30.view"
+include: "/muni_undervalued_forecast.view"
 
 
 
@@ -123,6 +124,16 @@ explore: muni_issuance {
     sql_on: ${muni_issuance.cusip1}=${muni.cusip} ;;
   }
 
+}
+
+
+explore: muni_forecast_30 {
+  always_filter: {
+    filters: [CUSIP_Parameter: "01757LFH4"]
+  }
+}
+explore: muni_undervalued_forecast {
+  hidden: yes
 }
 
 
