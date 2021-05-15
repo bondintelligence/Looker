@@ -33,6 +33,7 @@ include: "/compustat_financial_fundamental.view"
 include: "/insights.dashboard"
 include: "/muni_forecast_30.view"
 include: "/muni_undervalued_forecast.view"
+include: "/corp_forecast.view"
 
 
 
@@ -124,6 +125,13 @@ explore: muni_issuance {
     sql_on: ${muni_issuance.cusip1}=${muni.cusip} ;;
   }
 
+}
+
+
+explore: corp_forecast {
+  always_filter: {
+    filters: [cusip: "36962GXZ2"]
+  }
 }
 
 
