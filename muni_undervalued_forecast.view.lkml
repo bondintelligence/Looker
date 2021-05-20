@@ -33,7 +33,7 @@ view: muni_undervalued_forecast {
   dimension: Value {
     type: string
     sql: ${TABLE}.Value ;;
-    html: <p style="color: #1f3e5a; font-size: 150%; text-align:center; padding: 0 0 10px 0"><b>{{ rendered_value }}</b></p>;;
+    html: <p style="color: #929292; font-size: 150%; text-align:center; padding: 0 0 10px 0"><b>{{ rendered_value }}</b></p>;;
     case: {
       when: {
         sql: ${TABLE}.Value >= 2.5 ;;
