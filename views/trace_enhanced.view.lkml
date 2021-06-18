@@ -6,8 +6,8 @@ view: trace_enhanced {
           AND cusip_id IS NOT NULL
           AND yld_pt IS NOT NULL
             ;;
-
   }
+
 
   dimension: cusip_id {
     type: string
@@ -175,11 +175,11 @@ view: trace_enhanced {
     label: "Yield"
     value_format: "0.00\%"
     sql: ${TABLE}.yld_pt;;
-    }
-          # CASE
-          # WHEN ${TABLE}.yld_sign_cd = "-" THEN -1 * CAST(${TABLE}.yld_pt AS FLOAT64)
-          # ELSE CAST(${TABLE}.yld_pt AS FLOAT64)
-          # END;;
+  }
+  # CASE
+  # WHEN ${TABLE}.yld_sign_cd = "-" THEN -1 * CAST(${TABLE}.yld_pt AS FLOAT64)
+  # ELSE CAST(${TABLE}.yld_pt AS FLOAT64)
+  # END;;
 
 
   dimension: asof_cd {
@@ -472,11 +472,11 @@ view: trace_enhanced {
         label: "Broker/Dealer"
       }
 
-        when: {
-          sql: ${TABLE}.rptg_party_type = "T" ;;
-          label: "Alternative Trading System"
-        }
-        }
+      when: {
+        sql: ${TABLE}.rptg_party_type = "T" ;;
+        label: "Alternative Trading System"
+      }
+    }
   }
   dimension: lckd_in_ind {
     type: string
@@ -569,24 +569,24 @@ view: trace_enhanced {
     label: "Yield"
     value_format: "0.00\%"
     sql: ${TABLE}.yld_pt;;
-    }
+  }
 
-    measure: buy_cmsn_rt_ {
-      type: number
-      description: "Represents the commission rate charged by the buyer, if applicable. Reported as dollar amount."
-      label: "Buyers Commission"
-      sql: ${TABLE}.buy_cmsn_rt ;;
-    }
-
-
+  measure: buy_cmsn_rt_ {
+    type: number
+    description: "Represents the commission rate charged by the buyer, if applicable. Reported as dollar amount."
+    label: "Buyers Commission"
+    sql: ${TABLE}.buy_cmsn_rt ;;
+  }
 
 
-    measure: sell_cmsn_rt_ {
-      type: number
-      description: "Represents the commission rate charged by the seller, if applicable. Reported as dollar amount."
-      label: "Seller Commission"
-      sql: ${TABLE}.sell_cmsn_rt ;;
-    }
+
+
+  measure: sell_cmsn_rt_ {
+    type: number
+    description: "Represents the commission rate charged by the seller, if applicable. Reported as dollar amount."
+    label: "Seller Commission"
+    sql: ${TABLE}.sell_cmsn_rt ;;
+  }
 
   set: detail {
     fields: [
@@ -613,8 +613,6 @@ view: trace_enhanced {
       # yld_sign_cd,
       yld_pt,
       asof_cd,
-      # sale_cndtn_cd,
-      # sale_cndtn2_cd,
       # days_to_sttl_ct,
       # sale_cndtn_cd,
       # sale_cndtn2_cd,

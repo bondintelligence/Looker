@@ -4,9 +4,9 @@ view: compustat_financial_ratios {
 
   derived_table: {
     sql: SELECT * FROM bi-model-development.looker_FINAL.Compustat_Financial_Ratios WHERE equity_invcap IS NOT NULL AND
-    totdebt_invcap IS NOT NULL AND divyield IS NOT NULL AND npm IS NOT NULL AND debt_capital IS NOT NULL
-    AND debt_at IS NOT NULL AND sale_invcap IS NOT NULL AND cfm IS NOT NULL AND lt_ppent IS NOT NULL AND
-    invt_act IS NOT NULL AND at_turn IS NOT NULL AND inv_turn IS NOT NULL AND pay_turn  IS NOT NULL AND rect_turn IS NOT NULL AND sale_equity IS NOT NULL AND sale_nwc IS NOT NULL AND  cash_debt  IS NOT NULL AND debt_ebitda  IS NOT NULL AND fcf_ocf IS NOT NULL AND int_debt  IS NOT NULL AND int_totdebt  IS NOT NULL AND dltt_be  IS NOT NULL AND ocf_lct  IS NOT NULL AND rect_act IS NOT NULL AND short_debt  IS NOT NULL AND cash_conversion IS NOT NULL AND accrual IS NOT NULL AND aftret_eq IS NOT NULL AND aftret_invcapx IS NOT NULL AND aftret_equity IS NOT NULL AND pretret_noa IS NOT NULL AND pretret_earnat IS NOT NULL AND roa IS NOT NULL AND roce IS NOT NULL AND roe IS NOT NULL AND intcov IS NOT NULL AND intcov_ratio IS NOT NULL AND bm IS NOT NULL AND ptb IS NOT NULL AND pcf IS NOT NULL AND PEG_trailing IS NOT NULL;;
+          totdebt_invcap IS NOT NULL AND divyield IS NOT NULL AND npm IS NOT NULL AND debt_capital IS NOT NULL
+          AND debt_at IS NOT NULL AND sale_invcap IS NOT NULL AND cfm IS NOT NULL AND lt_ppent IS NOT NULL AND
+          invt_act IS NOT NULL AND at_turn IS NOT NULL AND inv_turn IS NOT NULL AND pay_turn  IS NOT NULL AND rect_turn IS NOT NULL AND sale_equity IS NOT NULL AND sale_nwc IS NOT NULL AND  cash_debt  IS NOT NULL AND debt_ebitda  IS NOT NULL AND fcf_ocf IS NOT NULL AND int_debt  IS NOT NULL AND int_totdebt  IS NOT NULL AND dltt_be  IS NOT NULL AND ocf_lct  IS NOT NULL AND rect_act IS NOT NULL AND short_debt  IS NOT NULL AND cash_conversion IS NOT NULL AND accrual IS NOT NULL AND aftret_eq IS NOT NULL AND aftret_invcapx IS NOT NULL AND aftret_equity IS NOT NULL AND pretret_noa IS NOT NULL AND pretret_earnat IS NOT NULL AND roa IS NOT NULL AND roce IS NOT NULL AND roe IS NOT NULL AND intcov IS NOT NULL AND intcov_ratio IS NOT NULL AND bm IS NOT NULL AND ptb IS NOT NULL AND pcf IS NOT NULL AND PEG_trailing IS NOT NULL;;
   }
 
   dimension: accrual {

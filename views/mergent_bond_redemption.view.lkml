@@ -4,28 +4,28 @@ view: mergent_bond_redemption {
 
   derived_table: {
     sql: SELECT * FROM `bi-model-development.looker_FINAL.Mergent_Bond_Redemption`
-    WHERE complete_cusip IS NOT NULL AND
-    make_whole_start_date IS NOT NULL AND
-    make_whole_end_date IS NOT NULL AND
-    make_whole_spread IS NOT NULL AND
-    maint_replac IS NOT NULL AND
-    sinking_fund IS NOT NULL AND
-    callable IS NOT NULL AND
-    call_frequency IS NOT NULL AND
-    next_sf_date IS NOT NULL AND
-    next_sf_price IS NOT NULL AND
-    next_sf_amount IS NOT NULL AND
-    sudden_death_par IS NOT NULL AND
-    sudden_death_premium IS NOT NULL AND
-    ipo_clawback IS NOT NULL AND
-    discrete_call IS NOT NULL AND
-    call_in_whole IS NOT NULL AND
-    index_redemption IS NOT NULL AND
-    issue_name IS NOT NULL AND
-    issue_id IS NOT NULL AND
-    prospectus_issuer_name IS NOT NULL AND
-    issuer_id IS NOT NULL AND
-    offering_date IS NOT NULL;;
+          WHERE complete_cusip IS NOT NULL AND
+          make_whole_start_date IS NOT NULL AND
+          make_whole_end_date IS NOT NULL AND
+          make_whole_spread IS NOT NULL AND
+          maint_replac IS NOT NULL AND
+          sinking_fund IS NOT NULL AND
+          callable IS NOT NULL AND
+          call_frequency IS NOT NULL AND
+          next_sf_date IS NOT NULL AND
+          next_sf_price IS NOT NULL AND
+          next_sf_amount IS NOT NULL AND
+          sudden_death_par IS NOT NULL AND
+          sudden_death_premium IS NOT NULL AND
+          ipo_clawback IS NOT NULL AND
+          discrete_call IS NOT NULL AND
+          call_in_whole IS NOT NULL AND
+          index_redemption IS NOT NULL AND
+          issue_name IS NOT NULL AND
+          issue_id IS NOT NULL AND
+          prospectus_issuer_name IS NOT NULL AND
+          issuer_id IS NOT NULL AND
+          offering_date IS NOT NULL;;
   }
 
   # dimension: accel_opt_info {

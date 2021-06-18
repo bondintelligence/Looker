@@ -69,6 +69,7 @@ view: pricemodel {
 
   parameter: CUSIP_Parameter {
     type: unquoted
+    default_value: "036054AY0"
   }
 
   # measure: count {
@@ -80,6 +81,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0.#########"
+    hidden: yes
     sql: ((${TABLE}.Income_Ratio * POWER(0.416192260, 0.5)) + 4.78707613)  ;;
   }
 
@@ -87,6 +89,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0"
+    hidden: yes
     sql: ((${TABLE}._80th_Percentile_Income * POWER(5.46152171e+08, 0.5)) + 1.10834510e+05);;
   }
 
@@ -94,6 +97,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0"
+    hidden: yes
     sql: ((${TABLE}.FIPS * POWER(3.15575966e+08, 0.5)) + 2.17677827e+04);;
   }
 
@@ -101,6 +105,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0"
+    hidden: yes
     sql: ((${TABLE}.Africa_dem * POWER(2.05322957e+08, 0.5)) + 1.04641487e+04);;
   }
 
@@ -108,6 +113,7 @@ view: pricemodel {
     type: date_time
     sql: ${TABLE}.Trade_Date_Time ;;
     can_filter: no
+    hidden: yes
     #sql: ((${TABLE}.Trade_Date * POWER(9.70011616e+04, 0.5)) + 7.94418234e+04);;
   }
 
@@ -115,6 +121,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0.##"
+    hidden: yes
     sql: ((${TABLE}._10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted * POWER(2.26253201e-01, 0.5)) + 2.38129247e+00);;
   }
 
@@ -122,12 +129,14 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0.##"
+    hidden: yes
     sql: ((${TABLE}.Interest_rate_of_the_issue_traded * POWER(1.65615697e+00, 0.5)) + 4.21839171e+00);;
   }
 
   dimension: Maturity_date_of_the_issue_traded {
     type: date_time
     can_filter: no
+    hidden: yes
     sql: ${TABLE}.Maturity_date_of_the_issue_traded;;
   }
 
@@ -135,6 +144,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0"
+    hidden: yes
     sql: ((${TABLE}.Days_between_maturity_date_and_trade_date * POWER(8.97276123e+06, 0.5)) + 4.42480705e+03);;
   }
 
@@ -142,12 +152,14 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0.###"
+    hidden: yes
     sql: ((${TABLE}.The_yield_of_the_trade * POWER(7.67943277e+00, 0.5)) + 2.37509641e+00);;
   }
 
   dimension: Issuer_Industry {
     type: string
     can_filter: no
+    hidden: yes
     sql:  ${TABLE}.Issuer_Industry_String ;;
     #sql: ((${TABLE}.Issuer_Industry * POWER(5.65820163e+00, 0.5)) + 1.05359266e+02);;
   }
@@ -156,6 +168,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0"
+    hidden: yes
     sql: ((${TABLE}.Issue_Size * POWER(4.60561611e+16, 0.5)) + 1.60207594e+08);;
   }
 
@@ -163,12 +176,14 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0.00"
+    hidden: yes
     sql: ((${TABLE}.MaturitySize * POWER(1.76399804e+15, 0.5)) + 1.88481748e+07);;
   }
   dimension: Price_At_Issue {
     type: number
     can_filter: no
     value_format: "0.#######"
+    hidden: yes
     sql: ((${TABLE}.Price_At_Issue * POWER(2.82825359e+02, 0.5)) + 1.04254845e+02);;
   }
 
@@ -176,6 +191,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0.##"
+    hidden: yes
     sql: ((${TABLE}.Price_At_Issue * POWER(2.02232741e+00, 0.5)) + 3.41463484e+00);;
   }
 
@@ -183,6 +199,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0"
+    hidden: yes
     sql: ((${TABLE}.Price_At_Issue * POWER(1.59689889e+09, 0.5)) + 2.87041104e+04);;
   }
 
@@ -190,6 +207,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0"
+    hidden: yes
     sql: ((${TABLE}.Price_At_Issue * POWER(2.88425738e+10, 0.5)) + 1.16123435e+05);;
   }
 
@@ -197,6 +215,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0.########"
+    hidden: yes
     sql: ((${TABLE}.Price_At_Issue * POWER(1.50505168e+01, 0.5)) + 9.58538532e+01);;
   }
 
@@ -204,6 +223,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0.########"
+    hidden: yes
     sql: ((${TABLE}.Price_At_Issue * POWER(3.68286386e+02, 0.5)) + 5.96917660e+01);;
   }
 
@@ -211,6 +231,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0"
+    hidden: yes
     sql: ((${TABLE}.Price_At_Issue * POWER(6.23614973e+02, 0.5)) + 8.01936341e+01);;
   }
 
@@ -218,6 +239,7 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0"
+    hidden: yes
     sql: ((${TABLE}.Price_At_Issue * POWER(6.31857179e+02, 0.5)) + 8.02749197e+01);;
   }
 
@@ -225,16 +247,17 @@ view: pricemodel {
     type: number
     can_filter: no
     value_format: "0"
+    hidden: yes
     sql: ((${TABLE}.Price_At_Issue * POWER(6.27553773e+02, 0.5)) + 8.10222250e+01);;
   }
 
-  dimension: predicted_Dollar_Price_of_the_trade {
+  # dimension: predicted_Dollar_Price_of_the_trade {
 
-    type: number
-    can_filter: no
-    value_format: "$0.00"
-    sql: ${TABLE}.predicted_Dollar_Price_of_the_trade ;;
-  }
+  #   type: number
+  #   can_filter: no
+  #   value_format: "$0.00"
+  #   sql: ${TABLE}.predicted_Dollar_Price_of_the_trade ;;
+  # }
 
   # dimension: Dollar_Price_of_the_Trade {
   #   type: number
@@ -255,6 +278,77 @@ view: pricemodel {
       Yield_at_Issue, _85_MAge2,  _20_24_MAge2, _Proficient,  __Non_Hispanic_White, Ratings1,
       Ratings2, Ratings3, CUSIP_Parameter
     ]
+  }
+
+###################################################################################
+
+
+  measure: The_yield_of_the_trade_ {
+    label: "The Yield of the Trade"
+    type: number
+    can_filter: no
+    value_format: "0.###"
+    sql: ((${TABLE}.The_yield_of_the_trade * POWER(7.67943277e+00, 0.5)) + 2.37509641e+00);;
+  }
+
+  measure: Days_between_maturity_date_and_trade_date_ {
+    label: "Days Between maturity date and trade date"
+    type: number
+    can_filter: no
+    value_format: "0"
+    sql: ((${TABLE}.Days_between_maturity_date_and_trade_date * POWER(8.97276123e+06, 0.5)) + 4.42480705e+03);;
+  }
+
+  measure: __10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted {
+    type: number
+    can_filter: no
+    value_format: "0.##"
+    label: "10 Year Treasury Rate"
+    sql: ((${TABLE}._10_Year_Treasury_Constant_Maturity_Rate_Percent_Daily_Not_Seasonally_Adjusted * POWER(2.26253201e-01, 0.5)) + 2.38129247e+00);;
+  }
+
+  measure: Interest_rate_of_the_issue_traded_ {
+    type: number
+    can_filter: no
+    value_format: "0.##"
+    label: "Interest rate of the issue traded"
+    sql: ((${TABLE}.Interest_rate_of_the_issue_traded * POWER(1.65615697e+00, 0.5)) + 4.21839171e+00);;
+  }
+
+  measure: MaturitySize_ {
+    type: number
+    can_filter: no
+    value_format: "0.00"
+    label: "Maturity Size"
+    sql: ((${TABLE}.MaturitySize * POWER(1.76399804e+15, 0.5)) + 1.88481748e+07);;
+  }
+
+
+  measure: predicted_Dollar_Price_of_the_trade {
+
+    type: number
+    can_filter: no
+    value_format: "$0.00"
+    sql: ${TABLE}.predicted_Dollar_Price_of_the_trade ;;
+  }
+
+  dimension: predicted_Dollar_Price_of_the_trade_Dimension {
+    type: number
+    can_filter: no
+    value_format: "$##.##"
+    sql: ${TABLE}.predicted_Dollar_Price_of_the_trade ;;
+  }
+
+  measure: min_predicted_Dollar_Price_of_the_trade  {
+    type: number
+    sql: ${predicted_Dollar_Price_of_the_trade}-5 ;;
+    value_format: "$##.##"
+  }
+
+  measure: max_predicted_Dollar_Price_of_the_trade {
+    type: number
+    sql: ${predicted_Dollar_Price_of_the_trade}+5 ;;
+    value_format: "$##.##"
   }
 
 
