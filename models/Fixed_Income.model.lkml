@@ -36,6 +36,8 @@ include: "/muni_undervalued_forecast.view"
 include: "/corp_forecast.view"
 include: "/corp_pricemodel.view"
 include: "/corp_pricemodel_source.view"
+include: "/comparabletrades_temp.view"
+include: "/pricemodel_source.view"
 
 
 
@@ -229,6 +231,16 @@ explore: comparable_trades {
 
 explore: predictedrisk {
   hidden:  yes
+}
+
+explore: comparabletrades_temp {
+  hidden:  yes
+}
+
+explore: pricemodel_source {
+  group_label: "Models"
+  label: "Muni Dataset"
+  hidden: yes
 }
 
 
