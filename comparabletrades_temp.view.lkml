@@ -30,6 +30,7 @@ view: comparabletrades_temp {
 
   dimension: yieldat_issue {
     type: number
+    label: "Yield at Issue"
     sql: ${TABLE}.YieldatIssue ;;
   }
 
