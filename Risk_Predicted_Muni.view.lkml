@@ -46,6 +46,8 @@ view: risk_predicted_muni {
   parameter: CUSIP {
     type: unquoted
     default_value: "036015PL3"
+    suggest_explore: risk_predicted_muni_source
+    suggest_dimension: risk_predicted_muni_source.CUSIP
   }
 
 
@@ -377,3 +379,4 @@ view: risk_predicted_muni {
     ]
   }
 }
+

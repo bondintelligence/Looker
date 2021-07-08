@@ -38,6 +38,8 @@ include: "/corp_pricemodel.view"
 include: "/corp_pricemodel_source.view"
 include: "/comparabletrades_temp.view"
 include: "/pricemodel_source.view"
+include: "/risk_predicted_muni_source.view"
+include: "/risk_predicted_corp_source.view"
 
 
 
@@ -133,13 +135,13 @@ explore: muni_issuance {
 
 
 explore: corp_forecast {
-  always_filter: {
-    filters: [cusip: "36962GXZ2"]
-  }
+  label: "Corporate Forecast"
 }
 
 
+
 explore: muni_forecast_30 {
+  label: "Municipal Forecast"
   always_filter: {
     filters: [CUSIP_Parameter: "01757LFH4"]
   }
@@ -236,6 +238,19 @@ explore: predictedrisk {
 explore: comparabletrades_temp {
   hidden:  yes
 }
+
+explore: risk_predicted_muni_source {
+  group_label: "Models"
+  label: "Muni Risk Dataset"
+  hidden: yes
+}
+
+explore: risk_predicted_corp_source {
+  group_label: "Models"
+  label: "Muni Risk Dataset"
+  hidden: yes
+}
+
 
 explore: pricemodel_source {
   group_label: "Models"

@@ -41,6 +41,7 @@ view: pricemodel {
             Issuer_Industry_String, Trade_Date_Time, Maturity_date_of_the_issue_traded
             FROM `bi-model-development.looker_FINAL.price_muni_boosted_training` AS cols
             WHERE CUSIP = "{% parameter CUSIP_Parameter %}"
+            ORDER BY Trade_Date DESC
             )
             ) AS model
             LIMIT 1

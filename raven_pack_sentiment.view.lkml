@@ -202,7 +202,7 @@ view: raven_pack_sentiment {
     description: "Classifies the type of news story into one of five categories:
     1. HOT-NEWS-FLASH: A news article composed of a headline and no body text marked as
     breaking news during the editorial process.
-    RavenPack News Analytics – User Guide v.4.0 Page 16
+    RavenPack News Analytics â€“ User Guide v.4.0 Page 16
     CONFIDENTIAL
     2. NEWS-FLASH: A news article composed of a headline and no body text.
     3. FULL-ARTICLE: A news article composed of both a headline and one or more paragraphs
@@ -306,22 +306,40 @@ view: raven_pack_sentiment {
     primary_key: yes
   }
 
+  # dimension_group: rpna {
+  #   type: time
+  #   description: "RavenPack News Story Date and Time."
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     day_of_week,
+  #     day_of_month,
+  #     month_name,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.RPNA_DATE_UTC ;;
+  #   datatype: date
+  #   convert_tz: no
+  #   label: "RavenPack News Story"
+  # }
+
   dimension_group: rpna {
     type: time
     description: "RavenPack News Story Date and Time."
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
       quarter,
-      day_of_week,
-      day_of_month,
       month_name,
       year
     ]
-    sql: ${TABLE}.RPNA_DATE_UTC ;;
+    sql:CAST(${TABLE}.RPNA_DATE_UTC AS date) ;;
     datatype: date
     convert_tz: no
     label: "RavenPack News Story"
