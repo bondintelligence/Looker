@@ -21,7 +21,7 @@ looker.plugins.visualizations.add({
           }
           body { background-color: #1f2436; color: #fff; text-align: center; font-family: sans-serif; }
         </style>
-        <p style="color:#d1d1d1;font-size:78px;margin: 40px 10px 10px 10px; border: 2px #62bad4;" id="title"></p><p style="color:#9b9ea3;font-size:30px; margin: 10px 10px 0px 10px;height: 20px;" id="subtitle"></p>
+        <p style="color:#d1d1d1;font-size:78px;margin: 40px 10px 10px 10px; border: 2px solid #62bad4;" id="title"></p><p style="color:#9b9ea3;font-size:30px; margin: 10px 10px 0px 10px;height: 20px;" id="subtitle"></p>
 
         `;
       //#30303d
