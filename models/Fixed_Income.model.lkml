@@ -31,7 +31,15 @@ include: "/raven_pack_sentiment.view"
 include: "/trace_enhanced.view"
 include: "/compustat_financial_fundamental.view"
 include: "/insights.dashboard"
-
+include: "/muni_forecast_30.view"
+include: "/muni_undervalued_forecast.view"
+include: "/corp_forecast.view"
+include: "/corp_pricemodel.view"
+include: "/corp_pricemodel_source.view"
+include: "/comparabletrades_temp.view"
+include: "/pricemodel_source.view"
+include: "/risk_predicted_muni_source.view"
+include: "/risk_predicted_corp_source.view"
 
 
 
@@ -126,6 +134,23 @@ explore: muni_issuance {
 }
 
 
+explore: corp_forecast {
+  label: "Corporate Forecast"
+}
+
+
+
+explore: muni_forecast_30 {
+  label: "Municipal Forecast"
+  always_filter: {
+    filters: [CUSIP_Parameter: "01757LFH4"]
+  }
+}
+explore: muni_undervalued_forecast {
+  hidden: yes
+}
+
+
 explore: pricemodel {
   group_label: "Models"
   label: "Price Prediction Muni"
@@ -147,6 +172,21 @@ explore: risk_predicted_corp {
   always_filter: {
     filters: [risk_predicted_corp.CUSIP_Parameter: "172070CP7"]
   }
+}
+
+
+explore: corp_pricemodel {
+  group_label: "Models"
+  label: "Price Prediction Corp"
+  always_filter: {
+    filters: [corp_pricemodel.CUSIP_Parameter: "026351AR7"]
+  }
+}
+
+explore: corp_pricemodel_source {
+  group_label: "Models"
+  label: "Corp Dataset"
+  hidden: yes
 }
 
 
@@ -193,6 +233,29 @@ explore: comparable_trades {
 
 explore: predictedrisk {
   hidden:  yes
+}
+
+explore: comparabletrades_temp {
+  hidden:  yes
+}
+
+explore: risk_predicted_muni_source {
+  group_label: "Models"
+  label: "Muni Risk Dataset"
+  hidden: yes
+}
+
+explore: risk_predicted_corp_source {
+  group_label: "Models"
+  label: "Muni Risk Dataset"
+  hidden: yes
+}
+
+
+explore: pricemodel_source {
+  group_label: "Models"
+  label: "Muni Dataset"
+  hidden: yes
 }
 
 

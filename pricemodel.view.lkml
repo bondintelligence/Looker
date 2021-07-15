@@ -41,6 +41,7 @@ view: pricemodel {
             Issuer_Industry_String, Trade_Date_Time, Maturity_date_of_the_issue_traded
             FROM `bi-model-development.looker_FINAL.price_muni_boosted_training` AS cols
             WHERE CUSIP = "{% parameter CUSIP_Parameter %}"
+            ORDER BY Trade_Date DESC
             )
             ) AS model
             LIMIT 1
@@ -69,7 +70,9 @@ view: pricemodel {
 
   parameter: CUSIP_Parameter {
     type: unquoted
-
+    default_value: "036054AY0"
+    suggest_explore: pricemodel_source
+    suggest_dimension: pricemodel_source.CUSIP
   }
 
   # measure: count {
@@ -192,7 +195,7 @@ view: pricemodel {
     can_filter: no
     value_format: "0.##"
     hidden: yes
-    sql: ((${TABLE}.Price_At_Issue * POWER(2.02232741e+00, 0.5)) + 3.41463484e+00);;
+    sql: ((${TABLE}.Yield_at_Issue * POWER(2.02232741e+00, 0.5)) + 3.41463484e+00);;
   }
 
   dimension: _85_MAge2 {
@@ -200,7 +203,7 @@ view: pricemodel {
     can_filter: no
     value_format: "0"
     hidden: yes
-    sql: ((${TABLE}.Price_At_Issue * POWER(1.59689889e+09, 0.5)) + 2.87041104e+04);;
+    sql: ((${TABLE}._85_MAge2 * POWER(1.59689889e+09, 0.5)) + 2.87041104e+04);;
   }
 
   dimension: _20_24_MAge2 {
@@ -208,7 +211,7 @@ view: pricemodel {
     can_filter: no
     value_format: "0"
     hidden: yes
-    sql: ((${TABLE}.Price_At_Issue * POWER(2.88425738e+10, 0.5)) + 1.16123435e+05);;
+    sql: ((${TABLE}._20_24_MAge2 * POWER(2.88425738e+10, 0.5)) + 1.16123435e+05);;
   }
 
   dimension: _Proficient {
@@ -216,7 +219,7 @@ view: pricemodel {
     can_filter: no
     value_format: "0.########"
     hidden: yes
-    sql: ((${TABLE}.Price_At_Issue * POWER(1.50505168e+01, 0.5)) + 9.58538532e+01);;
+    sql: ((${TABLE}._Proficient * POWER(1.50505168e+01, 0.5)) + 9.58538532e+01);;
   }
 
   dimension: __Non_Hispanic_White {
@@ -224,7 +227,7 @@ view: pricemodel {
     can_filter: no
     value_format: "0.########"
     hidden: yes
-    sql: ((${TABLE}.Price_At_Issue * POWER(3.68286386e+02, 0.5)) + 5.96917660e+01);;
+    sql: ((${TABLE}.__Non_Hispanic_White * POWER(3.68286386e+02, 0.5)) + 5.96917660e+01);;
   }
 
   dimension: Ratings1 {
@@ -232,7 +235,7 @@ view: pricemodel {
     can_filter: no
     value_format: "0"
     hidden: yes
-    sql: ((${TABLE}.Price_At_Issue * POWER(6.23614973e+02, 0.5)) + 8.01936341e+01);;
+    sql: ((${TABLE}.Ratings1 * POWER(6.23614973e+02, 0.5)) + 8.01936341e+01);;
   }
 
   dimension: Ratings2 {
@@ -240,7 +243,7 @@ view: pricemodel {
     can_filter: no
     value_format: "0"
     hidden: yes
-    sql: ((${TABLE}.Price_At_Issue * POWER(6.31857179e+02, 0.5)) + 8.02749197e+01);;
+    sql: ((${TABLE}.Ratings2 * POWER(6.31857179e+02, 0.5)) + 8.02749197e+01);;
   }
 
   dimension: Ratings3 {
@@ -248,7 +251,7 @@ view: pricemodel {
     can_filter: no
     value_format: "0"
     hidden: yes
-    sql: ((${TABLE}.Price_At_Issue * POWER(6.27553773e+02, 0.5)) + 8.10222250e+01);;
+    sql: ((${TABLE}.Ratings3 * POWER(6.27553773e+02, 0.5)) + 8.10222250e+01);;
   }
 
   # dimension: predicted_Dollar_Price_of_the_trade {
@@ -331,4 +334,26 @@ view: pricemodel {
     value_format: "$0.00"
     sql: ${TABLE}.predicted_Dollar_Price_of_the_trade ;;
   }
+
+  dimension: predicted_Dollar_Price_of_the_trade_Dimension {
+    type: number
+    can_filter: no
+    hidden:  yes
+    value_format: "$##.##"
+    sql: ${TABLE}.predicted_Dollar_Price_of_the_trade ;;
+  }
+
+  measure: min_predicted_Dollar_Price_of_the_trade  {
+    type: number
+    sql: ${predicted_Dollar_Price_of_the_trade}-5 ;;
+    value_format: "$##.##"
+  }
+
+  measure: max_predicted_Dollar_Price_of_the_trade {
+    type: number
+    sql: ${predicted_Dollar_Price_of_the_trade}+5 ;;
+    value_format: "$##.##"
+  }
+
+
 }

@@ -32,6 +32,8 @@ view: risk_predicted_corp {
 
   parameter: CUSIP_Parameter {
     type: unquoted
+    suggest_explore: risk_predicted_corp_source
+    suggest_dimension: risk_predicted_corp_source.CUSIP
   }
 
   parameter: Yield_Parameter {

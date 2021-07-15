@@ -183,10 +183,10 @@ LIMIT 10)
  ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-  }
+  # measure: count {
+  #   type: count
+  #   drill_fields: [detail*]
+  # }
 
   dimension: maturity {
     type: number
