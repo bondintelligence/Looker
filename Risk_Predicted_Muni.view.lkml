@@ -142,7 +142,10 @@ view: risk_predicted_muni {
   measure: evaluated_risk {
     type: string
     can_filter: no
-    sql:((${TABLE}.predicted_Yield_Treasury * POWER(8.27610513, 0.5)) - 0.01111986) ;;
+    value_format: "0.##"
+    sql: CASE WHEN (((${TABLE}.predicted_Yield_Treasury * POWER(8.27610513, 0.5)) - 0.01111986 + 1)/2) > 1 THEN 1.00
+    WHEN (((${TABLE}.predicted_Yield_Treasury * POWER(8.27610513, 0.5)) - 0.01111986 + 1)/2) < 0 THEN 0.00
+    ELSE (((${TABLE}.predicted_Yield_Treasury * POWER(8.27610513, 0.5)) - 0.01111986 + 1)/2) END;;
   }
 
 }

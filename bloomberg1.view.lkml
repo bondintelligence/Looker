@@ -349,7 +349,8 @@ view: bloomberg1 {
   dimension: url {
     type: string
     hidden: yes
-    sql: "https://transficc.com/" ;;
+    # sql: "https://transficc.com/" ;;
+    sql: "https://bondintelligence.cloud.looker.com/extensions/bond_intelligence_webpage::helloworld-js/etrade" ;;
   }
 
 
