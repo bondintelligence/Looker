@@ -3,7 +3,7 @@ view: corp_pricemodel {
   derived_table: {
     sql: SELECT * FROM (
           SELECT model.dense_65 AS predicted_Dollar_Price_of_the_trade, model.dense_60_input[OFFSET(13)] AS T_Volume,
-          model.dense_60_input[OFFSET(21)] AS DURATION
+          model.dense_60_input[OFFSET(21)] AS DURATION, "0_Coupon" AS Used_Model
           FROM ML.PREDICT(MODEL `bi-model-development.corp_price_models.price_corp_coupon_0`,(
           SELECT[
           (cols.BOND_TYPE_1 - 9.40359555e-01)/POWER(5.60834625e-02, 0.5),
@@ -39,7 +39,7 @@ view: corp_pricemodel {
           )) AS model
           UNION ALL
           SELECT model_2.dense_4 AS predicted_Dollar_Price_of_the_trade, model_2.dense_input[OFFSET(16)] AS T_Volume,
-          model_2.dense_input[OFFSET(24)] AS DURATION
+          model_2.dense_input[OFFSET(24)] AS DURATION, "Positive_Coupon" AS Used_Model
           FROM ML.PREDICT(MODEL `bi-model-development.corp_price_models.price_corp_positive_coupon` ,(
           SELECT[
           (cols_2.BOND_TYPE_1 - 8.71200102e-01)/POWER(1.12210484e-01, 0.5),
@@ -109,15 +109,18 @@ view: corp_pricemodel {
     can_filter: no
     value_format: "0.00"
     label: "Duration"
-    sql: ((${TABLE}.DURATION * POWER(2.41067510e+01, 0.5)) + 3.26492581e+00);;
+    sql: CASE WHEN (${TABLE}.Used_Model = "0_Coupon") THEN ((${TABLE}.DURATION * POWER(2.41067510e+01, 0.5)) + 3.26492581e+00)
+    ELSE ((${TABLE}.DURATION * POWER(1.82794824e+01, 0.5)) + 5.85010920e+00) END ;;
   }
+
 
   measure: T_Volume {
     type: number
     can_filter: no
     value_format: "0"
     label: "Trade Volume"
-    sql: ((${TABLE}.T_Volume * POWER(2.46348681e+15, 0.5)) + 7.10775199e+06);;
+    sql: CASE WHEN (${TABLE}.Used_Model = "0_Coupon") THEN ((${TABLE}.T_Volume * POWER(2.46348681e+15, 0.5)) + 7.10775199e+06)
+    ELSE ((${TABLE}.DURATION * POWER(1.50954044e+16, 0.5)) + 4.10469721e+07) END ;;
   }
 
 }
