@@ -1,5 +1,6 @@
 view: bloomberg1 {
-  sql_table_name: `bi-model-development.looker_FINAL.bloomberg1`
+  # sql_table_name: `bi-model-development.looker_FINAL.bloomberg1`
+   sql_table_name: `bi-model-development.looker_FINAL.Bloomberg10Muni10Corp`
     ;;
 
   dimension: amount_outstanding {
@@ -10,28 +11,28 @@ view: bloomberg1 {
 
   dimension: ask_current_yield {
     type: number
-    sql: ${TABLE}.AskCurrentYield ;;
+    sql: ${TABLE}.Ask_Current_Yield ;;
     group_label: "yield"
     value_format: "0.00\%"
   }
 
   dimension: ask_price {
     type: number
-    sql: ${TABLE}.AskPrice ;;
+    sql: ${TABLE}.Ask_Price ;;
     group_label: "price"
     value_format: "$#,##0.00"
   }
 
   dimension: bid_current_yield {
     type: number
-    sql: ${TABLE}.BidCurrentYield ;;
+    sql: ${TABLE}.Bid_Current_Yield ;;
     group_label: "yield"
     value_format: "0.00\%"
   }
 
   dimension: bid_price {
     type: number
-    sql: ${TABLE}.BidPrice ;;
+    sql: ${TABLE}.Bid_Price ;;
     group_label: "price"
     value_format: "$#,##0.00"
   }
@@ -69,8 +70,8 @@ view: bloomberg1 {
 
   dimension: coupon {
     type: number
-    sql: ${TABLE}.Coupon ;;
-    value_format: "0%"
+    sql: ${TABLE}.Coupon__ ;;
+    value_format: "0\%"
   }
 
   dimension: coupon_frequency {
@@ -112,7 +113,7 @@ view: bloomberg1 {
 
   dimension: fitch {
     type: string
-    sql: ${TABLE}.Fitch ;;
+    sql: ${TABLE}.Fitch_Issue_Rating ;;
     group_label: "ratings"
   }
 
@@ -140,14 +141,14 @@ view: bloomberg1 {
 
   dimension: issue_size {
     type: number
-    sql: ${TABLE}.IssueSize ;;
+    sql: ${TABLE}.Issue_Size_ ;;
     group_label: "issuance"
     value_format: "$#,##0.00"
   }
 
   dimension: issue_type {
     type: string
-    sql: ${TABLE}.IssueType ;;
+    sql: ${TABLE}.Issue_Type ;;
     group_label: "issuance"
   }
 
@@ -165,7 +166,7 @@ view: bloomberg1 {
 
   dimension: last_trade_price {
     type: number
-    sql: ${TABLE}.LastTradePrice ;;
+    sql: ${TABLE}.Last_Trade_Price ;;
     group_label: "price"
     value_format: "$#,##0.00"
   }
@@ -187,14 +188,14 @@ view: bloomberg1 {
 
   dimension: maturity_size {
     type: number
-    sql: ${TABLE}.MaturitySize ;;
+    sql: ${TABLE}.Maturity_Size_ ;;
     group_label: "issuance"
     value_format: "$#,##0.00"
   }
 
   dimension: maturity_type {
     type: string
-    sql: ${TABLE}.MaturityType ;;
+    sql: ${TABLE}.Maturity_Type ;;
     group_label: "issuance"
   }
 
@@ -207,7 +208,7 @@ view: bloomberg1 {
 
   dimension: mid_current_yield {
     type: number
-    sql: ${TABLE}.MidCurrentYield ;;
+    sql: ${TABLE}.Mid_Current_Yield ;;
     group_label: "yield"
     value_format: "0.00\%"
   }
@@ -229,7 +230,7 @@ view: bloomberg1 {
 
   dimension: moodys {
     type: string
-    sql: ${TABLE}.Moodys ;;
+    sql: ${TABLE}.Moodys_Issue_Rating_ ;;
     group_label: "ratings"
   }
 
@@ -243,7 +244,7 @@ view: bloomberg1 {
 
   dimension: offering_type {
     type: string
-    sql: ${TABLE}.OfferingType ;;
+    sql: ${TABLE}.Offering_Type ;;
     group_label: "issuance"
   }
 
@@ -270,7 +271,7 @@ view: bloomberg1 {
 
   dimension: purpose {
     type: string
-    sql: ${TABLE}.Purpose ;;
+    sql: ${TABLE}.Purpose_ ;;
     group_label: "issuance"
   }
 
@@ -297,7 +298,7 @@ view: bloomberg1 {
   dimension: sp {
     type: string
     label: "s&p"
-    sql: ${TABLE}.SP ;;
+    sql: ${TABLE}.S_P_Issue_Rating ;;
     group_label: "ratings"
   }
 
@@ -308,19 +309,19 @@ view: bloomberg1 {
 
   dimension: tax_provision {
     type: string
-    sql: ${TABLE}.TaxProvision ;;
+    sql: ${TABLE}.Tax_Provision ;;
     group_label: "issuance"
   }
 
   dimension: title {
     type: string
-    sql: ${TABLE}.Title ;;
+    sql: ${TABLE}.Issuer ;;
     group_label: "issuance"
   }
 
   dimension: total_volume {
     type: number
-    sql: ${TABLE}.TotalVolume ;;
+    sql: ${TABLE}.Total_Volume ;;
     group_label: "issuance"
   }
 

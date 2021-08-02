@@ -13,7 +13,6 @@ include: "/midPrice.view"
 include: "/midYield.view"
 include: "/predictedprice.view"
 include: "/predictedRisk.view"
-include: "/comparable_trades.view"
 include: "/pricemodel.view"
 include: "/Risk_Predicted_Muni.view"
 include: "/Risk_Predicted_Corp.view"
@@ -30,13 +29,14 @@ include: "/muni_issuance.view"
 include: "/raven_pack_sentiment.view"
 include: "/trace_enhanced.view"
 include: "/compustat_financial_fundamental.view"
-include: "/insights.dashboard"
 include: "/muni_forecast_30.view"
 include: "/muni_undervalued_forecast.view"
+include: "/full_pricemodel.view"
+include: "/full_risk_predicted.view"
 include: "/corp_forecast.view"
 include: "/corp_pricemodel.view"
 include: "/corp_pricemodel_source.view"
-include: "/comparabletrades_temp.view"
+include: "/comparabletrades.view"
 include: "/pricemodel_source.view"
 include: "/risk_predicted_muni_source.view"
 include: "/risk_predicted_corp_source.view"
@@ -151,6 +151,25 @@ explore: muni_undervalued_forecast {
 }
 
 
+explore: full_pricemodel {
+  group_label: "Models"
+  label: "Full Price Prediction"
+  always_filter: {
+    filters: [full_pricemodel.CUSIP_Parameter: "010734RA1"]
+  }
+  hidden: yes
+
+}
+
+explore: full_risk_predicted {
+  group_label: "Models"
+  label: "Full Risk Prediction"
+  always_filter: {
+    filters: [full_risk_predicted.CUSIP_Parameter: "010734RA1"]
+  }
+  hidden: yes
+}
+
 explore: pricemodel {
   group_label: "Models"
   label: "Price Prediction Muni"
@@ -226,8 +245,7 @@ explore: predictedprice {
   hidden: yes
 }
 
-
-explore: comparable_trades {
+explore: comparabletrades {
   hidden:  yes
 }
 
@@ -235,9 +253,6 @@ explore: predictedrisk {
   hidden:  yes
 }
 
-explore: comparabletrades_temp {
-  hidden:  yes
-}
 
 explore: risk_predicted_muni_source {
   group_label: "Models"

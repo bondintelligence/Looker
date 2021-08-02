@@ -1,15 +1,15 @@
 view: bloomberg2 {
-  sql_table_name: `bi-model-development.looker_FINAL.bloomberg2`
+  sql_table_name: `bi-model-development.looker_FINAL.Bloomberg10Muni10CorpTimeseries`
     ;;
 
   dimension: ask_ytm {
     type: string
-    sql: ${TABLE}.AskYTM ;;
+    sql: ${TABLE}.Yield_to_Maturity_Ask ;;
   }
 
   dimension: bid_ytm {
     type: string
-    sql: ${TABLE}.BidYTM ;;
+    sql: ${TABLE}.Yield_to_Maturity_Bid ;;
   }
 
   dimension: cusip {
@@ -37,17 +37,17 @@ view: bloomberg2 {
 
   dimension: last_price {
     type: number
-    sql: ${TABLE}.LastPrice ;;
+    sql: ${TABLE}.Last_Price ;;
   }
 
   dimension: mid_price {
     type: number
-    sql: ${TABLE}.MidPrice ;;
+    sql: ${TABLE}.Mid_Price ;;
   }
 
   dimension: mid_ytm {
     type: number
-    sql: ${TABLE}.MidYTM ;;
+    sql: ${TABLE}.Yield_to_Maturity_Mid ;;
   }
 
 
