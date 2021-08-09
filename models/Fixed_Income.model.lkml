@@ -173,6 +173,7 @@ explore: pricemodel {
 
 explore: risk_predicted_muni {
   group_label: "Models"
+  label: "Risk Prediction Muni"
   always_filter: {
     filters: [risk_predicted_muni.CUSIP: "011464HG2"]
   }
@@ -180,6 +181,7 @@ explore: risk_predicted_muni {
 
 explore: risk_predicted_corp {
   group_label: "Models"
+  label: "Risk Prediction Corp"
   always_filter: {
     filters: [risk_predicted_corp.CUSIP_Parameter: "172070CP7"]
   }
