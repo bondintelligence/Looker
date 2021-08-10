@@ -19,6 +19,7 @@ view: bloomberg2 {
   }
 
   dimension_group: date {
+    label: ""
     type: time
     timeframes: [
       raw,
