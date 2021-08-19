@@ -5,61 +5,61 @@ view: bloomberg1 {
 
   dimension: amount_outstanding {
     type: number
-    sql: ${TABLE}.AmountOutstanding ;;
+    sql: ${TABLE}.Amount_Outstanding ;;
     value_format: "$#,##0.00"
   }
 
   dimension: ask_current_yield {
     type: number
     sql: ${TABLE}.Ask_Current_Yield ;;
-    group_label: "yield"
+    group_label: "Yield"
     value_format: "0.00\%"
   }
 
   dimension: ask_price {
     type: number
     sql: ${TABLE}.Ask_Price ;;
-    group_label: "price"
+    group_label: "Price"
     value_format: "$#,##0.00"
   }
 
   dimension: bid_current_yield {
     type: number
     sql: ${TABLE}.Bid_Current_Yield ;;
-    group_label: "yield"
+    group_label: "Yield"
     value_format: "0.00\%"
   }
 
   dimension: bid_price {
     type: number
     sql: ${TABLE}.Bid_Price ;;
-    group_label: "price"
+    group_label: "Price"
     value_format: "$#,##0.00"
   }
 
   dimension: borrower {
     type: string
     sql: ${TABLE}.Borrower ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: callable {
     type: yesno
     sql: ${TABLE}.Callable ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: closing_ask_price {
     type: number
     sql: ${TABLE}.Closing_Ask_Price ;;
-    group_label: "price"
+    group_label: "Price"
     value_format: "$#,##0.00"
   }
 
   dimension: closing_bid_price {
     type: number
     sql: ${TABLE}.Closing_Bid_Price ;;
-    group_label: "price"
+    group_label: "Price"
     value_format: "$#,##0.00"
   }
 
@@ -76,8 +76,8 @@ view: bloomberg1 {
 
   dimension: coupon_frequency {
     type: number
-    sql: ${TABLE}.CouponFrequency ;;
-    group_label: "issuance"
+    sql: ${TABLE}.Coupon_Frequency ;;
+    group_label: "Issuance"
   }
 
   dimension: cusip {
@@ -86,7 +86,7 @@ view: bloomberg1 {
     sql: ${TABLE}.CUSIP ;;
   }
 
-  dimension_group: dateof_last_close {
+  dimension_group: date_of_last_close {
     type: time
     timeframes: [
       raw,
@@ -98,12 +98,12 @@ view: bloomberg1 {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.DateofLastClose ;;
+    sql: ${TABLE}.Date_of_Last_Close ;;
   }
 
   dimension: day_count {
     type: number
-    sql: ${TABLE}.DayCount ;;
+    sql: ${TABLE}.Day_Count ;;
   }
 
   dimension: default {
@@ -114,7 +114,7 @@ view: bloomberg1 {
   dimension: fitch {
     type: string
     sql: ${TABLE}.Fitch_Issue_Rating ;;
-    group_label: "ratings"
+    group_label: "Rating"
   }
 
   dimension_group: issue {
@@ -129,45 +129,45 @@ view: bloomberg1 {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.Issue_Date ;;
+    sql: ${TABLE}.Issue_Date_ ;;
   }
 
   dimension: issue_price {
     type: number
-    sql: ${TABLE}.IssuePrice ;;
-    group_label: "price"
+    sql: ${TABLE}.Issue_Price ;;
+    group_label: "Price"
     value_format: "$#,##0.00"
   }
 
   dimension: issue_size {
     type: number
     sql: ${TABLE}.Issue_Size_ ;;
-    group_label: "issuance"
+    group_label: "Issuance"
     value_format: "$#,##0.00"
   }
 
   dimension: issue_type {
     type: string
     sql: ${TABLE}.Issue_Type ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: issuer {
     type: string
     sql: ${TABLE}.Issuer ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: issuer_industry {
     type: string
-    sql: ${TABLE}.IssuerIndustry ;;
-    group_label: "issuance"
+    sql: ${TABLE}.Issuer_Industry_ ;;
+    group_label: "Issuance"
   }
 
   dimension: last_trade_price {
     type: number
     sql: ${TABLE}.Last_Trade_Price ;;
-    group_label: "price"
+    group_label: "Price"
     value_format: "$#,##0.00"
   }
 
@@ -189,90 +189,91 @@ view: bloomberg1 {
   dimension: maturity_size {
     type: number
     sql: ${TABLE}.Maturity_Size_ ;;
-    group_label: "issuance"
+    group_label: "Issuance"
     value_format: "$#,##0.00"
   }
 
   dimension: maturity_type {
     type: string
     sql: ${TABLE}.Maturity_Type ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: mid_annual_yield {
     type: number
     sql: ${TABLE}.Mid_Annual_Yield ;;
-    group_label: "yield"
+    group_label: "Yield"
     value_format: "0.00\%"
   }
 
   dimension: mid_current_yield {
     type: number
     sql: ${TABLE}.Mid_Current_Yield ;;
-    group_label: "yield"
+    group_label: "Yield"
     value_format: "0.00\%"
   }
 
   dimension: mid_price {
     type: number
     sql: ${TABLE}.Mid_Price ;;
-    group_label: "price"
+    group_label: "Price"
     value_format: "$#,##0.00"
   }
 
 
   dimension: mid_ytm {
     type: number
-    sql: ${TABLE}.MidYTM ;;
-    group_label: "yield"
+    sql: ${TABLE}.Mid_Yield_to_Maturity ;;
+    group_label: "Yield"
     value_format: "0.00%"
   }
 
   dimension: moodys {
     type: string
     sql: ${TABLE}.Moodys_Issue_Rating_ ;;
-    group_label: "ratings"
+    label: "Moody's"
+    group_label: "Rating"
   }
 
   dimension: net_yieldtoworst {
     type: number
-    sql: ${TABLE}.NetYieldtoworst ;;
-    group_label: "yield"
-    label: "net_yield_to_worst"
+    sql: ${TABLE}.Net_Yield_to_worst ;;
+    group_label: "Yield"
+    label: "Net Yield to Worst"
     value_format: "0.00%"
   }
 
   dimension: offering_type {
     type: string
     sql: ${TABLE}.Offering_Type ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: original_issue_discount {
     type: yesno
     sql: ${TABLE}.Original_Issue_Discount ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: previousclosing_value {
     type: number
-    sql: ${TABLE}.PreviousclosingValue ;;
-    group_label: "price"
+    sql: ${TABLE}.Previous_closing_Value_ ;;
+    group_label: "Price"
     label: "previous_closing_value"
     value_format: "$#,##0.00"
   }
 
-  dimension: price_changeon_day {
+  dimension: price_change_on_day {
     type: number
-    sql: ${TABLE}.PriceChangeonDay ;;
-    group_label: "price"
+    sql: ${TABLE}.Price_Change_on_Day  ;;
+    group_label: "Price"
     value_format: "$#,##0.00"
   }
 
   dimension: purpose {
     type: string
     sql: ${TABLE}.Purpose_ ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
 
@@ -280,26 +281,26 @@ view: bloomberg1 {
   dimension: series {
     type: string
     sql: ${TABLE}.Series ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: sinkable {
     type: yesno
     sql: ${TABLE}.Sinkable ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: source {
     type: string
     sql: ${TABLE}.Source ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: sp {
     type: string
-    label: "s&p"
+    label: "S&P"
     sql: ${TABLE}.S_P_Issue_Rating ;;
-    group_label: "ratings"
+    group_label: "Rating"
   }
 
   dimension: state {
@@ -310,32 +311,32 @@ view: bloomberg1 {
   dimension: tax_provision {
     type: string
     sql: ${TABLE}.Tax_Provision ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: title {
     type: string
     sql: ${TABLE}.Issuer ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: total_volume {
     type: number
     sql: ${TABLE}.Total_Volume ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: underwriter {
     type: string
     sql: ${TABLE}.Underwriter ;;
-    group_label: "issuance"
+    group_label: "Issuance"
   }
 
   dimension: yieldat_issue {
     type: number
-    sql: ${TABLE}.YieldatIssue ;;
-    group_label: "yield"
-    label: "yield_at_issue"
+    sql: ${TABLE}.Yield_at_Issue ;;
+    group_label: "Yield"
+    label: "Yield at Issue"
     value_format: "0.00%"
   }
 
@@ -442,20 +443,20 @@ view: bloomberg1 {
     sql: ${cusip} ;;
   }
 
-  measure: measure_dateof_last_close {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${dateof_last_close_date} ;;
-  }
+  # measure: measure_dateof_last_close {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: ${date_of_last_close} ;;
+  # }
 
   measure: measure_day_count {
     type: number
@@ -594,7 +595,7 @@ view: bloomberg1 {
 
   measure: measure_price_changeon_day {
     type: number
-    sql: ${price_changeon_day} ;;
+    sql: ${price_change_on_day} ;;
   }
 
   measure: measure_purpose {
