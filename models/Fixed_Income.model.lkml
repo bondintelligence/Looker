@@ -131,6 +131,8 @@ explore: muni_issuance {
 
 explore: corp_forecast {
   label: "Corporate Forecast"
+  group_label: "Models"
+  hidden: no
 }
 
 
@@ -140,6 +142,7 @@ explore: muni_forecast_30 {
   always_filter: {
     filters: [CUSIP_Parameter: "01757LFH4"]
   }
+  group_label: "Models"
 }
 explore: muni_undervalued_forecast {
   hidden: yes

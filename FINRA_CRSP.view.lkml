@@ -47,26 +47,26 @@ view: FINRA_CRSP {
 
   dimension: conv {
     type: number
-    label: "convertible"
+    label: "Convertible"
     sql: ${TABLE}.CONV ;;
   }
 
   dimension: coupacc {
     type: number
-    label: "coupon_accrued"
+    label: "Coupon Accrued"
     value_format: "0.00\%"
     sql: ${TABLE}.COUPACC ;;
   }
 
   dimension: coupamt {
     type: number
-    label: "coupon_amount"
+    label: "Coupon Amount"
     sql: ${TABLE}.COUPAMT ;;
   }
 
   dimension: coupmonth {
     type: number
-    label: "num_of_months_since_first_coupon_payment"
+    label: "Number of Months Since First Coupon Payment"
     sql: ${TABLE}.COUPMONTH ;;
   }
 
@@ -242,7 +242,7 @@ view: FINRA_CRSP {
 
   dimension: multicoups {
     type: number
-    label: "multiple_coupon_payments"
+    label: "Multiple Coupon Payments"
     sql: ${TABLE}.MULTICOUPS ;;
   }
 
@@ -250,7 +250,7 @@ view: FINRA_CRSP {
 
   dimension: ncoups {
     type: string
-    label: "number_of_coupons_per_year  "
+    label: "Number Of Coupons Per Year  "
     sql: ${TABLE}.NCOUPS ;;
   }
 
@@ -290,13 +290,13 @@ view: FINRA_CRSP {
 
   dimension: offering_amt {
     type: number
-    label: "offering_amount"
+    label: "Offering Amount"
     value_format: "$#,##0.00"
     sql: ${TABLE}.OFFERING_AMT ;;
   }
 
   dimension_group: offering_date {
-    label: "Offering"
+    label: "Offering Date"
     type: time
     timeframes: [
       raw,
@@ -323,7 +323,7 @@ view: FINRA_CRSP {
   dimension: price_eom {
     type: number
     value_format: "$#,##0.00"
-    label: "price_end_of_month"
+    label: "Price End of Month"
     description: "Last price at which bond was traded in a given month"
     sql: ${TABLE}.PRICE_EOM ;;
   }
@@ -331,7 +331,7 @@ view: FINRA_CRSP {
   dimension: price_l5_m {
     type: number
     description: "Last price at which the bond was traded in a given month, if that day falls within the last 5 trading days of the month "
-    label: "price last 5 days of month"
+    label: "Price Last 5 Days of Month"
     value_format: "$#,##0.00"
     sql: ${TABLE}.PRICE_L5M ;;
   }
@@ -339,7 +339,7 @@ view: FINRA_CRSP {
   dimension: price_ldm {
     type: number
     value_format: "$#,##0.00"
-    label: "price_last_trading_day_of_month "
+    label: "Price Last Trading Day of Month "
     description: "Price on last trading day of the month if available, missing if bond didn’t trade on that day "
     sql: ${TABLE}.PRICE_LDM ;;
   }
@@ -347,48 +347,48 @@ view: FINRA_CRSP {
   dimension: principal_amt {
     type: number
     value_format: "$#,##0.00"
-    label: "principal_amount"
+    label: "Principal Amount"
     sql: ${TABLE}.PRINCIPAL_AMT ;;
   }
 
   dimension: r_fr {
     type: string
     label: "Fitch Rating"
-    group_label: "ratings"
+    group_label: "Ratings"
     sql: ${TABLE}.R_FR ;;
   }
 
   dimension: r_mr {
     type: string
     label: "Moody Rating"
-    group_label: "ratings"
+    group_label: "Ratings"
     sql: ${TABLE}.R_MR ;;
   }
 
   dimension: r_sp {
     type: string
     label: "S&P Rating"
-    group_label: "ratings"
+    group_label: "Ratings"
     sql: ${TABLE}.R_SP ;;
   }
 
   dimension: rating_cat {
     type: string
     label: "rating_category"
-    group_label: "ratings"
+    group_label: "Ratings"
     sql: ${TABLE}.RATING_CAT ;;
   }
 
   dimension: rating_class {
     type: string
-    group_label: "ratings"
+    group_label: "Ratings"
     sql: ${TABLE}.RATING_CLASS ;;
   }
 
   dimension: rating_num {
     type: number
     label: "numerical_rating"
-    group_label: "ratings"
+    group_label: "Ratings"
     sql: ${TABLE}.RATING_NUM ;;
   }
 
@@ -418,7 +418,7 @@ view: FINRA_CRSP {
 
   dimension: remcoups {
     type: number
-    label: "remaining_coupons"
+    label: "Remaining Coupons"
     sql: ${TABLE}.REMCOUPS ;;
   }
 
@@ -433,7 +433,7 @@ view: FINRA_CRSP {
   dimension: ret_l5_m {
     type: number
     description: "Monthly return calculated based on PRICE_L5M and accrued coupon interest"
-    label: "return_last_5_days"
+    label: "Return Last 5 Months"
     value_format: "0.00\%"
     sql: ${TABLE}.RET_L5M ;;
   }
@@ -513,7 +513,7 @@ view: FINRA_CRSP {
 
   dimension: t_dvolume {
     type: number
-    label: "total_dollar_volume"
+    label: "Total Dollar Volume"
     value_format: "$#,##0.00"
     sql: ${TABLE}.T_DVolume ;;
   }
@@ -529,13 +529,13 @@ view: FINRA_CRSP {
   dimension: t_volume {
     type: number
     value_format: "$#,##0.00"
-    label: "total_par_value_volume  "
+    label: "Total Par Value Volume"
     sql: ${TABLE}.T_Volume ;;
   }
 
   dimension: t_yld_pt {
     type: number
-    label: "trade_weighted_yield_point"
+    label: "Trade Weighted Yield Point"
     description: "Average trade‐weighted yield point"
     value_format: "0.00\%"
     sql: ${TABLE}.T_Yld_Pt ;;
@@ -543,7 +543,7 @@ view: FINRA_CRSP {
 
   dimension: tmt {
     type: number
-    label: "time_to_maturity_years"
+    label: "Years to Maturity"
     sql: ${TABLE}.TMT ;;
   }
 
