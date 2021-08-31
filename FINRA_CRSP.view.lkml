@@ -424,7 +424,7 @@ view: FINRA_CRSP {
 
   dimension: ret_eom {
     type: number
-    label: "return_end_of_month"
+    label: "Return End of Month"
     description: "Monthly return calculated based on PRICE_EOM and accrued coupon interest"
     value_format: "0.00\%"
     sql: ${TABLE}.RET_EOM ;;
@@ -440,7 +440,7 @@ view: FINRA_CRSP {
 
   dimension: ret_ldm {
     type: number
-    label: "return_last_trading_day_of_month"
+    label: "Return Last Trading Day of Month"
     description: "Monthly return calculated based on PRICE_LDM and accrued coupon interest"
     value_format: "0.00\%"
     sql: ${TABLE}.RET_LDM ;;

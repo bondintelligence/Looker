@@ -3,18 +3,19 @@ view: bloomberg2 {
     ;;
 
   dimension: ask_ytm {
-    type: string
-    sql: ${TABLE}.Yield_to_Maturity_Ask ;;
+    type: number
+    label: "Ask Yield to Maturity"
+    sql: CAST(${TABLE}.Yield_to_Maturity_Ask AS FLOAT64) ;;
   }
 
   dimension: bid_ytm {
     type: string
+    label: "Bid Yield to Maturity"
     sql: ${TABLE}.Yield_to_Maturity_Bid ;;
   }
 
   dimension: cusip {
     type: string
-    primary_key: yes
     sql: ${TABLE}.CUSIP ;;
   }
 
@@ -48,43 +49,63 @@ view: bloomberg2 {
 
   dimension: mid_ytm {
     type: number
+    label: "Mid Yield to Maturity"
     sql: ${TABLE}.Yield_to_Maturity_Mid ;;
+  }
+
+  dimension: compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: CONCAT(${TABLE}.CUSIP, ' ', ${TABLE}.Date) ;;
   }
 
 
   measure: count {
     type: count
     drill_fields: []
-
-
-
+    label: "Count"
   }
 
-  measure: ask_ytm_ {
-    type:  number
-    sql: ${ask_ytm} ;;
-  }
-
-  measure: bid_ytm_ {
-    type: number
-    sql: ${bid_ytm} ;;
-  }
-
-  measure: mid_ytm_ {
-    type: number
-    sql: ${mid_ytm} ;;
-  }
-
-
-  measure: last_price_ {
-    type: number
+  measure: Average_Last_Price {
+    type:  average
     sql: ${last_price} ;;
+    value_format_name: usd
   }
 
-  measure: mid_price_ {
-    type: number
-    sql: ${mid_price} ;;
+  measure: Average_Mid_Price {
+    type:  average
+    sql: ${last_price} ;;
+    value_format_name: usd
   }
+
+
+
+  # measure: ask_ytm_ {
+  #   type:  number
+  #   sql: CAST(${ask_ytm} AS FLOAT64) + 0;;
+  # }
+
+  # measure: bid_ytm_ {
+  #   type: number
+  #   sql: CAST(${bid_ytm} AS FLOAT64) + 0 ;;
+  # }
+
+  # measure: mid_ytm_ {
+  #   type: number
+  #   sql: CAST(${mid_ytm} AS FLOAT64)+ 0;;
+  # }
+
+
+  # measure: last_price_ {
+  #   type: number
+  #   sql: CAST(${last_price} AS FLOAT64) + 0 ;;
+  # }
+
+  # measure: mid_price_ {
+  #   type: number
+  #   sql: CAST(${mid_price} AS FLOAT64) + 0 ;;
+  # }
 
 
 }
