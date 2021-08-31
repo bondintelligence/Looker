@@ -14,11 +14,11 @@ view: raven_pack_sentiment {
     day window in a particular package (Dow Jones, Web or PR Editions)."
     sql: CAST(${TABLE}.AES AS INT64) ;;
   }
-  measure: aes_measure {
-    type: number
-    label: "Aggregate Event Sentiment Measure"
-    sql: ${TABLE}.AES ;;
-  }
+  # measure: aes_measure {
+  #   type: number
+  #   label: "Aggregate Event Sentiment Measure"
+  #   sql: ${TABLE}.AES ;;
+  # }
 
   dimension: aev {
     type: number
@@ -84,13 +84,13 @@ view: raven_pack_sentiment {
     label: "Entity Name"
   }
 
-  measure: entity_name_filtered {
-    type: string
-    sql: ${TABLE}.ENTITY_NAME WHERE ${TABLE}.G_ENS IS NOT NULL;;
-    description: "An alphanumeric identifier that provides a way to chain or relate stories about the same categorized
-    event for the same entities."
-    label: "Entity Name Filtered"
-  }
+  # measure: entity_name_filtered {
+  #   type: string
+  #   sql: ${TABLE}.ENTITY_NAME WHERE ${TABLE}.G_ENS IS NOT NULL;;
+  #   description: "An alphanumeric identifier that provides a way to chain or relate stories about the same categorized
+  #   event for the same entities."
+  #   label: "Entity Name Filtered"
+  # }
 
   dimension: entity_type {
     type: string
@@ -457,99 +457,120 @@ view: raven_pack_sentiment {
     sql: CAST(${g_ens} AS INT64);;
   }
 
+  measure: mean_ens {
+    type:  average
+    value_format: "0.00"
+    label: "Average Event Novelty Score"
+    sql: CAST(${ens} AS INT64);;
+  }
 
-  measure: aes_ {
-    type: number
-    label: "Aggregate Event Sentiment"
-    description: "A granular score between 0 and 100 that represents the ratio of positive events reported on an
-    entity compared to the total count of events measured over a rolling 91-
-    day window in a particular package (Dow Jones, Web or PR Editions)."
-    sql: CAST(${TABLE}.AES AS INT64) ;;
+  measure: mean_ess {
+    type:  average
+    value_format: "0.00"
+    label: "Average Event Sentiment Score"
+    sql: CAST(${ess} AS INT64);;
+  }
+
+  measure: mean_aev {
+    type:  average
+    value_format: "0.00"
+    label: "Average Aggregate Event Volume"
+    sql: CAST(${aev} AS INT64);;
   }
 
 
-  measure: aes_measure_ {
-    type: number
-    label: "Aggregate Event Sentiment Measure"
-    sql: ${TABLE}.AES ;;
-  }
-
-  measure: aev_ {
-    type: number
-    label: "Aggregate Event Volume"
-    description: "A value that represents the count of events for an entity (excluding neutral ones) measured over a
-    rolling 91-day window in a particular package (Dow Jones, Web, or PR Editions)."
-    sql: ${TABLE}.AEV ;;
-  }
-
-  measure: ens_ {
-    type: number
-    label: "Event Novelty Score"
-    description: "A score between 0 and 100 that represents how 'new' or novel a news story is within a 24-hour
-    time window across all news stories in a particular package (Dow Jones, Web or PR Editions)."
-    sql: CAST(${TABLE}.ENS AS INT64) ;;
-    group_label: "Event Novelty"
-  }
+  # measure: aes_ {
+  #   type: number
+  #   label: "Aggregate Event Sentiment"
+  #   description: "A granular score between 0 and 100 that represents the ratio of positive events reported on an
+  #   entity compared to the total count of events measured over a rolling 91-
+  #   day window in a particular package (Dow Jones, Web or PR Editions)."
+  #   sql: CAST(${TABLE}.AES AS INT64) ;;
+  # }
 
 
+  # measure: aes_measure_ {
+  #   type: number
+  #   label: "Aggregate Event Sentiment Measure"
+  #   sql: ${TABLE}.AES ;;
+  # }
 
-  measure: ess_ {
-    type: number
-    sql: CAST(${TABLE}.ESS AS INT64) ;;
-    description: "A granular score between 0 and 100 that represents the news sentiment for a given entity by
-    measuring various proxies sampled from the news. The score is determined by systematically
-    matching stories typically categorized by financial experts as having short-term positive or negative
-    financial or economic impact. The strength of the score is derived from a collection of surveys where
-    financial experts rated entity-specific events as conveying positive or negative sentiment and to
-    what degree."
-    label: "Event Sentiment Score"
-  }
+  # measure: aev_ {
+  #   type: number
+  #   label: "Aggregate Event Volume"
+  #   description: "A value that represents the count of events for an entity (excluding neutral ones) measured over a
+  #   rolling 91-day window in a particular package (Dow Jones, Web, or PR Editions)."
+  #   sql: ${TABLE}.AEV ;;
+  # }
 
-
-  measure: g_ens_ {
-    type: number
-    sql: CAST(${TABLE}.G_ENS AS INT64) ;;
-    label: "Global Event Novelty Score"
-    description: "A score between 0 and 100 that represents how 'new' or novel a news story is within a 24-hour
-    time window across all news providers covered by RavenPack. Any two stories that match the same
-    event for the same entities will be considered similar according to the Global Event Novelty Score. The first story reporting
-    a categorized event about one or more entities is considered to be the most novel and receives a
-    score of 100. Subsequent stories from any news provider covered by RavenPack about the same
-    event for the same entities receive scores following a decay function whose values are (100 75 56
-    42 32 24 18 13 10 8 6 4 3 2 2 1 1 1 1 0 ...) based on the number of stories in the past 24-hour
-    window. If a news story is published more than 24 hours after any other similar story, it will again
-    be considered novel and start a separate chain with a score of 100."
-    group_label: "Global Event Novelty"
-  }
+  # measure: ens_ {
+  #   type: number
+  #   label: "Event Novelty Score"
+  #   description: "A score between 0 and 100 that represents how 'new' or novel a news story is within a 24-hour
+  #   time window across all news stories in a particular package (Dow Jones, Web or PR Editions)."
+  #   sql: CAST(${TABLE}.ENS AS INT64) ;;
+  #   group_label: "Event Novelty"
+  # }
 
 
-  measure: relevance_ {
-    type: number
-    description: "A score between 0-100 that indicates how strongly related the entity is to the underlying news story,
-    with higher values indicating greater relevance. For any news story that mentions an entity,
-    RavenPack provides a relevance score. A score of 0 means the entity was passively mentioned
-    while a score of 100 means the entity was prominent in the news story. Values above 75 are
-    considered significantly relevant."
-    sql: CAST(${TABLE}.RELEVANCE AS INT64) ;;
-    label: "Entity Relevance"
-  }
+
+  # measure: ess_ {
+  #   type: number
+  #   sql: CAST(${TABLE}.ESS AS INT64) ;;
+  #   description: "A granular score between 0 and 100 that represents the news sentiment for a given entity by
+  #   measuring various proxies sampled from the news. The score is determined by systematically
+  #   matching stories typically categorized by financial experts as having short-term positive or negative
+  #   financial or economic impact. The strength of the score is derived from a collection of surveys where
+  #   financial experts rated entity-specific events as conveying positive or negative sentiment and to
+  #   what degree."
+  #   label: "Event Sentiment Score"
+  # }
 
 
-  measure: rp_story_event_count_ {
-    type: number
-    sql: ${TABLE}.RP_STORY_EVENT_COUNT ;;
-    description: "Represents the total entity records published by RavenPack per news story."
-    label: "RavenPack Entity Count Per Story"
-  }
+  # measure: g_ens_ {
+  #   type: number
+  #   sql: CAST(${TABLE}.G_ENS AS INT64) ;;
+  #   label: "Global Event Novelty Score"
+  #   description: "A score between 0 and 100 that represents how 'new' or novel a news story is within a 24-hour
+  #   time window across all news providers covered by RavenPack. Any two stories that match the same
+  #   event for the same entities will be considered similar according to the Global Event Novelty Score. The first story reporting
+  #   a categorized event about one or more entities is considered to be the most novel and receives a
+  #   score of 100. Subsequent stories from any news provider covered by RavenPack about the same
+  #   event for the same entities receive scores following a decay function whose values are (100 75 56
+  #   42 32 24 18 13 10 8 6 4 3 2 2 1 1 1 1 0 ...) based on the number of stories in the past 24-hour
+  #   window. If a news story is published more than 24 hours after any other similar story, it will again
+  #   be considered novel and start a separate chain with a score of 100."
+  #   group_label: "Global Event Novelty"
+  # }
 
 
-  measure: rp_story_event_index_ {
-    type: number
-    description: "Represents the order in which entity records are published by RavenPack per news story. This
-    integer can be equal to or less than the RavenPack Entity Count Per Story. "
-    sql: ${TABLE}.RP_STORY_EVENT_INDEX ;;
-    label: "RavenPack Entity Order Per Story"
-  }
+  # measure: relevance_ {
+  #   type: number
+  #   description: "A score between 0-100 that indicates how strongly related the entity is to the underlying news story,
+  #   with higher values indicating greater relevance. For any news story that mentions an entity,
+  #   RavenPack provides a relevance score. A score of 0 means the entity was passively mentioned
+  #   while a score of 100 means the entity was prominent in the news story. Values above 75 are
+  #   considered significantly relevant."
+  #   sql: CAST(${TABLE}.RELEVANCE AS INT64) ;;
+  #   label: "Entity Relevance"
+  # }
+
+
+  # measure: rp_story_event_count_ {
+  #   type: number
+  #   sql: ${TABLE}.RP_STORY_EVENT_COUNT ;;
+  #   description: "Represents the total entity records published by RavenPack per news story."
+  #   label: "RavenPack Entity Count Per Story"
+  # }
+
+
+  # measure: rp_story_event_index_ {
+  #   type: number
+  #   description: "Represents the order in which entity records are published by RavenPack per news story. This
+  #   integer can be equal to or less than the RavenPack Entity Count Per Story. "
+  #   sql: ${TABLE}.RP_STORY_EVENT_INDEX ;;
+  #   label: "RavenPack Entity Order Per Story"
+  # }
 
 
 
