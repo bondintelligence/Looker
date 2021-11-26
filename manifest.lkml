@@ -19,3 +19,10 @@ visualization: {
   label: "Quantstats_Metrics_Prod_1"
   file: "Metrics.js"
 }
+
+visualization: {
+  id: "Quantstats_Cumulative_Ret_1"
+  label: "Quantstats_Cumulative_Ret_1"
+  dependencies: ["https://d3js.org/d3.v4.js"]
+  file: "C_Returns.js"
+}
