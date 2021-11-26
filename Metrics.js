@@ -9,8 +9,6 @@ looker.plugins.visualizations.add({
       //access filtered query, specifically the CUSIP field)
       var row = data[0];
       var CUSIP = row[queryResponse.fields.dimensions[0].name];
-      console.log(data);
-      console.log(CUSIP.value);
 
       element.innerHTML = `<style>
       body {

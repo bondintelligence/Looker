@@ -40,7 +40,6 @@ looker.plugins.visualizations.add({
         for(var i in data)
           pro_data.push({ date: ParseDate(i), value: data[i] });
         data = pro_data;
-        console.log(data);
 
         // Add X axis --> it is a date format
         var x = d3.scaleTime()
