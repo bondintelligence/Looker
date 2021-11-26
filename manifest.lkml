@@ -11,4 +11,11 @@ visualization: {
 visualization: {
   id: "Large Single Value"
   label: "Single Value"
-  file: "single_value.js"}
+  file: "single_value.js"
+}
+
+visualization: {
+  id: "Quantstats_Metrics_Prod_1"
+  label: "Quantstats_Metrics_Prod_1"
+  file: "Metrics.js"
+}
