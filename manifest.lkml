@@ -23,6 +23,6 @@ visualization: {
 visualization: {
   id: "Quantstats_Cumulative_Ret_1"
   label: "Quantstats_Cumulative_Ret_1"
-  dependencies: ["https://d3js.org/d3.v4.js"]
+  dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
   file: "C_Returns.js"
 }
