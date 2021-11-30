@@ -31,7 +31,9 @@ looker.plugins.visualizations.add({
 
 
       //d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
-      d3.json('https://quantstats-dot-bi-model-development.wl.r.appspot.com/getdata/'+CUSIP.value+'/cret',
+      //d3.json('https://quantstats-dot-bi-model-development.wl.r.appspot.com/getdata/'+CUSIP.value+'/cret',
+      d3.json('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/'+CUSIP.value+'/cret',
+
 
       function(data) {
         //This code essentially formats the data into the date: ___, value: ___ format

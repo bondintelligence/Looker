@@ -21,7 +21,8 @@ looker.plugins.visualizations.add({
       //Try CUSIP: 010824GS3
       //API query with the specified CUSIP value
       //fetch('https://127.0.0.1:5000/getdata/'+CUSIP.value+'/metrics')
-      fetch('https://quantstats-dot-bi-model-development.wl.r.appspot.com/getdata/'+CUSIP.value+'/metrics')
+      //fetch('https://quantstats-dot-bi-model-development.wl.r.appspot.com/getdata/'+CUSIP.value+'/metrics')
+      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/'+CUSIP.value+'/metrics')
         .then(response => response.json())
         .then(json => {
           bond_metrics = [JSON.parse(JSON.stringify(json))];
