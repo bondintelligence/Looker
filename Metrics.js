@@ -3,19 +3,18 @@ looker.plugins.visualizations.add({
     label: "GET",
     options: {},
     create: function(element, config){
-    },
-    updateAsync: function(data, element, config, queryResponse, details, done){
-      //Dealing with filter, and narrowing down to CUSIP value filter (I couldn't find way to access filter directly, so decided to
-      //access filtered query, specifically the CUSIP field)
-      var row = data[0];
-      var CUSIP = row[queryResponse.fields.dimensions[0].name];
-
       element.innerHTML = `<style>
       body {
         background-color: #1f2436;
         color: #ffffff;
         font-family: sans-serif; }
       </style><table id="table"></table>`;
+    },
+    updateAsync: function(data, element, config, queryResponse, details, done){
+      //Dealing with filter, and narrowing down to CUSIP value filter (I couldn't find way to access filter directly, so decided to
+      //access filtered query, specifically the CUSIP field)
+      var row = data[0];
+      var CUSIP = row[queryResponse.fields.dimensions[0].name];
 
       //https://jsonplaceholder.typicode.com/todos/1
       //Try CUSIP: 010824GS3
@@ -34,6 +33,8 @@ looker.plugins.visualizations.add({
 
       //Tentative visualization for metrics (will be polished later)
       function generateTable(table, data) {
+        //Clear table
+        table.innerHTML = "";
         //Going through elements of provided data (there should only be one)
         for (let element of data) {
           //Going through keys in element of data
