@@ -33,6 +33,7 @@ include: "/comparabletrades.view"
 include: "/pricemodel_source.view"
 include: "/risk_predicted_muni_source.view"
 include: "/risk_predicted_corp_source.view"
+include: "/quantstats_CUSIPS.view"
 
 
 
@@ -220,6 +221,10 @@ explore: default_probablity {
 
 explore: comparabletrades {
   hidden:  yes
+}
+
+explore: quantstats_cusips {
+  hidden:  no
 }
 
 

@@ -21,7 +21,7 @@ looker.plugins.visualizations.add({
       //API query with the specified CUSIP value
       //fetch('https://127.0.0.1:5000/getdata/'+CUSIP.value+'/metrics')
       //fetch('https://quantstats-dot-bi-model-development.wl.r.appspot.com/getdata/'+CUSIP.value+'/metrics')
-      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/'+CUSIP.value+'/metrics')
+      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/metrics/'+Strat_CUSIP+'/'+Bench_CUSIP)
         .then(response => response.json())
         .then(json => {
           bond_metrics = [JSON.parse(JSON.stringify(json))];
@@ -33,24 +33,25 @@ looker.plugins.visualizations.add({
 
       //Tentative visualization for metrics (will be polished later)
       function generateTable(table, data) {
-        //Clear table
         table.innerHTML = "";
-        //Going through elements of provided data (there should only be one)
-        for (let element of data) {
-          //Going through keys in element of data
-          for (key in element) {
-            //Adding row for each key
-            let row = table.insertRow();
-            //Making key a header
-            let th = document.createElement("th");
-            let key_text = document.createTextNode(key);
-            th.appendChild(key_text);
-            row.appendChild(th);
-            //Inserting the data specified by the key
-            let cell = row.insertCell();
-            let data_text = document.createTextNode(element[key]);
-            cell.appendChild(data_text);
-          }
+        benchmark = data[0].Benchmark;
+        strategy = data[0].Strategy;
+        keys = Object.keys(data[0].Strategy);
+        for (key of keys) {
+          //Adding row for each key
+          let row = table.insertRow();
+          //Making key a header
+          let th = document.createElement("th");
+          let key_text = document.createTextNode(key);
+          th.appendChild(key_text);
+          row.appendChild(th);
+          //Inserting the data specified by the key
+          let cell = row.insertCell();
+          let strat_text = document.createTextNode(data[0].Strategy[key]);
+          cell.appendChild(strat_text);
+          let cell2 = row.insertCell();
+          let bench_text = document.createTextNode(data[0].Benchmark[key]);
+          cell2.appendChild(bench_text);
         }
       }
     }
