@@ -13,8 +13,8 @@ looker.plugins.visualizations.add({
     updateAsync: function(data, element, config, queryResponse, details, done){
       //Dealing with filter, and narrowing down to CUSIP value filter (I couldn't find way to access filter directly, so decided to
       //access filtered query, specifically the CUSIP field)
-      var row = data[0];
-      var CUSIP = row[queryResponse.fields.dimensions[0].name];
+      var Strat_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_1 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_1 ) = ") + 48));
+      var Bench_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 48));
 
       //https://jsonplaceholder.typicode.com/todos/1
       //Try CUSIP: 010824GS3
