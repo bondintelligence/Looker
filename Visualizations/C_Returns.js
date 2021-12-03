@@ -18,21 +18,34 @@ looker.plugins.visualizations.add({
       var CUSIP = row[queryResponse.fields.dimensions[0].name];
 
 
-      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/'+CUSIP.value+'/cret')
+      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/cret/'+Strat_CUSIP+'/'+Bench_CUSIP)
+      //fetch('https://127.0.0.1:5000/getdata/cret/'+Strat_CUSIP+'/'+Bench_CUSIP)
       .then(response => response.json())
       .then(json => {
-        bond_metrics = [JSON.parse(JSON.stringify(json))];
-        // console.log(bond_metrics);
-        let extractColumn = (arr, column) => arr.map(x=>x[column]);
-        // console.log(Object.keys(bond_metrics[0]));
+        data = [JSON.parse(JSON.stringify(json))];
+        // console.log(data);
+        console.log(Object.values(data[0].Strategy));
 
         var trace1 = {
-          x: Object.keys(bond_metrics[0]),
-          y: Object.values(bond_metrics[0]),
-          type: 'scatter'
+          x: Object.keys(data[0].Strategy),
+          y: Object.values(data[0].Strategy),
+          type: 'scatter',
+          name: 'Strategy'
         };
+
+        var trace2 = {
+          x: Object.keys(data[0].Benchmark),
+          y: Object.values(data[0].Benchmark),
+          type: 'scatter',
+          name: 'Benchmark'
+        };
+
         //For layout options, see https://plotly.com/javascript/reference/layout/coloraxis/
         var layout= {
+          //Formatting axis options here: https://github.com/d3/d3-format/blob/main/README.md#locale_format
+          yaxis: {
+            tickformat: '%',
+          },
           plot_bgcolor:"#1f2436",
           paper_bgcolor:"#1f2436",
           // coloraxis: {
@@ -42,12 +55,9 @@ looker.plugins.visualizations.add({
           // }
         }
 
-        var data = [trace1];
+        var data = [trace1, trace2];
 
         Plotly.newPlot('cret_visual', data, layout);
-
-        // let table = document.querySelector("table");
-        // generateTable(table, bond_metrics); // generate the table first
         done();
       });
 
