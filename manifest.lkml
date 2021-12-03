@@ -17,35 +17,42 @@ visualization: {
 visualization: {
   id: "Quantstats_Metrics_Prod_1"
   label: "Quantstats_Metrics_Prod_1"
-  file: "Visualizations/Metrics.js"
+  file: "Visualizations/Quantstats/Metrics.js"
 }
 
 visualization: {
   id: "Quantstats_Cumulative_Ret_1"
   label: "Quantstats_Cumulative_Ret_1"
   dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
-  file: "Visualizations/C_Returns.js"
+  file: "Visualizations/Quantstats/C_Returns.js"
 }
 
 visualization: {
   id: "Quantstats_Cumulative_Ret_Vol_1"
   label: "Quantstats_Cumulative_Ret_Vol_1"
   dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
-  file: "Visualizations/C_Returns_Vol.js"
+  file: "Visualizations/Quantstats/C_Returns_Vol.js"
 }
 
 visualization: {
   id: "Quantstats_EoY_Returns_1"
   label: "Quantstats_EoY_Returns_1"
   dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
-  file: "Visualizations/Returns_EoY.js"
+  file: "Visualizations/Quantstats/Returns_EoY.js"
 }
 
 visualization: {
   id: "Quantstats_Daily_Returns_1"
   label: "Quantstats_Daily_Returns_1"
   dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
-  file: "Visualizations/Returns.js"
+  file: "Visualizations/Quantstats/Returns.js"
+}
+
+visualization: {
+  id: "Quantstats_Monthly_Distribution_1"
+  label: "Quantstats_Monthly_Distribution_1"
+  dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
+  file: "Visualizations/Quantstats/Monthly_Returns.js"
 }
 
 #I think this one still needs to be added to the API as of now
@@ -53,5 +60,5 @@ visualization: {
   id: "Quantstats_EoY_Table_1"
   label: "Quantstats_EoY_Table_1"
   dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
-  file: "Visualizations/EoY_Table.js"
+  file: "Visualizations/Quantstats/EoY_Table.js"
 }
