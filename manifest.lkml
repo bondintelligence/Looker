@@ -40,3 +40,10 @@ visualization: {
   dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
   file: "Visualizations/Returns_EoY.js"
 }
+
+visualization: {
+  id: "Quantstats_EoY_Table_1"
+  label: "Quantstats_EoY_Table_1"
+  dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
+  file: "Visualizations/EoY_Table.js"
+}
