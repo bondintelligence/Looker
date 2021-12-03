@@ -16,6 +16,8 @@ looker.plugins.visualizations.add({
       //access filtered query, specifically the CUSIP field)
       var row = data[0];
       var CUSIP = row[queryResponse.fields.dimensions[0].name];
+      var Strat_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_1 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_1 ) = ") + 48));
+      var Bench_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 48));
 
 
       fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/cret/'+Strat_CUSIP+'/'+Bench_CUSIP)
