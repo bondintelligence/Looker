@@ -23,7 +23,7 @@ looker.plugins.visualizations.add({
       //Try CUSIP: 010824GS3
       //API query with the specified CUSIP value
       //fetch('https://127.0.0.1:5000/getdata/metrics/010824GS3/00912XAS3')
-      fetch('https://127.0.0.1:5000/getdata/eoytable/010824GS3/012104PN9')
+      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/eoytable/'+Strat_CUSIP+'/'+Bench_CUSIP)
       //fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/metrics/'+Strat_CUSIP+'/'+Bench_CUSIP)
         .then(response => response.json())
         .then(json => {
