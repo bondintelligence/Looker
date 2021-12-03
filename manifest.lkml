@@ -1,5 +1,6 @@
 project_name: "production"
 
+### Bond Insights Dashboard Visualizations
 visualization: {
   id: "Risk Radial Gauge"
   label: "Risk Radial Gauge"
@@ -14,6 +15,7 @@ visualization: {
   file: "Visualizations/single_value.js"
 }
 
+### Quant Stats Dashboard Visualizations
 visualization: {
   id: "Quantstats_Metrics_Prod_1"
   label: "Quantstats_Metrics_Prod_1"
@@ -53,6 +55,13 @@ visualization: {
   label: "Quantstats_Monthly_Distribution_1"
   dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
   file: "Visualizations/Quantstats/Monthly_Returns.js"
+}
+
+visualization: {
+  id: "Quantstats_Worst_Drawdowns_1"
+  label: "Quantstats_Worst_Drawdowns_1"
+  dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
+  file: "Visualizations/Quantstats/W_Draw.js"
 }
 
 #I think this one still needs to be added to the API as of now
