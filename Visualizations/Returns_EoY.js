@@ -8,7 +8,7 @@ looker.plugins.visualizations.add({
         background-color: #1f2436;
         color: #ffffff;
         font-family: sans-serif; }
-      </style><div id="cret_visual"></div>`;
+      </style><div id="eoy_visual"></div>`;
 
     },
     updateAsync: function(data, element, config, queryResponse, details, done){
@@ -20,8 +20,8 @@ looker.plugins.visualizations.add({
       var Bench_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 48));
       console.log(Strat_CUSIP)
       console.log(Bench_CUSIP)
-      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/volret/'+Strat_CUSIP+'/'+Bench_CUSIP)
-      //fetch('https://127.0.0.1:5000/getdata/volret/'+Strat_CUSIP+'/'+Bench_CUSIP)
+      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/eoyret/'+Strat_CUSIP+'/'+Bench_CUSIP)
+      //fetch('https://127.0.0.1:5000/getdata/cret/'+Strat_CUSIP+'/'+Bench_CUSIP)
       .then(response => response.json())
       .then(json => {
         data = [JSON.parse(JSON.stringify(json))];
@@ -31,39 +31,37 @@ looker.plugins.visualizations.add({
         var trace1 = {
           x: Object.keys(data[0].Strategy),
           y: Object.values(data[0].Strategy),
-          type: 'scatter',
+          type: 'bar',
           name: 'Strategy'
         };
 
         var trace2 = {
           x: Object.keys(data[0].Benchmark),
           y: Object.values(data[0].Benchmark),
-          type: 'scatter',
+          type: 'bar',
           name: 'Benchmark'
         };
 
         //For layout options, see https://plotly.com/javascript/reference/layout/coloraxis/
+        //and https://plotly.com/javascript/axes/
         var layout= {
+          //Formatting axis options here: https://github.com/d3/d3-format/blob/main/README.md#locale_format
           yaxis: {
-            tickformat: '%'
+            tickformat: '%',
           },
           font: {
             // family: 'sans-serif',
             // size: 12,
             color: '#ffffff'
           },
+          barmode: 'group',
           plot_bgcolor:"#1f2436",
           paper_bgcolor:"#1f2436",
-          // coloraxis: {
-          //   ColorBar: {
-          //     outlinecolor:"#ffffff",
-          //   }
-          // }
         }
 
         var data = [trace1, trace2];
 
-        Plotly.newPlot('cret_visual', data, layout);
+        Plotly.newPlot('eoy_visual', data, layout);
         done();
       });
 

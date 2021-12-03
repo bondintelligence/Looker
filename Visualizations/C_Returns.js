@@ -48,6 +48,11 @@ looker.plugins.visualizations.add({
           yaxis: {
             tickformat: '%',
           },
+          font: {
+            // family: 'sans-serif',
+            // size: 12,
+            color: '#ffffff'
+          },
           plot_bgcolor:"#1f2436",
           paper_bgcolor:"#1f2436",
           // coloraxis: {
