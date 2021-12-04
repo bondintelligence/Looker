@@ -64,10 +64,45 @@ visualization: {
   file: "Visualizations/Quantstats/W_Draw.js"
 }
 
-#I think this one still needs to be added to the API as of now
+visualization: {
+  id: "Quantstats_Heatmap_1"
+  label: "Quantstats_Heatmap_1"
+  dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
+  file: "Visualizations/Quantstats/Heatmap.js"
+}
+
+#I think these one still needs to be added to the API as of now
 visualization: {
   id: "Quantstats_EoY_Table_1"
   label: "Quantstats_EoY_Table_1"
   dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
   file: "Visualizations/Quantstats/EoY_Table.js"
+}
+
+visualization: {
+  id: "Quantstats_Rolling_Volatility_1"
+  label: "Quantstats_Rolling_Volatility_1"
+  dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
+  file: "Visualizations/Quantstats/Roll_Vol.js"
+}
+
+visualization: {
+  id: "Quantstats_Rolling_Sharpe_1"
+  label: "Quantstats_Rolling_Sharpe_1"
+  dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
+  file: "Visualizations/Quantstats/Sharpe.js"
+}
+
+visualization: {
+  id: "Quantstats_Rolling_Sortino_1"
+  label: "Quantstats_Rolling_Sortino_1"
+  dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
+  file: "Visualizations/Quantstats/Sortino.js"
+}
+
+visualization: {
+  id: "Quantstats_Underwater_1"
+  label: "Quantstats_Underwater_1"
+  dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
+  file: "Visualizations/Quantstats/Underwater.js"
 }
