@@ -8,7 +8,7 @@ looker.plugins.visualizations.add({
         background-color: #1f2436;
         color: #ffffff;
         font-family: sans-serif; }
-      </style><div id="under_visual"></div>`;
+      </style><div id="rbeta_visual"></div>`;
 
     },
     updateAsync: function(data, element, config, queryResponse, details, done){
@@ -20,20 +20,26 @@ looker.plugins.visualizations.add({
       var Bench_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 48));
       console.log(Strat_CUSIP)
       console.log(Bench_CUSIP)
-      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/underwater/'+Strat_CUSIP+'/'+Bench_CUSIP)
-      //fetch('https://127.0.0.1:5000/getdata/underwater/'+Strat_CUSIP+'/'+Bench_CUSIP)
+      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/rolbeta/'+Strat_CUSIP+'/'+Bench_CUSIP)
+      //fetch('https://127.0.0.1:5000/getdata/rolbeta/'+Strat_CUSIP+'/'+Bench_CUSIP)
       .then(response => response.json())
       .then(json => {
         data = [JSON.parse(JSON.stringify(json))];
         // console.log(data);
 
         var trace1 = {
-          x: Object.keys(data[0]),
-          y: Object.values(data[0]),
+          x: Object.keys(data[0].Six_Months),
+          y: Object.values(data[0].Six_Months),
           type: 'scatter',
           name: 'Strategy'
         };
 
+        var trace2 = {
+          x: Object.keys(data[0].Twelve_Months),
+          y: Object.values(data[0].Twelve_Months),
+          type: 'scatter',
+          name: 'Benchmark'
+        };
 
         //For layout options, see https://plotly.com/javascript/reference/layout/coloraxis/
         var layout= {
@@ -47,9 +53,9 @@ looker.plugins.visualizations.add({
           },
         }
 
-        var data = [trace1];
+        var data = [trace1, trace2];
 
-        Plotly.newPlot('under_visual', data, layout);
+        Plotly.newPlot('rbeta_visual', data, layout);
         done();
       });
 

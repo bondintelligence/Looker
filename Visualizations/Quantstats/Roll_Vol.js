@@ -20,8 +20,8 @@ looker.plugins.visualizations.add({
       var Bench_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 48));
       console.log(Strat_CUSIP)
       console.log(Bench_CUSIP)
-      //fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/rvol/'+Strat_CUSIP+'/'+Bench_CUSIP)
-      fetch('https://127.0.0.1:5000/getdata/rvol/'+Strat_CUSIP+'/'+Bench_CUSIP)
+      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/rvol/'+Strat_CUSIP+'/'+Bench_CUSIP)
+      //fetch('https://127.0.0.1:5000/getdata/rvol/'+Strat_CUSIP+'/'+Bench_CUSIP)
       .then(response => response.json())
       .then(json => {
         data = [JSON.parse(JSON.stringify(json))];

@@ -71,7 +71,6 @@ visualization: {
   file: "Visualizations/Quantstats/Heatmap.js"
 }
 
-#I think these one still needs to be added to the API as of now
 visualization: {
   id: "Quantstats_EoY_Table_1"
   label: "Quantstats_EoY_Table_1"
@@ -105,4 +104,11 @@ visualization: {
   label: "Quantstats_Underwater_1"
   dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
   file: "Visualizations/Quantstats/Underwater.js"
+}
+
+visualization: {
+  id: "Quantstats_Rolling_Beta_1"
+  label: "Quantstats_Rolling_Beta_1"
+  dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
+  file: "Visualizations/Quantstats/Roll_Beta.js"
 }
