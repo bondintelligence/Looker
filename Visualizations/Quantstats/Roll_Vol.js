@@ -59,6 +59,12 @@ looker.plugins.visualizations.add({
             t: 0,
             pad: 4
           },
+          showlegend: true,
+          legend: {
+            x: 1,
+            xanchor: 'right',
+            y: 1
+          }
         }
 
         var data = [trace1, trace2];
