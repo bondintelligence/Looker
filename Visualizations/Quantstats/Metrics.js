@@ -56,15 +56,14 @@ looker.plugins.visualizations.add({
         for (key of keys) {
           //Adding row for each key
           let row = table.insertRow();
-          //Making key a header
-          let th = document.createElement("th");
-          let key_text = document.createTextNode(key);
-          th.appendChild(key_text);
-          row.appendChild(th);
-          //Inserting the data specified by the key
           let cell = row.insertCell();
+          let key_text = document.createTextNode(key);
+          cell.style.paddingRight = "20px";
+          cell.appendChild(key_text);
+          let cell1 = row.insertCell();
           let strat_text = document.createTextNode(data[0].Strategy[key]);
-          cell.appendChild(strat_text);
+          cell1.style.paddingRight = "20px";
+          cell1.appendChild(strat_text);
           let cell2 = row.insertCell();
           let bench_text = document.createTextNode(data[0].Benchmark[key]);
           cell2.appendChild(bench_text);
