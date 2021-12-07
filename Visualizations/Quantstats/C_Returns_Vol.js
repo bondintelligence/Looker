@@ -45,7 +45,7 @@ looker.plugins.visualizations.add({
         //For layout options, see https://plotly.com/javascript/reference/layout/coloraxis/
         var layout= {
           yaxis: {
-            tickformat: '%'
+            tickformat: 'p'
           },
           font: {
             // family: 'sans-serif',

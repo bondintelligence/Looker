@@ -31,6 +31,7 @@ looker.plugins.visualizations.add({
           x: Object.keys(data[0]),
           y: Object.values(data[0]),
           type: 'scatter',
+          fill: 'tozeroy',
           name: 'Strategy'
         };
 

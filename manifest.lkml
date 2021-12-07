@@ -112,3 +112,17 @@ visualization: {
   dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
   file: "Visualizations/Quantstats/Roll_Beta.js"
 }
+
+visualization: {
+  id: "Quantstats_Return_Quantiles_1"
+  label: "Quantstats_Return_Quantiles_1"
+  dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
+  file: "Visualizations/Quantstats/Return_Quants.js"
+}
+
+visualization: {
+  id: "Quantstats_Five_Drawdowns_1"
+  label: "Quantstats_Five_Drawdowns_1"
+  dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
+  file: "Visualizations/Quantstats/Drawdown.js"
+}

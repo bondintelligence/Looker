@@ -31,14 +31,14 @@ looker.plugins.visualizations.add({
           x: Object.keys(data[0].Six_Months),
           y: Object.values(data[0].Six_Months),
           type: 'scatter',
-          name: 'Strategy'
+          name: 'Six_Months'
         };
 
         var trace2 = {
           x: Object.keys(data[0].Twelve_Months),
           y: Object.values(data[0].Twelve_Months),
           type: 'scatter',
-          name: 'Benchmark'
+          name: 'Twelve_Months'
         };
 
         //For layout options, see https://plotly.com/javascript/reference/layout/coloraxis/

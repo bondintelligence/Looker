@@ -46,7 +46,7 @@ looker.plugins.visualizations.add({
         var layout= {
           //Formatting axis options here: https://github.com/d3/d3-format/blob/main/README.md#locale_format
           yaxis: {
-            tickformat: '%',
+            tickformat: 'p',
           },
           font: {
             // family: 'sans-serif',

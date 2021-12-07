@@ -8,7 +8,7 @@ looker.plugins.visualizations.add({
         background-color: #1f2436;
         color: #ffffff;
         font-family: sans-serif; }
-      </style><div id="eoy_visual"></div>`;
+      </style><div id="box_visual"></div>`;
 
     },
     updateAsync: function(data, element, config, queryResponse, details, done){
@@ -20,48 +20,62 @@ looker.plugins.visualizations.add({
       var Bench_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 48));
       console.log(Strat_CUSIP)
       console.log(Bench_CUSIP)
-      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/eoyret/'+Strat_CUSIP+'/'+Bench_CUSIP)
-      //fetch('https://127.0.0.1:5000/getdata/cret/'+Strat_CUSIP+'/'+Bench_CUSIP)
+      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/retquant/'+Strat_CUSIP+'/'+Bench_CUSIP)
+      //fetch('https://127.0.0.1:5000/getdata/retquant/'+Strat_CUSIP+'/'+Bench_CUSIP)
       .then(response => response.json())
       .then(json => {
         data = [JSON.parse(JSON.stringify(json))];
         // console.log(data);
-        console.log(Object.values(data[0].Strategy));
 
         var trace1 = {
-          x: Object.keys(data[0].Strategy),
-          y: Object.values(data[0].Strategy),
-          type: 'bar',
-          name: 'Strategy'
+          y: Object.values(data[0].Daily),
+          type: 'box',
+          name: 'Daily'
         };
 
         var trace2 = {
-          x: Object.keys(data[0].Benchmark),
-          y: Object.values(data[0].Benchmark),
-          type: 'bar',
-          name: 'Benchmark'
+          y: Object.values(data[0].Weekly),
+          type: 'box',
+          name: 'Weekly'
         };
 
+        var trace3 = {
+          y: Object.values(data[0].Monthly),
+          type: 'box',
+          name: 'Monthly'
+        };
+
+        var trace4 = {
+          y: Object.values(data[0].Quarterly),
+          type: 'box',
+          name: 'Quarterly'
+        };
+
+        var trace5 = {
+          y: Object.values(data[0].Yearly),
+          type: 'box',
+          name: 'Yearly'
+        };
+
+
         //For layout options, see https://plotly.com/javascript/reference/layout/coloraxis/
-        //and https://plotly.com/javascript/axes/
         var layout= {
           //Formatting axis options here: https://github.com/d3/d3-format/blob/main/README.md#locale_format
           yaxis: {
             tickformat: 'p',
           },
+          plot_bgcolor:"#1f2436",
+          paper_bgcolor:"#1f2436",
           font: {
             // family: 'sans-serif',
             // size: 12,
             color: '#ffffff'
           },
-          barmode: 'group',
-          plot_bgcolor:"#1f2436",
-          paper_bgcolor:"#1f2436",
         }
 
-        var data = [trace1, trace2];
+        var data = [trace1, trace2, trace3, trace4, trace5];
 
-        Plotly.newPlot('eoy_visual', data, layout);
+        Plotly.newPlot('box_visual', data, layout);
         done();
       });
 

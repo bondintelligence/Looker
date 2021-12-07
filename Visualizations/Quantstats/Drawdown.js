@@ -8,7 +8,7 @@ looker.plugins.visualizations.add({
         background-color: #1f2436;
         color: #ffffff;
         font-family: sans-serif; }
-      </style><div id="eoy_visual"></div>`;
+      </style><div id="drawret_visual"></div>`;
 
     },
     updateAsync: function(data, element, config, queryResponse, details, done){
@@ -20,48 +20,61 @@ looker.plugins.visualizations.add({
       var Bench_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 48));
       console.log(Strat_CUSIP)
       console.log(Bench_CUSIP)
-      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/eoyret/'+Strat_CUSIP+'/'+Bench_CUSIP)
-      //fetch('https://127.0.0.1:5000/getdata/cret/'+Strat_CUSIP+'/'+Bench_CUSIP)
+      fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/ret_draw/'+Strat_CUSIP+'/'+Bench_CUSIP)
+      //fetch('https://127.0.0.1:5000/getdata/ret_draw/'+Strat_CUSIP+'/'+Bench_CUSIP)
       .then(response => response.json())
       .then(json => {
         data = [JSON.parse(JSON.stringify(json))];
-        // console.log(data);
-        console.log(Object.values(data[0].Strategy));
+        console.log(data);
 
         var trace1 = {
-          x: Object.keys(data[0].Strategy),
-          y: Object.values(data[0].Strategy),
-          type: 'bar',
+          x: Object.keys(data[0].Returns),
+          y: Object.values(data[0].Returns),
+          type: 'scatter',
           name: 'Strategy'
         };
 
-        var trace2 = {
-          x: Object.keys(data[0].Benchmark),
-          y: Object.values(data[0].Benchmark),
-          type: 'bar',
-          name: 'Benchmark'
-        };
-
         //For layout options, see https://plotly.com/javascript/reference/layout/coloraxis/
-        //and https://plotly.com/javascript/axes/
         var layout= {
           //Formatting axis options here: https://github.com/d3/d3-format/blob/main/README.md#locale_format
           yaxis: {
-            tickformat: 'p',
+            tickformat: '%',
           },
+          plot_bgcolor:"#1f2436",
+          paper_bgcolor:"#1f2436",
           font: {
             // family: 'sans-serif',
             // size: 12,
             color: '#ffffff'
           },
-          barmode: 'group',
-          plot_bgcolor:"#1f2436",
-          paper_bgcolor:"#1f2436",
+          shapes: [],
         }
 
-        var data = [trace1, trace2];
+        keys = Object.keys(data[0].Drawdowns.start);
+        for (key of keys) {
+          result = {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: data[0].Drawdowns.start[key],
+            y0: 0,
+            x1: data[0].Drawdowns.end[key],
+            y1: 1,
+            fillcolor: '#FF0000',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+          }
+          layout.shapes.push(result);
+        }
 
-        Plotly.newPlot('eoy_visual', data, layout);
+
+        var data = [trace1];
+
+        Plotly.newPlot('drawret_visual', data, layout);
         done();
       });
 
