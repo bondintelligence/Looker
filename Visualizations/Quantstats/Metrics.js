@@ -34,6 +34,7 @@ looker.plugins.visualizations.add({
       //Tentative visualization for metrics (will be polished later)
       function generateTable(table, data) {
         table.innerHTML = "";
+        table.style.textAlign = "left";
         benchmark = data[0].Benchmark;
         strategy = data[0].Strategy;
         keys = Object.keys(data[0].Strategy);

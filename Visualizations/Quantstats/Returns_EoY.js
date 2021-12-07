@@ -57,6 +57,13 @@ looker.plugins.visualizations.add({
           barmode: 'group',
           plot_bgcolor:"#1f2436",
           paper_bgcolor:"#1f2436",
+          margin: {
+            l: 50,
+            r: 50,
+            b: 50,
+            t: 0,
+            pad: 4
+          },
         }
 
         var data = [trace1, trace2];

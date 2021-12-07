@@ -59,6 +59,13 @@ looker.plugins.visualizations.add({
             // size: 12,
             color: '#ffffff'
           },
+          margin: {
+            l: 50,
+            r: 50,
+            b: 50,
+            t: 0,
+            pad: 4
+          },
         }
 
         for ( var i = 0; i < yValues.length; i++ ) {

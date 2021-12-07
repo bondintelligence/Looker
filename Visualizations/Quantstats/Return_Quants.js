@@ -30,31 +30,46 @@ looker.plugins.visualizations.add({
         var trace1 = {
           y: Object.values(data[0].Daily),
           type: 'box',
-          name: 'Daily'
+          name: 'Daily',
+          marker:{
+            color: '#62bad4'
+          }
         };
 
         var trace2 = {
           y: Object.values(data[0].Weekly),
           type: 'box',
-          name: 'Weekly'
+          name: 'Weekly',
+          marker:{
+            color: '#929292'
+          }
         };
 
         var trace3 = {
           y: Object.values(data[0].Monthly),
           type: 'box',
-          name: 'Monthly'
+          name: 'Monthly',
+          marker:{
+            color: '#a9c574'
+          }
         };
 
         var trace4 = {
           y: Object.values(data[0].Quarterly),
           type: 'box',
-          name: 'Quarterly'
+          name: 'Quarterly',
+          marker:{
+            color: '#82c2ca'
+          }
         };
 
         var trace5 = {
           y: Object.values(data[0].Yearly),
           type: 'box',
-          name: 'Yearly'
+          name: 'Yearly',
+          marker:{
+            color: '#ffffff'
+          }
         };
 
 
@@ -70,6 +85,13 @@ looker.plugins.visualizations.add({
             // family: 'sans-serif',
             // size: 12,
             color: '#ffffff'
+          },
+          margin: {
+            l: 50,
+            r: 50,
+            b: 50,
+            t: 0,
+            pad: 4
           },
         }
 

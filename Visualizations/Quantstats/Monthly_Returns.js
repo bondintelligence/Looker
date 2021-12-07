@@ -50,11 +50,13 @@ looker.plugins.visualizations.add({
           },
           plot_bgcolor:"#1f2436",
           paper_bgcolor:"#1f2436",
-          // coloraxis: {
-          //   ColorBar: {
-          //     outlinecolor:"#ffffff",
-          //   }
-          // }
+          margin: {
+            l: 50,
+            r: 50,
+            b: 50,
+            t: 0,
+            pad: 4
+          },
         }
 
         var data = [trace1];
