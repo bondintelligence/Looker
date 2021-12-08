@@ -26,13 +26,26 @@ looker.plugins.visualizations.add({
       .then(json => {
         data = [JSON.parse(JSON.stringify(json))];
         // console.log(data);
+        '#1f77b4',  // muted blue
+        '#ff7f0e',  // safety orange
+        '#2ca02c',  // cooked asparagus green
+        '#d62728',  // brick red
+        '#9467bd',  // muted purple
+        '#8c564b',  // chestnut brown
+        '#e377c2',  // raspberry yogurt pink
+        '#7f7f7f',  // middle gray
+        '#bcbd22',  // curry yellow-green
+        '#17becf'
+
+
 
         var trace1 = {
           y: Object.values(data[0].Daily),
           type: 'box',
           name: 'Daily',
           marker:{
-            color: '#62bad4'
+            //color: '#62bad4',
+            color: '#1f77b4'
           }
         };
 
@@ -41,7 +54,8 @@ looker.plugins.visualizations.add({
           type: 'box',
           name: 'Weekly',
           marker:{
-            color: '#929292'
+            //color: '#929292'
+            color: '#ff7f0e'
           }
         };
 
@@ -50,7 +64,8 @@ looker.plugins.visualizations.add({
           type: 'box',
           name: 'Monthly',
           marker:{
-            color: '#a9c574'
+            //color: '#a9c574'
+            color: '#7f7f7f'
           }
         };
 
@@ -78,6 +93,7 @@ looker.plugins.visualizations.add({
           //Formatting axis options here: https://github.com/d3/d3-format/blob/main/README.md#locale_format
           yaxis: {
             tickformat: 'p',
+            tick0: 0,
           },
           plot_bgcolor:"#1f2436",
           paper_bgcolor:"#1f2436",

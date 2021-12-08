@@ -27,11 +27,6 @@ looker.plugins.visualizations.add({
         data = [JSON.parse(JSON.stringify(json))];
         console.log(data);
 
-        var colorscaleValue = [
-          [0, '#e8633f'],
-          [1, '#1a6c3f']
-        ];
-
 
         xValues = Object.keys(data[0].APR)
         yValues = Object.keys(data[0])
@@ -42,8 +37,20 @@ looker.plugins.visualizations.add({
           z: zValues,
           type: 'heatmap',
           //values here give color scale
-          colorscale: 'RdBl',
+          // colorscale: 'RdBl',
           reversescale: true,
+          colorscale: [
+            ['0.0', '#A9C574'],
+            ['0.111111111111', '#B1BA70'],
+            ['0.222222222222', '#B9AF6D'],
+            ['0.333333333333', '#C0A469'],
+            ['0.444444444444', '#C89965'],
+            ['0.555555555556', '#D08E62'],
+            ['0.666666666667', '#D8835E'],
+            ['0.777777777778', '#E0785B'],
+            ['0.888888888889', '#E86D57'],
+            ['1.0', '#EF6253']
+          ],
           name: 'Strategy'
         };
 
