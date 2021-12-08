@@ -39,11 +39,15 @@ looker.plugins.visualizations.add({
         table.innerHTML = "";
         keys = Object.keys(data[0].start);
 
+        table.style.textAlign = "right";
+        table.style.borderSpacing = "10px 5px"
+
         //Adding row for headers
         let row = table.insertRow();
         let th1 = document.createElement("th");
         let met = document.createTextNode("Started");
         th1.appendChild(met);
+        th1.style.textAlign = "left";
         row.appendChild(th1);
         let th2 = document.createElement("th");
         let bench = document.createTextNode("Recovered");
@@ -61,17 +65,15 @@ looker.plugins.visualizations.add({
           //Adding row for each key
           let row = table.insertRow();
           //Making key a header
-          // let th = document.createElement("th");
           let cel = row.insertCell();
           let key_text = document.createTextNode(data[0].start[key]);
           cel.appendChild(key_text);
-          // row.appendChild(th);
           //Inserting the data specified by the key
           let cell = row.insertCell();
           let bench_text = document.createTextNode(data[0].end[key]);
           cell.appendChild(bench_text);
           let cell2 = row.insertCell();
-          let strat_text = document.createTextNode(data[0]["max drawdown"][key] + "%");
+          let strat_text = document.createTextNode((data[0]["max drawdown"][key]).toFixed(5) + "%");
           cell2.appendChild(strat_text);
           let cell3 = row.insertCell();
           let mult_text = document.createTextNode(data[0].days[key]);

@@ -23,8 +23,8 @@ looker.plugins.visualizations.add({
       //Try CUSIP: 010824GS3
       //API query with the specified CUSIP value
       //fetch('https://127.0.0.1:5000/getdata/metrics/010824GS3/00912XAS3')
+      //fetch('https://127.0.0.1:5000/getdata/eoytable/010824GS3/012104PN9')
       fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/eoytable/'+Strat_CUSIP+'/'+Bench_CUSIP)
-      //fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/metrics/'+Strat_CUSIP+'/'+Bench_CUSIP)
         .then(response => response.json())
         .then(json => {
           bond_metrics = [JSON.parse(JSON.stringify(json))];
@@ -42,6 +42,9 @@ looker.plugins.visualizations.add({
         multiplier = data[0].Multiplier;
         won = data[0].Won;
         keys = Object.keys(data[0].Strategy);
+
+        table.style.textAlign = "right";
+        table.style.borderSpacing = "10px 5px"
 
         //Adding row for headers
         let row = table.insertRow();
@@ -69,25 +72,39 @@ looker.plugins.visualizations.add({
           //Adding row for each key
           let row = table.insertRow();
           //Making key a header
-          let th = document.createElement("th");
+          // let th = document.createElement("th");
+          // let key_text = document.createTextNode(key);
+          // th.appendChild(key_text);
+          // row.appendChild(th);
+          let cell1 = row.insertCell();
           let key_text = document.createTextNode(key);
-          th.appendChild(key_text);
-          row.appendChild(th);
+          cell1.appendChild(key_text);
+
+
           //Inserting the data specified by the key
           let cell = row.insertCell();
           let bench_text = document.createTextNode(data[0].Benchmark[key]);
+          if (data[0].Benchmark[key] != null){
+            bench_text = document.createTextNode((data[0].Benchmark[key]).toFixed(5));
+          }
           cell.appendChild(bench_text);
           let cell2 = row.insertCell();
           let strat_text = document.createTextNode(data[0].Strategy[key]);
+          if (data[0].Strategy[key] != null){
+            strat_text = document.createTextNode((data[0].Strategy[key]).toFixed(5));
+          }
           cell2.appendChild(strat_text);
           let cell3 = row.insertCell();
-          let mult_text = document.createTextNode(data[0].Multiplier[key]);
+          let mult_text;
           if (data[0].Multiplier[key] == null){
             mult_text = document.createTextNode("");
+          } else {
+            mult_text = document.createTextNode((data[0].Multiplier[key]).toFixed(5));
           }
           cell3.appendChild(mult_text);
           let cell4 = row.insertCell();
           let w_text = document.createTextNode(data[0].Won[key]);
+          cell4.style.textAlign = "center";
           cell4.appendChild(w_text);
         }
       }
