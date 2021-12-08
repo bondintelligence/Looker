@@ -9,18 +9,22 @@ looker.plugins.visualizations.add({
         color: #ffffff;
         font-family: sans-serif; }
       </style><table id="table"></table>`;
+
     },
     updateAsync: function(data, element, config, queryResponse, details, done){
       //Dealing with filter, and narrowing down to CUSIP value filter (I couldn't find way to access filter directly, so decided to
       //access filtered query, specifically the CUSIP field)
+      var row = data[0];
+      var CUSIP = row[queryResponse.fields.dimensions[0].name];
       var Strat_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_1 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_1 ) = ") + 48));
       var Bench_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 48));
 
       //https://jsonplaceholder.typicode.com/todos/1
       //Try CUSIP: 010824GS3
       //API query with the specified CUSIP value
+      //fetch('https://127.0.0.1:5000/getdata/metrics/010824GS3/00912XAS3')
       //fetch('https://127.0.0.1:5000/getdata/'+CUSIP.value+'/metrics')
-      //fetch('https://quantstats-dot-bi-model-development.wl.r.appspot.com/getdata/'+CUSIP.value+'/metrics')
+
       fetch('https://quantstats-wmn5n7rc5q-uc.a.run.app/getdata/metrics/'+Strat_CUSIP+'/'+Bench_CUSIP)
         .then(response => response.json())
         .then(json => {
@@ -34,10 +38,11 @@ looker.plugins.visualizations.add({
       //Tentative visualization for metrics (will be polished later)
       function generateTable(table, data) {
         table.innerHTML = "";
-        table.style.textAlign = "left";
         benchmark = data[0].Benchmark;
         strategy = data[0].Strategy;
         keys = Object.keys(data[0].Strategy);
+        table.style.textAlign = "left";
+        table.style.borderSpacing = "10px 5px"
 
         //Adding row for headers
         let row = table.insertRow();
@@ -53,16 +58,26 @@ looker.plugins.visualizations.add({
         let bench = document.createTextNode("Benchmark");
         th3.appendChild(bench);
         row.appendChild(th3);
+
+        hor_bar = ["Cumulative Return ", "Sharpe ", "Max Drawdown ", "Expected Daily % ", "Gain/Pain Ratio ", "Payoff Ratio ", "MTD ", "Best Day ", "Avg. Drawdown ", "Avg. Up Month "]
+        console.log(keys);
         for (key of keys) {
           //Adding row for each key
+          if(hor_bar.includes(key)){
+            console.log(key);
+            let div = table.insertRow();
+            let cell_hold = div.insertCell();
+            cell_hold.colSpan = "3";
+            let bar = document.createElement("HR");
+            cell_hold.appendChild(bar);
+            div.appendChild(cell_hold);
+          }
           let row = table.insertRow();
           let cell = row.insertCell();
           let key_text = document.createTextNode(key);
-          cell.style.paddingRight = "20px";
           cell.appendChild(key_text);
           let cell1 = row.insertCell();
           let strat_text = document.createTextNode(data[0].Strategy[key]);
-          cell1.style.paddingRight = "20px";
           cell1.appendChild(strat_text);
           let cell2 = row.insertCell();
           let bench_text = document.createTextNode(data[0].Benchmark[key]);
