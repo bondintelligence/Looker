@@ -79,11 +79,6 @@ looker.plugins.visualizations.add({
           for ( var j = 0; j < xValues.length; j++ ) {
             var currentValue = zValues[i][j];
             //Can experiment with these values for color of text
-            if (currentValue != 0.0) {
-              var textColor = 'white';
-            }else{
-              var textColor = 'black';
-            }
             var result = {
               xref: 'x1',
               yref: 'y1',
@@ -97,7 +92,7 @@ looker.plugins.visualizations.add({
               // },
               showarrow: false,
               font: {
-                color: textColor
+                color: "white"
               }
             };
             layout.annotations.push(result);

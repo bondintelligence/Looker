@@ -224,7 +224,7 @@ explore: comparabletrades {
 }
 
 explore: quantstats_cusips {
-  hidden:  yes
+  hidden:  no
 }
 
 

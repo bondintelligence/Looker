@@ -38,7 +38,9 @@ looker.plugins.visualizations.add({
     //Tentative visualization for metrics (will be polished later)
     function generateTable(table, data) {
       table.innerHTML = "";
-      benchmark = data[0].Benchmark;
+      if (Bench_CUSIP.substring(0, 4) != "None"){
+        benchmark = data[0].Benchmark;
+      }
       strategy = data[0].Strategy;
       keys = Object.keys(data[0].Strategy);
       table.style.textAlign = "left";
@@ -55,11 +57,13 @@ looker.plugins.visualizations.add({
       th2.appendChild(strat);
       th2.style.textAlign = "right";
       row.appendChild(th2);
-      let th3 = document.createElement("th");
-      let bench = document.createTextNode("Benchmark");
-      th3.appendChild(bench);
-      th3.style.textAlign = "right";
-      row.appendChild(th3);
+      if (Bench_CUSIP.substring(0, 4) != "None"){
+        let th3 = document.createElement("th");
+        let bench = document.createTextNode("Benchmark");
+        th3.appendChild(bench);
+        th3.style.textAlign = "right";
+        row.appendChild(th3);
+      }
 
       hor_bar = ["Cumulative Return ", "Sharpe ", "Max Drawdown ", "Expected Daily % ", "Gain/Pain Ratio ", "Payoff Ratio ", "MTD ", "Best Day ", "Avg. Drawdown ", "Avg. Up Month "]
       console.log(keys);
@@ -83,9 +87,11 @@ looker.plugins.visualizations.add({
         cell1.style.textAlign = "right";
         cell1.appendChild(strat_text);
         let cell2 = row.insertCell();
-        let bench_text = document.createTextNode(data[0].Benchmark[key]);
-        cell2.style.textAlign = "right";
-        cell2.appendChild(bench_text);
+        if (Bench_CUSIP.substring(0, 4) != "None"){
+          let bench_text = document.createTextNode(data[0].Benchmark[key]);
+          cell2.style.textAlign = "right";
+          cell2.appendChild(bench_text);
+        }
       }
     }
   }
