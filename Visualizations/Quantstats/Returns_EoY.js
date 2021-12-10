@@ -30,7 +30,10 @@ looker.plugins.visualizations.add({
           x: Object.keys(data[0].Strategy),
           y: Object.values(data[0].Strategy),
           type: 'bar',
-          name: 'Strategy'
+          name: 'Strategy',
+          marker: {
+            color: '#62bad4'
+          }
         };
 
         if (Bench_CUSIP.substring(0, 4) != "None"){
@@ -38,7 +41,10 @@ looker.plugins.visualizations.add({
             x: Object.keys(data[0].Benchmark),
             y: Object.values(data[0].Benchmark),
             type: 'bar',
-            name: 'Benchmark'
+            name: 'Benchmark',
+            marker: {
+              color: '#a9c574'
+            }
           };
         }
 

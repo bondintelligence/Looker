@@ -34,6 +34,7 @@ include: "/pricemodel_source.view"
 include: "/risk_predicted_muni_source.view"
 include: "/risk_predicted_corp_source.view"
 include: "/quantstats_CUSIPS.view"
+include: "/rel_val_muni.view"
 
 
 
@@ -227,6 +228,9 @@ explore: quantstats_cusips {
   hidden:  no
 }
 
+explore: rel_val_muni {
+  hidden: no
+}
 
 explore: risk_predicted_muni_source {
   group_label: "Models"

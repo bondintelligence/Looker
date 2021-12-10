@@ -31,7 +31,10 @@ looker.plugins.visualizations.add({
           x: Object.keys(data[0]),
           y: Object.values(data[0]),
           type: 'scatter',
-          name: 'Strategy'
+          name: 'Strategy',
+          line: {
+            color: '#62bad4'
+          }
         };
 
 

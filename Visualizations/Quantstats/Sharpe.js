@@ -14,8 +14,6 @@ looker.plugins.visualizations.add({
     updateAsync: function(data, element, config, queryResponse, details, done){
       //Dealing with filter, and narrowing down to CUSIP value filter (I couldn't find way to access filter directly, so decided to
       //access filtered query, specifically the CUSIP field)
-      var row = data[0];
-      var CUSIP = row[queryResponse.fields.dimensions[0].name];
       var Strat_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_1 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_1 ) = ") + 48));
       var Bench_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 48));
       console.log(Strat_CUSIP)
@@ -31,7 +29,10 @@ looker.plugins.visualizations.add({
           x: Object.keys(data[0]),
           y: Object.values(data[0]),
           type: 'scatter',
-          name: 'Strategy'
+          name: 'Strategy',
+          line: {
+            color: '#62bad4'
+          }
         };
 
 

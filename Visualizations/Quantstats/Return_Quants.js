@@ -14,8 +14,6 @@ looker.plugins.visualizations.add({
     updateAsync: function(data, element, config, queryResponse, details, done){
       //Dealing with filter, and narrowing down to CUSIP value filter (I couldn't find way to access filter directly, so decided to
       //access filtered query, specifically the CUSIP field)
-      var row = data[0];
-      var CUSIP = row[queryResponse.fields.dimensions[0].name];
       var Strat_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_1 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_1 ) = ") + 48));
       var Bench_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 48));
       console.log(Strat_CUSIP)
@@ -26,16 +24,6 @@ looker.plugins.visualizations.add({
       .then(json => {
         data = [JSON.parse(JSON.stringify(json))];
         // console.log(data);
-        '#1f77b4',  // muted blue
-        '#ff7f0e',  // safety orange
-        '#2ca02c',  // cooked asparagus green
-        '#d62728',  // brick red
-        '#9467bd',  // muted purple
-        '#8c564b',  // chestnut brown
-        '#e377c2',  // raspberry yogurt pink
-        '#7f7f7f',  // middle gray
-        '#bcbd22',  // curry yellow-green
-        '#17becf'
 
 
 
@@ -44,8 +32,8 @@ looker.plugins.visualizations.add({
           type: 'box',
           name: 'Daily',
           marker:{
-            //color: '#62bad4',
-            color: '#1f77b4'
+            color: '#62bad4',
+            //color: '#1f77b4'
           }
         };
 
@@ -54,8 +42,8 @@ looker.plugins.visualizations.add({
           type: 'box',
           name: 'Weekly',
           marker:{
-            //color: '#929292'
-            color: '#ff7f0e'
+            color: '#929292'
+            //color: '#ff7f0e'
           }
         };
 
@@ -64,8 +52,8 @@ looker.plugins.visualizations.add({
           type: 'box',
           name: 'Monthly',
           marker:{
-            //color: '#a9c574'
-            color: '#7f7f7f'
+            color: '#a9c574'
+            //color: '#7f7f7f'
           }
         };
 

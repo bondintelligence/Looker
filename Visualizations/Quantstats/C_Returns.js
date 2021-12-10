@@ -14,8 +14,6 @@ looker.plugins.visualizations.add({
     updateAsync: function(data, element, config, queryResponse, details, done){
       //Dealing with filter, and narrowing down to CUSIP value filter (I couldn't find way to access filter directly, so decided to
       //access filtered query, specifically the CUSIP field)
-      var row = data[0];
-      var CUSIP = row[queryResponse.fields.dimensions[0].name];
       var Strat_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_1 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_1 ) = ") + 48));
       var Bench_CUSIP = (queryResponse.sql.substring(queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 39, queryResponse.sql.indexOf("(quantstats_cusips.string_field_2 ) = ") + 48));
 
@@ -32,15 +30,23 @@ looker.plugins.visualizations.add({
           x: Object.keys(data[0].Strategy),
           y: Object.values(data[0].Strategy),
           type: 'scatter',
-          name: 'Strategy'
+          name: 'Strategy',
+          line: {
+            color: '#62bad4'
+          }
         };
 
-        var trace2 = {
-          x: Object.keys(data[0].Benchmark),
-          y: Object.values(data[0].Benchmark),
-          type: 'scatter',
-          name: 'Benchmark'
-        };
+        if (Bench_CUSIP.substring(0, 4) != "None"){
+          var trace2 = {
+            x: Object.keys(data[0].Benchmark),
+            y: Object.values(data[0].Benchmark),
+            type: 'scatter',
+            name: 'Benchmark',
+            line: {
+              color: '#a9c574'
+            }
+          };
+        }
 
         //For layout options, see https://plotly.com/javascript/reference/layout/coloraxis/
         var layout= {
@@ -64,7 +70,11 @@ looker.plugins.visualizations.add({
           },
         }
 
-        var data = [trace1, trace2];
+        if (Bench_CUSIP.substring(0, 4) != "None"){
+          var data = [trace1, trace2];
+        } else {
+          var data = [trace1];
+        }
 
         Plotly.newPlot('cret_visual', data, layout);
         done();

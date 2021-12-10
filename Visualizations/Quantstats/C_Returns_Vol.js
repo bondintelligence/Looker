@@ -32,14 +32,20 @@ looker.plugins.visualizations.add({
           x: Object.keys(data[0].Strategy),
           y: Object.values(data[0].Strategy),
           type: 'scatter',
-          name: 'Strategy'
+          name: 'Strategy',
+          line: {
+            color: '#62bad4'
+          }
         };
 
         var trace2 = {
           x: Object.keys(data[0].Benchmark),
           y: Object.values(data[0].Benchmark),
           type: 'scatter',
-          name: 'Benchmark'
+          name: 'Benchmark',
+          line: {
+            color: '#a9c574'
+          }
         };
 
         //For layout options, see https://plotly.com/javascript/reference/layout/coloraxis/
