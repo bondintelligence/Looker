@@ -44,6 +44,9 @@ looker.plugins.visualizations.add({
           xaxis: {
             tickformat: 'p',
           },
+          yaxis: {
+            gridcolor: "#444444",
+          },
           font: {
             // family: 'sans-serif',
             // size: 12,

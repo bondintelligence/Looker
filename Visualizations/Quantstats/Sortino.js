@@ -54,6 +54,13 @@ looker.plugins.visualizations.add({
             pad: 4
           },
           height: 400,
+          yaxis: {
+            tickformat: 'p',
+            gridcolor: "#444444",
+          },
+          xaxis: {
+            gridcolor: "#444444"
+          },
         }
 
         var data = [trace1];

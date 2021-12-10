@@ -51,7 +51,11 @@ looker.plugins.visualizations.add({
         //For layout options, see https://plotly.com/javascript/reference/layout/coloraxis/
         var layout= {
           yaxis: {
-            tickformat: 'p'
+            tickformat: 'p',
+            gridcolor: "#444444",
+          },
+          xaxis: {
+            gridcolor: "#444444"
           },
           font: {
             // family: 'sans-serif',

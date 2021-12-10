@@ -98,6 +98,9 @@ looker.plugins.visualizations.add({
             pad: 4
           },
           height: 400,
+          yaxis: {
+            gridcolor: "#444444",
+          },
         }
 
         var data = [trace1, trace2, trace3, trace4, trace5];

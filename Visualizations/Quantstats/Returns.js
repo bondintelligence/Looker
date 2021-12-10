@@ -40,8 +40,11 @@ looker.plugins.visualizations.add({
         var layout= {
           //Formatting axis options here: https://github.com/d3/d3-format/blob/main/README.md#locale_format
           yaxis: {
-            //Can also use %
             tickformat: 'p',
+            gridcolor: "#444444",
+          },
+          xaxis: {
+            gridcolor: "#444444"
           },
           plot_bgcolor:"#1f2436",
           paper_bgcolor:"#1f2436",
