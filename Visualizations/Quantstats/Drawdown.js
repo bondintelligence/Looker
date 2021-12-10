@@ -57,7 +57,6 @@ looker.plugins.visualizations.add({
           },
           shapes: [],
         }
-
         keys = Object.keys(data[0].Drawdowns.start);
         for (key of keys) {
           result = {
