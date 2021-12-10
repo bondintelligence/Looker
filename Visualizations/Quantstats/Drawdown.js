@@ -56,7 +56,10 @@ looker.plugins.visualizations.add({
             pad: 4
           },
           shapes: [],
+          height: 400,
         }
+
+
         keys = Object.keys(data[0].Drawdowns.start);
         for (key of keys) {
           result = {

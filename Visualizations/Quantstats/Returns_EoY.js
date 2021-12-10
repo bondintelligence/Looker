@@ -70,6 +70,7 @@ looker.plugins.visualizations.add({
             t: 0,
             pad: 4
           },
+          height: 400,
         }
 
         if (Bench_CUSIP.substring(0, 4) != "None"){

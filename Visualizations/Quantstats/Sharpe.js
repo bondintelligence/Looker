@@ -53,6 +53,7 @@ looker.plugins.visualizations.add({
             t: 0,
             pad: 4
           },
+          height: 400,
         }
 
         var data = [trace1];
