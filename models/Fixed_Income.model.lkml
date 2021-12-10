@@ -35,6 +35,7 @@ include: "/risk_predicted_muni_source.view"
 include: "/risk_predicted_corp_source.view"
 include: "/quantstats_CUSIPS.view"
 include: "/rel_val_muni.view"
+include: "/rel_val_corp.view"
 
 
 
@@ -229,6 +230,10 @@ explore: quantstats_cusips {
 }
 
 explore: rel_val_muni {
+  hidden: no
+}
+
+explore: rel_val_corp {
   hidden: no
 }
 
