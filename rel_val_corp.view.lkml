@@ -1,5 +1,5 @@
 view: rel_val_corp {
-  sql_table_name: `bi-model-development.looker_FINAL.RelVal_Corp`
+  sql_table_name: `bi-model-development.looker_FINAL.RelVal_Corp_Joined`
     ;;
 
   dimension: bond_type {
@@ -24,7 +24,7 @@ view: rel_val_corp {
 
   dimension: price {
     type: string
-    sql: ${TABLE}.Price ;;
+    sql: ${TABLE}.PRICE_EOM ;;
   }
 
   dimension: risk {
