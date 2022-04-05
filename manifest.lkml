@@ -1,5 +1,14 @@
 project_name: "production"
 
+### Rel Val Dashboard Visualizations
+
+visualization: {
+  id: "Rel Val Corp 3D"
+  label: "Rel Val Corp 3D"
+  dependencies: ["https://cdn.plot.ly/plotly-2.6.3.min.js"]
+  file: "Visualizations/RelValCorp3D.js"
+}
+
 ### Bond Insights Dashboard Visualizations
 visualization: {
   id: "Risk Radial Gauge"
